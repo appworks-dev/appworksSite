@@ -438,7 +438,7 @@
                 <div class="contact-card">
                     <h2 class="text-white font-black text-3xl mb-8">Send Us a Message</h2>
 
-                    <form action="#" method="post" class="space-y-6">
+                    <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="text-white text-sm font-bold mb-2 block">Your Name</label>
@@ -464,7 +464,10 @@
                             <span>SEND MESSAGE</span>
                             <i class="bi bi-send-fill"></i>
                         </button>
+                        <p id="contact-msg" class="text-center text-sm font-semibold hidden"></p>
                     </form>
+
+                    <script src="js/contact.js"></script>
                 </div>
             </div>
         </div>
