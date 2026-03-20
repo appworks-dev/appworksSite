@@ -1,12 +1,19 @@
 # Disable directory listing
 Options -Indexes
 
+# Custom 404 page
+ErrorDocument 404 /404.html
+
 # Enable URL rewriting
 RewriteEngine On
 RewriteBase /
 
 # Set default homepage
 DirectoryIndex home.html index.html index.php
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 # Remove trailing slash from URLs (optional but recommended)
 RewriteCond %{REQUEST_FILENAME} !-d
