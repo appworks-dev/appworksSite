@@ -22,3 +22,6 @@ yarn-error.log
 /.vscode
 /.zed
 /images
+.DS_Store
+._.DS_Store
+.claude/
