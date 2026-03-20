@@ -13,7 +13,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
                 name: form.name.value,
                 email: form.email.value,
                 subject: form.subject.value,
-                message: form.message.value
+                message: form.message.value + '\n\nSent from app-works.app'
             })
         });
         const data = await res.json();
