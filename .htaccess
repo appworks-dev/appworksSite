@@ -8,6 +8,18 @@ ErrorDocument 404 /404.html
 RewriteEngine On
 RewriteBase /
 
+# Auto-serve WebP images when browser supports it
+RewriteCond %{HTTP_ACCEPT} image/webp
+RewriteCond %{REQUEST_URI} (.+)\.(png|jpg|jpeg)$
+RewriteCond %{DOCUMENT_ROOT}%1.webp -f
+RewriteRule (.+)\.(png|jpg|jpeg)$ $1.webp [T=image/webp,L]
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(png|jpg|jpeg)$">
+    Header append Vary Accept
+  </FilesMatch>
+</IfModule>
+
 # Set default homepage
 DirectoryIndex home.html index.html index.php
 
