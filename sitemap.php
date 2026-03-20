@@ -19,7 +19,7 @@ $staticPages = [
 
 // Fetch articles from CMS API
 $articles = [];
-$apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=200';
+$apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=100';
 $context = stream_context_create([
     'http' => [
         'header' => "Authorization: kmNTuI8dRmRX\r\n",
