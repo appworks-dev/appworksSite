@@ -127,11 +127,15 @@ if ($articleData) {
     $pageTitle = htmlspecialchars($articleData['title']) . " - Appworks";
     $pageDescription = htmlspecialchars($articleData['intro'] ?? $articleData['title']);
 
-    // Handle image URL
-    if (isset($articleData['images']['large-full']['url'])) {
+    // Handle image URL - prefer original for best quality
+    if (isset($articleData['images']['original']['url'])) {
+        $pageImage = $articleData['images']['original']['url'];
+    } elseif (isset($articleData['images']['large-full']['url'])) {
         $pageImage = $articleData['images']['large-full']['url'];
     } elseif (isset($articleData['images']['medium-full']['url'])) {
         $pageImage = $articleData['images']['medium-full']['url'];
+    } elseif (isset($articleData['media']['original'])) {
+        $pageImage = $articleData['media']['original'];
     } elseif (isset($articleData['media']['large-full'])) {
         $pageImage = $articleData['media']['large-full'];
     } elseif (isset($articleData['media']['medium-full'])) {
@@ -142,6 +146,9 @@ if ($articleData) {
     if ($pageImage && !filter_var($pageImage, FILTER_VALIDATE_URL)) {
         $pageImage = 'https://appworks.mpanel.app' . $pageImage;
     }
+
+    // Strip ?crop=true to prevent server-side cropping
+    $pageImage = str_replace('?crop=true', '', $pageImage);
 
     // Create clean slug URL — prefer CMS slug over generated slug
     $cleanSlug = $articleData['slug'] ?? createSlug($articleData['title']);
@@ -774,8 +781,8 @@ if ($articleData) {
                     // Decode HTML entities (mPanel stores content as HTML-encoded text)
                     $content = html_entity_decode($content, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
-                    // Fix image paths
-                    $content = str_replace('/storage', 'https://appworks.mpanel.app/image/cache/extra-large', $content);
+                    // Fix image paths - use original to prevent cropping
+                    $content = str_replace('/storage', 'https://appworks.mpanel.app/image/cache/original', $content);
 
                     echo $content;
                 } else {
