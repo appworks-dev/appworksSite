@@ -143,9 +143,9 @@ if ($articleData) {
         $pageImage = 'https://appworks.mpanel.app' . $pageImage;
     }
 
-    // Create clean slug URL
-    $cleanSlug = createSlug($articleData['title']);
-    $pageUrl = "https://" . $_SERVER['HTTP_HOST'] . "/article/" . $cleanSlug;
+    // Create clean slug URL — prefer CMS slug over generated slug
+    $cleanSlug = $articleData['slug'] ?? createSlug($articleData['title']);
+    $pageUrl = "https://app-works.app/article/" . $cleanSlug;
 }
 
 // Keywords
