@@ -32,6 +32,15 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [R=301,L]
 
+# Redirect old /article?id=XX and /article?slug=XX to article.php for 301 processing
+RewriteCond %{QUERY_STRING} (^|&)(id|slug)= [NC]
+RewriteRule ^article$ article.php [L,QSA]
+
+# Redirect direct article.php?slug= access to clean /article/slug URL
+RewriteCond %{QUERY_STRING} slug=([a-z0-9-]+) [NC]
+RewriteCond %{THE_REQUEST} article\.php
+RewriteRule ^article\.php$ /article/%1? [R=301,L]
+
 # Redirect extensionless page URLs to .html (fixes 404s from old links)
 RewriteRule ^(home|about|partners|projects|media|sport|cms|consultation|articles)$ /$1.html [R=301,L]
 
