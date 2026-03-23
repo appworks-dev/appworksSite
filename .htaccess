@@ -32,6 +32,18 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [R=301,L]
 
+# Redirect extensionless page URLs to .html (fixes 404s from old links)
+RewriteRule ^(home|about|partners|projects|media|sport|cms|consultation|articles)$ /$1.html [R=301,L]
+
+# Redirect old /oneArticle/ID/slug pattern to clean /article/slug
+RewriteRule ^oneArticle/[0-9]+/(.+)$ /article/$1 [R=301,L]
+
+# Redirect old /page/contact to /about.html
+RewriteRule ^page/contact$ /about.html [R=301,L]
+
+# Redirect /index.html to root
+RewriteRule ^index\.html$ / [R=301,L]
+
 # Serve dynamic sitemap and articles page via PHP
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
 RewriteRule ^articles\.html$ articles.php [L]

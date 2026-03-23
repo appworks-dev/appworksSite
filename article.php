@@ -39,6 +39,41 @@ function getCategoryName($categoryId) {
     return isset($categories[$categoryId]) ? $categories[$categoryId] : 'General';
 }
 
+// 301 redirect old ?id= and ?slug= query string URLs to clean /article/slug URLs
+if (($articleId || $articleSlug) && !isset($_GET['_internal'])) {
+    $redirectSlug = null;
+
+    if ($articleId) {
+        // Fetch article by ID to get its slug
+        $lookupUrl = 'https://appworks.mpanel.app/api/webV2/getOneArticle/' . urlencode($articleId);
+        $lookupCtx = stream_context_create([
+            'http' => ['header' => "Authorization: kmNTuI8dRmRX\r\n", 'method' => 'GET', 'timeout' => 10],
+            'ssl' => ['verify_peer' => false, 'verify_peer_name' => false]
+        ]);
+        $lookupResp = @file_get_contents($lookupUrl, false, $lookupCtx);
+        if ($lookupResp) {
+            $lookupData = json_decode($lookupResp, true);
+            if ($lookupData && $lookupData['success']) {
+                $art = $lookupData['result']['article'] ?? $lookupData['article'] ?? null;
+                if ($art && isset($art['slug'])) {
+                    $redirectSlug = $art['slug'];
+                } elseif ($art && isset($art['title'])) {
+                    $redirectSlug = createSlug($art['title']);
+                }
+            }
+        }
+    } elseif ($articleSlug && strpos($_SERVER['REQUEST_URI'], 'article.php') !== false) {
+        // Direct article.php?slug= access — redirect to clean URL
+        $redirectSlug = $articleSlug;
+    }
+
+    if ($redirectSlug) {
+        header('HTTP/1.1 301 Moved Permanently');
+        header('Location: https://app-works.app/article/' . $redirectSlug);
+        exit;
+    }
+}
+
 // Fetch article data from API
 if ($articleId || $articleSlug) {
     if ($articleId) {
