@@ -62,8 +62,8 @@ if (($articleId || $articleSlug) && !isset($_GET['_internal'])) {
                 }
             }
         }
-    } elseif ($articleSlug && strpos($_SERVER['REQUEST_URI'], 'article.php') !== false) {
-        // Direct article.php?slug= access — redirect to clean URL
+    } elseif ($articleSlug && !preg_match('#^/article/[a-z0-9-]+#', $_SERVER['REQUEST_URI'])) {
+        // Query string or direct article.php access — redirect to clean URL
         $redirectSlug = $articleSlug;
     }
 
