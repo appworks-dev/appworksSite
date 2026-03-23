@@ -41,8 +41,8 @@ RewriteCond %{QUERY_STRING} slug=([a-z0-9-]+)
 RewriteRule ^article/?$ /article/%1? [R=301,L]
 
 # Redirect direct article.php?slug= access to clean /article/slug URL
-RewriteCond %{QUERY_STRING} slug=([a-z0-9-]+)
 RewriteCond %{THE_REQUEST} article\.php
+RewriteCond %{QUERY_STRING} slug=([a-z0-9-]+)
 RewriteRule ^article\.php$ /article/%1? [R=301,L]
 
 # Redirect extensionless page URLs to .html (fixes 404s from old links)
