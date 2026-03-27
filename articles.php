@@ -375,14 +375,14 @@
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
             <div class="flex-shrink-0">
-                <a href="/home.html" class="flex items-center">
+                <a href="/" class="flex items-center">
                     <img src="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png" alt="Appworks" class="h-12 w-auto">
                 </a>
             </div>
 
             <!-- Desktop Navigation -->
             <nav class="hidden lg:flex items-center space-x-8">
-                <a href="/home.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Home</a>
+                <a href="/" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Home</a>
 
                 <!-- Solutions Dropdown -->
                 <div class="nav-item relative group">

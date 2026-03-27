@@ -23,14 +23,28 @@ RewriteRule (.+)\.(png|jpg|jpeg)$ $1.webp [T=image/webp,L]
 # Set default homepage
 DirectoryIndex home.html index.html index.php
 
+# --- Scheme & host normalization (first, to avoid redirect chains) ---
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
 # Redirect www to non-www
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-# Remove trailing slash from URLs (optional but recommended)
+# Remove trailing slash from URLs
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [R=301,L]
+
+# --- Canonical URL redirects ---
+
+# Redirect /home.html to / (home.html is DirectoryIndex, canonical is /)
+RewriteRule ^home\.html$ / [R=301,L]
+
+# Redirect /index.html to root
+RewriteRule ^index\.html$ / [R=301,L]
 
 # Redirect old /article?id=XX to article.php for 301 processing
 RewriteCond %{QUERY_STRING} id= [NC]
@@ -38,15 +52,15 @@ RewriteRule ^article/?$ article.php [L,QSA]
 
 # Redirect old /article?slug=XX to clean /article/slug URL
 RewriteCond %{QUERY_STRING} slug=([a-z0-9-]+)
-RewriteRule ^article/?$ /article/%1? [R=301,L]
+RewriteRule ^article/?$ https://app-works.app/article/%1? [R=301,L]
 
 # Redirect direct article.php?slug= access to clean /article/slug URL
 RewriteCond %{THE_REQUEST} article\.php
 RewriteCond %{QUERY_STRING} slug=([a-z0-9-]+)
-RewriteRule ^article\.php$ /article/%1? [R=301,L]
+RewriteRule ^article\.php$ https://app-works.app/article/%1? [R=301,L]
 
 # Redirect extensionless page URLs to .html (fixes 404s from old links)
-RewriteRule ^(home|about|partners|projects|media|sport|cms|consultation|articles)$ /$1.html [R=301,L]
+RewriteRule ^(about|partners|projects|media|sport|cms|consultation|articles)$ https://app-works.app/$1.html [R=301,L]
 
 # Redirect broken slug (diacritics stripped incorrectly)
 RewriteRule ^article/da-li-mikro-uenje-moe-da-motivie-decu-da-ue$ /article/da-li-mikro-ucenje-moze-da-motivise-decu-da-uce [R=301,L]
@@ -57,8 +71,7 @@ RewriteRule ^oneArticle/[0-9]+/(.+)$ /article/$1 [R=301,L]
 # Redirect old /page/contact to /about.html
 RewriteRule ^page/contact$ /about.html [R=301,L]
 
-# Redirect /index.html to root
-RewriteRule ^index\.html$ / [R=301,L]
+# --- Internal rewrites (no redirect, serve content) ---
 
 # Serve dynamic sitemap and articles page via PHP
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
@@ -69,7 +82,3 @@ RewriteRule ^articles\.html$ articles.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^article/([a-z0-9-]+)/?$ article.php?slug=$1 [L,QSA]
-
-# Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
