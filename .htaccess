@@ -71,6 +71,18 @@ RewriteRule ^oneArticle/[0-9]+/(.+)$ /article/$1 [R=301,L]
 # Redirect old /page/contact to /about.html
 RewriteRule ^page/contact$ /about.html [R=301,L]
 
+# Redirect /appworksSite/article/slug to /article/slug (bad external link)
+RewriteRule ^appworksSite/article/(.+)$ /article/$1 [R=301,L]
+
+# Redirect broken /article//span[ and other garbage article URLs to articles listing
+RewriteRule ^article//.*$ /articles.html [R=301,L]
+
+# Redirect /image/cache/ paths to homepage (old mPanel CMS paths)
+RewriteRule ^image/cache/.*$ / [R=301,L]
+
+# Redirect /images/country-flag-16X16/ to homepage
+RewriteRule ^images/country-flag-.*$ / [R=301,L]
+
 # --- Internal rewrites (no redirect, serve content) ---
 
 # Serve dynamic sitemap and articles page via PHP
