@@ -80,8 +80,8 @@ RewriteRule ^article//.*$ /articles.html [R=301,L]
 # Redirect /image/cache/ paths to homepage (old mPanel CMS paths)
 RewriteRule ^image/cache/.*$ / [R=301,L]
 
-# Redirect /images/country-flag-16X16/ to homepage
-RewriteRule ^images/country-flag-.*$ / [R=301,L]
+# Redirect /images/country-flag-16X16/ to homepage (real dir, 403)
+RedirectMatch 301 ^/images/country-flag-.* /
 
 # --- Internal rewrites (no redirect, serve content) ---
 
