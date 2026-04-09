@@ -50,9 +50,17 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
     <priority><?php echo $page['priority']; ?></priority>
   </url>
 <?php endforeach; ?>
-<?php foreach ($articles as $article):
+<?php
+$hiddenSlugs = ['litteraworks-com'];
+foreach ($articles as $article):
     $slug = $article['slug'] ?? '';
     if (!$slug) continue;
+    $cats = $article['categories'] ?? [];
+    $hidden = false;
+    foreach ($cats as $cat) {
+        if (in_array($cat['slug'] ?? '', $hiddenSlugs)) { $hidden = true; break; }
+    }
+    if ($hidden) continue;
     $lastmod = '';
     if (!empty($article['updated_at'])) {
         $lastmod = date('Y-m-d', strtotime($article['updated_at']));

@@ -122,6 +122,21 @@ if ($articleId || $articleSlug) {
     }
 }
 
+// Hide articles from specific categories (they live on other domains)
+$hiddenSlugs = ['litteraworks-com'];
+$isHiddenCategory = false;
+if ($articleData) {
+    $cats = $articleData['categories'] ?? [];
+    foreach ($cats as $cat) {
+        if (in_array($cat['slug'] ?? '', $hiddenSlugs)) {
+            $articleData = null;
+            $isHiddenCategory = true;
+            http_response_code(410); // Gone — tells Google to deindex
+            break;
+        }
+    }
+}
+
 // Update meta values if article found
 if ($articleData) {
     $pageTitle = htmlspecialchars($articleData['title']) . " - Appworks";
@@ -189,6 +204,9 @@ if ($articleData) {
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="description" content="<?php echo $pageDescription; ?>">
     <meta name="keywords" content="<?php echo $keywords; ?>">
+<?php if ($isHiddenCategory || !$articleData): ?>
+    <meta name="robots" content="noindex, nofollow">
+<?php endif; ?>
 
     <!-- Open Graph meta tags for social sharing -->
     <meta property="og:title" content="<?php echo $pageTitle; ?>">

@@ -1608,7 +1608,14 @@ document.addEventListener('DOMContentLoaded', function() {
             latestArticleContainer.innerHTML = ''; // Clear latest article
             smallArticlesContainer.innerHTML = ''; // Clear small articles
 
-            data.result.articles.forEach((article, index) => {
+            const hiddenCategorySlugs = ['litteraworks-com'];
+            const visibleArticles = data.result.articles.filter(article => {
+                if (article.categories && article.categories.length > 0) {
+                    return !article.categories.some(cat => hiddenCategorySlugs.includes(cat.slug));
+                }
+                return true;
+            });
+            visibleArticles.forEach((article, index) => {
                 const slug = article.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim('-');
                 const category = getCategoryName(article);
                 const date = formatDate(article.created_at);

@@ -702,7 +702,13 @@ async function fetchArticles(page = 1, filter = '*', append = false) {
             articlesContainer.innerHTML = '';
         }
 
-        const articles = data.result.articles;
+        const hiddenCategorySlugs = ['litteraworks-com'];
+        const articles = data.result.articles.filter(article => {
+            if (article.categories && article.categories.length > 0) {
+                return !article.categories.some(cat => hiddenCategorySlugs.includes(cat.slug));
+            }
+            return true;
+        });
         articles.forEach(article => {
             articlesContainer.insertAdjacentHTML('beforeend', createArticleCard(article));
         });
@@ -796,7 +802,14 @@ $r = @file_get_contents('https://appworks.mpanel.app/api/webV2/getArticles?artic
 if ($r) {
     $d = json_decode($r, true);
     $articles = $d['result']['articles'] ?? [];
+    $hiddenSlugs = ['litteraworks-com'];
     foreach ($articles as $a) {
+        $cats = $a['categories'] ?? [];
+        $hidden = false;
+        foreach ($cats as $cat) {
+            if (in_array($cat['slug'] ?? '', $hiddenSlugs)) { $hidden = true; break; }
+        }
+        if ($hidden) continue;
         $slug = htmlspecialchars($a['slug'] ?? '');
         $title = htmlspecialchars($a['title'] ?? '');
         if ($slug && $title) {

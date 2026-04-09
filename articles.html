@@ -690,7 +690,13 @@ async function fetchArticles(page = 1, filter = '*', append = false) {
             articlesContainer.innerHTML = '';
         }
 
-        const articles = data.result.articles;
+        const hiddenCategorySlugs = ['litteraworks-com'];
+        const articles = data.result.articles.filter(article => {
+            if (article.categories && article.categories.length > 0) {
+                return !article.categories.some(cat => hiddenCategorySlugs.includes(cat.slug));
+            }
+            return true;
+        });
         articles.forEach(article => {
             articlesContainer.insertAdjacentHTML('beforeend', createArticleCard(article));
         });
