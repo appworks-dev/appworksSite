@@ -708,7 +708,7 @@ if ($articleData) {
                     </div>
                 </div>
 
-                <a href="/consultation.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Consultation</a>
+                <a href="/insights" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Insights</a>
                 <a href="/projects.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Grant Projects</a>
                 <a href="/partners.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Partners</a>
                 <a href="/about.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">About Us</a>
@@ -872,6 +872,7 @@ if ($articleData) {
                 <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Company</h4>
                 <ul class="space-y-3">
                     <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">About us</a></li>
+                    <li><a href="/insights" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Insights</a></li>
                     <li><a href="/partners.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Partners</a></li>
                     <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
                 </ul>

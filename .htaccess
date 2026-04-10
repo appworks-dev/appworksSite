@@ -60,7 +60,10 @@ RewriteCond %{QUERY_STRING} slug=([a-z0-9-]+)
 RewriteRule ^article\.php$ https://app-works.app/article/%1? [R=301,L]
 
 # Redirect extensionless page URLs to .html (fixes 404s from old links)
-RewriteRule ^(about|partners|projects|media|sport|cms|consultation|articles)$ https://app-works.app/$1.html [R=301,L]
+# Redirect /articles to /insights directly (avoid double redirect through articles.html)
+RewriteRule ^articles$ /insights [R=301,L]
+
+RewriteRule ^(about|partners|projects|media|sport|cms|consultation)$ https://app-works.app/$1.html [R=301,L]
 
 # Redirect broken slug (diacritics stripped incorrectly)
 RewriteRule ^article/da-li-mikro-uenje-moe-da-motivie-decu-da-ue$ /article/da-li-mikro-ucenje-moze-da-motivise-decu-da-uce [R=301,L]
@@ -75,7 +78,7 @@ RewriteRule ^page/contact$ /about.html [R=301,L]
 RewriteRule ^appworksSite/article/(.+)$ /article/$1 [R=301,L]
 
 # Redirect broken /article//span[ and other garbage article URLs to articles listing
-RewriteRule ^article//.*$ /articles.html [R=301,L]
+RewriteRule ^article//.*$ /insights [R=301,L]
 
 # Redirect /image/cache/ paths to homepage (old mPanel CMS paths)
 RewriteRule ^image/cache/.*$ / [R=301,L]
@@ -83,11 +86,16 @@ RewriteRule ^image/cache/.*$ / [R=301,L]
 # Redirect /images/country-flag-16X16/ to homepage (real dir, 403)
 RedirectMatch 301 ^/images/country-flag-.* /
 
+# --- Insights page redirects ---
+
+# Redirect old /articles.html to /insights
+RewriteRule ^articles\.html$ /insights [R=301,L]
+
 # --- Internal rewrites (no redirect, serve content) ---
 
-# Serve dynamic sitemap and articles page via PHP
+# Serve dynamic sitemap and insights page via PHP
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
-RewriteRule ^articles\.html$ articles.php [L]
+RewriteRule ^insights/?$ articles.php [L]
 
 # Rewrite clean article URLs to article.php with slug parameter
 # Example: /article/my-article-slug -> /article.php?slug=my-article-slug

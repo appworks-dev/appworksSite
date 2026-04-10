@@ -9,12 +9,12 @@
       gtag('js', new Date());
       gtag('config', 'G-LNLW0CSSLT');
     </script>
-    <title>Articles - Appworks</title>
+    <title>Insights on Media Tech, AI & Sports Digital | Appworks</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="Appworks">
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <meta name="description" content="Latest insights, news and updates from Appworks - AI, Apps & Digital Platforms for Media and Sports.">
+    <meta name="description" content="Research, analysis, and practical guides on media asset management, AI transcription, fan engagement, digital publishing, and EU-funded innovation projects.">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
@@ -59,31 +59,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <!-- SEO Meta Tags -->
-    <meta name="keywords" content="Appworks, Articles, Blog, News, Media Technology, Sports Technology, AI, Innovation">
+    <meta name="keywords" content="Appworks, Insights, Media Technology, Sports Technology, AI, Digital Publishing, Fan Engagement, Media Asset Management, Transcription">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Articles - Appworks">
-    <meta property="og:description" content="Latest insights, news and updates from Appworks">
+    <meta property="og:title" content="Insights on Media Tech, AI & Sports Digital | Appworks">
+    <meta property="og:description" content="Research, analysis, and practical guides on media technology, AI, and digital sports.">
     <meta property="og:image" content="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
-    <meta property="og:url" content="https://app-works.app/articles.html">
+    <meta property="og:url" content="https://app-works.app/insights">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Articles - Appworks">
-    <meta name="twitter:description" content="Latest insights, news and updates from Appworks">
+    <meta name="twitter:title" content="Insights on Media Tech, AI & Sports Digital | Appworks">
+    <meta name="twitter:description" content="Research, analysis, and practical guides on media technology, AI, and digital sports.">
     <meta name="twitter:image" content="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
 
-    <link rel="canonical" href="https://app-works.app/articles.html">
+    <link rel="canonical" href="https://app-works.app/insights">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "Articles - Appworks",
-        "description": "Latest insights, news and updates from Appworks - AI, Apps & Digital Platforms for Media and Sports.",
-        "url": "https://app-works.app/articles.html",
+        "@type": "Blog",
+        "name": "Appworks Insights",
+        "description": "Research, analysis, and practical guides on media asset management, AI transcription, fan engagement, digital publishing, and EU-funded innovation projects.",
+        "url": "https://app-works.app/insights",
         "publisher": {"@type": "Organization", "name": "Appworks", "url": "https://app-works.app"}
     }
     </script>
@@ -447,7 +447,7 @@
                     </div>
                 </div>
 
-                <a href="/consultation.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Consultation</a>
+                <a href="/insights" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Insights</a>
                 <a href="/projects.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Grant Projects</a>
                 <a href="/partners.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Partners</a>
                 <a href="/about.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">About Us</a>
@@ -462,14 +462,14 @@
 </header>
 
 <!-- Hero Section -->
-<section class="relative pt-32 pb-20" style="background: #200A24;">
+<section class="relative pt-32 pb-12" style="background: #200A24;">
     <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
         <div class="text-center max-w-4xl mx-auto">
             <h1 class="text-white font-black text-5xl lg:text-6xl mb-6" style="letter-spacing: -0.02em;">
-                Latest <span class="text-transparent bg-clip-text" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Articles</span>
+                <span class="text-transparent bg-clip-text" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Insights</span>
             </h1>
             <p class="text-gray-300 text-xl max-w-2xl mx-auto" style="opacity: 0.85;">
-                Discover our latest insights, news and updates from the world of media and sports technology.
+                Research, analysis, and practical guides on media technology, AI, and digital sports.
             </p>
         </div>
     </div>
@@ -478,13 +478,16 @@
 <!-- Filter Section -->
 <section class="relative py-8" style="background: #200A24;">
     <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
-        <div class="flex flex-wrap justify-center gap-3" id="filterButtons">
+        <div class="flex flex-wrap justify-center gap-3 mb-6" id="filterButtons">
             <button class="filter-btn active" data-filter="*">All</button>
             <button class="filter-btn" data-filter="4">Media</button>
             <button class="filter-btn" data-filter="3">Sports</button>
             <button class="filter-btn" data-filter="9">AI</button>
             <button class="filter-btn" data-filter="10">Grant Projects</button>
+            <button class="filter-btn" data-filter="12">Pchela</button>
         </div>
+        <!-- Category description (updates dynamically) -->
+        <p id="categoryDescription" class="text-center text-gray-400 text-sm max-w-2xl mx-auto" style="min-height: 1.25rem;"></p>
     </div>
 </section>
 
@@ -542,6 +545,7 @@
                 <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Company</h4>
                 <ul class="space-y-3">
                     <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">About us</a></li>
+                    <li><a href="/insights" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Insights</a></li>
                     <li><a href="/partners.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Partners</a></li>
                     <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
                 </ul>
@@ -588,8 +592,22 @@ const categoryMap = {
     '3': 'Sports',
     '4': 'Media',
     '9': 'AI',
-    '10': 'Grant Projects'
+    '10': 'Grant Projects',
+    '12': 'Pchela'
 };
+
+// Category descriptions for SEO
+const categoryDescriptions = {
+    '*': '',
+    '4': 'How digital publishing, mobile apps, and content automation are reshaping modern newsrooms.',
+    '3': 'Fan engagement platforms, loyalty programs, and mobile strategies for sports clubs and leagues.',
+    '9': 'Practical applications of AI in media workflows — transcription, tagging, content generation, and more.',
+    '10': 'EU-funded innovation projects in media technology, Creative Europe, and Horizon Europe programs.',
+    '12': 'AI-powered digital asset management — face recognition, auto-tagging, and media archive search.'
+};
+
+// Hidden category slugs (articles live on other domains)
+const hiddenCategorySlugs = ['litteraworks-com'];
 
 // State management
 let currentPage = 1;
@@ -603,6 +621,7 @@ const loadMoreBtn = document.getElementById('loadMoreBtn');
 const loadingSpinner = document.getElementById('loadingSpinner');
 const noArticles = document.getElementById('noArticles');
 const filterButtons = document.querySelectorAll('.filter-btn');
+const categoryDescription = document.getElementById('categoryDescription');
 
 // Create slug from title
 function createSlug(title) {
@@ -631,11 +650,20 @@ function formatDate(dateString) {
     });
 }
 
+// Estimate reading time from article content
+function getReadingTime(article) {
+    const text = (article.contents || '') + ' ' + (article.intro || '');
+    const words = text.replace(/<[^>]*>/g, '').split(/\s+/).filter(w => w.length > 0).length;
+    const minutes = Math.max(1, Math.ceil(words / 220));
+    return `${minutes} min read`;
+}
+
 // Create article card HTML
 function createArticleCard(article) {
-    const slug = createSlug(article.title);
+    const slug = article.slug || createSlug(article.title);
     const category = getCategoryName(article);
     const date = formatDate(article.created_at);
+    const readTime = getReadingTime(article);
     const imageUrl = article.images?.['medium-full']?.url || 'https://app-works.app/images/placeholder.jpg';
 
     return `
@@ -649,6 +677,7 @@ function createArticleCard(article) {
                 <div class="flex items-center gap-3 mb-4">
                     <span class="category-badge">${category}</span>
                     <span class="text-gray-500 text-sm">${date}</span>
+                    <span class="text-gray-500 text-sm flex items-center gap-1"><i class="bi bi-clock text-xs"></i> ${readTime}</span>
                 </div>
                 <h3 class="text-white font-bold text-xl mb-3 leading-tight" style="letter-spacing: -0.01em;">${article.title}</h3>
                 <p class="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">${article.intro || ''}</p>
@@ -702,7 +731,6 @@ async function fetchArticles(page = 1, filter = '*', append = false) {
             articlesContainer.innerHTML = '';
         }
 
-        const hiddenCategorySlugs = ['litteraworks-com'];
         const articles = data.result.articles.filter(article => {
             if (article.categories && article.categories.length > 0) {
                 return !article.categories.some(cat => hiddenCategorySlugs.includes(cat.slug));
@@ -714,7 +742,7 @@ async function fetchArticles(page = 1, filter = '*', append = false) {
         });
 
         // Check if there are more articles
-        hasMore = articles.length >= 12;
+        hasMore = data.result.articles.length >= 12;
         loadMoreBtn.style.display = hasMore ? 'flex' : 'none';
 
     } catch (error) {
@@ -746,6 +774,11 @@ document.addEventListener('DOMContentLoaded', function() {
             currentPage = 1;
             hasMore = true;
             loadMoreBtn.style.display = 'flex';
+
+            // Update category description
+            if (categoryDescription) {
+                categoryDescription.textContent = categoryDescriptions[currentFilter] || '';
+            }
 
             // Fetch new articles
             fetchArticles(currentPage, currentFilter);

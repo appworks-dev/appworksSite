@@ -33,11 +33,12 @@ All article content comes from the mPanel CMS API at `https://appworks.mpanel.ap
 ### Key Files
 
 - **article.php** — Single article page. URL `/article/{slug}` rewrites here via .htaccess. Handles old `?id=` and `?slug=` query params with 301 redirects to clean URLs.
-- **articles.php** — Article listing with JS-based category filtering and "Load More" pagination. `.htaccess` rewrites `/articles.html` to this file. Contains a `<noscript>` PHP section rendering all article links for search engine crawlers.
-- **articles.html** — Older copy of the articles listing (same JS fetch logic, no noscript fallback). Both files must be kept in sync for filtering changes.
-- **home.html** — Homepage. Has its own `fetchAndDisplayArticles()` function fetching 4 latest articles.
+- **articles.php** — The "Insights" page. Served at `/insights` via .htaccess rewrite. JS-based category filtering with descriptions, reading time estimates, "Load More" pagination. Contains a `<noscript>` PHP section rendering all article links for search engine crawlers. Uses JSON-LD `Blog` schema.
+- **articles.html** — Legacy copy (no noscript fallback). `/articles.html` redirects 301 to `/insights` via .htaccess. Kept for reference but not actively served.
+- **home.html** — Homepage. Has its own `fetchAndDisplayArticles()` function fetching 4 latest articles. Blog section labeled "Latest Insights" linking to `/insights`.
+- **consultation.html** — Standalone consultation/digital transformation page. Not in main nav but linked from About Us page CTA, homepage CTA, and footer.
 - **sitemap.php** — Dynamic XML sitemap. Served at `/sitemap.xml` via .htaccess rewrite. 1-hour cache.
-- **.htaccess** — URL rewrites, HTTPS/www normalization, clean article URLs, WebP auto-serving, and numerous 301 redirects fixing old/broken URLs from Google Search Console.
+- **.htaccess** — URL rewrites, HTTPS/www normalization, clean article URLs, `/insights` routing, WebP auto-serving, and numerous 301 redirects fixing old/broken URLs from Google Search Console.
 
 ### Hidden Category Filtering
 

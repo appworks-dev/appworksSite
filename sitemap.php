@@ -11,7 +11,7 @@ $staticPages = [
     ['loc' => '/media.html',         'changefreq' => 'monthly', 'priority' => '0.9'],
     ['loc' => '/sport.html',         'changefreq' => 'monthly', 'priority' => '0.9'],
     ['loc' => '/consultation.html',  'changefreq' => 'monthly', 'priority' => '0.8'],
-    ['loc' => '/articles.html',      'changefreq' => 'weekly',  'priority' => '0.8'],
+    ['loc' => '/insights',            'changefreq' => 'weekly',  'priority' => '0.8'],
     ['loc' => '/partners.html',      'changefreq' => 'monthly', 'priority' => '0.7'],
     ['loc' => '/projects.html',      'changefreq' => 'monthly', 'priority' => '0.7'],
     ['loc' => '/about.html',         'changefreq' => 'monthly', 'priority' => '0.7'],
