@@ -1,6 +1,13 @@
 # Disable directory listing
 Options -Indexes
 
+# Force browsers and Cloudflare to revalidate HTML pages
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
 # Custom 404 page
 ErrorDocument 404 /404.html
 
