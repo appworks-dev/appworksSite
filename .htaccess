@@ -1,13 +1,6 @@
 # Disable directory listing
 Options -Indexes
 
-# Prevent caching of HTML/PHP pages (ensures fresh content after deploys)
-<IfModule mod_headers.c>
-  <FilesMatch "\.(html|php)$">
-    Header set Cache-Control "no-cache, must-revalidate"
-  </FilesMatch>
-</IfModule>
-
 # Custom 404 page
 ErrorDocument 404 /404.html
 

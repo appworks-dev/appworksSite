@@ -18,7 +18,47 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
-    <link rel="apple-touch-icon" href="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png"><!-- SEO Meta Tags -->
+    <link rel="apple-touch-icon" href="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
+
+    <!-- Google Fonts: Inter Variable -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-purple': {
+                            900: '#200A24',
+                            800: '#1A0624',
+                            700: '#0F0520'
+                        },
+                        'vibrant-orange': {
+                            500: '#FF4B36',
+                            600: '#FF6B50'
+                        },
+                        'accent-purple': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED'
+                        }
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- SEO Meta Tags -->
     <meta name="keywords" content="Appworks, Insights, Media Technology, Sports Technology, AI, Digital Publishing, Fan Engagement, Media Asset Management, Transcription">
 
     <!-- Open Graph -->
@@ -47,7 +87,6 @@
         "publisher": {"@type": "Organization", "name": "Appworks", "url": "https://app-works.app"}
     }
     </script>
-    <?php include __DIR__ . '/includes/head-common.php'; ?>
 
     <style>
         * {
@@ -111,16 +150,84 @@
         }
 
         /* Glassmorphism Base */
+        .glass-light {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         .glass-medium {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(32px);
             -webkit-backdrop-filter: blur(32px);
             border: 1px solid rgba(255, 255, 255, 0.15);
-        }        /* Hover Lift */
+        }
+
+        /* Smooth Animations */
+        .smooth-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Hover Lift */
         .hover-lift:hover {
             transform: translateY(-8px);
         }
-/* Article Card */
+
+        /* Fixed Header */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(32, 10, 36, 0.85);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-nav.scrolled {
+            background: rgba(32, 10, 36, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mega Dropdown */
+        .mega-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            width: 900px;
+            max-width: 90vw;
+            background: rgba(32, 10, 36, 0.98);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-item:hover .mega-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-dropdown-item {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            transition: background 0.3s ease;
+        }
+
+        .mega-dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Article Card */
         .article-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(24px);
@@ -263,7 +370,109 @@
 <body>
 
 <!-- Fixed Header Navigation -->
-<?php include __DIR__ . '/includes/header.php'; ?>
+<header class="header-nav">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="/" class="flex items-center">
+                    <img src="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png" alt="Appworks" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-8">
+                <a href="/" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Home</a>
+
+                <!-- Solutions Dropdown -->
+                <div class="nav-item relative group">
+                    <button class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300 flex items-center gap-2">
+                        Solutions
+                        <i class="bi bi-chevron-down text-xs"></i>
+                    </button>
+                    <div class="mega-dropdown" style="width: 580px; max-width: 90vw;">
+                        <div class="flex flex-col gap-3">
+                            <a href="/cms.html" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255, 75, 54, 0.1);">
+                                        <i class="bi bi-display text-vibrant-orange-600 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">mPanel CMS</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">Complete content management system for media publishers with AI-powered tools and automation</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-vibrant-orange-600 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+                            <div class="h-px bg-white/10"></div>
+                            <a href="/media.html" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255, 75, 54, 0.1);">
+                                        <i class="bi bi-newspaper text-vibrant-orange-600 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">Media</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">Digital publishing platforms, mobile apps, and content delivery solutions for modern newsrooms</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-vibrant-orange-600 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+                            <div class="h-px bg-white/10"></div>
+                            <a href="/sport.html" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255, 75, 54, 0.1);">
+                                        <i class="bi bi-trophy text-vibrant-orange-600 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">Sport</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">Fan engagement platforms, loyalty programs, and mobile apps for sports clubs and leagues</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-vibrant-orange-600 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+                            <div class="h-px bg-white/10"></div>
+                            <a href="https://litteraworks.com/" target="_blank" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(139, 92, 246, 0.1);">
+                                        <i class="bi bi-mic text-accent-purple-400 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">Litteraworks</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">AI-powered transcription, subtitle generation, and content processing for media professionals</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-accent-purple-400 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+                            <div class="h-px bg-white/10"></div>
+                            <a href="https://pchela.app/" class="mega-dropdown-item block group/item">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(255, 75, 54, 0.1);">
+                                        <i class="bi bi-camera text-vibrant-orange-600 text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-white font-bold text-base mb-1">Pchela</div>
+                                        <div class="text-gray-400 text-sm leading-relaxed">Intelligent digital asset management system with AI-powered organization and search capabilities</div>
+                                    </div>
+                                    <i class="bi bi-arrow-right text-gray-500 text-lg transition-all duration-300 group-hover/item:text-vibrant-orange-600 group-hover/item:translate-x-1 flex-shrink-0"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/insights" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Insights</a>
+                <a href="/projects.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Grant Projects</a>
+                <a href="/partners.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">Partners</a>
+                <a href="/about.html" class="text-white hover:text-vibrant-orange-600 font-bold text-lg transition-colors duration-300">About Us</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden text-white p-2">
+                <i class="bi bi-list text-2xl"></i>
+            </button>
+        </div>
+    </div>
+</header>
 
 <!-- Hero Section -->
 <section class="relative pt-32 pb-12" style="background: #200A24;">
@@ -322,7 +531,74 @@
         </div>
     </div>
 </section>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+
+<!-- Footer -->
+<footer class="relative py-20" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="mx-auto px-6 lg:px-8 mb-12" style="max-width: 1600px;">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <!-- Column 1: Logo & Social -->
+            <div>
+                <img src="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png" alt="Appworks Logo" class="h-16 w-auto mb-4">
+                <p class="text-gray-400 text-base leading-relaxed mb-6">Creative solutions for innovative partners.</p>
+                <div class="flex gap-3">
+                    <a href="https://www.linkedin.com/company/appworks-d-o-o/" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-lg smooth-transition glass-light hover:bg-vibrant-orange-600/20 text-gray-400 hover:text-vibrant-orange-600">
+                        <i class="bi bi-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/weareappworks/" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-lg smooth-transition glass-light hover:bg-vibrant-orange-600/20 text-gray-400 hover:text-vibrant-orange-600">
+                        <i class="bi bi-instagram text-xl"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCydhgWA6Kg40T9EFmRVDb9A" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-lg smooth-transition glass-light hover:bg-vibrant-orange-600/20 text-gray-400 hover:text-vibrant-orange-600">
+                        <i class="bi bi-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 2: Company -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Company</h4>
+                <ul class="space-y-3">
+                    <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">About us</a></li>
+                    <li><a href="/insights" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Insights</a></li>
+                    <li><a href="/partners.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Partners</a></li>
+                    <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Solutions -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Solutions</h4>
+                <ul class="space-y-3">
+                    <li><a href="/cms.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">CMS</a></li>
+                    <li><a href="/media.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Media</a></li>
+                    <li><a href="/sport.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Sports</a></li>
+                    <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Litteraworks</a></li>
+                    <li><a href="/consultation.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Consultation</a></li>
+                    <li><a href="/projects.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Grant Projects</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Contact -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-6 flex items-center gap-2" style="letter-spacing: -0.01em;">
+                    Contact us
+                    <i class="bi bi-arrow-right text-vibrant-orange-600 text-sm"></i>
+                </h4>
+                <a href="mailto:info@app-works.app" class="text-white font-semibold text-sm hover:text-vibrant-orange-600 smooth-transition">info@app-works.app</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="pt-8 border-t border-white/10 text-center">
+        <p class="text-gray-500 text-sm">&copy; 2026 Appworks. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full items-center justify-center smooth-transition opacity-0 pointer-events-none" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.4); z-index: 999;">
+    <i class="bi bi-arrow-up text-white text-xl"></i>
+</button>
+
 <script>
 // Category mapping
 const categoryMap = {
