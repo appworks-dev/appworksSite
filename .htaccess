@@ -1,10 +1,12 @@
 # Disable directory listing
 Options -Indexes
 
-# Force browsers and Cloudflare to revalidate HTML pages
+# Prevent all caching of HTML/PHP pages (LB, CDN, browser)
 <IfModule mod_headers.c>
   <FilesMatch "\.(html|php)$">
-    Header set Cache-Control "no-cache, must-revalidate"
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0, s-maxage=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
   </FilesMatch>
 </IfModule>
 
