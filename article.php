@@ -47,6 +47,19 @@ $seoOverrides = [
         'title' => "How to Create Subtitles on the Fly for Video Content",
         'description' => "AI subtitle generation for video content: extend reach with automatic captions in 40+ languages. Quick workflow for news, sports, and media teams.",
     ],
+    // Second batch (added after reviewing GSC weekly pages report)
+    'newlocal-a-laboratory-where-small-newsrooms-learn-big-city-tricks' => [
+        'title' => "NEWLOCAL: AI Tools for Small Local Newsrooms",
+        'description' => "How small local newsrooms use AI and shared tech to compete with big-city media. NEWLOCAL is an EU project helping regional journalism scale in 2026.",
+    ],
+    'the-hidden-cost-of-untagged-media-archives-infographic' => [
+        'title' => "The Hidden Cost of Untagged Media Archives [Infographic]",
+        'description' => "Media companies waste 6+ hours weekly searching untagged archives. This infographic shows the true cost — and how AI tagging fixes it in 2026.",
+    ],
+    'your-media-archive-is-costing-you-more-than-you-think' => [
+        'title' => "Your Media Archive Is Costing More Than You Think",
+        'description' => "Most media archives lose 30%+ of their value to bad metadata and untagged files. Why IMG_2023.jpg is costing you money — and how to fix it.",
+    ],
 ];
 
 // Get article ID or slug from URL
