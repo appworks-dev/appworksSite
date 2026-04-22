@@ -93,6 +93,9 @@ RewriteRule ^articles\.html$ /insights [R=301,L]
 
 # --- Internal rewrites (no redirect, serve content) ---
 
+# Short-link redirects: /go/slug -> go/index.php
+RewriteRule ^go/([a-zA-Z0-9_-]+)/?$ go/index.php [L,QSA]
+
 # Serve dynamic sitemap and insights page via PHP
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
 RewriteRule ^insights/?$ articles.php [L]
