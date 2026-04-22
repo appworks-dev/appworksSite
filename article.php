@@ -624,18 +624,21 @@ if ($articleData) {
             border-radius: 1.5rem;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.25);
         }
 
         .featured-image img {
+            display: block;
             width: 100%;
-            height: 500px;
-            object-fit: cover;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
         }
 
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .featured-image img {
-                height: 300px;
+                max-height: 420px;
             }
 
             .article-content {
@@ -669,7 +672,7 @@ if ($articleData) {
 
         @media (max-width: 480px) {
             .featured-image img {
-                height: 220px;
+                max-height: 320px;
             }
 
             .article-content {
