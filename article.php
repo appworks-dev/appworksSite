@@ -2,6 +2,53 @@
 // Debug mode - set to false in production
 $debug = false;
 
+// SEO overrides keyed by slug.
+// Use these when the CMS intro field doesn't make a good search snippet
+// (too long, narrative, cliffhanger). Titles should be 50-60 chars,
+// descriptions 140-155 chars, both keyword-focused and click-worthy.
+$seoOverrides = [
+    'ai-in-the-newsroom-2026-whats-actually-changed' => [
+        'title' => "AI in the Newsroom 2026: What's Actually Working",
+        'description' => "AI in newsrooms in 2026: what's actually working. Small editorial teams are saving hours on transcription, tagging, and formatting — not writing.",
+    ],
+    'digital-asset-management-for-media-companies-in-2026-the-retrieval-crisis-no-one-is-talking-about' => [
+        'title' => "DAM Software for Media Companies 2026: The Retrieval Crisis",
+        'description' => "Media companies lose hours daily searching for their own assets. What to look for in DAM software in 2026: AI tagging, hybrid search, metadata strategy.",
+    ],
+    'fan-driven-content-boosting-engagement-in-sports-media-apps' => [
+        'title' => "Fan-Driven Content: How to Boost Engagement in Sports Apps",
+        'description' => "How user-generated content, polls, and fan submissions boost engagement in sports and media mobile apps. Real examples from pro clubs and leagues.",
+    ],
+    'turn-matchday-spikes-into-year-round-fan-engagement' => [
+        'title' => "Turn Matchday Spikes Into Year-Round Fan Engagement",
+        'description' => "80% of fan engagement happens on matchday. Here's how clubs use mobile apps to keep fans engaged all week — specific tactics and examples.",
+    ],
+    'fix-post-match-engagement-gamification-strategy-for-sports-apps' => [
+        'title' => "Fix Post-Match Engagement: Gamification for Sports Apps",
+        'description' => "Post-match engagement drops 70% within hours. How gamification (streaks, predictions, leaderboards) keeps sports fans active after the final whistle.",
+    ],
+    '5-ways-push-notifications-can-improve-fan-engagement-for-sport-leagues-and-clubs' => [
+        'title' => "Push Notifications: 5 Ways to Boost Sports Fan Engagement",
+        'description' => "5 push notification strategies sports clubs use to boost fan engagement: match alerts, exclusive content, polls, and smart timing for mobile apps.",
+    ],
+    'mobile-transcription-simplified-the-litteraworks-mobile-app' => [
+        'title' => "LitteraWorks Mobile App: Transcribe Audio on the Go",
+        'description' => "Record, transcribe, and edit audio from your phone. LitteraWorks mobile app delivers AI transcription in 40+ languages for journalists and creators.",
+    ],
+    'your-archive-doesnt-know-you-the-hidden-cost-of-untagged-media-assets' => [
+        'title' => "The Hidden Cost of Untagged Media Assets",
+        'description' => "Untagged video and audio assets cost media companies 6+ hours weekly in lost retrieval time. How to fix media archive chaos with AI tagging in 2026.",
+    ],
+    'panathinaikos-fc-innovative-mobile-app-features-for-fan-engagement' => [
+        'title' => "Panathinaikos FC Mobile App: Fan Engagement Case Study",
+        'description' => "How Panathinaikos FC uses their mobile app to drive fan engagement: live match updates, loyalty rewards, exclusive content, and social features.",
+    ],
+    'creating-subtitles-on-the-fly-extend-your-media-reach' => [
+        'title' => "How to Create Subtitles on the Fly for Video Content",
+        'description' => "AI subtitle generation for video content: extend reach with automatic captions in 40+ languages. Quick workflow for news, sports, and media teams.",
+    ],
+];
+
 // Get article ID or slug from URL
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 $articleSlug = isset($_GET['slug']) ? $_GET['slug'] : null;
@@ -139,8 +186,20 @@ if ($articleData) {
 
 // Update meta values if article found
 if ($articleData) {
-    $pageTitle = htmlspecialchars($articleData['title']) . " - Appworks";
-    $pageDescription = htmlspecialchars($articleData['intro'] ?? $articleData['title']);
+    $slugForOverride = $articleData['slug'] ?? '';
+    $override = $seoOverrides[$slugForOverride] ?? null;
+
+    if ($override && !empty($override['title'])) {
+        $pageTitle = htmlspecialchars($override['title']) . " | Appworks";
+    } else {
+        $pageTitle = htmlspecialchars($articleData['title']) . " - Appworks";
+    }
+
+    if ($override && !empty($override['description'])) {
+        $pageDescription = htmlspecialchars($override['description']);
+    } else {
+        $pageDescription = htmlspecialchars($articleData['intro'] ?? $articleData['title']);
+    }
 
     // Handle image URL - prefer original for best quality
     if (isset($articleData['images']['original']['url'])) {
@@ -275,7 +334,7 @@ if ($articleData) {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": "<?php echo addslashes($articleData['title']); ?>",
-        "description": "<?php echo addslashes($articleData['intro'] ?? $articleData['title']); ?>",
+        "description": "<?php echo addslashes($override['description'] ?? $articleData['intro'] ?? $articleData['title']); ?>",
         "image": "<?php echo $pageImage; ?>",
         "datePublished": "<?php echo $articleData['created_at']; ?>",
         "dateModified": "<?php echo $articleData['updated_at'] ?? $articleData['created_at']; ?>",
