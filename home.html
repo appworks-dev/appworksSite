@@ -748,89 +748,68 @@
     </div>
 </section>
 
-<!-- Three Core Value Props: High-End Polish with Advanced Glassmorphism -->
-<section class="relative value-props-section" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%); position: relative;">
+<!-- AUDIENCE FORK: For Media / For Sport -->
+<!--
+    PLACEHOLDER COPY: headings, body copy and CTA labels in this section are
+    drafts written from the positioning already on media.html and sport.html.
+    Pending client approval — see the Task 3 handover notes.
+-->
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%);">
     <!-- Noise Texture Overlay -->
     <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); pointer-events: none; z-index: 1;"></div>
 
     <div class="mx-auto relative" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); z-index: 2;">
-        <!-- Asymmetrical 3-Column Bento Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Two equal-weight cards. Same surface treatment on both so neither
+             audience reads as the primary one; they differ only by icon and copy. -->
+        <div class="grid grid-cols-1 md:grid-cols-2" style="gap: clamp(1.5rem, 3vw, 2.5rem);">
 
-            <!-- Pillar 1: Mobile Apps (col-span-1) -->
-            <div class="value-prop-card relative rounded-3xl p-6 smooth-transition group flex flex-col"
-                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent);
-                        backdrop-filter: blur(40px);
-                        -webkit-backdrop-filter: blur(40px);
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
-                        overflow: visible;
-                        min-height: 380px;
-                        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
-                <!-- 3D Asset - Above Content -->
-                <div class="floating-icon value-prop-icon mb-4 mx-auto" style="width: 240px; height: 240px; margin-top: -30px; transition: all 0.5s ease;">
-                    <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/generated-image-january-14-2026-11-12am-removebg-preview.png?crop=true"
-                         alt="Mobile Apps 3D Icon"
-                         class="w-full h-full object-contain icon-glow"
-                         style="filter: drop-shadow(0 0 25px rgba(255, 75, 54, 0.4)); transition: all 0.5s ease;">
-                </div>
+            <!-- For Media -> /media.html -->
+            <a href="/media.html"
+               class="group relative rounded-3xl smooth-transition hover-lift flex flex-col"
+               style="padding: clamp(1.75rem, 3vw, 2.75rem);
+                      min-height: clamp(240px, 32vh, 340px);
+                      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent);
+                      backdrop-filter: blur(40px);
+                      -webkit-backdrop-filter: blur(40px);
+                      border: 1px solid rgba(255, 255, 255, 0.12);
+                      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 10px 30px rgba(0, 0, 0, 0.45);">
+                <i class="bi bi-newspaper" aria-hidden="true" style="font-size: clamp(1.75rem, 2.6vw, 2.25rem); color: #FF6B50; line-height: 1;"></i>
 
-                <!-- Content -->
-                <div class="relative text-center" style="z-index: 2;">
-                    <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Mobile Apps That Drive Engagement</h3>
-                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);">We develop mobile apps for media, sports, and community-driven platforms, built for fan engagement, loyalty programs, and content delivery.</p>
-                </div>
-            </div>
+                <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Media</h3>
 
-            <!-- Pillar 2: AI Tools (col-span-1) -->
-            <div class="value-prop-card relative rounded-3xl p-6 smooth-transition group flex flex-col"
-                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent);
-                        backdrop-filter: blur(40px);
-                        -webkit-backdrop-filter: blur(40px);
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
-                        overflow: visible;
-                        min-height: 380px;
-                        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
-                <!-- 3D Asset - Above Content -->
-                <div class="floating-icon value-prop-icon mb-4 mx-auto" style="width: 240px; height: 240px; margin-top: -30px; animation-delay: 0.5s; transition: all 0.5s ease;">
-                    <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/generated-image-january-14-2026-11-13am-removebg-preview.png?crop=true"
-                         alt="AI Tools 3D Icon"
-                         class="w-full h-full object-contain icon-glow"
-                         style="filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.4)); transition: all 0.5s ease;">
-                </div>
+                <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1rem, 1.3vw, 1.125rem); opacity: 0.85; margin-top: 0.75rem; max-width: 46ch;">
+                    Native apps, digital editions and paywalls for news publishers — plus the CMS and AI tooling your newsroom runs on every day.
+                </p>
 
-                <!-- Content -->
-                <div class="relative text-center" style="z-index: 2;">
-                    <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">AI That Works for You</h3>
-                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);">We build AI that enhances your workflow, not replaces it. By automating repetitive tasks, our tools give you more time to focus on creativity, strategy, and growing your business.</p>
-                </div>
-            </div>
+                <span class="inline-flex items-center gap-2 font-bold mt-auto" style="padding-top: clamp(1rem, 2vh, 1.75rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FF6B50;">
+                    <span>Explore media solutions</span>
+                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                </span>
+            </a>
 
-            <!-- Pillar 3: Grant Projects (col-span-1) -->
-            <div class="value-prop-card relative rounded-3xl p-6 smooth-transition group flex flex-col"
-                 style="background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent);
-                        backdrop-filter: blur(40px);
-                        -webkit-backdrop-filter: blur(40px);
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
-                        overflow: visible;
-                        min-height: 380px;
-                        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
-                <!-- 3D Asset - Above Content -->
-                <div class="floating-icon value-prop-icon mb-4 mx-auto" style="width: 240px; height: 240px; margin-top: -30px; animation-delay: 1s; transition: all 0.5s ease;">
-                    <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/generated-image-january-14-2026-11-20am-removebg-preview.png?crop=true"
-                         alt="Grant Projects 3D Icon"
-                         class="w-full h-full object-contain icon-glow"
-                         style="filter: drop-shadow(0 0 25px rgba(255, 75, 54, 0.4)); transition: all 0.5s ease;">
-                </div>
+            <!-- For Sport -> /sport.html -->
+            <a href="/sport.html"
+               class="group relative rounded-3xl smooth-transition hover-lift flex flex-col"
+               style="padding: clamp(1.75rem, 3vw, 2.75rem);
+                      min-height: clamp(240px, 32vh, 340px);
+                      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.15), transparent);
+                      backdrop-filter: blur(40px);
+                      -webkit-backdrop-filter: blur(40px);
+                      border: 1px solid rgba(255, 255, 255, 0.12);
+                      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 10px 30px rgba(0, 0, 0, 0.45);">
+                <i class="bi bi-trophy" aria-hidden="true" style="font-size: clamp(1.75rem, 2.6vw, 2.25rem); color: #FF6B50; line-height: 1;"></i>
 
-                <!-- Content -->
-                <div class="relative text-center" style="z-index: 2;">
-                    <h3 class="text-white font-bold text-2xl mb-4" style="letter-spacing: -0.02em; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Digital Innovation Grant Projects</h3>
-                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);">We've partnered on Erasmus+, Creative Europe, and other EU-funded projects — building AI platforms, with a team that understands both the tech and the paperwork.</p>
-                </div>
-            </div>
+                <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Sport</h3>
+
+                <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1rem, 1.3vw, 1.125rem); opacity: 0.85; margin-top: 0.75rem; max-width: 46ch;">
+                    Fan engagement apps for clubs and leagues — memberships, loyalty programmes, live scores and the content that keeps fans coming back.
+                </p>
+
+                <span class="inline-flex items-center gap-2 font-bold mt-auto" style="padding-top: clamp(1rem, 2vh, 1.75rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FF6B50;">
+                    <span>Explore sport solutions</span>
+                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                </span>
+            </a>
 
         </div>
     </div>
@@ -1857,72 +1836,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         observer.observe(bentoGrid);
     }
-
-    // 5. VALUE PROPS REACTIVE LIGHTING (Hover States)
-    const valueCards = document.querySelectorAll('.value-prop-card');
-
-    valueCards.forEach(card => {
-        const icon = card.querySelector('.icon-glow');
-        const iconContainer = card.querySelector('.value-prop-icon');
-
-        card.addEventListener('mouseenter', function() {
-            // Scale and brighten the icon
-            if (iconContainer) {
-                iconContainer.style.transform = 'scale(1.1)';
-            }
-            if (icon) {
-                const currentFilter = icon.style.filter;
-                icon.style.filter = currentFilter + ' brightness(1.2)';
-            }
-
-            // Change border to vibrant orange glow
-            card.style.borderColor = 'rgba(255, 75, 54, 0.8)';
-            card.style.boxShadow = 'inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 15px 40px rgba(255, 75, 54, 0.4), 0 0 60px rgba(255, 75, 54, 0.2)';
-
-            // Intensify the icon neon glow
-            if (icon) {
-                const currentDropShadow = icon.style.filter.includes('drop-shadow')
-                    ? icon.style.filter.replace(/drop-shadow\([^)]+\)/, 'drop-shadow(0 0 40px rgba(255, 75, 54, 0.8))')
-                    : icon.style.filter + ' drop-shadow(0 0 40px rgba(255, 75, 54, 0.8))';
-                icon.style.filter = currentDropShadow;
-            }
-
-            // Slight lift
-            card.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-
-        card.addEventListener('mouseleave', function() {
-            // Reset icon scale and brightness
-            if (iconContainer) {
-                iconContainer.style.transform = 'scale(1)';
-            }
-            if (icon) {
-                icon.style.filter = icon.style.filter.replace(' brightness(1.2)', '');
-            }
-
-            // Reset border to subtle white
-            card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-            card.style.boxShadow = 'inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5)';
-
-            // Reset icon shadow based on card index
-            if (icon) {
-                const imgSrc = icon.src;
-                if (imgSrc.includes('11-12am')) {
-                    // Mobile Apps - Orange glow
-                    icon.style.filter = 'drop-shadow(0 0 25px rgba(255, 75, 54, 0.4))';
-                } else if (imgSrc.includes('11-13am')) {
-                    // AI - Purple glow
-                    icon.style.filter = 'drop-shadow(0 0 25px rgba(139, 92, 246, 0.4))';
-                } else {
-                    // Grants - Orange glow
-                    icon.style.filter = 'drop-shadow(0 0 25px rgba(255, 75, 54, 0.4))';
-                }
-            }
-
-            // Reset position
-            card.style.transform = 'translateY(0) scale(1)';
-        });
-    });
 
     // 6. PRODUCT SHOWCASES: REVEAL-ON-SCROLL ANIMATION
     const productShowcases = document.querySelectorAll('.reveal-on-scroll');
