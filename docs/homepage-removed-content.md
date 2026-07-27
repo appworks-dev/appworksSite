@@ -239,3 +239,129 @@ the file was already dead before this change — defined but never referenced.
             </div>
         </div>
 ```
+
+---
+
+## Six testimonials cut from the homepage
+
+- **Removed:** Task 6, 2026-07-27
+- **Was at:** `home.html`, "What Our Partners Say" section
+- **Why:** Eleven — actually ten — full testimonials made this the longest block on
+  the page. Cut to four (Insajder, QPR, Greek Basketball League, Cedevita Olimpija).
+- **Intended destination:** the Partners page. `partners.html` has **no testimonials
+  section today**, so building one was out of Task 6's homepage-only scope. These
+  six are parked here until that section exists.
+- **Logos:** each card pulled its logo from `js/partner-logos.js` via
+  `data-partner`, so the logos are untouched and still available by key.
+
+### Copy and attribution
+
+| Organisation | Person | `data-partner` key |
+|---|---|---|
+| Politika | Zvezdan Tošić | `politika` |
+| KRIK | Jelena Vasić | `krik` |
+| FK Partizan | Mirko Panajotović | `fk-partizan` |
+| DAN | Ratko Ćetković | `dan` |
+| Croatian Basketball Federation | Andro Anzulović | `hks` |
+| Večer | Miha Klančar | `vecer` |
+
+#### Politika — Zvezdan Tošić
+
+> Working with the Appworks team has been straightforward and highly efficient from the very beginning. Our goal is to boost the number of our premium subscribers and the solutions they proposed were practical, reliable, and easy to adapt to our needs. When we ask for something, it is done without any problems, we especially value their availability and their willingness to always find the best possible solution.
+
+#### KRIK — Jelena Vasić
+
+> By creating and developing a mobile app for KRIK, we wanted to establish more direct communication with our readers, as well as to use a platform with an innovative design and practical features. We are glad that, with the help of the AppWorks team, we will continue to develop even more interaction with our audience in the coming period.
+
+#### FK Partizan — Mirko Panajotović
+
+> A great team of professionals, the collaboration is at a very high level. We specifically use the website, CMS, mobile app and LitteraWorks, and we are extremely satisfied with all the platforms. We look forward to continuing our cooperation.
+
+#### DAN — Ratko Ćetković
+
+> We have spoken with different app providers, but Appworks' offer was the most attractive one. They are solving problems fast, even in the evenings or after regular working hours.
+
+#### Croatian Basketball Federation — Andro Anzulović
+
+> At a time when the market is changing and most younger basketball followers are using phones, our collaboration with AppWorks has proven to be extremely important, as the app allows everyone to more easily follow all the news about Croatian basketball. The growth in followers is also evident through the prize games, where more and more people participate week after week. The team at AppWorks is available to us daily in case any issues arise or if we have ideas for changes.
+
+#### Večer — Miha Klančar
+
+> We had a mobile app earlier, but we were not satisfied. Appworks has offered us to pay for the app on a monthly level instead of paying in advance. Our main goal is to keep current premium users and attract new ones. We are satisfied with how both the app and e-kiosk work and look. Cooperation with Appworks is successful and we believe we can make further improvements to the users' experience.
+
+
+### Verbatim markup
+
+```html
+            <!-- Testimonial 3: Politika -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"Working with the Appworks team has been straightforward and highly efficient from the very beginning. Our goal is to boost the number of our premium subscribers and the solutions they proposed were practical, reliable, and easy to adapt to our needs. When we ask for something, it is done without any problems, we especially value their availability and their willingness to always find the best possible solution."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="politika" data-css="h-20 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Zvezdan Tošić</h5>
+                        <p class="text-gray-400 text-sm">Politika</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 5: KRIK -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"By creating and developing a mobile app for KRIK, we wanted to establish more direct communication with our readers, as well as to use a platform with an innovative design and practical features. We are glad that, with the help of the AppWorks team, we will continue to develop even more interaction with our audience in the coming period."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="krik" data-css="h-20 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Jelena Vasić</h5>
+                        <p class="text-gray-400 text-sm">KRIK</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 6: FK Partizan -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"A great team of professionals, the collaboration is at a very high level. We specifically use the website, CMS, mobile app and LitteraWorks, and we are extremely satisfied with all the platforms. We look forward to continuing our cooperation."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="fk-partizan" data-css="h-20 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Mirko Panajotović</h5>
+                        <p class="text-gray-400 text-sm">FK Partizan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 7: DAN -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"We have spoken with different app providers, but Appworks' offer was the most attractive one. They are solving problems fast, even in the evenings or after regular working hours."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="dan" data-css="h-20 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Ratko Ćetković</h5>
+                        <p class="text-gray-400 text-sm">DAN</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 8: Croatian Basketball Federation -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"At a time when the market is changing and most younger basketball followers are using phones, our collaboration with AppWorks has proven to be extremely important, as the app allows everyone to more easily follow all the news about Croatian basketball. The growth in followers is also evident through the prize games, where more and more people participate week after week. The team at AppWorks is available to us daily in case any issues arise or if we have ideas for changes."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="hks" data-css="h-20 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Andro Anzulović</h5>
+                        <p class="text-gray-400 text-sm">Croatian Basketball Federation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 10: Večer -->
+            <div class="glass-medium rounded-2xl p-10 smooth-transition hover-lift" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+                <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"We had a mobile app earlier, but we were not satisfied. Appworks has offered us to pay for the app on a monthly level instead of paying in advance. Our main goal is to keep current premium users and attract new ones. We are satisfied with how both the app and e-kiosk work and look. Cooperation with Appworks is successful and we believe we can make further improvements to the users' experience."</strong></p>
+                <div class="flex items-center gap-6 pt-6 border-t border-white/10">
+                    <div data-partner="vecer" data-css="h-20 w-auto object-contain"></div>
+                    <div>
+                        <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Miha Klančar</h5>
+                        <p class="text-gray-400 text-sm">Večer</p>
+                    </div>
+                </div>
+            </div>
+```
