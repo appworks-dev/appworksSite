@@ -1079,6 +1079,105 @@
     </div>
 </section>
 
+<!-- CASE STUDIES -->
+<!--
+    PLACEHOLDER SECTION — Task 5. Nothing in here is real.
+
+    Every metric, sector label, context line and link below is a placeholder.
+    Client names are deliberately GENERIC SECTOR LABELS ("News publisher") rather
+    than real client names: attaching an invented number to a named client would
+    be a fabricated claim about that client if this ever reached production.
+    Swap in the real client name at the same time as the real metric, never
+    before.
+
+    The visible dashed notice is DEV-ONLY. Delete that div once real content
+    lands.
+
+    PLACEHOLDER LINKS: no case study pages exist yet, so all three cards point at
+    href="#", tagged data-placeholder-link.
+
+    Metrics are white, not coral, on purpose. Task 9 calls out the coral
+    01/02/03 numbers as accent overuse, so the stat leads on size and weight and
+    coral stays on the CTA only.
+-->
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+
+        <!-- Section Header -->
+        <div class="text-center" style="margin-bottom: clamp(1.5rem, 3vh, 2.5rem);">
+            <h2 class="text-white font-bold" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">Case Studies</h2>
+            <div class="flex justify-center" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+            </div>
+        </div>
+
+        <!-- DEV-ONLY NOTICE — delete this div once real content is supplied -->
+        <div data-dev-placeholder-notice class="text-center rounded-xl" style="margin-bottom: clamp(1.5rem, 3vh, 2.5rem); padding: 0.75rem 1rem; border: 2px dashed rgba(255, 75, 54, 0.45); background: rgba(255, 75, 54, 0.06);">
+            <span class="font-bold uppercase" style="font-size: 0.75rem; letter-spacing: 0.08em; color: #FF6B50;">Placeholder — real metrics, client names and links still needed</span>
+        </div>
+
+        <!-- Three across only from lg. At the md breakpoint three columns squeeze
+             to ~217px and the cards end up taller than they are on desktop. -->
+        <div class="grid grid-cols-1 lg:grid-cols-3" style="gap: clamp(1.25rem, 2.5vw, 2rem);">
+
+            <!-- Case study 1 -->
+            <a href="#" data-placeholder-link="case-study-1" data-placeholder="case-study-1"
+               class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+               style="padding: clamp(1.5rem, 2.5vw, 2.25rem);
+                      background: rgba(255, 255, 255, 0.04);
+                      backdrop-filter: blur(24px);
+                      -webkit-backdrop-filter: blur(24px);
+                      border: 1px solid rgba(255, 255, 255, 0.1);">
+                <span class="font-semibold" style="font-size: 0.9375rem; color: rgba(255, 255, 255, 0.75);">News publisher</span>
+                <span class="text-white font-black" style="font-size: clamp(2.75rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.03em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">+42%</span>
+                <span class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.6); margin-top: 0.625rem;">digital subscriptions</span>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: clamp(0.875rem, 1.5vh, 1.25rem);">Rebuilt the mobile app and paywall flow, then tuned the subscription journey over the following year.</p>
+                <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                    <span>Read the case study</span>
+                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                </span>
+            </a>
+
+            <!-- Case study 2 -->
+            <a href="#" data-placeholder-link="case-study-2" data-placeholder="case-study-2"
+               class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+               style="padding: clamp(1.5rem, 2.5vw, 2.25rem);
+                      background: rgba(255, 255, 255, 0.04);
+                      backdrop-filter: blur(24px);
+                      -webkit-backdrop-filter: blur(24px);
+                      border: 1px solid rgba(255, 255, 255, 0.1);">
+                <span class="font-semibold" style="font-size: 0.9375rem; color: rgba(255, 255, 255, 0.75);">Football club</span>
+                <span class="text-white font-black" style="font-size: clamp(2.75rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.03em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">3.1&times;</span>
+                <span class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.6); margin-top: 0.625rem;">app engagement</span>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: clamp(0.875rem, 1.5vh, 1.25rem);">Launched a fan loyalty programme inside the club app, with rewards tied to attendance and matchday content.</p>
+                <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                    <span>Read the case study</span>
+                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                </span>
+            </a>
+
+            <!-- Case study 3 -->
+            <a href="#" data-placeholder-link="case-study-3" data-placeholder="case-study-3"
+               class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+               style="padding: clamp(1.5rem, 2.5vw, 2.25rem);
+                      background: rgba(255, 255, 255, 0.04);
+                      backdrop-filter: blur(24px);
+                      -webkit-backdrop-filter: blur(24px);
+                      border: 1px solid rgba(255, 255, 255, 0.1);">
+                <span class="font-semibold" style="font-size: 0.9375rem; color: rgba(255, 255, 255, 0.75);">National broadcaster</span>
+                <span class="text-white font-black" style="font-size: clamp(2.75rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.03em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">180h</span>
+                <span class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.6); margin-top: 0.625rem;">saved per month</span>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: clamp(0.875rem, 1.5vh, 1.25rem);">Replaced manual subtitling and translation with automated transcription across the newsroom.</p>
+                <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                    <span>Read the case study</span>
+                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
 <!-- EXPERTISE BENTO GRID: 3-Column -->
 <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
     <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
