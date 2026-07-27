@@ -285,6 +285,7 @@
             width: 80%;
             max-width: 320px;
             height: 100vh;
+            height: 100dvh;
             background: rgba(32, 10, 36, 0.98);
             backdrop-filter: blur(24px);
             z-index: 1001;
@@ -522,7 +523,7 @@
 
 <!-- Fixed Header Navigation -->
 <header class="header-nav">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
             <div class="flex-shrink-0">
@@ -665,37 +666,37 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden" style="padding-top: 80px; background: linear-gradient(180deg, #200A24 0%, #1A0624 50%, #0F0520 100%);">
+<section class="relative flex items-center justify-center overflow-hidden" style="min-height: 100vh; min-height: 100svh; padding-top: 81px; background: linear-gradient(180deg, #200A24 0%, #1A0624 50%, #0F0520 100%);">
     <!-- Radial Gradient Overlay -->
     <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at top right, rgba(255, 75, 54, 0.08) 0%, transparent 50%);"></div>
 
-    <div class="relative z-10 mx-auto px-6 lg:px-8 py-20" style="max-width: 1600px;">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="relative z-10 mx-auto w-full" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); padding-top: clamp(1.5rem, 4svh, 4rem); padding-bottom: clamp(1.5rem, 4svh, 4rem);">
+        <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(1.5rem, 4vw, 3rem);">
             <!-- Left Column: Content -->
             <div class="text-center lg:text-left">
                 <!-- Trust Badge -->
-                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full mb-8 glass-light">
+                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-light" style="margin-bottom: clamp(1rem, 2.5svh, 2rem);">
                     <i class="bi bi-megaphone text-vibrant-orange-600 text-lg"></i>
                     <span class="text-white text-xs font-bold tracking-wider uppercase">Trusted by 50+ Organizations Across 4 Continents</span>
                 </div>
 
                 <!-- Headline -->
-                <h1 class="text-white font-black mb-6" style="font-size: clamp(2.5rem, 5vw, 5rem); letter-spacing: -0.03em; line-height: 1.1;">
+                <h1 class="text-white font-black" style="font-size: clamp(2.25rem, 5vw, 4.5rem); letter-spacing: -0.03em; line-height: 1.08; margin-bottom: clamp(0.75rem, 2svh, 1.5rem);">
                     <span class="shimmer">AI</span> & Apps for Media and <span class="shimmer">Sports</span>
                 </h1>
 
                 <!-- Subheadline -->
-                <p class="text-gray-300 text-lg lg:text-xl mb-10 leading-relaxed" style="opacity: 0.85; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1rem, 1.5vw, 1.25rem); opacity: 0.85; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: clamp(1.25rem, 3svh, 2.5rem);">
                     We don't just build apps—we become your digital transformation partner, combining mobile platforms with AI innovation.
                 </p>
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <a href="/about.html" class="magnetic-button inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start" style="gap: clamp(0.75rem, 1.5vw, 1rem);">
+                    <a href="/about.html" class="magnetic-button inline-flex items-center justify-center gap-3 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1" style="padding: clamp(0.75rem, 1.6svh, 1rem) clamp(1.5rem, 2.5vw, 2rem); background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
                         <span>Let's Talk</span>
                         <i class="bi bi-arrow-right text-xl"></i>
                     </a>
-                    <a href="/partners.html" class="magnetic-button inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-vibrant-orange-600 transition-all duration-300 hover:-translate-y-1 hover:bg-opacity-20" style="border: 2px solid #FF4B36; background: transparent;">
+                    <a href="/partners.html" class="magnetic-button inline-flex items-center justify-center gap-3 rounded-xl font-bold text-vibrant-orange-600 transition-all duration-300 hover:-translate-y-1 hover:bg-opacity-20" style="padding: clamp(0.75rem, 1.6svh, 1rem) clamp(1.5rem, 2.5vw, 2rem); border: 2px solid #FF4B36; background: transparent;">
                         <span>See Our Work</span>
                         <i class="bi bi-arrow-right text-xl"></i>
                     </a>
@@ -704,7 +705,7 @@
 
             <!-- Right Column: Hero Image -->
             <div class="relative flex items-center justify-center">
-                <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2025-12-29-10-38-31.png?crop=true" alt="Mobile App Mockups" class="w-full max-w-2xl transform hover:scale-105 transition-transform duration-700" style="filter: drop-shadow(0 20px 60px rgba(255, 75, 54, 0.3));">
+                <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2025-12-29-10-38-31.png?crop=true" alt="Mobile App Mockups" class="transform hover:scale-105 transition-transform duration-700" style="width: auto; max-width: 100%; max-height: clamp(180px, 42svh, 560px); object-fit: contain; filter: drop-shadow(0 20px 60px rgba(255, 75, 54, 0.3));">
             </div>
         </div>
     </div>
@@ -720,11 +721,11 @@
 </section>
 
 <!-- Three Core Value Props: High-End Polish with Advanced Glassmorphism -->
-<section class="relative pt-16 pb-12 value-props-section" style="background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%); position: relative;">
+<section class="relative value-props-section" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%); position: relative;">
     <!-- Noise Texture Overlay -->
     <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); pointer-events: none; z-index: 1;"></div>
 
-    <div class="mx-auto px-6 lg:px-8 relative" style="max-width: 1600px; z-index: 2;">
+    <div class="mx-auto relative" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); z-index: 2;">
         <!-- Asymmetrical 3-Column Bento Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
@@ -808,12 +809,12 @@
 </section>
 
 <!-- DIGITAL TRANSFORMATION: 3-STEP PROCESS -->
-<section class="relative py-24" style="background: #200A24;">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: 1400px;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <div class="glass-light rounded-3xl p-12 lg:p-16" style="border-top: 4px solid #FF4B36;">
             <!-- Section Header -->
             <div class="text-center mb-16">
-                <h2 class="text-white font-black text-3xl lg:text-4xl mb-6" style="letter-spacing: -0.02em;">
+                <h2 class="text-white font-black mb-6" style="font-size: clamp(1.5rem, 2.6vw, 2.25rem); letter-spacing: -0.02em;">
                     We Don't Sell Products. We Solve Problems.
                 </h2>
                 <div class="inline-block px-8 py-3 rounded-full mb-6" style="background: rgba(255, 75, 54, 0.1); border: 1px solid rgba(255, 75, 54, 0.3);">
@@ -862,11 +863,11 @@
 </section>
 
 <!-- OUR SOLUTIONS: PRODUCT SHOWCASES -->
-<section class="relative py-32" style="background: linear-gradient(180deg, #200A24 0%, #0F0520 100%);">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: 1400px;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: linear-gradient(180deg, #200A24 0%, #0F0520 100%);">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-24">
-            <h2 class="text-white font-black text-5xl lg:text-6xl mb-6" style="letter-spacing: -0.02em;">Our Solutions</h2>
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Our Solutions</h2>
             <div class="flex justify-center mb-6">
                 <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px; box-shadow: 0 0 20px rgba(255, 75, 54, 0.5);"></div>
             </div>
@@ -881,7 +882,7 @@
                     <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
                         <span class="text-white text-xs font-black tracking-wider uppercase">AI-Powered CMS</span>
                     </div>
-                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">mPanel CMS</h3>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">mPanel CMS</h3>
                     <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Manage content for web and mobile in one place — with AI tools for translations, tagging, and content optimization built in.</p>
                     <p class="text-gray-400 text-lg leading-relaxed">Built for newsrooms and content teams who need to publish fast across web, mobile, and social—with AI that actually helps.</p>
                     <a href="/cms.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
@@ -935,7 +936,7 @@
                     <div class="inline-block px-4 py-2 rounded-lg" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3);">
                         <span class="text-accent-purple-400 text-xs font-black tracking-wider uppercase">AI Transcription</span>
                     </div>
-                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">Litteraworks</h3>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">Litteraworks</h3>
                     <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Automated transcription, subtitles, and translation - trusted by newsrooms, broadcasters, and enterprises across Europe.</p>
                     <p class="text-gray-400 text-lg leading-relaxed">Fast, accurate transcription and translation in 40+ languages. Trusted by major broadcasters across Europe.</p>
                     <a href="https://litteraworks.com" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
@@ -955,7 +956,7 @@
                     <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
                         <span class="text-white text-xs font-black tracking-wider uppercase">Media Asset Management</span>
                     </div>
-                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">Pchela</h3>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">Pchela</h3>
                     <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">AI-powered media asset management that makes your entire archive searchable and accessible in seconds.</p>
                     <p class="text-gray-400 text-lg leading-relaxed">Find anything instantly. From video footage to documents - AI-powered search that actually understands what you're looking for.</p>
                     <a href="https://pchela.app/" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
@@ -1009,7 +1010,7 @@
                     <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
                         <span class="text-white text-xs font-black tracking-wider uppercase">Sports Tech</span>
                     </div>
-                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">FanFuel</h3>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">FanFuel</h3>
                     <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Mobile apps and loyalty platforms that help sports clubs connect with fans - before, during, and after the game.</p>
                     <p class="text-gray-400 text-lg leading-relaxed">Turn casual fans into loyal supporters with mobile apps, gamification, and rewards that keep them engaged year-round.</p>
                     <a href="/sport.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
@@ -1029,7 +1030,7 @@
                     <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
                         <span class="text-white text-xs font-black tracking-wider uppercase">Media Tech</span>
                     </div>
-                    <h3 class="text-white font-black text-5xl lg:text-6xl" style="letter-spacing: -0.03em;">VerbaVista</h3>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">VerbaVista</h3>
                     <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Digital platforms for newspapers, broadcasters, and publishers - from mobile apps to e-Paper to subscription management.</p>
                     <p class="text-gray-400 text-lg leading-relaxed">Everything publishers need - mobile apps, web platforms, e-Paper, paywalls, and analytics - in one integrated system.</p>
                     <a href="/media.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
@@ -1061,11 +1062,11 @@
 </section>
 
 <!-- EXPERTISE BENTO GRID: 3-Column -->
-<section class="relative py-24" style="background: #200A24;">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Our Expertise</h2>
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">Our Expertise</h2>
             <p class="text-gray-400 text-lg max-w-2xl mx-auto">Beyond our products, we bring strategic expertise and technical depth</p>
         </div>
 
@@ -1085,7 +1086,7 @@
                     <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
                         <span class="text-white text-xs font-black tracking-wider uppercase">Consulting</span>
                     </div>
-                    <h3 class="text-white font-bold text-3xl" style="letter-spacing: -0.02em;">Digital Transformation Partner</h3>
+                    <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">Digital Transformation Partner</h3>
                     <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">We don't just build platforms - we help you figure out what to build. Strategy, technology, and execution, together.</p>
                     <a href="/consultation.html" class="inline-flex items-center gap-2 text-vibrant-orange-600 font-bold text-sm mt-4 group-hover:gap-3 smooth-transition">
                         <span>Learn More</span>
@@ -1107,7 +1108,7 @@
                     <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
                         <span class="text-white text-xs font-black tracking-wider uppercase">EU-Funded Innovation</span>
                     </div>
-                    <h3 class="text-white font-bold text-3xl" style="letter-spacing: -0.02em;">Grant Projects</h3>
+                    <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">Grant Projects</h3>
                     <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">Technology partner for Erasmus+, Creative Europe, and other EU-funded initiatives - we handle the tech, you focus on impact.</p>
                     <a href="/projects.html" class="inline-flex items-center gap-2 text-vibrant-orange-600 font-bold text-sm mt-4 group-hover:gap-3 smooth-transition">
                         <span>Learn More</span>
@@ -1129,7 +1130,7 @@
                     <div class="inline-block px-4 py-2 rounded-lg" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3);">
                         <span class="text-accent-purple-400 text-xs font-black tracking-wider uppercase">Custom AI Platforms</span>
                     </div>
-                    <h3 class="text-white font-bold text-3xl" style="letter-spacing: -0.02em;">AI Solutions</h3>
+                    <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">AI Solutions</h3>
                     <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">From content automation to intelligent workflows - we build AI tools tailored to how your organization actually works.</p>
                     <a href="/about.html" class="inline-flex items-center gap-2 text-accent-purple-400 font-bold text-sm mt-4 group-hover:gap-3 smooth-transition">
                         <span>Learn More</span>
@@ -1142,8 +1143,8 @@
 </section>
 
 <!-- Consultation CTA -->
-<section class="relative py-16" style="background: #200A24;">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: 1100px;">
+<section class="relative" style="padding-top: clamp(1.5rem, 4vh, 3.5rem); padding-bottom: clamp(1.5rem, 4vh, 3.5rem); background: #200A24;">
+    <div class="mx-auto" style="max-width: 1100px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <a href="/consultation.html" class="block relative overflow-hidden rounded-3xl smooth-transition hover-lift group" style="background: linear-gradient(135deg, rgba(255, 75, 54, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem;">
             <div class="flex flex-col md:flex-row items-center gap-6">
                 <div class="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center" style="background: rgba(255, 75, 54, 0.15);">
@@ -1163,12 +1164,12 @@
 </section>
 
 <!-- From Our Blog Section -->
-<section class="relative py-24" style="background: #200A24;">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="flex flex-col lg:flex-row items-center justify-between mb-12">
             <div class="text-center lg:text-left mb-6 lg:mb-0">
-                <h2 class="text-white font-bold text-4xl lg:text-5xl mb-4" style="letter-spacing: -0.02em;">Latest Insights</h2>
+                <h2 class="text-white font-bold mb-4" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">Latest Insights</h2>
                 <div class="flex justify-center lg:justify-start">
                     <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
                 </div>
@@ -1208,11 +1209,11 @@
 </section>
 
 <!-- What Our Partners Say (Testimonials) -->
-<section class="relative py-24" style="background: #200A24;">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-white font-bold text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">What Our Partners Say</h2>
+            <h2 class="text-white font-bold mb-6" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">What Our Partners Say</h2>
             <div class="flex justify-center mb-6">
                 <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
             </div>
@@ -1344,11 +1345,11 @@
 </section>
 
 <!-- Some of our partners -->
-<section class="relative py-24" style="background: #200A24;">
-    <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-white font-bold text-4xl lg:text-5xl" style="letter-spacing: -0.02em;">Some of our partners</h2>
+            <h2 class="text-white font-bold" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">Some of our partners</h2>
         </div>
 
         <!-- Partners Grid -->
@@ -1439,8 +1440,8 @@
 </section>
 
 <!-- Footer Section -->
-<footer class="relative py-20" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
-    <div class="mx-auto px-6 lg:px-8 mb-12" style="max-width: 1600px;">
+<footer class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="mx-auto mb-12" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <!-- Column 1: Logo & Social -->
             <div>
