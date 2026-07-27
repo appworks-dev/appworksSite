@@ -544,6 +544,51 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /*
+         * Logo normalisation (Task 9). Partner logos arrive from the CMS in
+         * mixed treatments — full colour, white, greyscale, and in Politika's
+         * case pure black, which was almost invisible on the dark background.
+         *
+         * Greyscale, not a flat silhouette. brightness(0) invert(1) unified the
+         * set perfectly but collapsed every crest — QPR, Leeds, Panathinaikos,
+         * Partizan, Cedevita, ESAKE — into a featureless blob, because it
+         * flattens all opaque pixels to a single value. Greyscale plus a
+         * brightness lift keeps internal detail while removing colour.
+         *
+         * A single max-height gives a matched box. True optical balance between
+         * wide wordmarks and square crests would need per-logo scale factors in
+         * js/partner-logos.js.
+         */
+        .partner-logo {
+            max-height: 40px;
+            max-width: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(1) brightness(1.35) contrast(0.95);
+            opacity: 0.85;
+            transition: opacity 0.3s ease, filter 0.3s ease;
+        }
+
+        a:hover .partner-logo {
+            opacity: 1;
+        }
+
+        /*
+         * Seven logos measured a mean opaque luminance below 110 — dark ink on
+         * transparent. brightness() multiplies, so it cannot lift them (Politika
+         * is pure black: 0 x anything is 0). Inverting flips them to light grey
+         * and, unlike a silhouette filter, preserves their internal detail.
+         * Applied per logo via data-css, and only on this page.
+         */
+        .partner-logo--invert {
+            filter: grayscale(1) invert(1) brightness(1.1);
+        }
+
+        .partner-logo--testimonial {
+            max-height: 52px;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -705,7 +750,7 @@
                 <!-- Trust Badge -->
                 <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-light" style="margin-bottom: clamp(1rem, 2.5svh, 2rem);">
                     <i class="bi bi-megaphone text-vibrant-orange-600 text-lg"></i>
-                    <span class="text-white text-xs font-bold tracking-wider uppercase">Trusted by 50+ Organizations Across 4 Continents</span>
+                    <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Trusted by 50+ Organizations Across 4 Continents</span>
                 </div>
 
                 <!-- Headline -->
@@ -724,7 +769,7 @@
                         <span>Let's Talk</span>
                         <i class="bi bi-arrow-right text-xl"></i>
                     </a>
-                    <a href="/partners.html" class="magnetic-button inline-flex items-center justify-center gap-3 rounded-xl font-bold text-vibrant-orange-600 transition-all duration-300 hover:-translate-y-1 hover:bg-opacity-20" style="padding: clamp(0.75rem, 1.6svh, 1rem) clamp(1.5rem, 2.5vw, 2rem); border: 2px solid #FF4B36; background: transparent;">
+                    <a href="/partners.html" class="magnetic-button inline-flex items-center justify-center gap-3 rounded-xl font-bold transition-all duration-300 hover:-translate-y-1" style="padding: clamp(0.75rem, 1.6svh, 1rem) clamp(1.5rem, 2.5vw, 2rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
                         <span>See Our Work</span>
                         <i class="bi bi-arrow-right text-xl"></i>
                     </a>
@@ -740,7 +785,7 @@
 
     <!-- Animated Wave Separator -->
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="z-index: 1;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 180 2500 200" preserveAspectRatio="none" fill="#200A24">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 180 2500 200" preserveAspectRatio="none" fill="#2A0E30">
             <path d="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250">
                 <animate attributeName="d" dur="5s" values="M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250; M 0 250 C 400 50 400 400 3000 250 L 3000 550 L 0 550 L 0 250; M 0 250 C 1200 400 1200 50 3000 250 L 3000 550 L 0 550 L 0 250" repeatCount="indefinite" />
             </path>
@@ -754,7 +799,7 @@
     drafts written from the positioning already on media.html and sport.html.
     Pending client approval — see the Task 3 handover notes.
 -->
-<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%);">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #2A0E30;">
     <!-- Noise Texture Overlay -->
     <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); pointer-events: none; z-index: 1;"></div>
 
@@ -832,14 +877,14 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Left: Text Content -->
                 <div class="space-y-6">
-                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                        <span class="text-white text-xs font-black tracking-wider uppercase">AI-Powered CMS</span>
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">AI-Powered CMS</span>
                     </div>
-                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">mPanel CMS</h3>
-                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Manage content for web and mobile in one place — with AI tools for translations, tagging, and content optimization built in.</p>
-                    <p class="text-gray-400 text-lg leading-relaxed">Built for newsrooms and content teams who need to publish fast across web, mobile, and social—with AI that actually helps.</p>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">mPanel CMS</h3>
+                    <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, 0.92);">Manage content for web and mobile in one place — with AI tools for translations, tagging, and content optimization built in.</p>
+                    <p class="leading-relaxed" style="font-size: clamp(0.9375rem, 1.2vw, 1.0625rem); color: rgba(255, 255, 255, 0.6);">Built for newsrooms and content teams who need to publish fast across web, mobile, and social—with AI that actually helps.</p>
                     <a href="/cms.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
-                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                       style="color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
                         <span>Explore mPanel</span>
                         <i class="bi bi-arrow-right text-xl"></i>
                     </a>
@@ -872,7 +917,7 @@
                     <!-- Scroll-Following Glow (Purple) -->
                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
                          style="width: 600px; height: 600px;
-                                background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(167, 139, 250, 0.15) 40%, transparent 70%);
+                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
                                 filter: blur(60px);"></div>
 
                     <!-- MacBook Mockup - Straight On -->
@@ -880,20 +925,20 @@
                         <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/group-3471-1.png?crop=true"
                              alt="Litteraworks Transcription Platform"
                              class="w-full rounded-2xl shadow-2xl"
-                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(139, 92, 246, 0.2);">
+                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
                     </div>
                 </div>
 
                 <!-- Right: Text Content -->
                 <div class="space-y-6 order-1 lg:order-2">
-                    <div class="inline-block px-4 py-2 rounded-lg" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3);">
-                        <span class="text-accent-purple-400 text-xs font-black tracking-wider uppercase">AI Transcription</span>
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">AI Transcription</span>
                     </div>
-                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">Litteraworks</h3>
-                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Automated transcription, subtitles, and translation - trusted by newsrooms, broadcasters, and enterprises across Europe.</p>
-                    <p class="text-gray-400 text-lg leading-relaxed">Fast, accurate transcription and translation in 40+ languages. Trusted by major broadcasters across Europe.</p>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Litteraworks</h3>
+                    <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, 0.92);">Automated transcription, subtitles, and translation - trusted by newsrooms, broadcasters, and enterprises across Europe.</p>
+                    <p class="leading-relaxed" style="font-size: clamp(0.9375rem, 1.2vw, 1.0625rem); color: rgba(255, 255, 255, 0.6);">Fast, accurate transcription and translation in 40+ languages. Trusted by major broadcasters across Europe.</p>
                     <a href="https://litteraworks.com" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
-                       style="background: rgba(139, 92, 246, 0.2); color: #A78BFA; border: 2px solid rgba(139, 92, 246, 0.4); box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);">
+                       style="color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
                         <span>Explore Litteraworks</span>
                         <i class="bi bi-arrow-right text-xl"></i>
                     </a>
@@ -906,14 +951,14 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Left: Text Content -->
                 <div class="space-y-6">
-                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                        <span class="text-white text-xs font-black tracking-wider uppercase">Media Asset Management</span>
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Media Asset Management</span>
                     </div>
-                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">Pchela</h3>
-                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">AI-powered media asset management that makes your entire archive searchable and accessible in seconds.</p>
-                    <p class="text-gray-400 text-lg leading-relaxed">Find anything instantly. From video footage to documents - AI-powered search that actually understands what you're looking for.</p>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Pchela</h3>
+                    <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, 0.92);">AI-powered media asset management that makes your entire archive searchable and accessible in seconds.</p>
+                    <p class="leading-relaxed" style="font-size: clamp(0.9375rem, 1.2vw, 1.0625rem); color: rgba(255, 255, 255, 0.6);">Find anything instantly. From video footage to documents - AI-powered search that actually understands what you're looking for.</p>
                     <a href="https://pchela.app/" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
-                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                       style="color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
                         <span>Explore Pchela</span>
                         <i class="bi bi-arrow-right text-xl"></i>
                     </a>
@@ -951,7 +996,7 @@
         -->
         <div>
             <div class="text-center" style="margin-bottom: clamp(1.75rem, 4vh, 3rem);">
-                <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.75rem); letter-spacing: -0.02em;">Also in our portfolio</h3>
+                <h3 class="text-white font-bold" style="font-size: clamp(1.375rem, 2.2vw, 1.875rem); letter-spacing: -0.02em;">Also in our portfolio</h3>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: clamp(1.25rem, 2.5vw, 2rem);">
@@ -1046,12 +1091,12 @@
     01/02/03 numbers as accent overuse, so the stat leads on size and weight and
     coral stays on the CTA only.
 -->
-<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #2A0E30;">
     <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
 
         <!-- Section Header -->
         <div class="text-center" style="margin-bottom: clamp(1.5rem, 3vh, 2.5rem);">
-            <h2 class="text-white font-bold" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">Case Studies</h2>
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Case Studies</h2>
             <div class="flex justify-center" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
                 <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
             </div>
@@ -1125,11 +1170,11 @@
 </section>
 
 <!-- What Our Partners Say (Testimonials) -->
-<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #2A0E30;">
     <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-white font-bold mb-6" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">What Our Partners Say</h2>
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">What Our Partners Say</h2>
             <div class="flex justify-center mb-6">
                 <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
             </div>
@@ -1141,7 +1186,7 @@
             <div class="glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); border-top: 4px solid transparent;">
                 <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"A reliable partner we can always count on. App Works offers the ideal combination of innovative products and dedicated support. Beyond their top-tier technical expertise, what we value most about App Works is their fantastic communication and speed of response. We feel like they're part of our team, not just external collaborators."</strong></p>
                 <div class="flex items-center gap-6 pt-6 border-t border-white/10 mt-auto">
-                    <div data-partner="insajder" data-css="h-20 w-auto object-contain"></div>
+                    <div data-partner="insajder" data-css="partner-logo partner-logo--testimonial"></div>
                     <div>
                         <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Predrag Urošević</h5>
                         <p class="text-gray-400 text-sm">Insajder</p>
@@ -1153,7 +1198,7 @@
             <div class="glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
                 <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"I started using Litteraworks in recent weeks and, I must confess, was skeptical to begin with. How beneficial would it actually be? How much time would be spent reviewing, editing, and correcting multiple grammatical errors? I was genuinely taken aback by the accuracy and speed of the transcription. It has had a significant impact on reducing the team's workload and I cannot recommend it higher."</strong></p>
                 <div class="flex items-center gap-6 pt-6 border-t border-white/10 mt-auto">
-                    <div data-partner="qpr" data-css="h-20 w-auto object-contain"></div>
+                    <div data-partner="qpr" data-css="partner-logo partner-logo--testimonial"></div>
                     <div>
                         <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Paul Morrisey</h5>
                         <p class="text-gray-400 text-sm">QPR</p>
@@ -1165,7 +1210,7 @@
             <div class="glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
                 <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"We aim to be one of the greatest leagues in Europe with complete digital services. Appworks' offer was so attractive and it was the first time that someone understood what we wanted. Our cooperation has started well and we are very happy with it, hoping it will continue into the future. We appreciate Appworks coming to Athens and meeting us in person and we are very excited about the ideas we have talked about."</strong></p>
                 <div class="flex items-center gap-6 pt-6 border-t border-white/10 mt-auto">
-                    <div data-partner="esake" data-css="h-20 w-auto object-contain"></div>
+                    <div data-partner="esake" data-css="partner-logo partner-logo--testimonial"></div>
                     <div>
                         <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Sotiris Katoufas</h5>
                         <p class="text-gray-400 text-sm">Greek Basketball League</p>
@@ -1177,7 +1222,7 @@
             <div class="glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
                 <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"We are entering the third season of collaboration between KK Cedevita Olimpija and Appworks in the development of the 6.Zmaj loyalty app. We are extremely satisfied with this partnership because it is not just a business relationship, but also a shared passion for basketball. We are developing the app in the desired direction, constantly exchanging ideas, and striving to improve and expand its features for our members, whose numbers are growing daily. We actively listen to their feedback and suggestions, ensuring we respond as quickly as possible. The Mapworks team is always available, responding promptly to all our requests and ideas. We are truly more than satisfied with their dedication and support."</strong></p>
                 <div class="flex items-center gap-6 pt-6 border-t border-white/10 mt-auto">
-                    <div data-partner="cedevita" data-css="h-20 w-auto object-contain"></div>
+                    <div data-partner="cedevita" data-css="partner-logo partner-logo--testimonial"></div>
                     <div>
                         <h5 class="font-bold text-base mb-1" style="color: #FFFFFF;">Igor Jagić</h5>
                         <p class="text-gray-400 text-sm">Cedevita Olimpija</p>
@@ -1191,7 +1236,7 @@
              the section already carries enough coral. -->
         <div class="text-center" style="margin-top: clamp(2rem, 4vh, 3.5rem);">
             <a href="/partners.html" class="group inline-flex items-center justify-center gap-3 rounded-xl font-bold smooth-transition hover:-translate-y-1"
-               style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.04);">
+               style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
                 <span>See all our partners</span>
                 <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
             </a>
@@ -1221,7 +1266,10 @@
 
         <!-- Section Header -->
         <div class="text-center" style="margin-bottom: clamp(2rem, 5vh, 4rem);">
-            <h2 class="text-white font-black mb-6" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">Our Expertise</h2>
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Our Expertise</h2>
+            <div class="flex justify-center" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+            </div>
             <p class="text-gray-400 max-w-2xl mx-auto" style="font-size: clamp(1rem, 1.3vw, 1.125rem);">Beyond our products, we bring strategic expertise and technical depth</p>
         </div>
 
@@ -1235,12 +1283,12 @@
                         background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
                         backdrop-filter: blur(40px);
                         -webkit-backdrop-filter: blur(40px);
-                        border: 1px solid rgba(255, 75, 54, 0.3);
+                        border: 1px solid rgba(255, 255, 255, 0.12);
                         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
                         overflow: visible;">
                 <div class="space-y-4">
-                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                        <span class="text-white text-xs font-black tracking-wider uppercase">Consulting</span>
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Consulting</span>
                     </div>
                     <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">Digital Transformation Partner</h3>
                     <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">We don't just build platforms - we help you figure out what to build. Strategy, technology, and execution, together.</p>
@@ -1258,11 +1306,11 @@
                         background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
                         backdrop-filter: blur(40px);
                         -webkit-backdrop-filter: blur(40px);
-                        border: 1px solid rgba(255, 75, 54, 0.3);
+                        border: 1px solid rgba(255, 255, 255, 0.12);
                         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
                 <div class="space-y-4">
-                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                        <span class="text-white text-xs font-black tracking-wider uppercase">EU-Funded Innovation</span>
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">EU-Funded Innovation</span>
                     </div>
                     <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">Grant Projects</h3>
                     <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">Technology partner for Erasmus+, Creative Europe, and other EU-funded initiatives - we handle the tech, you focus on impact.</p>
@@ -1280,16 +1328,16 @@
                         background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
                         backdrop-filter: blur(40px);
                         -webkit-backdrop-filter: blur(40px);
-                        border: 1px solid rgba(139, 92, 246, 0.3);
+                        border: 1px solid rgba(255, 255, 255, 0.12);
                         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
                 <div class="space-y-4">
-                    <div class="inline-block px-4 py-2 rounded-lg" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3);">
-                        <span class="text-accent-purple-400 text-xs font-black tracking-wider uppercase">Custom AI Platforms</span>
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Custom AI Platforms</span>
                     </div>
                     <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">AI Solutions</h3>
                     <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">From content automation to intelligent workflows - we build AI tools tailored to how your organization actually works.</p>
                 </div>
-                <a href="/about.html" class="inline-flex items-center gap-2 text-accent-purple-400 font-bold text-sm mt-auto group-hover:gap-3 smooth-transition" style="padding-top: clamp(1rem, 2vh, 1.5rem);">
+                <a href="/about.html" class="inline-flex items-center gap-2 text-vibrant-orange-600 font-bold text-sm mt-auto group-hover:gap-3 smooth-transition" style="padding-top: clamp(1rem, 2vh, 1.5rem);">
                     <span>Learn More</span>
                     <i class="bi bi-arrow-right text-lg"></i>
                 </a>
@@ -1299,7 +1347,7 @@
         <!-- How we work — folded in from the standalone 3-step process section -->
         <div class="glass-light rounded-3xl" style="margin-top: clamp(2rem, 5vh, 4rem); padding: clamp(1.75rem, 4vw, 4rem); border-top: 4px solid #FF4B36;">
             <div class="text-center" style="margin-bottom: clamp(2rem, 4vh, 3.5rem);">
-                <h3 class="text-white font-black" style="font-size: clamp(1.5rem, 2.6vw, 2.25rem); letter-spacing: -0.02em; margin-bottom: clamp(0.75rem, 2vh, 1.5rem);">
+                <h3 class="text-white font-black" style="font-size: clamp(1.375rem, 2.2vw, 1.875rem); letter-spacing: -0.02em; margin-bottom: clamp(0.75rem, 2vh, 1.5rem);">
                     We Don't Sell Products. We Solve Problems.
                 </h3>
                 <p class="text-gray-300 leading-relaxed max-w-3xl mx-auto" style="font-size: clamp(1rem, 1.3vw, 1.125rem); opacity: 0.85;">Most vendors pitch features. We start by listening. What's broken? What's missing? What would make your team's life easier? Then we build — together, over time, adapting as your needs change.</p>
@@ -1309,7 +1357,7 @@
                 <!-- Step 1: Listen -->
                 <div class="glass-medium rounded-2xl text-center smooth-transition hover-lift" style="padding: clamp(1.5rem, 2.5vw, 2rem);">
                     <div class="mb-6 flex items-center justify-center">
-                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);">
                             <span class="text-white font-black" style="font-size: clamp(1.25rem, 2.2vw, 1.875rem);">01</span>
                         </div>
                     </div>
@@ -1320,7 +1368,7 @@
                 <!-- Step 2: Propose -->
                 <div class="glass-medium rounded-2xl text-center smooth-transition hover-lift" style="padding: clamp(1.5rem, 2.5vw, 2rem);">
                     <div class="mb-6 flex items-center justify-center">
-                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);">
                             <span class="text-white font-black" style="font-size: clamp(1.25rem, 2.2vw, 1.875rem);">02</span>
                         </div>
                     </div>
@@ -1331,7 +1379,7 @@
                 <!-- Step 3: Deliver -->
                 <div class="glass-medium rounded-2xl text-center smooth-transition hover-lift" style="padding: clamp(1.5rem, 2.5vw, 2rem);">
                     <div class="mb-6 flex items-center justify-center">
-                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);">
                             <span class="text-white font-black" style="font-size: clamp(1.25rem, 2.2vw, 1.875rem);">03</span>
                         </div>
                     </div>
@@ -1343,7 +1391,7 @@
 
         <!-- Section CTA — folded in from the standalone Consultation band -->
         <div class="text-center" style="margin-top: clamp(2rem, 5vh, 4rem);">
-            <h3 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.8vw, 1.5rem); margin-bottom: clamp(0.5rem, 1vh, 0.75rem);">Not sure where to start with digital transformation?</h3>
+            <h3 class="text-white font-bold" style="font-size: clamp(1.375rem, 2.2vw, 1.875rem); letter-spacing: -0.02em; margin-bottom: clamp(0.5rem, 1vh, 0.75rem);">Not sure where to start with digital transformation?</h3>
             <p class="text-gray-400 mx-auto" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); max-width: 46rem; margin-bottom: clamp(1.25rem, 3vh, 2rem);">We run discovery workshops and technical audits to help media and sports organizations find the right path forward.</p>
             <a href="/consultation.html" class="group inline-flex items-center justify-center gap-3 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1"
                style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
@@ -1378,7 +1426,7 @@
     guidelines with mandatory usage rules, so these need the approved files.
     Count is white, not coral: see Task 5 note on accent discipline.
 -->
-<section class="relative" style="padding-top: clamp(2.5rem, 6vh, 5rem); padding-bottom: clamp(2.5rem, 6vh, 5rem); background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(42, 14, 48, 1) 45%, rgba(255, 75, 54, 0.08) 100%), #2A0E30; border-top: 1px solid rgba(255, 255, 255, 0.12); border-bottom: 1px solid rgba(255, 255, 255, 0.12);">
+<section class="relative" style="padding-top: clamp(2.5rem, 6vh, 5rem); padding-bottom: clamp(2.5rem, 6vh, 5rem); background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(58, 20, 70, 1) 45%, rgba(255, 75, 54, 0.08) 100%), #3A1446; border-top: 1px solid rgba(255, 255, 255, 0.12); border-bottom: 1px solid rgba(255, 255, 255, 0.12);">
     <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between" style="gap: clamp(1.75rem, 4vw, 3.5rem);">
 
@@ -1422,7 +1470,7 @@
         <!-- Section Header -->
         <div class="flex flex-col lg:flex-row items-center justify-between mb-12">
             <div class="text-center lg:text-left mb-6 lg:mb-0">
-                <h2 class="text-white font-bold mb-4" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">Latest Insights</h2>
+                <h2 class="text-white font-black mb-4" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Latest Insights</h2>
                 <div class="flex justify-center lg:justify-start">
                     <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
                 </div>
@@ -1453,7 +1501,7 @@
 
         <!-- View All Button -->
         <div class="text-center mt-12">
-            <a href="/insights" class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
+            <a href="/insights" class="inline-flex items-center justify-center gap-3 rounded-xl font-bold transition-all duration-300 hover:-translate-y-1" style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
                 <span>VIEW ALL INSIGHTS</span>
                 <i class="bi bi-arrow-right text-xl"></i>
             </a>
@@ -1462,94 +1510,97 @@
 </section>
 
 <!-- Some of our partners -->
-<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #2A0E30;">
     <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-white font-bold" style="font-size: clamp(1.75rem, 3.2vw, 3rem); letter-spacing: -0.02em;">Some of our partners</h2>
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Some of our partners</h2>
+            <div class="flex justify-center" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+            </div>
         </div>
 
         <!-- Partners Grid -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
-            <a href="https://www.media24.si/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="media24" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.media24.si/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="media24" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.leedsunited.com/en/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="leeds" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.leedsunited.com/en/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="leeds" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.hrt.hr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="hrt" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.hrt.hr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="hrt" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.partizan.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="fk-partizan" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.partizan.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="fk-partizan" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.rts.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="rts" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.rts.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="rts" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.qpr.co.uk/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="qpr" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.qpr.co.uk/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="qpr" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.ringier.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="ringier" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.ringier.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="ringier" data-css="partner-logo partner-logo--invert"></div>
             </a>
-            <a href="https://www.pao.gr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="pao" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.pao.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="pao" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.n1info.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="n1" data-css="max-h-16 w-auto object-contain"></div>
-            <a href="https://www.star.gr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="star" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.n1info.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="n1" data-css="partner-logo partner-logo--invert"></div>
+            <a href="https://www.star.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="star" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.cedevita.olimpija.com/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="cedevita" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.cedevita.olimpija.com/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="cedevita" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.italpress.com/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="italpress" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.italpress.com/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="italpress" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.politika.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="politika" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.politika.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="politika" data-css="partner-logo partner-logo--invert"></div>
             </a>
-            <a href="https://www.dan.co.me/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="dan" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.dan.co.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="dan" data-css="partner-logo partner-logo--invert"></div>
             </a>
-            <a href="https://www.dpgmediagroup.gr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="dpg" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.dpgmediagroup.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="dpg" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.euronews.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="euronews" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.euronews.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="euronews" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.danas.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="danas" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.danas.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="danas" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.hanzamedia.hr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="hanza-media" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.hanzamedia.hr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="hanza-media" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.insajder.net/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="insajder" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.insajder.net/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="insajder" data-css="partner-logo"></div>
             </a>
-            <a href="https://novatv.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="nova-s" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://novatv.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="nova-s" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.esake.gr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="esake" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.esake.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="esake" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.rtcg.me/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="rtcg" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.rtcg.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="rtcg" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.wmg.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="wmg" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.wmg.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="wmg" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.vijesti.me/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="vijesti" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.vijesti.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="vijesti" data-css="partner-logo partner-logo--invert"></div>
             </a>
-            <a href="https://www.tanjug.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="tanjug" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.tanjug.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="tanjug" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.satplus.rs/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="sat" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.satplus.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="sat" data-css="partner-logo partner-logo--invert"></div>
             </a>
-            <a href="https://www.hks-cbf.hr/" target="_blank" class="flex items-center justify-center p-6 glass-light rounded-xl smooth-transition hover-lift">
-                <div data-partner="hks" data-css="max-h-16 w-auto object-contain"></div>
+            <a href="https://www.hks-cbf.hr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+                <div data-partner="hks" data-css="partner-logo partner-logo--invert"></div>
             </a>
             </a>
         </div>
@@ -1620,7 +1671,7 @@
 </footer>
 
 <!-- Scroll to Top Button -->
-<button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full items-center justify-center smooth-transition opacity-0 pointer-events-none" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.4); z-index: 999;">
+<button id="scroll-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full items-center justify-center smooth-transition opacity-0 pointer-events-none" style="background: rgba(42, 14, 48, 0.92); border: 1px solid rgba(255, 255, 255, 0.25); backdrop-filter: blur(12px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); z-index: 999;">
     <i class="bi bi-arrow-up text-white text-xl"></i>
 </button>
 
@@ -1773,7 +1824,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white;">${category}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">${category}</span>
                                     <span class="text-gray-300 text-sm">${date}</span>
                                 </div>
                                 <h3 class="text-white font-bold text-xl md:text-2xl lg:text-3xl leading-tight mb-3" style="letter-spacing: -0.01em;">${article.title}</h3>
@@ -1799,7 +1850,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                                 <div class="w-3/5 p-5 flex flex-col justify-center">
                                     <div class="flex items-center gap-2 mb-2">
-                                        <span class="inline-block px-2 py-1 rounded-full text-xs font-semibold uppercase" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; font-size: 0.65rem;">${category}</span>
+                                        <span class="inline-block px-2 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85); font-size: 0.65rem;">${category}</span>
                                         <span class="text-gray-500 text-xs">${date}</span>
                                     </div>
                                     <h4 class="text-white font-bold text-base leading-snug mb-2 line-clamp-2">${article.title}</h4>
