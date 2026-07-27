@@ -139,3 +139,103 @@ wants the bob animation for something else. Delete them if it doesn't.
 
 Separately, `@keyframes energyPulse` in the second `<style>` block near the end of
 the file was already dead before this change — defined but never referenced.
+
+---
+
+## FanFuel — full product showcase
+
+- **Demoted:** Task 4, 2026-07-27
+- **Was at:** `home.html`, Our Solutions section, as a full-width alternating block
+- **Now:** a card in the compact portfolio grid, linking to the same destination
+- **Dropped in the move:** the second (lighter) paragraph and the product screenshot
+
+### Verbatim markup
+
+```html
+        <!-- PRODUCT SHOWCASE 4: FanFuel (Text Right / Image Left) -->
+        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: iPhone 15 Pro 3D Mockup -->
+                <div class="relative product-mockup order-2 lg:order-1 flex justify-center">
+                    <!-- Scroll-Following Glow (Orange) -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                         style="width: 500px; height: 500px;
+                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                filter: blur(60px);"></div>
+
+                    <!-- iPhone Mockup - Straight On -->
+                    <div class="relative" style="max-width: 500px;">
+                        <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/sport-pao-pfc.png?crop=true"
+                             alt="FanFuel Mobile App"
+                             class="w-full rounded-3xl shadow-2xl"
+                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
+                    </div>
+                </div>
+
+                <!-- Right: Text Content -->
+                <div class="space-y-6 order-1 lg:order-2">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">Sports Tech</span>
+                    </div>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">FanFuel</h3>
+                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Mobile apps and loyalty platforms that help sports clubs connect with fans - before, during, and after the game.</p>
+                    <p class="text-gray-400 text-lg leading-relaxed">Turn casual fans into loyal supporters with mobile apps, gamification, and rewards that keep them engaged year-round.</p>
+                    <a href="/sport.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
+                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <span>Explore FanFuel</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+```
+
+---
+
+## VerbaVista — full product showcase
+
+- **Demoted:** Task 4, 2026-07-27
+- **Was at:** `home.html`, Our Solutions section, as a full-width alternating block
+- **Now:** a card in the compact portfolio grid, linking to the same destination
+- **Dropped in the move:** the second (lighter) paragraph and the product screenshot
+
+### Verbatim markup
+
+```html
+        <!-- PRODUCT SHOWCASE 5: VerbaVista (Text Left / Image Right) -->
+        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Text Content -->
+                <div class="space-y-6">
+                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">Media Tech</span>
+                    </div>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">VerbaVista</h3>
+                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Digital platforms for newspapers, broadcasters, and publishers - from mobile apps to e-Paper to subscription management.</p>
+                    <p class="text-gray-400 text-lg leading-relaxed">Everything publishers need - mobile apps, web platforms, e-Paper, paywalls, and analytics - in one integrated system.</p>
+                    <a href="/media.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
+                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                        <span>Explore VerbaVista</span>
+                        <i class="bi bi-arrow-right text-xl"></i>
+                    </a>
+                </div>
+
+                <!-- Right: iPhone 15 Pro 3D Mockup -->
+                <div class="relative product-mockup flex justify-center">
+                    <!-- Scroll-Following Glow (Orange) -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                         style="width: 500px; height: 500px;
+                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
+                                filter: blur(60px);"></div>
+
+                    <!-- iPhone Mockup - Straight On -->
+                    <div class="relative" style="max-width: 500px;">
+                        <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/media-phones-dan-i-insajder.png?crop=true"
+                             alt="VerbaVista Media Platform"
+                             class="w-full rounded-3xl shadow-2xl"
+                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
+                    </div>
+                </div>
+            </div>
+        </div>
+```

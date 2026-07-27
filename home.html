@@ -882,7 +882,7 @@
         </div>
 
         <!-- PRODUCT SHOWCASE 1: mPanel CMS (Text Left / Image Right) -->
-        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+        <div class="product-showcase reveal-on-scroll" style="opacity: 0; margin-bottom: clamp(3rem, 7vh, 8rem);">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Left: Text Content -->
                 <div class="space-y-6">
@@ -919,7 +919,7 @@
         </div>
 
         <!-- PRODUCT SHOWCASE 2: Litteraworks (Text Right / Image Left) -->
-        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+        <div class="product-showcase reveal-on-scroll" style="opacity: 0; margin-bottom: clamp(3rem, 7vh, 8rem);">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Left: MacBook Pro 3D Mockup -->
                 <div class="relative product-mockup order-2 lg:order-1">
@@ -956,7 +956,7 @@
         </div>
 
         <!-- PRODUCT SHOWCASE 3: Pchela (Text Left / Image Right) -->
-        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
+        <div class="product-showcase reveal-on-scroll" style="opacity: 0; margin-bottom: clamp(3rem, 7vh, 8rem);">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Left: Text Content -->
                 <div class="space-y-6">
@@ -992,77 +992,88 @@
             </div>
         </div>
 
-        <!-- PRODUCT SHOWCASE 4: FanFuel (Text Right / Image Left) -->
-        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <!-- Left: iPhone 15 Pro 3D Mockup -->
-                <div class="relative product-mockup order-2 lg:order-1 flex justify-center">
-                    <!-- Scroll-Following Glow (Orange) -->
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-                         style="width: 500px; height: 500px;
-                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
-                                filter: blur(60px);"></div>
 
-                    <!-- iPhone Mockup - Straight On -->
-                    <div class="relative" style="max-width: 500px;">
-                        <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/sport-pao-pfc.png?crop=true"
-                             alt="FanFuel Mobile App"
-                             class="w-full rounded-3xl shadow-2xl"
-                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
-                    </div>
-                </div>
+        <!-- COMPACT PORTFOLIO GRID: everything that is not a flagship block -->
+        <!--
+            PLACEHOLDER COPY: the grid heading and the four one-line descriptions
+            are drafts. Media Puls / Sport Puls and Fronisa have never appeared on
+            the site, so their descriptions come from the brief, not existing copy.
 
-                <!-- Right: Text Content -->
-                <div class="space-y-6 order-1 lg:order-2">
-                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                        <span class="text-white text-xs font-black tracking-wider uppercase">Sports Tech</span>
-                    </div>
-                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">FanFuel</h3>
-                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Mobile apps and loyalty platforms that help sports clubs connect with fans - before, during, and after the game.</p>
-                    <p class="text-gray-400 text-lg leading-relaxed">Turn casual fans into loyal supporters with mobile apps, gamification, and rewards that keep them engaged year-round.</p>
-                    <a href="/sport.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
-                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
-                        <span>Explore FanFuel</span>
-                        <i class="bi bi-arrow-right text-xl"></i>
-                    </a>
-                </div>
+            PLACEHOLDER LINKS: Media Puls / Sport Puls and Fronisa have no pages
+            yet and point at href="#". Marked data-placeholder-link so they are
+            greppable. THESE MUST GET REAL URLS BEFORE THIS GOES LIVE.
+        -->
+        <div>
+            <div class="text-center" style="margin-bottom: clamp(1.75rem, 4vh, 3rem);">
+                <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.75rem); letter-spacing: -0.02em;">Also in our portfolio</h3>
             </div>
-        </div>
 
-        <!-- PRODUCT SHOWCASE 5: VerbaVista (Text Left / Image Right) -->
-        <div class="product-showcase mb-32 reveal-on-scroll" style="opacity: 0;">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <!-- Left: Text Content -->
-                <div class="space-y-6">
-                    <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                        <span class="text-white text-xs font-black tracking-wider uppercase">Media Tech</span>
-                    </div>
-                    <h3 class="text-white font-black" style="font-size: clamp(1.875rem, 3.4vw, 3.25rem); letter-spacing: -0.03em;">VerbaVista</h3>
-                    <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Digital platforms for newspapers, broadcasters, and publishers - from mobile apps to e-Paper to subscription management.</p>
-                    <p class="text-gray-400 text-lg leading-relaxed">Everything publishers need - mobile apps, web platforms, e-Paper, paywalls, and analytics - in one integrated system.</p>
-                    <a href="/media.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
-                       style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
-                        <span>Explore VerbaVista</span>
-                        <i class="bi bi-arrow-right text-xl"></i>
-                    </a>
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: clamp(1.25rem, 2.5vw, 2rem);">
 
-                <!-- Right: iPhone 15 Pro 3D Mockup -->
-                <div class="relative product-mockup flex justify-center">
-                    <!-- Scroll-Following Glow (Orange) -->
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-                         style="width: 500px; height: 500px;
-                                background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
-                                filter: blur(60px);"></div>
+                <!-- VerbaVista -> /media.html (demoted from a full showcase, Task 4) -->
+                <a href="/media.html"
+                   class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+                   style="padding: clamp(1.25rem, 2vw, 1.75rem);
+                          background: rgba(255, 255, 255, 0.04);
+                          backdrop-filter: blur(24px);
+                          -webkit-backdrop-filter: blur(24px);
+                          border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">VerbaVista</h4>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Publisher platform bundling mobile apps, e-Paper, paywalls and subscription management into one system.</p>
+                    <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                        <span>Learn more</span>
+                        <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                    </span>
+                </a>
 
-                    <!-- iPhone Mockup - Straight On -->
-                    <div class="relative" style="max-width: 500px;">
-                        <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/media-phones-dan-i-insajder.png?crop=true"
-                             alt="VerbaVista Media Platform"
-                             class="w-full rounded-3xl shadow-2xl"
-                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.3);">
-                    </div>
-                </div>
+                <!-- FanFuel -> /sport.html (demoted from a full showcase, Task 4) -->
+                <a href="/sport.html"
+                   class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+                   style="padding: clamp(1.25rem, 2vw, 1.75rem);
+                          background: rgba(255, 255, 255, 0.04);
+                          backdrop-filter: blur(24px);
+                          -webkit-backdrop-filter: blur(24px);
+                          border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">FanFuel</h4>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Fan loyalty and engagement apps for clubs and leagues — memberships, gamification and rewards.</p>
+                    <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                        <span>Learn more</span>
+                        <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                    </span>
+                </a>
+
+                <!-- Media Puls / Sport Puls -> NO PAGE YET, placeholder link -->
+                <a href="#" data-placeholder-link="media-puls-sport-puls"
+                   class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+                   style="padding: clamp(1.25rem, 2vw, 1.75rem);
+                          background: rgba(255, 255, 255, 0.04);
+                          backdrop-filter: blur(24px);
+                          -webkit-backdrop-filter: blur(24px);
+                          border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">Media Puls / Sport Puls</h4>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Media monitoring across press, broadcast and online — track coverage, mentions and share of voice.</p>
+                    <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                        <span>Learn more</span>
+                        <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                    </span>
+                </a>
+
+                <!-- Fronisa -> NO PAGE YET, placeholder link -->
+                <a href="#" data-placeholder-link="fronisa"
+                   class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+                   style="padding: clamp(1.25rem, 2vw, 1.75rem);
+                          background: rgba(255, 255, 255, 0.04);
+                          backdrop-filter: blur(24px);
+                          -webkit-backdrop-filter: blur(24px);
+                          border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">Fronisa</h4>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">AI chatbot and SEO tooling that answers visitor questions and makes your content easier to find.</p>
+                    <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                        <span>Learn more</span>
+                        <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                    </span>
+                </a>
+
             </div>
         </div>
     </div>
