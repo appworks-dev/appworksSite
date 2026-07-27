@@ -439,16 +439,43 @@
             left: -100%;
             width: 100%;
             height: 100%;
+            pointer-events: none;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             animation: shimmer 5s infinite;
         }
 
+        /*
+         * The band must be invisible between passes. It previously parked at
+         * left: 100% at the 50% keyframe and held there for the rest of the
+         * cycle, leaving a translucent rectangle sitting in the headline beside
+         * each shimmered word for 2.5s out of every 5s — visible against the
+         * dark background as a gradient block behind "&" and after "Sports".
+         * Opacity now fades the sweep in and out so it only ever reads as a
+         * highlight crossing the word.
+         */
         @keyframes shimmer {
             0% {
                 left: -100%;
+                opacity: 0;
             }
-            50%, 100% {
+            8% {
+                opacity: 1;
+            }
+            38% {
+                opacity: 1;
+            }
+            46% {
+                /* Fully transparent before the band reaches its parked position,
+                   so the parked state can never be visible at all. */
+                opacity: 0;
+            }
+            50% {
                 left: 100%;
+                opacity: 0;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
             }
         }
 
@@ -671,7 +698,8 @@
     <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at top right, rgba(255, 75, 54, 0.08) 0%, transparent 50%);"></div>
 
     <div class="relative z-10 mx-auto w-full" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); padding-top: clamp(1.5rem, 4svh, 4rem); padding-bottom: clamp(1.5rem, 4svh, 4rem);">
-        <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(1.5rem, 4vw, 3rem);">
+        <!-- Text column takes the larger share so the headline holds two lines at desktop widths -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] items-center" style="gap: clamp(1.5rem, 4vw, 3rem);">
             <!-- Left Column: Content -->
             <div class="text-center lg:text-left">
                 <!-- Trust Badge -->
