@@ -443,52 +443,21 @@
             display: inline-block;
         }
 
-        .shimmer::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shimmer 5s infinite;
-        }
-
         /*
-         * The band must be invisible between passes. It previously parked at
-         * left: 100% at the 50% keyframe and held there for the rest of the
-         * cycle, leaving a translucent rectangle sitting in the headline beside
-         * each shimmered word for 2.5s out of every 5s — visible against the
-         * dark background as a gradient block behind "&" and after "Sports".
-         * Opacity now fades the sweep in and out so it only ever reads as a
-         * highlight crossing the word.
+         * The sweep itself is removed, not just its parked state.
+         *
+         * Task 2 fixed the real bug — the band used to park beside each word at
+         * full opacity for half of every cycle, which is the rectangle first
+         * reported. But the band is a full-width slab with a soft gradient, and
+         * once the headline grew to 5rem it still read as a grey block while
+         * crossing the word rather than as a shine. Same complaint, different
+         * moment in the animation.
+         *
+         * The .shimmer class is left in place on the two <span>s so restoring the
+         * effect is a paste, not a re-edit. If it comes back it needs a different
+         * technique — background-clip: text on a moving gradient, so the shine
+         * travels through the glyphs instead of over a box around them.
          */
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-                opacity: 0;
-            }
-            8% {
-                opacity: 1;
-            }
-            38% {
-                opacity: 1;
-            }
-            46% {
-                /* Fully transparent before the band reaches its parked position,
-                   so the parked state can never be visible at all. */
-                opacity: 0;
-            }
-            50% {
-                left: 100%;
-                opacity: 0;
-            }
-            100% {
-                left: 100%;
-                opacity: 0;
-            }
-        }
 
         /* Border Glow Following Cursor */
         .bento-card {
@@ -594,7 +563,7 @@
 
 <!-- Fixed Header Navigation -->
 <header class="header-nav">
-    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+    <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
             <div class="flex-shrink-0">
@@ -741,7 +710,7 @@
     <!-- Radial Gradient Overlay -->
     <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at top right, rgba(255, 75, 54, 0.08) 0%, transparent 50%);"></div>
 
-    <div class="relative z-10 mx-auto w-full" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); padding-top: clamp(1.5rem, 4svh, 4rem); padding-bottom: clamp(1.5rem, 4svh, 4rem);">
+    <div class="relative z-10 mx-auto w-full" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); padding-top: clamp(1.5rem, 4svh, 4rem); padding-bottom: clamp(1.5rem, 4svh, 4rem);">
         <!-- Text column takes the larger share so the headline holds two lines at desktop widths -->
         <div class="grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] items-center" style="gap: clamp(1.5rem, 4vw, 3rem);">
             <!-- Left Column: Content -->
@@ -753,12 +722,12 @@
                 </div>
 
                 <!-- Headline -->
-                <h1 class="text-white font-black" style="font-size: clamp(2.25rem, 5vw, 4.5rem); letter-spacing: -0.03em; line-height: 1.08; margin-bottom: clamp(0.75rem, 2svh, 1.5rem);">
+                <h1 class="text-white font-black" style="font-size: clamp(2.5rem, 5.2vw, 5rem); letter-spacing: -0.03em; line-height: 1.06; margin-bottom: clamp(0.75rem, 2svh, 1.5rem);">
                     <span class="shimmer">AI</span> & Apps for Media and <span class="shimmer">Sports</span>
                 </h1>
 
                 <!-- Subheadline -->
-                <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1rem, 1.5vw, 1.25rem); opacity: 0.85; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: clamp(1.25rem, 3svh, 2.5rem);">
+                <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1.0625rem, 1.6vw, 1.375rem); opacity: 0.85; max-width: 640px; margin-left: auto; margin-right: auto; margin-bottom: clamp(1.25rem, 3svh, 2.5rem);">
                     We don't just build apps—we become your digital transformation partner, combining mobile platforms with AI innovation.
                 </p>
 
@@ -777,7 +746,7 @@
 
             <!-- Right Column: Hero Image -->
             <div class="relative flex items-center justify-center">
-                <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2025-12-29-10-38-31.png?crop=true" alt="Mobile App Mockups" class="transform hover:scale-105 transition-transform duration-700" style="width: auto; max-width: 100%; max-height: clamp(180px, 42svh, 560px); object-fit: contain; filter: drop-shadow(0 20px 60px rgba(255, 75, 54, 0.3));">
+                <img src="https://appworks.mpanel.app/image/cache/original/files/images/device-mockup-15x-postspark-2025-12-29-10-38-31.png?crop=true" alt="Mobile App Mockups" class="transform hover:scale-105 transition-transform duration-700" style="width: auto; max-width: 100%; max-height: clamp(220px, 48svh, 660px); object-fit: contain; filter: drop-shadow(0 20px 60px rgba(255, 75, 54, 0.3));">
             </div>
         </div>
     </div>
@@ -794,7 +763,7 @@
     <!-- No per-section noise overlay: body::before already applies noise across the
          whole page, and a second layer scoped to one section drew a visible edge
          at the section boundary — the seam this rework exists to remove. -->
-    <div class="mx-auto relative" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); z-index: 2;">
+    <div class="mx-auto relative" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem); z-index: 2;">
         <!-- Two equal-weight cards. Same surface treatment on both so neither
              audience reads as the primary one; they differ only by icon and copy. -->
         <div class="grid grid-cols-1 md:grid-cols-2" style="gap: clamp(1.5rem, 3vw, 2.5rem);">
@@ -814,7 +783,7 @@
                 <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Media</h3>
 
                 <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1rem, 1.3vw, 1.125rem); opacity: 0.85; margin-top: 0.75rem; max-width: 46ch;">
-                    Native apps, digital editions and paywalls for news publishers — plus the CMS and AI tooling your newsroom runs on every day.
+                    We work with online media, newspapers, publishers, broadcasters, TV and radio — bringing digital products, innovation and applied AI into newsrooms of every size.
                 </p>
 
                 <span class="inline-flex items-center gap-2 font-bold mt-auto" style="padding-top: clamp(1rem, 2vh, 1.75rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FF6B50;">
@@ -838,7 +807,7 @@
                 <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Sport</h3>
 
                 <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1rem, 1.3vw, 1.125rem); opacity: 0.85; margin-top: 0.75rem; max-width: 46ch;">
-                    Fan engagement apps for clubs and leagues — memberships, loyalty programmes, live scores and the content that keeps fans coming back.
+                    We work with clubs, leagues and federations on fan engagement, loyalty and innovation in sport — building alongside our partners rather than handing over and walking away.
                 </p>
 
                 <span class="inline-flex items-center gap-2 font-bold mt-auto" style="padding-top: clamp(1rem, 2vh, 1.75rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FF6B50;">
@@ -853,7 +822,7 @@
 
 <!-- OUR SOLUTIONS: PRODUCT SHOWCASES -->
 <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
-    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+    <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-24">
             <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Our Solutions</h2>
@@ -863,39 +832,47 @@
             <p class="text-gray-400 text-xl max-w-2xl mx-auto">Innovative platforms powered by AI and designed for impact</p>
         </div>
 
-        <!-- PRODUCT SHOWCASE 1: mPanel CMS (Text Left / Image Right) -->
+        <!-- PRODUCT SHOWCASE 1: Mobile apps (Text Left / Image Right) -->
+        <!-- PLACEHOLDER COPY pending approval. Image note: this is a transparent
+             phone cutout, so it uses drop-shadow rather than the rectangular
+             box-shadow the other two flagships use. A single combined mockup
+             showing one media app and one sports app side by side would let all
+             three flagships share one frame treatment. -->
         <div class="product-showcase reveal-on-scroll" style="opacity: 0; margin-bottom: clamp(3rem, 7vh, 8rem);">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Left: Text Content -->
                 <div class="space-y-6">
                     <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
-                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">AI-Powered CMS</span>
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Media &amp; Sport Apps</span>
                     </div>
-                    <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">mPanel CMS</h3>
-                    <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, 0.92);">Manage content for web and mobile in one place — with AI tools for translations, tagging, and content optimization built in.</p>
-                    <p class="leading-relaxed" style="font-size: clamp(0.9375rem, 1.2vw, 1.0625rem); color: rgba(255, 255, 255, 0.6);">Built for newsrooms and content teams who need to publish fast across web, mobile, and social—with AI that actually helps.</p>
-                    <a href="/cms.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition"
-                       style="color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
-                        <span>Explore mPanel</span>
-                        <i class="bi bi-arrow-right text-xl"></i>
-                    </a>
+                    <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Mobile apps</h3>
+                    <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, 0.92);">Native iOS and Android apps for media and sport, built for engagement, loyalty and daily habit rather than just another channel.</p>
+                    <p class="leading-relaxed" style="font-size: clamp(0.9375rem, 1.2vw, 1.0625rem); color: rgba(255, 255, 255, 0.6);"><strong style="color: rgba(255, 255, 255, 0.85); font-weight: 700;">VerbaVista</strong> powers publisher apps with digital editions, paywalls and subscription management. <strong style="color: rgba(255, 255, 255, 0.85); font-weight: 700;">FanFuel</strong> powers club, league and federation apps with memberships, loyalty programmes and gamification.</p>
+                    <div class="flex flex-wrap" style="gap: clamp(0.75rem, 1.5vw, 1rem);">
+                        <a href="/media.html" class="inline-flex items-center gap-3 rounded-xl font-bold smooth-transition hover:-translate-y-1"
+                           style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
+                            <span>VerbaVista for media</span>
+                            <i class="bi bi-arrow-right text-xl"></i>
+                        </a>
+                        <a href="/sport.html" class="inline-flex items-center gap-3 rounded-xl font-bold smooth-transition hover:-translate-y-1"
+                           style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
+                            <span>FanFuel for sport</span>
+                            <i class="bi bi-arrow-right text-xl"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Right: MacBook Pro 3D Mockup -->
-                <div class="relative product-mockup">
-                    <!-- Scroll-Following Glow (Orange) -->
+                <!-- Right: phone mockup -->
+                <div class="relative product-mockup flex justify-center">
                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
                          style="width: 600px; height: 600px;
                                 background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
                                 filter: blur(60px);"></div>
 
-                    <!-- MacBook Mockup - Straight On -->
-                    <div class="relative">
-                        <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/image-34.png?crop=true"
-                             alt="mPanel CMS Dashboard"
-                             class="w-full rounded-2xl shadow-2xl"
-                             style="box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 75, 54, 0.2);">
-                    </div>
+                    <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/media-phones-dan-i-insajder.png?crop=true"
+                         alt="Media and sport mobile apps"
+                         class="w-full"
+                         style="max-width: 560px; filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(255, 75, 54, 0.2));">
                 </div>
             </div>
         </div>
@@ -977,13 +954,10 @@
 
         <!-- COMPACT PORTFOLIO GRID: everything that is not a flagship block -->
         <!--
-            PLACEHOLDER COPY: the grid heading and the four one-line descriptions
-            are drafts. Media Puls / Sport Puls and Fronisa have never appeared on
-            the site, so their descriptions come from the brief, not existing copy.
-
-            PLACEHOLDER LINKS: Media Puls / Sport Puls and Fronisa have no pages
-            yet and point at href="#". Marked data-placeholder-link so they are
-            greppable. THESE MUST GET REAL URLS BEFORE THIS GOES LIVE.
+            PLACEHOLDER COPY pending approval.
+            PLACEHOLDER LINKS: Media monitoring, Chatbot and Gamification have no
+            pages yet and point at href="#", tagged data-placeholder-link.
+            THESE MUST GET REAL URLS BEFORE THIS GOES LIVE.
         -->
         <div>
             <div class="text-center" style="margin-bottom: clamp(1.75rem, 4vh, 3rem);">
@@ -992,64 +966,64 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2" style="gap: clamp(1.25rem, 2.5vw, 2rem);">
 
-                <!-- VerbaVista -> /media.html (demoted from a full showcase, Task 4) -->
-                <a href="/media.html"
+                <!-- mPanel CMS -> /cms.html (demoted from a flagship block) -->
+                <a href="/cms.html"
                    class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
                    style="padding: clamp(1.25rem, 2vw, 1.75rem);
                           background: rgba(255, 255, 255, 0.04);
                           backdrop-filter: blur(24px);
                           -webkit-backdrop-filter: blur(24px);
                           border: 1px solid rgba(255, 255, 255, 0.1);">
-                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">VerbaVista</h4>
-                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Publisher platform bundling mobile apps, e-Paper, paywalls and subscription management into one system.</p>
+                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">mPanel CMS</h4>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Publishing CMS for web and mobile, with AI translation, tagging and content optimisation built in.</p>
                     <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
                         <span>Learn more</span>
                         <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
                     </span>
                 </a>
 
-                <!-- FanFuel -> /sport.html (demoted from a full showcase, Task 4) -->
-                <a href="/sport.html"
+                <!-- Media monitoring -> NO PAGE YET, placeholder link -->
+                <a href="#" data-placeholder-link="media-monitoring"
                    class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
                    style="padding: clamp(1.25rem, 2vw, 1.75rem);
                           background: rgba(255, 255, 255, 0.04);
                           backdrop-filter: blur(24px);
                           -webkit-backdrop-filter: blur(24px);
                           border: 1px solid rgba(255, 255, 255, 0.1);">
-                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">FanFuel</h4>
-                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Fan loyalty and engagement apps for clubs and leagues — memberships, gamification and rewards.</p>
+                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">Media monitoring</h4>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Media Puls and Sport Puls track coverage, mentions and share of voice across press, broadcast and online.</p>
                     <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
                         <span>Learn more</span>
                         <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
                     </span>
                 </a>
 
-                <!-- Media Puls / Sport Puls -> NO PAGE YET, placeholder link -->
-                <a href="#" data-placeholder-link="media-puls-sport-puls"
+                <!-- Chatbot -> NO PAGE YET, placeholder link -->
+                <a href="#" data-placeholder-link="chatbot-fronisa"
                    class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
                    style="padding: clamp(1.25rem, 2vw, 1.75rem);
                           background: rgba(255, 255, 255, 0.04);
                           backdrop-filter: blur(24px);
                           -webkit-backdrop-filter: blur(24px);
                           border: 1px solid rgba(255, 255, 255, 0.1);">
-                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">Media Puls / Sport Puls</h4>
-                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Media monitoring across press, broadcast and online — track coverage, mentions and share of voice.</p>
+                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">Chatbot</h4>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Fronisa answers visitor questions from your own content, and makes that content easier for search engines to read.</p>
                     <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
                         <span>Learn more</span>
                         <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
                     </span>
                 </a>
 
-                <!-- Fronisa -> NO PAGE YET, placeholder link -->
-                <a href="#" data-placeholder-link="fronisa"
+                <!-- Gamification -> NO PAGE YET, placeholder link -->
+                <a href="#" data-placeholder-link="gamification"
                    class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
                    style="padding: clamp(1.25rem, 2vw, 1.75rem);
                           background: rgba(255, 255, 255, 0.04);
                           backdrop-filter: blur(24px);
                           -webkit-backdrop-filter: blur(24px);
                           border: 1px solid rgba(255, 255, 255, 0.1);">
-                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">Fronisa</h4>
-                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">AI chatbot and SEO tooling that answers visitor questions and makes your content easier to find.</p>
+                    <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">Gamification</h4>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Daily games and quizzes that turn occasional readers into a daily habit — the engagement model publishers now build subscriptions on.</p>
                     <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
                         <span>Learn more</span>
                         <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
@@ -1063,7 +1037,7 @@
 
 <!-- What Our Partners Say (Testimonials) -->
 <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: rgba(255, 255, 255, 0.025); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+    <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-16">
             <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">What Our Partners Say</h2>
@@ -1138,68 +1112,87 @@
 
 <!-- GRANT PROJECTS BAND -->
 <!--
-    Task 8. Full-width band, deliberately lighter and cooler than the #200A24
-    sections either side of it, with hairline top/bottom rules so it reads as
-    institutional validation rather than another content section.
+    Background is now transparent like every other section — the previous wash
+    was the "different purple" complaint. Definition comes from hairline rules
+    and the card grid instead of a hue change.
 
-    The project count is NOT invented: projects.html documents six grant-funded
-    projects (Mapapp Interactive Posters, NEWLOCAL, Media Masters, Precise
-    transcription of media content in Serbian, UpSpace, Safeguard the Truth).
-    CONFIRM THIS NUMBER — it counts what that page documents, which may be fewer
-    than the real total.
-
-    Wording is "grant-funded", not "EU-funded", on purpose. Of the six, four run
-    under EU programmes (Creative Europe, CERV x2, Erasmus+) and two under the
-    Innovation Fund of the Republic of Serbia, which projects.html describes as
-    "EU-supported". "6 EU-funded projects" would overstate it.
-
-    PLACEHOLDER LOGOS: no Erasmus+ or Creative Europe brand assets exist anywhere
-    in this repo or on the CMS. The two dashed slots below are placeholders, each
-    tagged data-placeholder-logo. Both programmes have official EU brand
-    guidelines with mandatory usage rules, so these need the approved files.
-    Count is white, not coral: see Task 5 note on accent discipline.
+    Content is drawn from projects.html, not invented:
+      Erasmus+        UpSpace, 7 partner organisations across Europe
+      Creative Europe NEWLOCAL, 10 local media organisations across 4 countries
+      CERV            Media Masters (media literacy) and Safeguard the Truth
+      Horizon Europe  NAMED IN projects.html PROSE BUT NO PROJECT IS DOCUMENTED
+                      in its ledger — needs confirming before this ships.
+    Stats are the two real figures already published on projects.html
+    (data-count="2000000" and data-count="20").
+    The "6 projects" count is gone at the client's request, since it grows.
 -->
-<section class="relative" style="padding-top: clamp(2.5rem, 6vh, 5rem); padding-bottom: clamp(2.5rem, 6vh, 5rem); background: linear-gradient(135deg, rgba(139, 92, 246, 0.11) 0%, rgba(255, 255, 255, 0.05) 48%, rgba(255, 75, 54, 0.09) 100%); border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between" style="gap: clamp(1.75rem, 4vw, 3.5rem);">
+<section class="relative" style="padding-top: clamp(4rem, 10vh, 8rem); padding-bottom: clamp(4rem, 10vh, 8rem); background: transparent; border-top: 1px solid rgba(255, 255, 255, 0.07); border-bottom: 1px solid rgba(255, 255, 255, 0.07);">
+    <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
 
-            <!-- Left: claim and count -->
-            <div class="text-center lg:text-left">
-                <h2 class="text-white font-bold" style="font-size: clamp(1.375rem, 2.4vw, 2rem); letter-spacing: -0.02em;">Technology partner on EU-funded projects</h2>
-                <div class="flex items-baseline justify-center lg:justify-start gap-3" style="margin-top: clamp(0.625rem, 1.5vh, 1rem);">
-                    <span class="text-white font-black" style="font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1; letter-spacing: -0.03em;">6</span>
-                    <span class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.65);">grant-funded projects</span>
-                </div>
+        <!-- Header -->
+        <div class="text-center" style="margin-bottom: clamp(2rem, 5vh, 3.5rem);">
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Technology partner on EU-funded projects</h2>
+            <div class="flex justify-center" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+            </div>
+            <p class="text-gray-400 mx-auto" style="font-size: clamp(1rem, 1.3vw, 1.125rem); max-width: 52rem; margin-top: clamp(1.25rem, 3vh, 2rem);">We join European consortia as the technology partner: building the platforms, running the engineering, and carrying the reporting that comes with public funding. Institutions vet us before they fund us — which is a useful signal for commercial clients too.</p>
+        </div>
+
+        <!-- The four programmes we work under -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style="gap: clamp(1rem, 2vw, 1.5rem); margin-bottom: clamp(2rem, 4vh, 3rem);">
+
+            <div class="rounded-2xl flex flex-col" style="padding: clamp(1.25rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 class="text-white font-bold" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.02em;">Erasmus+</h3>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.875rem, 1vw, 0.9375rem); margin-top: 0.5rem;">UpSpace — upcycling and urban regeneration for green skills, with seven partner organisations across Europe.</p>
             </div>
 
-            <!-- Right: programme logos and the one button -->
-            <div class="flex flex-col sm:flex-row items-center" style="gap: clamp(1.25rem, 3vw, 2.5rem);">
-
-                <!-- PLACEHOLDER LOGO SLOTS — replace each div with the approved logo <img> -->
-                <div class="flex items-center" style="gap: clamp(0.75rem, 2vw, 1.25rem);">
-                    <div data-placeholder-logo="erasmus-plus" class="flex items-center justify-center rounded-lg"
-                         style="min-width: clamp(104px, 12vw, 148px); padding: 0.625rem 0.875rem; border: 2px dashed rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.04);">
-                        <span class="font-bold uppercase text-center" style="font-size: 0.6875rem; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.7); line-height: 1.3;">Erasmus+<br>logo</span>
-                    </div>
-                    <div data-placeholder-logo="creative-europe" class="flex items-center justify-center rounded-lg"
-                         style="min-width: clamp(104px, 12vw, 148px); padding: 0.625rem 0.875rem; border: 2px dashed rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.04);">
-                        <span class="font-bold uppercase text-center" style="font-size: 0.6875rem; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.7); line-height: 1.3;">Creative Europe<br>logo</span>
-                    </div>
-                </div>
-
-                <a href="/projects.html" class="group inline-flex items-center justify-center gap-3 rounded-xl font-bold whitespace-nowrap smooth-transition hover:-translate-y-1"
-                   style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
-                    <span>See our grant projects</span>
-                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
-                </a>
+            <div class="rounded-2xl flex flex-col" style="padding: clamp(1.25rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 class="text-white font-bold" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.02em;">Creative Europe</h3>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.875rem, 1vw, 0.9375rem); margin-top: 0.5rem;">NEWLOCAL — technical partner to a consortium of ten local media organisations across Slovenia, Croatia, Serbia and Montenegro.</p>
             </div>
+
+            <div class="rounded-2xl flex flex-col" style="padding: clamp(1.25rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 class="text-white font-bold" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.02em;">CERV</h3>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.875rem, 1vw, 0.9375rem); margin-top: 0.5rem;">Media Masters for media literacy and civic engagement, and Safeguard the Truth — AI tooling for whistleblower reporting.</p>
+            </div>
+
+            <!-- PLACEHOLDER: Horizon Europe appears in projects.html prose but no
+                 Horizon project is documented there. Confirm before shipping. -->
+            <div data-placeholder="horizon-europe" class="rounded-2xl flex flex-col" style="padding: clamp(1.25rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 class="text-white font-bold" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.02em;">Horizon Europe</h3>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.875rem, 1vw, 0.9375rem); margin-top: 0.5rem;">Research and innovation partnerships in media technology and applied AI.</p>
+            </div>
+        </div>
+
+        <!-- Two figures already published on projects.html -->
+        <div class="flex flex-col sm:flex-row items-center justify-center" style="gap: clamp(1.5rem, 5vw, 4rem); margin-bottom: clamp(2rem, 4vh, 3rem);">
+            <div class="text-center">
+                <div class="text-white font-black" style="font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1; letter-spacing: -0.03em;">&euro;2M+</div>
+                <div class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.65); margin-top: 0.5rem;">secured funding</div>
+            </div>
+            <div class="text-center">
+                <div class="text-white font-black" style="font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1; letter-spacing: -0.03em;">20+</div>
+                <div class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.65); margin-top: 0.5rem;">partner organisations</div>
+            </div>
+            <div class="text-center">
+                <div class="text-white font-black" style="font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1; letter-spacing: -0.03em;">4</div>
+                <div class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.65); margin-top: 0.5rem;">EU programmes</div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="/projects.html" class="group inline-flex items-center justify-center gap-3 rounded-xl font-bold smooth-transition hover:-translate-y-1"
+               style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
+                <span>See our grant projects</span>
+                <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+            </a>
         </div>
     </div>
 </section>
 
 <!-- From Our Blog Section -->
 <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
-    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+    <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="flex flex-col lg:flex-row items-center justify-between mb-12">
             <div class="text-center lg:text-left mb-6 lg:mb-0">
@@ -1244,7 +1237,7 @@
 
 <!-- Some of our partners -->
 <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
-    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+    <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-16">
             <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Some of our partners</h2>
@@ -1255,79 +1248,79 @@
 
         <!-- Partners Grid -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
-            <a href="https://www.media24.si/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.media24.si/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="media24" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.leedsunited.com/en/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.leedsunited.com/en/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="leeds" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.hrt.hr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.hrt.hr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="hrt" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.partizan.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.partizan.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="fk-partizan" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.rts.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.rts.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="rts" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.qpr.co.uk/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.qpr.co.uk/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="qpr" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.ringier.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.ringier.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="ringier" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.pao.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.pao.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="pao" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.n1info.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.n1info.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="n1" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.star.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.star.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="star" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.cedevita.olimpija.com/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.cedevita.olimpija.com/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="cedevita" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.italpress.com/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.italpress.com/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="italpress" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.politika.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.politika.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="politika" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.dan.co.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.dan.co.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="dan" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.dpgmediagroup.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.dpgmediagroup.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="dpg" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.euronews.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.euronews.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="euronews" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.danas.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.danas.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="danas" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.hanzamedia.hr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.hanzamedia.hr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="hanza-media" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.insajder.net/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.insajder.net/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="insajder" data-css="partner-logo"></div>
             </a>
-            <a href="https://novatv.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://novatv.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="nova-s" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.esake.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.esake.gr/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="esake" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.rtcg.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.rtcg.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="rtcg" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.wmg.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.wmg.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="wmg" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.vijesti.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.vijesti.me/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="vijesti" data-css="partner-logo"></div>
             </a>
-            <a href="https://www.tanjug.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(0.75rem, 1.5vw, 1.25rem);">
+            <a href="https://www.tanjug.rs/" target="_blank" class="flex items-center justify-center rounded-xl smooth-transition hover-lift" style="padding: clamp(1rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); min-height: clamp(104px, 11vw, 140px);">
                 <div data-partner="tanjug" data-css="partner-logo"></div>
             </a>
         </div>
@@ -1345,7 +1338,7 @@
 
 <!-- Footer Section -->
 <footer class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: rgba(0, 0, 0, 0.22); border-top: 1px solid rgba(255, 255, 255, 0.08);">
-    <div class="mx-auto mb-12" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+    <div class="mx-auto mb-12" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <!-- Column 1: Logo & Social -->
             <div>
