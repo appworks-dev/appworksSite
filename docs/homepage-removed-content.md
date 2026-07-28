@@ -365,3 +365,277 @@ the file was already dead before this change — defined but never referenced.
                 </div>
             </div>
 ```
+
+---
+
+## Case Studies and Our Expertise — removed at client request
+
+- **Removed:** feedback round 1, 2026-07-28
+- **Why:** the client had no case study data good enough to publish, and asked for the
+  whole Our Expertise section to go, including the folded-in process block and
+  consultation CTA.
+- **Note:** Case Studies was entirely placeholder. Our Expertise contained real copy.
+
+### Verbatim markup
+
+`html
+<!-- CASE STUDIES (removed, feedback round 1) -->
+<!-- CASE STUDIES -->
+<!--
+    PLACEHOLDER SECTION — Task 5. Nothing in here is real.
+
+    Every metric, sector label, context line and link below is a placeholder.
+    Client names are deliberately GENERIC SECTOR LABELS ("News publisher") rather
+    than real client names: attaching an invented number to a named client would
+    be a fabricated claim about that client if this ever reached production.
+    Swap in the real client name at the same time as the real metric, never
+    before.
+
+    The visible dashed notice is DEV-ONLY. Delete that div once real content
+    lands.
+
+    PLACEHOLDER LINKS: no case study pages exist yet, so all three cards point at
+    href="#", tagged data-placeholder-link.
+
+    Metrics are white, not coral, on purpose. Task 9 calls out the coral
+    01/02/03 numbers as accent overuse, so the stat leads on size and weight and
+    coral stays on the CTA only.
+-->
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #2A0E30;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+
+        <!-- Section Header -->
+        <div class="text-center" style="margin-bottom: clamp(1.5rem, 3vh, 2.5rem);">
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Case Studies</h2>
+            <div class="flex justify-center" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+            </div>
+        </div>
+
+        <!-- DEV-ONLY NOTICE — delete this div once real content is supplied -->
+        <div data-dev-placeholder-notice class="text-center rounded-xl" style="margin-bottom: clamp(1.5rem, 3vh, 2.5rem); padding: 0.75rem 1rem; border: 2px dashed rgba(255, 75, 54, 0.45); background: rgba(255, 75, 54, 0.06);">
+            <span class="font-bold uppercase" style="font-size: 0.75rem; letter-spacing: 0.08em; color: #FF6B50;">Placeholder — real metrics, client names and links still needed</span>
+        </div>
+
+        <!-- Three across only from lg. At the md breakpoint three columns squeeze
+             to ~217px and the cards end up taller than they are on desktop. -->
+        <div class="grid grid-cols-1 lg:grid-cols-3" style="gap: clamp(1.25rem, 2.5vw, 2rem);">
+
+            <!-- Case study 1 -->
+            <a href="#" data-placeholder-link="case-study-1" data-placeholder="case-study-1"
+               class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+               style="padding: clamp(1.5rem, 2.5vw, 2.25rem);
+                      background: rgba(255, 255, 255, 0.04);
+                      backdrop-filter: blur(24px);
+                      -webkit-backdrop-filter: blur(24px);
+                      border: 1px solid rgba(255, 255, 255, 0.1);">
+                <span class="font-semibold" style="font-size: 0.9375rem; color: rgba(255, 255, 255, 0.75);">News publisher</span>
+                <span class="text-white font-black" style="font-size: clamp(2.75rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.03em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">+42%</span>
+                <span class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.6); margin-top: 0.625rem;">digital subscriptions</span>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: clamp(0.875rem, 1.5vh, 1.25rem);">Rebuilt the mobile app and paywall flow, then tuned the subscription journey over the following year.</p>
+                <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                    <span>Read the case study</span>
+                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                </span>
+            </a>
+
+            <!-- Case study 2 -->
+            <a href="#" data-placeholder-link="case-study-2" data-placeholder="case-study-2"
+               class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+               style="padding: clamp(1.5rem, 2.5vw, 2.25rem);
+                      background: rgba(255, 255, 255, 0.04);
+                      backdrop-filter: blur(24px);
+                      -webkit-backdrop-filter: blur(24px);
+                      border: 1px solid rgba(255, 255, 255, 0.1);">
+                <span class="font-semibold" style="font-size: 0.9375rem; color: rgba(255, 255, 255, 0.75);">Football club</span>
+                <span class="text-white font-black" style="font-size: clamp(2.75rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.03em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">3.1&times;</span>
+                <span class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.6); margin-top: 0.625rem;">app engagement</span>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: clamp(0.875rem, 1.5vh, 1.25rem);">Launched a fan loyalty programme inside the club app, with rewards tied to attendance and matchday content.</p>
+                <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                    <span>Read the case study</span>
+                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                </span>
+            </a>
+
+            <!-- Case study 3 -->
+            <a href="#" data-placeholder-link="case-study-3" data-placeholder="case-study-3"
+               class="group relative rounded-2xl smooth-transition hover-lift flex flex-col"
+               style="padding: clamp(1.5rem, 2.5vw, 2.25rem);
+                      background: rgba(255, 255, 255, 0.04);
+                      backdrop-filter: blur(24px);
+                      -webkit-backdrop-filter: blur(24px);
+                      border: 1px solid rgba(255, 255, 255, 0.1);">
+                <span class="font-semibold" style="font-size: 0.9375rem; color: rgba(255, 255, 255, 0.75);">National broadcaster</span>
+                <span class="text-white font-black" style="font-size: clamp(2.75rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.03em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">180h</span>
+                <span class="font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.6); margin-top: 0.625rem;">saved per month</span>
+                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: clamp(0.875rem, 1.5vh, 1.25rem);">Replaced manual subtitling and translation with automated transcription across the newsroom.</p>
+                <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
+                    <span>Read the case study</span>
+                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- OUR EXPERTISE (removed, feedback round 1) -->
+<!-- OUR EXPERTISE -->
+<!--
+    Task 7 merged three former sections into this one, and moved it below the
+    testimonials:
+      1. the Our Expertise bento grid (what we are expert in)
+      2. the standalone "We Don't Sell Products. We Solve Problems." 3-step
+         process block (how we work)
+      3. the standalone Consultation CTA band, now this section's single button
+
+    The "Your Digital Transformation Partner" pill was dropped in the merge: it
+    duplicated the "Digital Transformation Partner" card title sitting a few
+    hundred pixels above it.
+
+    Card and step visual treatment (coral 01/02/03 circles, coral vs purple card
+    borders, eyebrow pills) is unchanged on purpose. Task 9 normalises accent
+    colour and eyebrow legibility across the whole page in one pass.
+-->
+<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: #200A24;">
+    <div class="mx-auto" style="max-width: 1360px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+
+        <!-- Section Header -->
+        <div class="text-center" style="margin-bottom: clamp(2rem, 5vh, 4rem);">
+            <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Our Expertise</h2>
+            <div class="flex justify-center" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
+            </div>
+            <p class="text-gray-400 max-w-2xl mx-auto" style="font-size: clamp(1rem, 1.3vw, 1.125rem);">Beyond our products, we bring strategic expertise and technical depth</p>
+        </div>
+
+        <!-- What we are expert in -->
+        <div class="grid grid-cols-1 lg:grid-cols-3" style="gap: clamp(1.25rem, 2.5vw, 2rem);">
+
+            <!-- Card 1: Digital Transformation Partner -->
+            <div class="relative rounded-3xl smooth-transition hover-lift group flex flex-col"
+                 style="padding: clamp(1.5rem, 2.5vw, 2.5rem);
+                        min-height: clamp(240px, 28vh, 340px);
+                        background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(255, 255, 255, 0.12);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                        overflow: visible;">
+                <div class="space-y-4">
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Consulting</span>
+                    </div>
+                    <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">Digital Transformation Partner</h3>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">We don't just build platforms - we help you figure out what to build. Strategy, technology, and execution, together.</p>
+                </div>
+                <a href="/consultation.html" class="inline-flex items-center gap-2 text-vibrant-orange-600 font-bold text-sm mt-auto group-hover:gap-3 smooth-transition" style="padding-top: clamp(1rem, 2vh, 1.5rem);">
+                    <span>Learn More</span>
+                    <i class="bi bi-arrow-right text-lg"></i>
+                </a>
+            </div>
+
+            <!-- Card 2: Grant Projects -->
+            <div class="relative rounded-3xl smooth-transition hover-lift group flex flex-col"
+                 style="padding: clamp(1.5rem, 2.5vw, 2.5rem);
+                        min-height: clamp(240px, 28vh, 340px);
+                        background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(255, 255, 255, 0.12);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+                <div class="space-y-4">
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">EU-Funded Innovation</span>
+                    </div>
+                    <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">Grant Projects</h3>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">Technology partner for Erasmus+, Creative Europe, and other EU-funded initiatives - we handle the tech, you focus on impact.</p>
+                </div>
+                <a href="/projects.html" class="inline-flex items-center gap-2 text-vibrant-orange-600 font-bold text-sm mt-auto group-hover:gap-3 smooth-transition" style="padding-top: clamp(1rem, 2vh, 1.5rem);">
+                    <span>Learn More</span>
+                    <i class="bi bi-arrow-right text-lg"></i>
+                </a>
+            </div>
+
+            <!-- Card 3: AI Solutions -->
+            <div class="relative rounded-3xl smooth-transition hover-lift group flex flex-col"
+                 style="padding: clamp(1.5rem, 2.5vw, 2.5rem);
+                        min-height: clamp(240px, 28vh, 340px);
+                        background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent);
+                        backdrop-filter: blur(40px);
+                        -webkit-backdrop-filter: blur(40px);
+                        border: 1px solid rgba(255, 255, 255, 0.12);
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+                <div class="space-y-4">
+                    <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Custom AI Platforms</span>
+                    </div>
+                    <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 2vw, 1.875rem); letter-spacing: -0.02em;">AI Solutions</h3>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">From content automation to intelligent workflows - we build AI tools tailored to how your organization actually works.</p>
+                </div>
+                <a href="/about.html" class="inline-flex items-center gap-2 text-vibrant-orange-600 font-bold text-sm mt-auto group-hover:gap-3 smooth-transition" style="padding-top: clamp(1rem, 2vh, 1.5rem);">
+                    <span>Learn More</span>
+                    <i class="bi bi-arrow-right text-lg"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- How we work — folded in from the standalone 3-step process section -->
+        <div class="glass-light rounded-3xl" style="margin-top: clamp(2rem, 5vh, 4rem); padding: clamp(1.75rem, 4vw, 4rem); border-top: 4px solid #FF4B36;">
+            <div class="text-center" style="margin-bottom: clamp(2rem, 4vh, 3.5rem);">
+                <h3 class="text-white font-black" style="font-size: clamp(1.375rem, 2.2vw, 1.875rem); letter-spacing: -0.02em; margin-bottom: clamp(0.75rem, 2vh, 1.5rem);">
+                    We Don't Sell Products. We Solve Problems.
+                </h3>
+                <p class="text-gray-300 leading-relaxed max-w-3xl mx-auto" style="font-size: clamp(1rem, 1.3vw, 1.125rem); opacity: 0.85;">Most vendors pitch features. We start by listening. What's broken? What's missing? What would make your team's life easier? Then we build — together, over time, adapting as your needs change.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3" style="gap: clamp(1.25rem, 2.5vw, 2rem);">
+                <!-- Step 1: Listen -->
+                <div class="glass-medium rounded-2xl text-center smooth-transition hover-lift" style="padding: clamp(1.5rem, 2.5vw, 2rem);">
+                    <div class="mb-6 flex items-center justify-center">
+                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);">
+                            <span class="text-white font-black" style="font-size: clamp(1.25rem, 2.2vw, 1.875rem);">01</span>
+                        </div>
+                    </div>
+                    <h4 class="text-white font-black mb-4" style="font-size: clamp(1.125rem, 1.8vw, 1.5rem); letter-spacing: -0.01em;">Listen</h4>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">What's broken? What's missing? What would save your team hours every week or where you could improve? We figure that out first.</p>
+                </div>
+
+                <!-- Step 2: Propose -->
+                <div class="glass-medium rounded-2xl text-center smooth-transition hover-lift" style="padding: clamp(1.5rem, 2.5vw, 2rem);">
+                    <div class="mb-6 flex items-center justify-center">
+                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);">
+                            <span class="text-white font-black" style="font-size: clamp(1.25rem, 2.2vw, 1.875rem);">02</span>
+                        </div>
+                    </div>
+                    <h4 class="text-white font-black mb-4" style="font-size: clamp(1.125rem, 1.8vw, 1.5rem); letter-spacing: -0.01em;">Propose</h4>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">Solutions designed around how you actually work. We come back with a plan that fits your organization, your audience, and your goals.</p>
+                </div>
+
+                <!-- Step 3: Deliver -->
+                <div class="glass-medium rounded-2xl text-center smooth-transition hover-lift" style="padding: clamp(1.5rem, 2.5vw, 2rem);">
+                    <div class="mb-6 flex items-center justify-center">
+                        <div class="flex items-center justify-center rounded-full" style="width: clamp(56px, 8vw, 80px); height: clamp(56px, 8vw, 80px); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);">
+                            <span class="text-white font-black" style="font-size: clamp(1.25rem, 2.2vw, 1.875rem);">03</span>
+                        </div>
+                    </div>
+                    <h4 class="text-white font-black mb-4" style="font-size: clamp(1.125rem, 1.8vw, 1.5rem); letter-spacing: -0.01em;">Deliver</h4>
+                    <p class="text-gray-300 leading-relaxed" style="opacity: 0.85;">We don't hand over the keys and disappear. We're in it with you — your success is how we measure ours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section CTA — folded in from the standalone Consultation band -->
+        <div class="text-center" style="margin-top: clamp(2rem, 5vh, 4rem);">
+            <h3 class="text-white font-bold" style="font-size: clamp(1.375rem, 2.2vw, 1.875rem); letter-spacing: -0.02em; margin-bottom: clamp(0.5rem, 1vh, 0.75rem);">Not sure where to start with digital transformation?</h3>
+            <p class="text-gray-400 mx-auto" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); max-width: 46rem; margin-bottom: clamp(1.25rem, 3vh, 2rem);">We run discovery workshops and technical audits to help media and sports organizations find the right path forward.</p>
+            <a href="/consultation.html" class="group inline-flex items-center justify-center gap-3 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1"
+               style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
+                <span>Learn about our consulting</span>
+                <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
+`
