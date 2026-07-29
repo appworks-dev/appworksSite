@@ -493,6 +493,45 @@ const PARTNERS = {
         category: 'media',
         featured: false
     },
+
+    // ==========================================
+    // ADDED 2026-07-29
+    // ==========================================
+    'superliga': {
+        name: 'Superliga Srbije',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/msls-logo-v.png?crop=true',
+        url: 'https://www.superliga.rs/',
+        category: 'sports',
+        featured: true
+    },
+    'crta': {
+        name: 'CRTA',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/crta-removebg-preview.png?crop=true',
+        url: 'https://crta.rs/',
+        category: 'media',
+        featured: true
+    },
+    'balkantrip': {
+        name: 'Balkan Trip',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/android-icon-192x192.png?crop=true',
+        url: 'https://balkantrip.tv/',
+        category: 'media',
+        featured: true
+    },
+    'srna': {
+        name: 'SRNA',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/share-image.jpg?crop=true',
+        url: 'https://www.srna.rs/',
+        category: 'media',
+        featured: true
+    },
+    'sam': {
+        name: 'SAM',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/sam-15-godina-logo.png?crop=true',
+        url: 'https://www.sam.org.rs/',
+        category: 'media',
+        featured: true
+    },
 };
 
 // ==========================================
