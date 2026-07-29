@@ -31,8 +31,7 @@ const PARTNERS = {
         featured: true
     },
     'dan': {
-        name: 'DAN',
-        logo: 'https://app-works.app/images/dan.png',
+        name: 'DAN',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/dan-logo-white.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -87,8 +86,7 @@ const PARTNERS = {
         featured: true
     },
     'euronews': {
-        name: 'Euronews',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-14-removebg-preview.png?crop=true',
+        name: 'Euronews',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/euronews-serbia.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -101,8 +99,7 @@ const PARTNERS = {
         featured: true
     },
     'hanza-media': {
-        name: 'Hanza Media',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/1707230054179-removebg-preview.png?crop=true',
+        name: 'Hanza Media',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/hanza-media-logo.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -129,8 +126,7 @@ const PARTNERS = {
         featured: true
     },
     'vijesti': {
-        name: 'Vijesti',
-        logo: 'https://app-works.app/images/appworksPartners/Featured/Vijesti.png',
+        name: 'Vijesti',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/logo-1-2.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -164,16 +160,12 @@ const PARTNERS = {
         featured: false
     },
     'mozzart': {
-        name: 'Mozzart',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/unnamed-7-removebg-preview-1768490353.png?crop=true',
-        url: '#',
+        name: 'Mozzart',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/idwdlqqdwb-logos.png?crop=true',        url: 'https://www.mozzartsport.com/',
         category: 'media',
         featured: false
     },
     'hrvatski-telekom': {
-        name: 'Hrvatski Telekom',
-        logo: 'https://app-works.app/images/appworksPartners/Media/Hrvatski telekom.png',
-        url: '#',
+        name: 'Hrvatski Telekom',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/tportal-logo-desk-primary.png?crop=true',        url: 'https://www.tportal.hr/',
         category: 'media',
         featured: false
     },
@@ -269,8 +261,7 @@ const PARTNERS = {
         featured: false
     },
     'telegraf': {
-        name: 'Telegraf',
-        logo: 'https://app-works.app/images/appworksPartners/Media/telegraf.jpg',
+        name: 'Telegraf',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/telegrafrs-logo-1-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -410,8 +401,7 @@ const PARTNERS = {
         featured: true
     },
     'rtv-budva': {
-        name: 'RTV Budva',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/channels4-profile-1-removebg-preview.png?crop=true',
+        name: 'RTV Budva',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/logo-rtb-1-removebg-preview-1.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -445,8 +435,7 @@ const PARTNERS = {
         featured: false
     },
     'novi-tednik': {
-        name: 'Novi Tednik',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/novi-tednik.png?crop=true',
+        name: 'Novi Tednik',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-18.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -505,22 +494,19 @@ const PARTNERS = {
         featured: true
     },
     'crta': {
-        name: 'CRTA',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/crta-removebg-preview.png?crop=true',
+        name: 'CRTA',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/copy-of-crta-logo-e1770214876215.png?crop=true',
         url: 'https://crta.rs/',
         category: 'media',
         featured: true
     },
     'balkantrip': {
-        name: 'Balkan Trip',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/android-icon-192x192.png?crop=true',
+        name: 'Balkan Trip',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/balkan-trip.png?crop=true',
         url: 'https://balkantrip.tv/',
         category: 'media',
         featured: true
     },
     'srna': {
-        name: 'SRNA',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/share-image.jpg?crop=true',
+        name: 'SRNA',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/share-image-removebg-preview.png?crop=true',
         url: 'https://www.srna.rs/',
         category: 'media',
         featured: true
