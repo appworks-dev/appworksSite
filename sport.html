@@ -62,8 +62,16 @@
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
             }
 
-            body {
+            html {
                 background: #200A24;
+            }
+
+            /* One continuous surface for the whole page. Sections are transparent
+               and lift with a translucent white where they need emphasis, never
+               with a different opaque hue — butted opaque fills are what produced
+               the visible bands of different purples before the rework. */
+            body {
+                background: linear-gradient(180deg, #241028 0%, #1C0A22 32%, #200A24 64%, #1A0820 100%);
                 color: white;
                 overflow-x: hidden;
             }
@@ -429,18 +437,18 @@
 <!-- NAV:END -->
 
         <!-- Hero Section -->
-        <section class="relative pt-48 pb-32 overflow-visible" style="background: #200A24;">
-            <div class="mx-auto px-6 lg:px-8 relative z-10" style="max-width: 1600px;">
+        <section class="relative pt-48 pb-32 overflow-visible" style="background: transparent;">
+            <div class="mx-auto relative z-10" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                     <!-- Left: Text Content -->
                     <div class="space-y-6">
                         <div class="inline-block px-4 py-2 rounded-lg glass-light">
-                            <span class="text-white text-xs font-black tracking-wider uppercase">SPORT SOLUTIONS</span>
+                            <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">SPORT SOLUTIONS</span>
                         </div>
-                        <h1 class="text-white font-black text-3xl md:text-5xl lg:text-7xl" style="letter-spacing: -0.03em; line-height: 1.1;">Engage Your Fans Like Never Before</h1>
+                        <h1 class="text-white font-black" style="font-size: clamp(2.5rem, 5.2vw, 5rem); letter-spacing: -0.03em; line-height: 1.06;">Engage Your Fans Like Never Before</h1>
                         <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9; max-width: 600px;">A fan engagement mobile app platform with built-in fan loyalty programs, membership features, and digital experiences designed to deepen connections and drive revenue for sports organizations.</p>
                         <div class="flex gap-4 pt-4">
-                            <a href="/consultation.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition glow-orange-hover" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                            <a href="/contact.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition glow-orange-hover" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
                                 <span>Get Started</span>
                                 <i class="bi bi-arrow-right text-xl"></i>
                             </a>
@@ -451,7 +459,7 @@
                     <div class="relative product-mockup flex justify-center">
                         <!-- Scroll-Following Glow (Orange) -->
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-                             style="width: 500px; height: 500px;
+                             style="width: min(500px, 86vw); height: min(500px, 86vw);
                                     background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
                                     filter: blur(60px);"></div>
 
@@ -468,10 +476,10 @@
         </section>
 
         <!-- Partner Logos Carousel Section -->
-        <section class="relative py-16" style="background: #200A24;">
-            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
+            <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
                 <div class="text-center mb-10">
-                    <h3 class="text-white font-bold text-2xl" style="letter-spacing: -0.02em;">Trusted by Leading Sports Organizations</h3>
+                    <h3 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.8vw, 1.5rem); letter-spacing: -0.02em;">Trusted by Leading Sports Organizations</h3>
                 </div>
                 <div class="logo-carousel-wrapper" style="overflow: hidden; position: relative; padding: 20px 0;">
                     <div class="logo-carousel-track" style="display: flex; gap: 60px; animation: scroll 40s linear infinite; width: fit-content;">
@@ -518,11 +526,11 @@
         </section>
 
         <!-- Stats Section -->
-        <section class="relative py-24" style="background: #200A24;">
-            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
+            <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
                 <!-- Section Header -->
                 <div class="text-center mb-16">
-                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">The Fan Engagement Crisis</h2>
+                    <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">The Fan Engagement Crisis</h2>
                     <div class="flex justify-center mb-6">
                         <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px; box-shadow: 0 0 20px rgba(255, 75, 54, 0.5);"></div>
                     </div>
@@ -537,7 +545,7 @@
                             <i class="bi bi-tv text-3xl md:text-5xl" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
                         </div>
                         <div class="mb-3">
-                            <span class="font-black text-3xl md:text-5xl" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">31%</span>
+                            <span class="text-white font-black" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1; letter-spacing: -0.03em;">31%</span>
                         </div>
                         <h4 class="text-white font-bold text-base md:text-lg mb-2">Declining Live Viewership</h4>
                         <p class="text-gray-400 text-xs md:text-sm">Only 31% of fans aged 18-24 watch live matches</p>
@@ -549,7 +557,7 @@
                             <i class="bi bi-chat-dots text-3xl md:text-5xl" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
                         </div>
                         <div class="mb-3">
-                            <span class="font-black text-3xl md:text-5xl" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">70%</span>
+                            <span class="text-white font-black" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1; letter-spacing: -0.03em;">70%</span>
                         </div>
                         <h4 class="text-white font-bold text-base md:text-lg mb-2">Social Media Distraction</h4>
                         <p class="text-gray-400 text-xs md:text-sm">70% of younger fans use social media during games</p>
@@ -561,7 +569,7 @@
                             <i class="bi bi-cpu text-3xl md:text-5xl" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
                         </div>
                         <div class="mb-3">
-                            <span class="font-black text-3xl md:text-5xl" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">55%</span>
+                            <span class="text-white font-black" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1; letter-spacing: -0.03em;">55%</span>
                         </div>
                         <h4 class="text-white font-bold text-base md:text-lg mb-2">Tech Integration Demand</h4>
                         <p class="text-gray-400 text-xs md:text-sm">55% of fans demand tech integration at live events</p>
@@ -573,7 +581,7 @@
                             <i class="bi bi-phone text-3xl md:text-5xl" style="color: #FF4B36; filter: drop-shadow(0 0 20px rgba(255, 75, 54, 0.4));"></i>
                         </div>
                         <div class="mb-3">
-                            <span class="font-black text-3xl md:text-5xl" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">85%</span>
+                            <span class="text-white font-black" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1; letter-spacing: -0.03em;">85%</span>
                         </div>
                         <h4 class="text-white font-bold text-base md:text-lg mb-2">Mobile App Expectation</h4>
                         <p class="text-gray-400 text-xs md:text-sm">85% expect mobile app engagement from their teams</p>
@@ -583,11 +591,11 @@
         </section>
 
         <!-- Features Section -->
-        <section class="relative py-24 overflow-visible" style="background: #200A24;">
-            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <section class="relative overflow-visible" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
+            <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
                 <!-- Section Header -->
                 <div class="text-center mb-16">
-                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Fan Engagement App Features</h2>
+                    <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Fan Engagement App Features</h2>
                     <div class="flex justify-center mb-6">
                         <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px; box-shadow: 0 0 20px rgba(255, 75, 54, 0.5);"></div>
                     </div>
@@ -597,10 +605,10 @@
                 <!-- Feature 1: Loyalty Program -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-32">
                     <div class="space-y-6">
-                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                            <span class="text-white text-xs font-black tracking-wider uppercase">LOYALTY</span>
+                        <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                            <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">LOYALTY</span>
                         </div>
-                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Fan Loyalty & Rewards</h3>
+                        <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Fan Loyalty & Rewards</h3>
                         <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">A complete sports fan loyalty platform with gamified rewards, fan membership programs, and tiered benefits. Fans earn points for attendance, purchases, and interactions.</p>
                         <ul class="space-y-4 mt-6">
                             <li class="flex items-start gap-4">
@@ -629,7 +637,7 @@
                     <div class="relative product-mockup flex justify-center">
                         <!-- Scroll-Following Glow (Orange) -->
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-                             style="width: 500px; height: 500px;
+                             style="width: min(500px, 86vw); height: min(500px, 86vw);
                                     background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
                                     filter: blur(60px);"></div>
 
@@ -648,7 +656,7 @@
                     <div class="relative product-mockup order-2 lg:order-1 flex justify-center">
                         <!-- Scroll-Following Glow (Orange) -->
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-                             style="width: 500px; height: 500px;
+                             style="width: min(500px, 86vw); height: min(500px, 86vw);
                                     background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
                                     filter: blur(60px);"></div>
 
@@ -661,10 +669,10 @@
                         </div>
                     </div>
                     <div class="space-y-6 order-1 lg:order-2">
-                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                            <span class="text-white text-xs font-black tracking-wider uppercase">TICKETING</span>
+                        <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                            <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">TICKETING</span>
                         </div>
-                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Digital Tickets & Check-In</h3>
+                        <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Digital Tickets & Check-In</h3>
                         <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Seamless ticketing experience from purchase to entry with secure digital tickets and fast check-in.</p>
                         <ul class="space-y-4 mt-6">
                             <li class="flex items-start gap-4">
@@ -695,10 +703,10 @@
                 <!-- Feature 3: Fan Engagement -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                     <div class="space-y-6">
-                        <div class="inline-block px-4 py-2 rounded-lg" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
-                            <span class="text-white text-xs font-black tracking-wider uppercase">ENGAGEMENT</span>
+                        <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
+                            <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">ENGAGEMENT</span>
                         </div>
-                        <h3 class="text-white font-black text-4xl lg:text-5xl" style="letter-spacing: -0.03em;">Interactive Fan Engagement</h3>
+                        <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Interactive Fan Engagement</h3>
                         <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9;">Keep fans engaged before, during, and after the game. Our fan engagement solution includes live scores, polls, predictions, and exclusive content.</p>
                         <ul class="space-y-4 mt-6">
                             <li class="flex items-start gap-4">
@@ -727,7 +735,7 @@
                     <div class="relative product-mockup flex justify-center">
                         <!-- Scroll-Following Glow (Orange) -->
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-                             style="width: 500px; height: 500px;
+                             style="width: min(500px, 86vw); height: min(500px, 86vw);
                                     background: radial-gradient(circle, rgba(255, 75, 54, 0.3) 0%, rgba(255, 107, 80, 0.15) 40%, transparent 70%);
                                     filter: blur(60px);"></div>
 
@@ -744,11 +752,11 @@
         </section>
 
         <!-- More Capabilities Section -->
-        <section class="relative py-24" style="background: #200A24;">
-            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
+            <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
                 <!-- Section Header -->
                 <div class="text-center mb-16">
-                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">More Capabilities</h2>
+                    <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">More Capabilities</h2>
                     <div class="flex justify-center mb-6">
                         <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
                     </div>
@@ -802,11 +810,11 @@
         </section>
 
         <!-- Partners Grid Section -->
-        <section class="relative py-24" style="background: #200A24;">
-            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
+            <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
                 <!-- Section Header -->
                 <div class="text-center mb-16">
-                    <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Our Sports Partners</h2>
+                    <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Our Sports Partners</h2>
                     <div class="flex justify-center mb-6">
                         <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
                     </div>
@@ -956,11 +964,11 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="relative py-24" style="background: #200A24;">
-            <div class="mx-auto px-6 lg:px-8 text-center" style="max-width: 900px;">
-                <h2 class="text-white font-black text-4xl lg:text-5xl mb-6" style="letter-spacing: -0.02em;">Ready to Launch Your Fan Engagement App?</h2>
+        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
+            <div class="mx-auto text-center" style="max-width: 900px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
+                <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Ready to Launch Your Fan Engagement App?</h2>
                 <p class="text-gray-300 text-xl mb-10" style="opacity: 0.85;">Let's discuss how our fan loyalty solutions can help you build deeper connections with your fans.</p>
-                <a href="/consultation.html" class="inline-flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-xl smooth-transition glow-orange-hover" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
+                <a href="/contact.html" class="inline-flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-xl smooth-transition glow-orange-hover" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
                     <span>Let's schedule a call</span>
                     <i class="bi bi-arrow-right text-2xl"></i>
                 </a>
@@ -969,7 +977,7 @@
 
         <!-- Footer -->
         <footer class="relative py-16" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">
-            <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     <!-- Column 1: Logo & Tagline -->
                     <div>
@@ -1008,7 +1016,7 @@
                             <li><a href="/sport.html" class="text-gray-400 hover:text-orange-500 transition-colors">Sports</a></li>
                             <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-orange-500 transition-colors">Litteraworks</a></li>
                             <li><a href="https://pchela.app/" class="text-gray-400 hover:text-orange-500 transition-colors">Pchela</a></li>
-                            <li><a href="/consultation.html" class="text-gray-400 hover:text-orange-500 transition-colors">Consultation</a></li>
+                            <li><a href="/contact.html" class="text-gray-400 hover:text-orange-500 transition-colors">Consultation</a></li>
                             <li><a href="/projects.html" class="text-gray-400 hover:text-orange-500 transition-colors">Grant Projects</a></li>
                         </ul>
                     </div>
