@@ -340,6 +340,22 @@
 
 .aw-acc__list li:last-child a { padding-bottom: clamp(0.875rem, 2vh, 1.125rem); }
 
+/*
+ * The accordion is a shared component, not nav-only: the FAQ on product pages
+ * reuses the same markup and the same handler in js/nav.js, which binds
+ * .aw-acc__top[data-acc] document-wide. This is the prose variant of the list.
+ */
+.aw-acc__body {
+    overflow: hidden;
+}
+
+.aw-acc__body > * {
+    padding: 0 0 clamp(0.875rem, 2vh, 1.25rem);
+    margin: 0;
+    color: var(--aw-text-dim);
+    line-height: 1.6;
+}
+
 .aw-panel__cta {
     margin-top: clamp(1.5rem, 4vh, 2.5rem);
 }
