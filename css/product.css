@@ -445,3 +445,65 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     font-weight: 900;
     font-size: clamp(0.875rem, 1.1vw, 1rem);
 }
+
+/* ------------------------------------------------------ device frame --- */
+/*
+ * Phone frame drawn in CSS. Same reason as .aw-frame above: every device-mockup
+ * asset on the site contains a real client app, and publishing those is a
+ * separate permission question from showing them in a pitch. These frames carry
+ * no client content, so there is nothing to retract.
+ *
+ * verbavista.html has an identical inline copy as .vv-device and should be
+ * migrated onto this one.
+ */
+.aw-device {
+    position: relative;
+    width: min(300px, 74vw);
+    aspect-ratio: 9 / 19.5;
+    margin-inline: auto;
+    border-radius: clamp(1.75rem, 4vw, 2.5rem);
+    padding: 0.5rem;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* an uncapped frame is ~650px tall and gets clipped at a 680px viewport */
+.aw-device--hero { max-height: 72svh; }
+
+.aw-device__screen {
+    width: 100%;
+    height: 100%;
+    border-radius: clamp(1.375rem, 3.2vw, 2rem);
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 30% 15%, rgba(255, 75, 54, 0.16) 0%, transparent 55%),
+        radial-gradient(circle at 75% 85%, rgba(139, 92, 246, 0.14) 0%, transparent 55%),
+        #150518;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aw-device__label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+    text-align: center;
+    padding: 0 1.5rem;
+    line-height: 1.5;
+}
+
+.aw-device__notch {
+    position: absolute;
+    top: 0.9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32%;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 2;
+}
