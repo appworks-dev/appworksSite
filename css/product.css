@@ -44,7 +44,8 @@
 .aw-h1 {
     color: #FFFFFF;
     font-weight: 900;
-    font-size: clamp(2.25rem, 4.6vw, 4.25rem);
+    /* the vh term only binds on short viewports — see the note on hero fit */
+    font-size: clamp(2.25rem, min(4.6vw, 7.5vh), 4.25rem);
     letter-spacing: -0.03em;
     line-height: 1.07;
 }

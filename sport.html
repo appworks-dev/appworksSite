@@ -437,17 +437,17 @@
 <!-- NAV:END -->
 
         <!-- Hero Section -->
-        <section class="relative pt-48 pb-32 overflow-visible" style="background: transparent;">
+        <section class="relative overflow-visible" style="padding-top: calc(81px + clamp(2rem, 6vh, 4.5rem)); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
             <div class="mx-auto relative z-10" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                     <!-- Left: Text Content -->
-                    <div class="space-y-6">
+                    <div class="hero-stack">
                         <div class="inline-block px-4 py-2 rounded-lg glass-light">
                             <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">SPORT SOLUTIONS</span>
                         </div>
-                        <h1 class="text-white font-black" style="font-size: clamp(2.5rem, 5.2vw, 5rem); letter-spacing: -0.03em; line-height: 1.06;">Engage Your Fans Like Never Before</h1>
+                        <h1 class="text-white font-black" style="font-size: clamp(2.5rem, min(5.2vw, 8.5vh), 5rem); letter-spacing: -0.03em; line-height: 1.06;">Engage Your Fans Like Never Before</h1>
                         <p class="text-gray-300 text-xl leading-relaxed" style="opacity: 0.9; max-width: 600px;">A fan engagement mobile app platform with built-in fan loyalty programs, membership features, and digital experiences designed to deepen connections and drive revenue for sports organizations.</p>
-                        <div class="flex gap-4 pt-4">
+                        <div class="flex gap-4">
                             <a href="/contact.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg smooth-transition glow-orange-hover" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); color: white; box-shadow: 0 4px 15px rgba(255, 75, 54, 0.3);">
                                 <span>Get Started</span>
                                 <i class="bi bi-arrow-right text-xl"></i>
@@ -468,7 +468,7 @@
                             <img src="https://appworks.mpanel.app/image/cache/original/files/images/sport-pao-pfc.png?crop=true"
                                  alt="Sport Mobile App Platform"
                                  class="w-full"
-                                 style="filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(255, 75, 54, 0.3));">
+                                 style="max-height: min(700px, 74svh); object-fit: contain; filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(255, 75, 54, 0.3));">
                         </div>
                     </div>
                 </div>
@@ -959,7 +959,14 @@
                             max-height: 50px;
                         }
                     }
-                </style>
+        
+            /* Fluid replacement for Tailwind's fixed space-y-6 in the hero
+               column. Block layout is deliberate: as a flex column the
+               inline-block badge stretched to the full column width. */
+            .hero-stack > * + * {
+                margin-top: clamp(0.75rem, 2.4vh, 1.5rem);
+            }
+        </style>
             </div>
         </section>
 
