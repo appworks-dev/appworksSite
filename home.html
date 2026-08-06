@@ -1035,17 +1035,18 @@
                       box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 10px 30px rgba(0, 0, 0, 0.45);">
                 <!--
                     Logos resolve from js/partner-logos.js; all five are already
-                    live elsewhere on the site. Chosen by measured mean luminance of
-                    their opaque pixels, not by eye: Politika measures 0 and N1
-                    measures 63, so both were invisible against this background
-                    even though they looked like the obvious picks.
+                    live elsewhere on the site. The set is the one asked for, not
+                    the one luminance would pick: measured mean luminance of the
+                    opaque pixels puts N1 at 63 against a background that measures
+                    about 22, where the logos it replaced (DAN and Vijesti) both
+                    measure 255. N1 carries on hue rather than on brightness.
                 -->
                 <div class="fork-logos">
-                    <div data-partner="dan" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="n1" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
                     <div data-partner="insajder" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
                     <div data-partner="rts" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
                     <div data-partner="danas" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
-                    <div data-partner="vijesti" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="hrt" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
                 </div>
 
                 <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Media</h3>
@@ -1075,7 +1076,7 @@
                     <div data-partner="leeds" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
                     <div data-partner="pao" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
                     <div data-partner="qpr" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
-                    <div data-partner="peristeri" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="fk-partizan" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
                     <div data-partner="esake" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
                 </div>
 
@@ -1180,11 +1181,18 @@
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
                                         <div data-partner="esake" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                    </div>
+                                    <h4 class="aw-uc__name">ESAKE</h4>
+                                    <p class="aw-uc__copy">Leagues face the club problem multiplied: fixtures, results and standings across dozens of teams, and fans who want all of it live. The Greek Basket League app runs largely on autopilot &mdash; articles come from the league&rsquo;s own website, live scores and statistics sync straight from the data provider, and gamification keeps fans engaged between matchdays. Nobody on staff updates anything by hand.</p>
+                                    <a class="aw-uc__link" href="https://app-works.app/article/greek-basket-league-how-to-run-a-mobile-app-on-autopilot">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                                </article>
+                                <article class="aw-uc__slide">
+                                    <div class="aw-uc__logos">
                                         <div data-partner="hks" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                     </div>
-                                    <h4 class="aw-uc__name">Leagues and federations</h4>
-                                    <p class="aw-uc__copy">Leagues and federations face the club problem multiplied: fixtures, results and standings across dozens of teams, and fans who want all of it live. These apps run largely on autopilot &mdash; statistics and live scores sync straight from the data provider, gamification keeps fans engaged between matchdays, and nobody on staff updates anything by hand.</p>
-                                    <a class="aw-uc__link" href="https://app-works.app/article/greek-basket-league-how-to-run-a-mobile-app-on-autopilot">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                                    <h4 class="aw-uc__name">HKS</h4>
+                                    <p class="aw-uc__copy">The Croatian Basketball Association covers men&rsquo;s and women&rsquo;s leagues, junior competitions and the national teams, and each fan follows only part of that. Games, standings, box scores and play-by-play arrive from the data provider, news and video from the federation&rsquo;s own channels, and notifications are switchable per competition &mdash; so following one league doesn&rsquo;t mean hearing about all of them. Live match alerts update in place instead of firing again for every basket.</p>
+                                    <a class="aw-uc__link" href="https://app-works.app/article/croatian-basketball-association-app-for-croatian-basketball-fans">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
@@ -1297,7 +1305,7 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <span class="aw-uc__wordmark">Ringier Serbia</span>
+                                        <div data-partner="ringier" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Ringier Serbia</h4>
                                     <p class="aw-uc__copy">Ringier Serbia&rsquo;s journalists were watching live television to find the quotes worth writing about. Litteraworks transcribes the broadcast as it airs, so an editor searches text instead of scrubbing video and drafts the article straight from the transcript. Hours of watching became minutes of reading.</p>
@@ -1305,11 +1313,11 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <span class="aw-uc__wordmark">Tanjug</span>
-                                        <span class="aw-uc__wordmark">FONET</span>
-                                        <span class="aw-uc__wordmark">FENA</span>
-                                        <span class="aw-uc__wordmark">SRNA</span>
-                                        <span class="aw-uc__wordmark">Italpress</span>
+                                        <div data-partner="tanjug" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="fonet" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="fena" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="srna" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="italpress" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">News agencies</h4>
                                     <p class="aw-uc__copy">For a news agency, minutes decide whether a story is theirs. These agencies use Litteraworks to turn recorded audio into publishable text fast enough to matter &mdash; press conferences, statements and interviews transcribed while the event is still live.</p>
@@ -1319,6 +1327,7 @@
                                     <div class="aw-uc__logos">
                                         <div data-partner="leeds" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                         <div data-partner="qpr" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Sports clubs</h4>
                                     <p class="aw-uc__copy">Press conferences, interviews and manager reactions arrive as audio and have to become content the same day. Both clubs use Litteraworks to transcribe, translate, draft articles and cut subtitled clips, so the media team spends its time editing rather than typing. Matchday content that keeps up with matchday.</p>
@@ -1401,7 +1410,7 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <span class="aw-uc__wordmark">Media 24</span>
+                                        <div data-partner="media24" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Media 24</h4>
                                     <p class="aw-uc__copy">Media 24&rsquo;s photographers shoot across the country, and every image has to reach the newsroom while it still matters. They upload from the field directly into Pchela, where AI tagging makes each photo findable the moment it lands, and journalists pull what they need without asking anyone. Nothing sits between the shoot and the story.</p>

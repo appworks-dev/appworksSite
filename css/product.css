@@ -526,10 +526,17 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
 
 /* --- logos ------------------------------------------------------- */
 
+/*
+ * nowrap, not wrap: the row is a fixed height, so a wrapped second line spills
+ * out of it and over the partner name. The News agencies slide is the case that
+ * forced this — five real logos at their 4.5rem cap plus four gaps measure wider
+ * than a 24rem slide, and they wrapped the moment the wordmarks became images.
+ * Shrinking them instead keeps one row at any slide width.
+ */
 .aw-uc__logos {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: clamp(0.625rem, 1.5vw, 1.125rem);
     /* one row, matched optical height, up to five logos on a grouped slide */
     height: clamp(1.5rem, 2.4vw, 2rem);
@@ -548,7 +555,9 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     justify-content: flex-start;
     height: 100%;
     max-width: clamp(3rem, 6vw, 4.5rem);
-    flex-shrink: 0;
+    /* shrink below the cap rather than wrap out of the row */
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 .aw-uc__logos img {
