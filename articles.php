@@ -878,8 +878,31 @@ async function fetchArticles(page = 1, filter = '*', append = false) {
     }
 }
 
+/*
+ * Accept a category from the URL, so other pages can deep-link into a filtered
+ * view: /insights?category=10. The id is validated against the filter buttons
+ * that actually exist rather than trusted, so a bad or stale value just falls
+ * back to "All" instead of fetching a category that isn't offered here.
+ */
+function applyCategoryFromUrl() {
+    const wanted = new URLSearchParams(window.location.search).get('category');
+    if (!wanted) return;
+    const button = [...filterButtons].find(b => b.getAttribute('data-filter') === wanted);
+    if (!button) return;
+
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    currentFilter = wanted;
+    if (categoryDescription) {
+        categoryDescription.textContent = categoryDescriptions[currentFilter] || '';
+    }
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
+    // must run before the first fetch so we don't load "All" and then replace it
+    applyCategoryFromUrl();
+
     // Load initial articles
     fetchArticles(currentPage, currentFilter);
 

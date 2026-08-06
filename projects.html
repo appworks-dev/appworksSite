@@ -982,6 +982,32 @@
         </div>
     </section>
 
+    <!-- ================================ LATEST INSIGHTS === -->
+    <!--
+        Grant Projects category only (id 10, per the ids the Insights filter
+        buttons use). The View all link carries ?category=10 so /insights opens
+        already filtered rather than on "All".
+    -->
+    <section class="aw-sec aw-sec--ruled">
+        <div class="aw-wrap">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
+                <div>
+                    <h2 class="aw-h2">Writing about this work</h2>
+                    <div style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
+                </div>
+                <p class="aw-body" style="margin: 0; max-width: 32rem;">What we have learned building and reporting on publicly funded projects.</p>
+            </div>
+
+            <div id="grantInsights" class="aw-artgrid">
+                <!-- filled by the script below -->
+            </div>
+
+            <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">
+                <a href="/insights?category=10" class="aw-btn-2"><span>View all grant project insights</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </section>
+
     <!-- =============================================== 6. CTA === -->
     <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(4rem, 10vh, 8rem); background: transparent; border-top: 1px solid rgba(255, 255, 255, 0.06);">
         <div class="mx-auto text-center" style="max-width: 900px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
@@ -1053,5 +1079,81 @@
         </div>
     </footer>
 <script src="/js/nav.js" defer></script>
+
+<script>
+/*
+ * Latest Insights, Grant Projects category only.
+ *
+ * The hidden-slug filter is repeated here deliberately. Articles in the
+ * litteraworks-com category live on another domain and must not surface on this
+ * site; that rule is enforced at every fetch site rather than centrally, and
+ * this is now one of those sites.
+ */
+(function () {
+    const grid = document.getElementById('grantInsights');
+    if (!grid) return;
+
+    const GRANT_CATEGORY = 10;
+    const HIDDEN_SLUGS = ['litteraworks-com'];
+    const FALLBACK_IMG = 'https://app-works.app/images/placeholder.jpg';
+
+    const escapeHtml = (s) => String(s || '').replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    const createSlug = (title) => String(title || '').toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+
+    const formatDate = (value) => {
+        const d = new Date(value);
+        if (isNaN(d)) return '';
+        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    };
+
+    const categoryName = (article) => {
+        const cats = (article.categories || []).filter(c => !HIDDEN_SLUGS.includes(c.slug));
+        return cats.length ? cats[0].name : 'Grant Projects';
+    };
+
+    fetch('https://appworks.mpanel.app/api/webV2/getArticles?category[]=' + GRANT_CATEGORY + '&articleLimit=5', {
+        headers: { 'Authorization': 'kmNTuI8dRmRX' }
+    })
+        .then(r => r.json())
+        .then(data => {
+            const articles = (data && data.result && data.result.articles) || [];
+            const visible = articles.filter(a =>
+                !(a.categories || []).some(c => HIDDEN_SLUGS.includes(c.slug))).slice(0, 5);
+
+            if (!visible.length) {
+                // no invented content, and no empty grid left behind
+                grid.closest('section').style.display = 'none';
+                return;
+            }
+
+            grid.innerHTML = visible.map(a => {
+                const slug = a.slug || createSlug(a.title);
+                const img = (a.images && ((a.images['large-full'] || {}).url || (a.images['medium-full'] || {}).url)) || FALLBACK_IMG;
+                const title = escapeHtml(a.title);
+                return `
+                <a href="/article/${encodeURIComponent(slug)}" class="aw-artcard">
+                    <div class="aw-thumb aw-thumb--wide" style="--aw-thumb-img: url('${img}')">
+                        <img loading="lazy" src="${img}" alt="${title}" onerror="this.src='${FALLBACK_IMG}'">
+                    </div>
+                    <div class="aw-artcard__body">
+                        <div class="aw-artcard__meta">
+                            <span class="aw-artcard__cat">${escapeHtml(categoryName(a))}</span>
+                            <span>${formatDate(a.created_at)}</span>
+                        </div>
+                        <h3 class="aw-artcard__title">${title}</h3>
+                        <span class="aw-artcard__more">Read more <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+                    </div>
+                </a>`;
+            }).join('');
+        })
+        .catch(err => {
+            console.error('Grant project insights failed to load:', err);
+            grid.closest('section').style.display = 'none';
+        });
+})();
+</script>
 </body>
 </html>
