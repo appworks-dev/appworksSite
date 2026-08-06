@@ -788,3 +788,57 @@ of the Sport hub rather than a hybrid:
             </div>
         </section>
 ```
+
+---
+
+## Removed from media.html on 2026-08-06, at the client's request
+
+Both were built to the original brief and are removed because the client asked
+for them gone, not because anything was wrong with them. Restoring either is a
+copy-paste from here.
+
+### 1. The "AI in the editorial workflow" capability group
+
+It sat under the six product cards in "What we do for media", as a dashed card
+with no product badge — deliberately not a seventh product, because these
+capabilities are part of mPanel and Fronisa rather than separately purchasable.
+
+> **Capability group — part of the platforms above, not a separate purchase**
+>
+> **AI in the editorial workflow**
+>
+> SEO suggestions and live trend checks while an article is being written,
+> auto-tagging from your own taxonomy, comment moderation, and social posts and
+> newsletters generated from published articles. These sit inside mPanel CMS and
+> Fronisa — there is nothing extra to buy or bolt on.
+
+Links: `/cms.html`, `/fronisa.html`. Icon: `bi-stars`.
+
+Note that the Sport hub has a sibling of this block. It was not touched, so the
+two hubs are no longer structural mirrors of each other.
+
+### 2. The "How we work" section
+
+Eyebrow "How we work", one paragraph, and a secondary button to `/about.html`.
+
+> **Thirteen years, four continents, one team in Belgrade**
+>
+> We build the roadmap with our clients rather than handing them a finished menu,
+> and every platform upgrade we build reaches everyone on the platform — not just
+> whoever paid for it. That is the difference between a partner and a vendor, and
+> it is why publishers stay with us across contract renewals.
+>
+> [More about Appworks →]
+
+The same argument is made at length on `about.html`, which is where the button
+pointed. The Sport hub still carries its own copy of this section.
+
+### 3. The empty client-story slot
+
+"What it looks like in practice" used to hold a placeholder:
+
+> Client story slot — awaiting your decision on which one we can tell, and in
+> what form
+
+The partner use cases moved into that section instead, which is what the slot was
+waiting for. Sport still has the placeholder.

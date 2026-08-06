@@ -674,22 +674,9 @@
                     <span class="aw-link" style="padding-top: 0.75rem;">Learn more <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
                 </a>
                 </div>
-
-                <!--
-                    Deliberately NOT a seventh product card: these capabilities live
-                    inside mPanel and Fronisa and are not separately purchasable, so
-                    it gets a distinct treatment and no product badge.
-                -->
-                <div class="aw-card" style="margin-top: clamp(1.5rem, 4vh, 2.5rem); border-style: dashed; border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.02);">
-                    <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr] items-start" style="gap: clamp(1rem, 2.5vw, 2rem);">
-                        <i class="bi bi-stars aw-icon" aria-hidden="true"></i>
-                        <div>
-                            <p class="aw-sub" style="margin: 0 0 0.375rem;">Capability group &mdash; part of the platforms above, not a separate purchase</p>
-                            <h3 class="aw-h4" style="margin: 0;">AI in the editorial workflow</h3>
-                            <p class="aw-body" style="margin: clamp(0.5rem, 1.5vh, 0.75rem) 0 0;">SEO suggestions and live trend checks while an article is being written, auto-tagging from your own taxonomy, comment moderation, and social posts and newsletters generated from published articles. These sit inside <a href="/cms.html" style="color: #FF6B50; text-decoration: none; font-weight: 600;">mPanel CMS</a> and <a href="/fronisa.html" style="color: #FF6B50; text-decoration: none; font-weight: 600;">Fronisa</a> &mdash; there is nothing extra to buy or bolt on.</p>
-                        </div>
-                    </div>
-                </div>
+                <!-- The "AI in the editorial workflow" capability group was here.
+                     Removed at the client's request; the copy is preserved in
+                     docs/hub-removed-content.md. -->
             </div>
         </section>
 
@@ -752,27 +739,91 @@
             </div>
         </section>
 
-        <!-- ===================================== HOW WE WORK === -->
-        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
-            <div class="aw-wrap aw-wrap--mid text-center">
-                <span class="aw-eyebrow">How we work</span>
-                <h2 class="aw-h2" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);">Thirteen years, four continents, one team in Belgrade</h2>
-                <p class="aw-lede mx-auto" style="max-width: 46rem; margin-top: clamp(1rem, 2.5vh, 1.5rem);">We build the roadmap with our clients rather than handing them a finished menu, and every platform upgrade we build reaches everyone on the platform &mdash; not just whoever paid for it. That is the difference between a partner and a vendor, and it is why publishers stay with us across contract renewals.</p>
-                <div style="margin-top: clamp(1.5rem, 4vh, 2.25rem);">
-                    <a href="/about.html" class="aw-btn-2"><span>More about Appworks</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </section>
+        <!-- The "Thirteen years, four continents, one team in Belgrade" section was
+             here. Removed at the client's request; copy preserved in
+             docs/hub-removed-content.md. That argument still runs on about.html. -->
 
         <!-- ========================================== PROOF === -->
-        <!-- Slot built and deliberately empty, per the brief. Same as the Sport hub. -->
+        <!--
+            The empty client-story slot that used to sit here is filled: the partner
+            use cases ARE what it looks like in practice, so they moved up out of
+            their own section further down the page. aw-wrap, not aw-wrap--mid — the
+            static grid wants the full width to lay three cards side by side.
+        -->
         <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
-            <div class="aw-wrap aw-wrap--mid">
+            <div class="aw-wrap">
                 <div class="text-center" style="margin-bottom: clamp(1.5rem, 4vh, 2.5rem);">
                     <h2 class="aw-h2">What it looks like in practice</h2>
                     <div class="flex justify-center" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
                 </div>
-                <div class="aw-todo">Client story slot &mdash; awaiting your decision on which one we can tell, and in what form</div>
+                <!--
+                    Partner use cases. Copy is final and supplied; do not rewrite in place.
+                    Every slide is present here at load rather than injected on advance, so all of
+                    them are indexable. Driven by js/use-cases.js, styled by css/product.css.
+                -->
+                <div class="aw-uc aw-uc--static">
+                    <div class="aw-uc__head">
+                        <span class="aw-uc__label">How our partners work</span>
+                    </div>
+                    <div class="aw-uc__viewport" aria-label="Partner use cases">
+                        <div class="aw-uc__track">
+                                    <article class="aw-uc__slide">
+                                        <div class="aw-uc__logos">
+                                            <div data-partner="krik" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        </div>
+                                        <h4 class="aw-uc__name">KRIK</h4>
+                                        <p class="aw-uc__copy">KRIK breaks investigative stories that other outlets republish within minutes, taking the traffic with them. Their app puts each story on readers&rsquo; phones the moment it publishes, so the audience arrives at KRIK first rather than at whoever copied it fastest. Direct push replaced a dependency on platforms and aggregators.</p>
+                                        <a class="aw-uc__link" href="https://app-works.app/article/krik-unveiling-crime-and-corruption-in-serbia-and-staying-ahead-of-the-competition-with-their-mobile-app">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                                    </article>
+                                    <article class="aw-uc__slide">
+                                        <div class="aw-uc__logos">
+                                            <div data-partner="rts" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                            <div data-partner="hrt" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                            <div data-partner="rtcg" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        </div>
+                                        <h4 class="aw-uc__name">National broadcasters</h4>
+                                        <p class="aw-uc__copy">Three national public broadcasters run Litteraworks inside their daily editorial workflow. Every broadcast hour is speech that has to become text &mdash; transcripts, subtitles, an archive somebody can actually search. Work that used to be typed is now reviewed.</p>
+
+                                    </article>
+                                    <article class="aw-uc__slide">
+                                        <div class="aw-uc__logos">
+                                            <div data-partner="media24" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        </div>
+                                        <h4 class="aw-uc__name">Media 24</h4>
+                                        <p class="aw-uc__copy">Media 24&rsquo;s photographers shoot across the country, and every image has to reach the newsroom while it still matters. They upload from the field directly into Pchela, where AI tagging makes each photo findable the moment it lands, and journalists pull what they need without asking anyone. Nothing sits between the shoot and the story.</p>
+
+                                    </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================ LATEST INSIGHTS === -->
+        <!--
+            Rendered by js/insights-teaser.js from the category id on the grid.
+            Ids match the Insights filter buttons in articles.php. The View all
+            link carries ?category=4 so /insights opens already filtered
+            rather than on "All".
+        -->
+        <section class="aw-sec">
+            <div class="aw-wrap">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
+                    <div>
+                        <h2 class="aw-h2">Writing about media and technology</h2>
+                        <div style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
+                    </div>
+                    <p class="aw-body" style="margin: 0; max-width: 32rem;">What we have learned building for newsrooms, publishers and broadcasters.</p>
+                </div>
+
+                <div id="mediaInsights" class="aw-artgrid"
+                     data-insights-category="4"
+                     data-insights-limit="5"
+                     data-insights-label="Media"></div>
+
+                <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">
+                    <a href="/insights?category=4" class="aw-btn-2"><span>View all media insights</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                </div>
             </div>
         </section>
 
@@ -942,78 +993,9 @@
             </div>
         </section>
 
-        <section class="aw-sec">
-            <div class="aw-wrap">
-                <!--
-                    Partner use cases. Copy is final and supplied; do not rewrite in place.
-                    Every slide is present here at load rather than injected on advance, so all of
-                    them are indexable. Driven by js/use-cases.js, styled by css/product.css.
-                -->
-                <div class="aw-uc aw-uc--static">
-                    <div class="aw-uc__head">
-                        <span class="aw-uc__label">How our partners work</span>
-                    </div>
-                    <div class="aw-uc__viewport" aria-label="Partner use cases">
-                        <div class="aw-uc__track">
-                                    <article class="aw-uc__slide">
-                                        <div class="aw-uc__logos">
-                                            <div data-partner="krik" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        </div>
-                                        <h4 class="aw-uc__name">KRIK</h4>
-                                        <p class="aw-uc__copy">KRIK breaks investigative stories that other outlets republish within minutes, taking the traffic with them. Their app puts each story on readers&rsquo; phones the moment it publishes, so the audience arrives at KRIK first rather than at whoever copied it fastest. Direct push replaced a dependency on platforms and aggregators.</p>
-                                        <a class="aw-uc__link" href="https://app-works.app/article/krik-unveiling-crime-and-corruption-in-serbia-and-staying-ahead-of-the-competition-with-their-mobile-app">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                                    </article>
-                                    <article class="aw-uc__slide">
-                                        <div class="aw-uc__logos">
-                                            <div data-partner="rts" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                            <div data-partner="hrt" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                            <div data-partner="rtcg" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        </div>
-                                        <h4 class="aw-uc__name">National broadcasters</h4>
-                                        <p class="aw-uc__copy">Three national public broadcasters run Litteraworks inside their daily editorial workflow. Every broadcast hour is speech that has to become text &mdash; transcripts, subtitles, an archive somebody can actually search. Work that used to be typed is now reviewed.</p>
-
-                                    </article>
-                                    <article class="aw-uc__slide">
-                                        <div class="aw-uc__logos">
-                                            <div data-partner="media24" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        </div>
-                                        <h4 class="aw-uc__name">Media 24</h4>
-                                        <p class="aw-uc__copy">Media 24&rsquo;s photographers shoot across the country, and every image has to reach the newsroom while it still matters. They upload from the field directly into Pchela, where AI tagging makes each photo findable the moment it lands, and journalists pull what they need without asking anyone. Nothing sits between the shoot and the story.</p>
-
-                                    </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================ LATEST INSIGHTS === -->
-        <!--
-            Rendered by js/insights-teaser.js from the category id on the grid.
-            Ids match the Insights filter buttons in articles.php. The View all
-            link carries ?category=4 so /insights opens already filtered
-            rather than on "All".
-        -->
-        <section class="aw-sec">
-            <div class="aw-wrap">
-                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
-                    <div>
-                        <h2 class="aw-h2">Writing about media and technology</h2>
-                        <div style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
-                    </div>
-                    <p class="aw-body" style="margin: 0; max-width: 32rem;">What we have learned building for newsrooms, publishers and broadcasters.</p>
-                </div>
-
-                <div id="mediaInsights" class="aw-artgrid"
-                     data-insights-category="4"
-                     data-insights-limit="5"
-                     data-insights-label="Media"></div>
-
-                <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">
-                    <a href="/insights?category=4" class="aw-btn-2"><span>View all media insights</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </section>
+        <!-- The partner use cases and the insights teaser both used to sit here,
+             below the partner logo grid. Both moved up: the use cases into "What it
+             looks like in practice", the insights above the logo grid. -->
 
         <!-- CTA Section -->
         <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">

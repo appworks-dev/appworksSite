@@ -792,6 +792,44 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
 .aw-artcard:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, 0.22); }
 .aw-artcard:hover .aw-thumb img { transform: scale(1.04); }
 
+/* --- category tabs over a grid --------------------------------- */
+
+.aw-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.aw-tab {
+    padding: 0.5rem 1.125rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.aw-tab:hover { color: #FFFFFF; border-color: rgba(255, 255, 255, 0.24); }
+.aw-tab:focus-visible { outline: 2px solid #FF6B50; outline-offset: 2px; }
+
+.aw-tab.is-active {
+    background: rgba(255, 75, 54, 0.15);
+    border-color: rgba(255, 75, 54, 0.35);
+    color: #FF6B50;
+}
+
+/* a tabbed grid says so instead of disappearing — see reportEmpty() */
+.aw-insights__empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: clamp(1.5rem, 4vh, 2.5rem) 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.55);
+}
+
 .aw-artcard__body {
     display: flex;
     flex-direction: column;
@@ -920,12 +958,19 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     .hub-flow__row { grid-template-columns: auto auto auto 1fr; }
 }
 
+/*
+ * Coral chips, not white ones. Ten identical translucent-white pills over a
+ * translucent-white row read as one flat block of the same colour — the whole
+ * diagram lost its shape. Tinting the nodes separates them from both the row they
+ * sit on and the outcome text beside them, and it is the same coral as the arrow
+ * that already joins them.
+ */
 .hub-node {
     justify-self: start;
     padding: 0.3125rem 0.625rem;
     border-radius: 0.5rem;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 75, 54, 0.13);
+    border: 1px solid rgba(255, 107, 80, 0.38);
     color: #FFFFFF;
     font-size: clamp(0.8125rem, 1vw, 0.9375rem);
     font-weight: 700;

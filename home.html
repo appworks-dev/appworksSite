@@ -277,23 +277,10 @@
             border-color: rgba(255, 75, 54, 0.35);
         }
 
-        /* Fixed Header */
-        .header-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(32, 10, 36, 0.85);
-            backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .header-nav.scrolled {
-            background: rgba(32, 10, 36, 0.95);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-        }
+        /* The .header-nav rules were here. Nothing on this page has that class —
+           the nav is .aw-nav from css/nav.css — so they styled nothing, and the
+           scroll handler that added .scrolled to them threw on every scroll event.
+           Both removed. */
 
         /* Mobile Menu */
         .mobile-menu {
@@ -698,77 +685,6 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* ----------------------------- Latest Insights thumbnails --- */
-
-        .ins-card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            border-radius: 1rem;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-decoration: none;
-        }
-
-        /*
-         * The body takes only the height its text needs, and the image band
-         * absorbs whatever is left. The featured card is stretched by the grid to
-         * match the three cards beside it, and without this the surplus showed up
-         * as dead space under the text instead of a larger image.
-         */
-        .ins-card__body {
-            display: flex;
-            flex-direction: column;
-            flex: 0 0 auto;
-            padding: clamp(1.25rem, 2vw, 2rem);
-        }
-
-        /*
-         * object-fit: contain, so a 2:1 photo and a 1:1 infographic are both shown
-         * whole. The letterbox is filled by a blurred, over-scaled copy of the same
-         * image via --ins-img, which is what stops it reading as dead space.
-         */
-        .ins-thumb {
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-            background: #1A0820;
-        }
-
-        .ins-thumb::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: var(--ins-img);
-            background-size: cover;
-            background-position: center;
-            filter: blur(28px) saturate(1.3) brightness(0.55);
-            transform: scale(1.25);
-        }
-
-        .ins-thumb img {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-        }
-
-        .group:hover .ins-thumb img { transform: scale(1.04); }
-
-        /* grows to fill the card; the min-height is what governs on mobile, where
-           the card is not being stretched to match anything */
-        .ins-thumb--featured {
-            width: 100%;
-            flex: 1 1 auto;
-            min-height: clamp(13rem, 26vw, 24rem);
-        }
-
-        .ins-thumb--small { width: 40%; min-height: 100%; }
     </style>
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/product.css">
@@ -1697,45 +1613,46 @@
     </div>
 </section>
 
-<!-- From Our Blog Section -->
+<!-- ================================ LATEST INSIGHTS === -->
+<!--
+    Same component as the hubs and projects.html: js/insights-teaser.js renders
+    .aw-artcard into the grid, and the tab strip switches which category it asks
+    for. This replaced a fourth hand-written copy of the same fetch with its own
+    one-large-plus-three-small layout, ~130 lines of inline JS and a set of .ins-*
+    rules that existed only to make the featured card work.
+
+    data-insights-category="*" is the "All" state. The view-all link is kept in
+    step with the tabs by the same script, so it opens /insights already filtered.
+-->
 <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
     <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
-        <!-- Section Header -->
-        <div class="flex flex-col lg:flex-row items-center justify-between mb-12">
-            <div class="text-center lg:text-left mb-6 lg:mb-0">
-                <h2 class="text-white font-black mb-4" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Latest Insights</h2>
-                <div class="flex justify-center lg:justify-start">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
+            <div class="text-center lg:text-left">
+                <h2 class="text-white font-black" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">Latest Insights</h2>
+                <div class="flex justify-center lg:justify-start" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
                     <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
                 </div>
             </div>
 
-            <!-- Filter Tabs -->
-            <div class="flex flex-wrap justify-center gap-3">
-                <button class="filter-btn active px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="*" style="background: rgba(255, 75, 54, 0.15); color: #FF6B50; border: 1px solid rgba(255, 75, 54, 0.3);">All</button>
-                <button class="filter-btn px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="4" style="background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);">Media</button>
-                <button class="filter-btn px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="3" style="background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);">Sports</button>
-                <button class="filter-btn px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="9" style="background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);">AI</button>
-                <button class="filter-btn px-6 py-2 rounded-lg font-semibold text-sm smooth-transition" data-filter="10" style="background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);">Grant Projects</button>
+            <div class="aw-tabs justify-center lg:justify-end" data-insights-tabs="homeInsights">
+                <button type="button" class="aw-tab is-active" data-insights-filter="*">All</button>
+                <button type="button" class="aw-tab" data-insights-filter="4" data-insights-label="Media">Media</button>
+                <button type="button" class="aw-tab" data-insights-filter="3" data-insights-label="Sports">Sports</button>
+                <button type="button" class="aw-tab" data-insights-filter="9" data-insights-label="AI">AI</button>
+                <button type="button" class="aw-tab" data-insights-filter="10" data-insights-label="Grant Projects">Grant Projects</button>
             </div>
         </div>
 
-        <!-- Articles Container: 1 Large + 3 Small Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" style="grid-template-rows: auto;">
-            <!-- Latest Article (Large - Left Side) -->
-            <div id="latestArticle" class="lg:row-span-3">
-                <!-- Latest article will be loaded here -->
-            </div>
+        <div id="homeInsights" class="aw-artgrid"
+             data-insights-category="*"
+             data-insights-limit="5"
+             data-insights-label="Insights"></div>
 
-            <!-- Next 3 Articles (Small - Right Side) -->
-            <div id="smallArticles" class="grid grid-cols-1 gap-6">
-                <!-- Next 3 articles will be loaded here -->
-            </div>
-        </div>
-
-        <!-- View All Button -->
-        <div class="text-center mt-12">
-            <a href="/insights" class="inline-flex items-center justify-center gap-3 rounded-xl font-bold transition-all duration-300 hover:-translate-y-1" style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
-                <span>VIEW ALL INSIGHTS</span>
+        <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">
+            <a href="/insights" data-insights-viewall="homeInsights"
+               class="inline-flex items-center justify-center gap-3 rounded-xl font-bold transition-all duration-300 hover:-translate-y-1"
+               style="padding: clamp(0.75rem, 1.6vh, 1rem) clamp(1.5rem, 2.5vw, 2rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.06);">
+                <span>View all insights</span>
                 <i class="bi bi-arrow-right text-xl"></i>
             </a>
         </div>
@@ -1912,16 +1829,6 @@
 </button>
 
 <script>
-// Header scroll effect
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.header-nav');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
-
 // Scroll to top button
 const scrollBtn = document.getElementById('scroll-to-top');
 window.addEventListener('scroll', function() {
@@ -1973,169 +1880,6 @@ if (mobileMenuOverlay) {
 const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
 mobileMenuLinks?.forEach(link => {
     link.addEventListener('click', closeMobileMenu);
-});
-</script>
-
-<!-- Blog Articles Dynamic Loading Script -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const latestArticleContainer = document.getElementById('latestArticle');
-    const smallArticlesContainer = document.getElementById('smallArticles');
-
-    // Category mapping
-    const categoryMap = {
-        '3': 'Sports',
-        '4': 'Media',
-        '9': 'AI',
-        '10': 'Grant Projects'
-    };
-
-    // Get category name from article
-    function getCategoryName(article) {
-        if (article.categories && article.categories[0]) {
-            return article.categories[0].name || categoryMap[article.categories[0].id] || 'General';
-        }
-        return categoryMap[article.category_id] || 'General';
-    }
-
-    // Format date
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    }
-
-    function fetchAndDisplayArticles(filter = '*') {
-        let apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles';
-
-        // Limit to 4 articles (1 large + 3 small)
-        if (filter === '*') {
-            apiUrl += '?articleLimit=4';
-        } else {
-            apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=4`;
-        }
-
-        fetch(apiUrl, {
-            headers: {
-                'Authorization': 'kmNTuI8dRmRX'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (!data.success || !data.result || !data.result.articles || data.result.articles.length === 0) {
-                latestArticleContainer.innerHTML = '<div class="text-center glass-medium rounded-2xl p-10"><p class="text-gray-300">No articles found</p></div>';
-                smallArticlesContainer.innerHTML = '';
-                return;
-            }
-
-            latestArticleContainer.innerHTML = ''; // Clear latest article
-            smallArticlesContainer.innerHTML = ''; // Clear small articles
-
-            const hiddenCategorySlugs = ['litteraworks-com'];
-            const visibleArticles = data.result.articles.filter(article => {
-                if (article.categories && article.categories.length > 0) {
-                    return !article.categories.some(cat => hiddenCategorySlugs.includes(cat.slug));
-                }
-                return true;
-            });
-            visibleArticles.forEach((article, index) => {
-                const slug = article.title.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim('-');
-                const category = getCategoryName(article);
-                const date = formatDate(article.created_at);
-                const intro = article.intro || '';
-                const imageUrl = article.images?.['large-full']?.url
-                    || article.images?.['medium-full']?.url
-                    || 'https://app-works.app/images/placeholder.jpg';
-
-                if (index === 0) {
-                    // Featured article - overlay design with content over image
-                    const articleHtml = `
-                        <a href="article/${slug}" class="ins-card ins-card--featured group" style="box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);">
-                            <div class="ins-thumb ins-thumb--featured" style="--ins-img: url('${imageUrl}')">
-                                <img loading="lazy" src="${imageUrl}"
-                                     onerror="this.src='https://app-works.app/images/placeholder.jpg'"
-                                     alt="${article.title}">
-                            </div>
-                            <div class="ins-card__body">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">${category}</span>
-                                    <span class="text-gray-300 text-sm">${date}</span>
-                                </div>
-                                <h3 class="text-white font-bold text-xl md:text-2xl lg:text-3xl leading-tight mb-3" style="letter-spacing: -0.01em;">${article.title}</h3>
-                                <p class="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2 md:line-clamp-3">${intro}</p>
-                                <div class="flex items-center gap-2 font-semibold text-sm transition-all duration-300 group-hover:gap-3 mt-auto" style="color: #FF6B50;">
-                                    <span>Read More</span>
-                                    <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
-                                </div>
-                            </div>
-                        </a>
-                    `;
-                    latestArticleContainer.innerHTML = articleHtml;
-                } else if (index <= 3) {
-                    // Smaller articles with category, date, intro, and Read More
-                    const smallArticleHtml = `
-                        <a href="article/${slug}" class="block rounded-xl overflow-hidden smooth-transition group" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
-                            <div class="flex flex-row h-full">
-                                <div class="ins-thumb ins-thumb--small" style="--ins-img: url('${imageUrl}')">
-                                    <img loading="lazy" src="${imageUrl}"
-                                         onerror="this.src='https://app-works.app/images/placeholder.jpg'"
-                                         alt="${article.title}">
-                                </div>
-                                <div class="w-3/5 p-5 flex flex-col justify-center">
-                                    <div class="flex items-center gap-2 mb-2">
-                                        <span class="inline-block px-2 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85); font-size: 0.65rem;">${category}</span>
-                                        <span class="text-gray-500 text-xs">${date}</span>
-                                    </div>
-                                    <h4 class="text-white font-bold text-base leading-snug mb-2 line-clamp-2">${article.title}</h4>
-                                    <p class="text-gray-400 text-xs leading-relaxed mb-3 line-clamp-2 hidden lg:block">${intro}</p>
-                                    <div class="flex items-center gap-2 font-semibold text-xs transition-all duration-300 group-hover:gap-3" style="color: #FF6B50;">
-                                        <span>Read More</span>
-                                        <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    `;
-                    smallArticlesContainer.insertAdjacentHTML('beforeend', smallArticleHtml);
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching articles:', error);
-            latestArticleContainer.innerHTML = '<div class="text-center glass-medium rounded-2xl p-10"><p class="text-gray-300">Error loading articles</p></div>';
-            smallArticlesContainer.innerHTML = '';
-        });
-    }
-
-    // Initial load of all articles
-    fetchAndDisplayArticles();
-
-    // Add click handlers for filter buttons
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-
-            // Update active state
-            filterButtons.forEach(btn => {
-                btn.style.background = 'rgba(255, 255, 255, 0.05)';
-                btn.style.color = 'rgba(255, 255, 255, 0.6)';
-                btn.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                btn.classList.remove('active');
-            });
-
-            this.style.background = 'rgba(255, 75, 54, 0.15)';
-            this.style.color = '#FF6B50';
-            this.style.borderColor = 'rgba(255, 75, 54, 0.3)';
-            this.classList.add('active');
-
-            const filter = this.getAttribute('data-filter');
-            fetchAndDisplayArticles(filter);
-        });
-    });
 });
 </script>
 
@@ -2298,5 +2042,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <script src="/js/partner-loader.js"></script>
 <script src="/js/nav.js" defer></script>
 <script src="/js/use-cases.js" defer></script>
+<script src="/js/insights-teaser.js" defer></script>
 </body>
 </html>

@@ -9,10 +9,26 @@
  * Category ids match the Insights filter buttons in articles.php:
  *   3 = Sports, 4 = Media, 9 = AI, 10 = Grant Projects, 12 = Pchela
  *
- * Extracted from an inline copy on projects.html once a second page needed it.
- * Three hand-maintained copies of the same fetch would have drifted.
+ * data-insights-category="*" fetches the latest across every category, which is
+ * what the homepage needs.
  *
- * Depends on css/product.css for .aw-artgrid, .aw-artcard and .aw-thumb.
+ * Optionally switchable by tabs. A tab strip points at a grid by id, and each
+ * button carries the category it selects:
+ *
+ *   <div class="aw-tabs" data-insights-tabs="homeInsights">
+ *     <button class="aw-tab is-active" data-insights-filter="*">All</button>
+ *     <button class="aw-tab" data-insights-filter="4" data-insights-label="Media">Media</button>
+ *   </div>
+ *   <div id="homeInsights" class="aw-artgrid" data-insights-category="*"></div>
+ *
+ * A "view all" link marked data-insights-viewall="homeInsights" has its href kept
+ * in step, so it opens /insights already filtered the way the tabs are.
+ *
+ * Extracted from an inline copy on projects.html once a second page needed it.
+ * Three hand-maintained copies of the same fetch would have drifted — the
+ * homepage had a fourth, with its own layout, which this replaced.
+ *
+ * Depends on css/product.css for .aw-artgrid, .aw-artcard, .aw-thumb and .aw-tab.
  */
 (function () {
     'use strict';
@@ -99,9 +115,18 @@
             + '</a>';
     }
 
-    /* An empty grid looks broken, so the whole section goes rather than sit there
-       with a heading over nothing. */
-    function hideSection(grid) {
+    /*
+     * An empty grid looks broken, so on a fixed-category section the whole thing
+     * goes rather than sit there with a heading over nothing. A tabbed grid is
+     * different: pulling the section out from under someone who just clicked a tab
+     * is worse than saying there is nothing there yet, and the other tabs still
+     * have articles.
+     */
+    function reportEmpty(grid, message) {
+        if (grid.hasAttribute('data-insights-tabbed')) {
+            grid.innerHTML = '<p class="aw-insights__empty">' + escapeHtml(message) + '</p>';
+            return;
+        }
         var section = grid.closest ? grid.closest('section') : null;
         if (section) section.style.display = 'none';
         else grid.style.display = 'none';
@@ -113,27 +138,66 @@
         var fallbackCategory = grid.getAttribute('data-insights-label') || 'Insights';
         if (!category) return;
 
-        fetch(API + '?category[]=' + encodeURIComponent(category) + '&articleLimit=' + limit, {
-            headers: { 'Authorization': AUTH }
-        })
+        /* "*" means every category. Over-fetch, because the hidden-slug filter runs
+           client-side and would otherwise leave the grid short of `limit`. */
+        var all = category === '*';
+        var query = all
+            ? '?articleLimit=' + (limit + 4)
+            : '?category[]=' + encodeURIComponent(category) + '&articleLimit=' + (limit + 4);
+
+        fetch(API + query, { headers: { 'Authorization': AUTH } })
             .then(function (r) { return r.json(); })
             .then(function (data) {
                 var articles = (data && data.result && data.result.articles) || [];
                 var visible = articles.filter(function (a) { return !isHidden(a); }).slice(0, limit);
-                if (!visible.length) { hideSection(grid); return; }
+                if (!visible.length) { reportEmpty(grid, 'Nothing published in this category yet.'); return; }
                 grid.innerHTML = visible.map(function (a) {
-                    return cardHtml(a, category, fallbackCategory);
+                    return cardHtml(a, all ? null : category, fallbackCategory);
                 }).join('');
             })
             .catch(function (err) {
                 console.error('Insights teaser failed to load (category ' + category + '):', err);
-                hideSection(grid);
+                reportEmpty(grid, 'Insights could not be loaded right now.');
             });
     }
 
+    /* Wire a tab strip to its grid. Tabs are real buttons, so keyboard and screen
+       readers get this for free; aria-pressed carries the state. */
+    function initTabs(strip) {
+        var grid = document.getElementById(strip.getAttribute('data-insights-tabs'));
+        if (!grid) return;
+        grid.setAttribute('data-insights-tabbed', '');
+
+        var tabs = strip.querySelectorAll('[data-insights-filter]');
+        var viewAll = document.querySelector('[data-insights-viewall="' + strip.getAttribute('data-insights-tabs') + '"]');
+
+        function select(tab) {
+            for (var i = 0; i < tabs.length; i++) {
+                var on = tabs[i] === tab;
+                tabs[i].classList.toggle('is-active', on);
+                tabs[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+            }
+            var category = tab.getAttribute('data-insights-filter');
+            grid.setAttribute('data-insights-category', category);
+            grid.setAttribute('data-insights-label', tab.getAttribute('data-insights-label') || 'Insights');
+            if (viewAll) {
+                viewAll.setAttribute('href', category === '*' ? '/insights' : '/insights?category=' + encodeURIComponent(category));
+            }
+            load(grid);
+        }
+
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].setAttribute('aria-pressed', tabs[i].classList.contains('is-active') ? 'true' : 'false');
+            tabs[i].addEventListener('click', function (e) { e.preventDefault(); select(this); });
+        }
+    }
+
     function init() {
+        var strips = document.querySelectorAll('[data-insights-tabs]');
+        for (var i = 0; i < strips.length; i++) initTabs(strips[i]);
+
         var grids = document.querySelectorAll('[data-insights-category]');
-        for (var i = 0; i < grids.length; i++) load(grids[i]);
+        for (var j = 0; j < grids.length; j++) load(grids[j]);
     }
 
     if (document.readyState === 'loading') {
