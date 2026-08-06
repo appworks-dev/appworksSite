@@ -692,32 +692,113 @@
             </div>
         </section>
 
-        <!-- ===================================== HOW WE WORK === -->
-        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
-            <div class="aw-wrap aw-wrap--mid text-center">
-                <span class="aw-eyebrow">How we work</span>
-                <h2 class="aw-h2" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);">Thirteen years, four continents, one team in Belgrade</h2>
-                <p class="aw-lede mx-auto" style="max-width: 46rem; margin-top: clamp(1rem, 2.5vh, 1.5rem);">We build the roadmap with our clients rather than handing them a finished menu, and every platform upgrade we build reaches everyone on the platform &mdash; not just whoever paid for it. That is the difference between a partner and a vendor, and it is why clubs stay with us across contract renewals.</p>
-                <div style="margin-top: clamp(1.5rem, 4vh, 2.25rem);">
-                    <a href="/about.html" class="aw-btn-2"><span>More about Appworks</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </section>
+        <!-- The "Thirteen years, four continents, one team in Belgrade" section was
+             here. Removed at the client's request, matching media.html; copy
+             preserved in docs/hub-removed-content.md. That argument still runs at
+             length on about.html, where its button pointed. -->
 
         <!-- ========================================== PROOF === -->
         <!--
-            Slot built and deliberately empty, per the brief. Candidates under
-            consideration are Superliga Srbije (official league app, already
-            posted about publicly) and Peristeri BC (signed FanFuel client).
-            Nothing goes in here without sign-off.
+            The empty client-story slot that used to sit here is filled by the
+            partner use cases, which moved up out of their own section below the
+            partner grid: they ARE what it looks like in practice. Superliga Srbije,
+            one of the two candidates the slot was holding for, is now one of them.
+            Peristeri BC is still a candidate for a story of its own.
+
+            aw-wrap, not aw-wrap--mid: the static grid needs the full width.
         -->
         <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
-            <div class="aw-wrap aw-wrap--mid">
+            <div class="aw-wrap">
                 <div class="text-center" style="margin-bottom: clamp(1.5rem, 4vh, 2.5rem);">
                     <h2 class="aw-h2">What it looks like in practice</h2>
                     <div class="flex justify-center" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
                 </div>
-                <div class="aw-todo">Client story slot &mdash; awaiting your decision on which one we can tell, and in what form</div>
+                <!--
+                    Partner use cases. Copy is final and supplied; do not rewrite in place.
+                    Every slide is present here at load rather than injected on advance, so all of
+                    them are indexable. Driven by js/use-cases.js, styled by css/product.css.
+                -->
+                <!-- aw-uc--3col: five slides, so three columns rather than auto-fit's
+                     four. See the note in product.css. -->
+                <div class="aw-uc aw-uc--static aw-uc--3col">
+                    <div class="aw-uc__head">
+                        <span class="aw-uc__label">How our partners work</span>
+                    </div>
+                    <div class="aw-uc__viewport" aria-label="Partner use cases">
+                        <div class="aw-uc__track">
+                                    <article class="aw-uc__slide aw-uc__slide--lead">
+                                        <div class="aw-uc__logos">
+                                            <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        </div>
+                                        <h4 class="aw-uc__name">FK Partizan</h4>
+                                        <p class="aw-uc__copy">FK Partizan runs its website, CMS, mobile app, transcription and media archive through one platform. A photographer uploads from the pitch and the image is ready to publish and share with media within minutes; a press conference becomes an article and a set of subtitled clips the same afternoon. One partner across the whole digital operation, rather than five vendors and the integration work between them.</p>
+
+                                    </article>
+                                    <article class="aw-uc__slide">
+                                        <div class="aw-uc__logos">
+                                            <div data-partner="esake" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        </div>
+                                        <h4 class="aw-uc__name">ESAKE</h4>
+                                        <p class="aw-uc__copy">Leagues face the club problem multiplied: fixtures, results and standings across dozens of teams, and fans who want all of it live. The Greek Basket League app runs largely on autopilot &mdash; articles come from the league&rsquo;s own website, live scores and statistics sync straight from the data provider, and gamification keeps fans engaged between matchdays. Nobody on staff updates anything by hand.</p>
+                                        <a class="aw-uc__link" href="https://app-works.app/article/greek-basket-league-how-to-run-a-mobile-app-on-autopilot">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                                    </article>
+                                    <article class="aw-uc__slide">
+                                        <div class="aw-uc__logos">
+                                            <div data-partner="hks" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        </div>
+                                        <h4 class="aw-uc__name">HKS</h4>
+                                        <p class="aw-uc__copy">The Croatian Basketball Association covers men&rsquo;s and women&rsquo;s leagues, junior competitions and the national teams, and each fan follows only part of that. Games, standings, box scores and play-by-play arrive from the data provider, news and video from the federation&rsquo;s own channels, and notifications are switchable per competition &mdash; so following one league doesn&rsquo;t mean hearing about all of them. Live match alerts update in place instead of firing again for every basket.</p>
+                                        <a class="aw-uc__link" href="https://app-works.app/article/croatian-basketball-association-app-for-croatian-basketball-fans">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                                    </article>
+                                    <article class="aw-uc__slide">
+                                        <div class="aw-uc__logos">
+                                            <div data-partner="superliga" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        </div>
+                                        <h4 class="aw-uc__name">Superliga Srbije</h4>
+                                        <p class="aw-uc__copy">Fans of Serbia&rsquo;s top football division were assembling a matchday out of club sites and social media. The official league app puts fixtures, live results, the table and club stats in one place, with a news feed from every club in the league and Fantasy integrated from day one, after three years without it in Serbia. Notifications follow the clubs a fan actually picks, so there is a reason to open the app between matchdays too.</p>
+                                        <a class="aw-uc__link" href="https://app-works.app/article/appworks-delivers-the-official-super-liga-srbije-app">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                                    </article>
+                                    <article class="aw-uc__slide">
+                                        <div class="aw-uc__logos">
+                                            <div data-partner="leeds" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                            <div data-partner="qpr" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                            <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        </div>
+                                        <h4 class="aw-uc__name">Sports clubs</h4>
+                                        <p class="aw-uc__copy">Press conferences, interviews and manager reactions arrive as audio and have to become content the same day. Both clubs use Litteraworks to transcribe, translate, draft articles and cut subtitled clips, so the media team spends its time editing rather than typing. Matchday content that keeps up with matchday.</p>
+
+                                    </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================ LATEST INSIGHTS === -->
+        <!--
+            Rendered by js/insights-teaser.js from the category id on the grid.
+            Ids match the Insights filter buttons in articles.php. The View all
+            link carries ?category=3 so /insights opens already filtered
+            rather than on "All".
+        -->
+        <section class="aw-sec">
+            <div class="aw-wrap">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
+                    <div>
+                        <h2 class="aw-h2">Writing about sport and technology</h2>
+                        <div style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
+                    </div>
+                    <p class="aw-body" style="margin: 0; max-width: 32rem;">What we have learned building for clubs, leagues and federations.</p>
+                </div>
+
+                <div id="sportInsights" class="aw-artgrid"
+                     data-insights-category="3"
+                     data-insights-limit="5"
+                     data-insights-label="Sports"></div>
+
+                <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">
+                    <a href="/insights?category=3" class="aw-btn-2"><span>View all sport insights</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                </div>
             </div>
         </section>
 
@@ -883,94 +964,9 @@
             </div>
         </section>
 
-        <section class="aw-sec">
-            <div class="aw-wrap">
-                <!--
-                    Partner use cases. Copy is final and supplied; do not rewrite in place.
-                    Every slide is present here at load rather than injected on advance, so all of
-                    them are indexable. Driven by js/use-cases.js, styled by css/product.css.
-                -->
-                <div class="aw-uc aw-uc--static">
-                    <div class="aw-uc__head">
-                        <span class="aw-uc__label">How our partners work</span>
-                    </div>
-                    <div class="aw-uc__viewport" aria-label="Partner use cases">
-                        <div class="aw-uc__track">
-                                    <article class="aw-uc__slide aw-uc__slide--lead">
-                                        <div class="aw-uc__logos">
-                                            <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        </div>
-                                        <h4 class="aw-uc__name">FK Partizan</h4>
-                                        <p class="aw-uc__copy">FK Partizan runs its website, CMS, mobile app, transcription and media archive through one platform. A photographer uploads from the pitch and the image is ready to publish and share with media within minutes; a press conference becomes an article and a set of subtitled clips the same afternoon. One partner across the whole digital operation, rather than five vendors and the integration work between them.</p>
-
-                                    </article>
-                                    <article class="aw-uc__slide">
-                                        <div class="aw-uc__logos">
-                                            <div data-partner="esake" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        </div>
-                                        <h4 class="aw-uc__name">ESAKE</h4>
-                                        <p class="aw-uc__copy">Leagues face the club problem multiplied: fixtures, results and standings across dozens of teams, and fans who want all of it live. The Greek Basket League app runs largely on autopilot &mdash; articles come from the league&rsquo;s own website, live scores and statistics sync straight from the data provider, and gamification keeps fans engaged between matchdays. Nobody on staff updates anything by hand.</p>
-                                        <a class="aw-uc__link" href="https://app-works.app/article/greek-basket-league-how-to-run-a-mobile-app-on-autopilot">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                                    </article>
-                                    <article class="aw-uc__slide">
-                                        <div class="aw-uc__logos">
-                                            <div data-partner="hks" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        </div>
-                                        <h4 class="aw-uc__name">HKS</h4>
-                                        <p class="aw-uc__copy">The Croatian Basketball Association covers men&rsquo;s and women&rsquo;s leagues, junior competitions and the national teams, and each fan follows only part of that. Games, standings, box scores and play-by-play arrive from the data provider, news and video from the federation&rsquo;s own channels, and notifications are switchable per competition &mdash; so following one league doesn&rsquo;t mean hearing about all of them. Live match alerts update in place instead of firing again for every basket.</p>
-                                        <a class="aw-uc__link" href="https://app-works.app/article/croatian-basketball-association-app-for-croatian-basketball-fans">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                                    </article>
-                                    <article class="aw-uc__slide">
-                                        <div class="aw-uc__logos">
-                                            <div data-partner="superliga" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        </div>
-                                        <h4 class="aw-uc__name">Superliga Srbije</h4>
-                                        <p class="aw-uc__copy">Fans of Serbia&rsquo;s top football division were assembling a matchday out of club sites and social media. The official league app puts fixtures, live results, the table and club stats in one place, with a news feed from every club in the league and Fantasy integrated from day one, after three years without it in Serbia. Notifications follow the clubs a fan actually picks, so there is a reason to open the app between matchdays too.</p>
-                                        <a class="aw-uc__link" href="https://app-works.app/article/appworks-delivers-the-official-super-liga-srbije-app">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                                    </article>
-                                    <article class="aw-uc__slide">
-                                        <div class="aw-uc__logos">
-                                            <div data-partner="leeds" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                            <div data-partner="qpr" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                            <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        </div>
-                                        <h4 class="aw-uc__name">Sports clubs</h4>
-                                        <p class="aw-uc__copy">Press conferences, interviews and manager reactions arrive as audio and have to become content the same day. Both clubs use Litteraworks to transcribe, translate, draft articles and cut subtitled clips, so the media team spends its time editing rather than typing. Matchday content that keeps up with matchday.</p>
-
-                                    </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================ LATEST INSIGHTS === -->
-        <!--
-            Rendered by js/insights-teaser.js from the category id on the grid.
-            Ids match the Insights filter buttons in articles.php. The View all
-            link carries ?category=3 so /insights opens already filtered
-            rather than on "All".
-        -->
-        <section class="aw-sec">
-            <div class="aw-wrap">
-                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
-                    <div>
-                        <h2 class="aw-h2">Writing about sport and technology</h2>
-                        <div style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
-                    </div>
-                    <p class="aw-body" style="margin: 0; max-width: 32rem;">What we have learned building for clubs, leagues and federations.</p>
-                </div>
-
-                <div id="sportInsights" class="aw-artgrid"
-                     data-insights-category="3"
-                     data-insights-limit="5"
-                     data-insights-label="Sports"></div>
-
-                <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">
-                    <a href="/insights?category=3" class="aw-btn-2"><span>View all sport insights</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </section>
+        <!-- The partner use cases and the insights teaser both used to sit here,
+             below the partner logo grid. Both moved up: the use cases into "What it
+             looks like in practice", the insights above the logo grid. -->
 
         <!-- CTA Section -->
         <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">

@@ -721,6 +721,19 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     .aw-uc--static .aw-uc__slide--lead { grid-column: span 2; }
 }
 
+/*
+ * Three fixed columns, and no span for the lead. auto-fit gives four columns at
+ * desktop, and with five slides plus a double-width lead that left the second row
+ * half empty and the lead card itself mostly dead space — its four lines of copy
+ * were being stretched to the height of a narrow neighbour's ten. Five slides in
+ * three columns is 3 + 2, every card in a row the same height, and the lead keeps
+ * its coral tint and first position without the width that caused the hole.
+ */
+@media (min-width: 900px) {
+    .aw-uc--static.aw-uc--3col .aw-uc__track { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .aw-uc--static.aw-uc--3col .aw-uc__slide--lead { grid-column: auto; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .aw-uc__viewport { scroll-behavior: auto; }
     .aw-uc__dot, .aw-uc__arrow { transition: none; }

@@ -814,8 +814,9 @@ capabilities are part of mPanel and Fronisa rather than separately purchasable.
 
 Links: `/cms.html`, `/fronisa.html`. Icon: `bi-stars`.
 
-Note that the Sport hub has a sibling of this block. It was not touched, so the
-two hubs are no longer structural mirrors of each other.
+The Sport hub has no equivalent of this block — it carries six product cards and
+no capability group — so removing this one did not break a mirror. (An earlier
+note here said it did; that was wrong.)
 
 ### 2. The "How we work" section
 
@@ -831,7 +832,7 @@ Eyebrow "How we work", one paragraph, and a secondary button to `/about.html`.
 > [More about Appworks →]
 
 The same argument is made at length on `about.html`, which is where the button
-pointed. The Sport hub still carries its own copy of this section.
+pointed. The Sport hub's copy was removed the same way — see below.
 
 ### 3. The empty client-story slot
 
@@ -842,3 +843,42 @@ pointed. The Sport hub still carries its own copy of this section.
 
 The partner use cases moved into that section instead, which is what the slot was
 waiting for. Sport still has the placeholder.
+
+---
+
+## Removed from sport.html on 2026-08-06, at the client's request
+
+The same restructuring as media.html, so the two hubs stay siblings.
+
+### 1. The "How we work" section
+
+Eyebrow "How we work", one paragraph, and a secondary button to `/about.html`.
+Identical to the Media version except for its last clause, which said "clubs"
+rather than "publishers":
+
+> **Thirteen years, four continents, one team in Belgrade**
+>
+> We build the roadmap with our clients rather than handing them a finished menu,
+> and every platform upgrade we build reaches everyone on the platform — not just
+> whoever paid for it. That is the difference between a partner and a vendor, and
+> it is why clubs stay with us across contract renewals.
+>
+> [More about Appworks →]
+
+### 2. The empty client-story slot
+
+"What it looks like in practice" held a placeholder:
+
+> Client story slot — awaiting your decision on which one we can tell, and in
+> what form
+
+The partner use cases moved into that section instead. The slot was holding for
+two candidates: **Superliga Srbije**, which is now one of the use cases in its own
+right, and **Peristeri BC** (signed FanFuel client), which is still a candidate
+for a story of its own and still needs sign-off.
+
+### Not removed
+
+sport.html has no equivalent of the Media hub's "AI in the editorial workflow"
+capability group — six product cards, no capability card — so there was nothing to
+take out.
