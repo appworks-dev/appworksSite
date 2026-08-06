@@ -59,7 +59,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <!-- Framer Motion CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/framer-motion@11/dist/framer-motion.js"></script>
+    <!--
+        framer-motion was removed here. Its UMD bundle expects React as a global,
+        which this page does not provide, so it threw "React is not defined" on
+        every load - the only JS error on the homepage. Nothing referenced it: the
+        script tag was the single occurrence of the library in the file. That was
+        144KB downloaded per visit to throw an error.
+    -->
+
 
     <!-- SEO Meta Tags -->
     <meta name="keywords" content="Appworks, AI, Mobile Apps, Digital Platforms, Media Technology, Sports Technology, CMS, Litteraworks, Grant Projects, Creative Europe, Innovation">
@@ -557,6 +564,184 @@
             max-height: 64px;
             opacity: 1;
         }
+
+        /* ------------------------------- audience fork partner logos --- */
+
+        .fork-logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: clamp(0.875rem, 2vw, 1.75rem);
+            height: clamp(1.75rem, 3vw, 2.5rem);
+            margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
+        }
+
+        .fork-logos > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            max-width: clamp(3.25rem, 7vw, 5rem);
+        }
+
+        /* --------------------------------- EU-funded projects section --- */
+
+        .eu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: clamp(2rem, 4vh, 3rem);
+        }
+
+        @media (min-width: 640px) { .eu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (min-width: 1080px) { .eu-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+        .eu-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: clamp(1.25rem, 2vw, 1.75rem);
+            border-radius: 1.25rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* a warm wash from the top-left corner, so the four cards read as a
+               set with some depth rather than four flat grey panels */
+            background-image: radial-gradient(circle at top left, rgba(255, 75, 54, 0.1), transparent 60%);
+            transition: transform 0.35s ease, border-color 0.35s ease;
+        }
+
+        .eu-card:hover { transform: translateY(-4px); border-color: rgba(255, 107, 80, 0.35); }
+
+        .eu-card__top { display: flex; align-items: center; gap: 0.75rem; }
+
+        .eu-card__icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(2.25rem, 3vw, 2.75rem);
+            height: clamp(2.25rem, 3vw, 2.75rem);
+            flex-shrink: 0;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);
+            box-shadow: 0 6px 16px rgba(255, 75, 54, 0.3);
+            color: #FFFFFF;
+            font-size: clamp(1rem, 1.4vw, 1.25rem);
+        }
+
+        .eu-card__name {
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        .eu-card__copy {
+            color: rgba(255, 255, 255, 0.68);
+            font-size: clamp(0.875rem, 1vw, 0.9375rem);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* the project names, so each programme shows what we actually did in it */
+        .eu-card__projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+            list-style: none;
+            margin: auto 0 0;
+            padding: 0.75rem 0 0;
+        }
+
+        .eu-card__projects li {
+            padding: 0.125rem 0.5rem;
+            border-radius: 0.375rem;
+            background: rgba(255, 75, 54, 0.14);
+            border: 1px solid rgba(255, 107, 80, 0.35);
+            color: #FF6B50;
+            font-size: 0.6875rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .eu-card__projects .eu-card__pending {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.22);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ----------------------------- Latest Insights thumbnails --- */
+
+        .ins-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+
+        /*
+         * The body takes only the height its text needs, and the image band
+         * absorbs whatever is left. The featured card is stretched by the grid to
+         * match the three cards beside it, and without this the surplus showed up
+         * as dead space under the text instead of a larger image.
+         */
+        .ins-card__body {
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 auto;
+            padding: clamp(1.25rem, 2vw, 2rem);
+        }
+
+        /*
+         * object-fit: contain, so a 2:1 photo and a 1:1 infographic are both shown
+         * whole. The letterbox is filled by a blurred, over-scaled copy of the same
+         * image via --ins-img, which is what stops it reading as dead space.
+         */
+        .ins-thumb {
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #1A0820;
+        }
+
+        .ins-thumb::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: var(--ins-img);
+            background-size: cover;
+            background-position: center;
+            filter: blur(28px) saturate(1.3) brightness(0.55);
+            transform: scale(1.25);
+        }
+
+        .ins-thumb img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .group:hover .ins-thumb img { transform: scale(1.04); }
+
+        /* grows to fill the card; the min-height is what governs on mobile, where
+           the card is not being stretched to match anything */
+        .ins-thumb--featured {
+            width: 100%;
+            flex: 1 1 auto;
+            min-height: clamp(13rem, 26vw, 24rem);
+        }
+
+        .ins-thumb--small { width: 40%; min-height: 100%; }
     </style>
     <link rel="stylesheet" href="/css/nav.css">
 </head>
@@ -797,7 +982,7 @@
 
                 <!-- Subheadline -->
                 <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1.0625rem, 1.6vw, 1.375rem); opacity: 0.85; max-width: 640px; margin-left: auto; margin-right: auto; margin-bottom: clamp(1.25rem, 3svh, 2.5rem);">
-                    We don't just build apps—we become your digital transformation partner, combining mobile platforms with AI innovation.
+                    We don't just build apps, we become your digital transformation partner, combining mobile platforms with AI innovation.
                 </p>
 
                 <!-- CTA Buttons -->
@@ -847,7 +1032,20 @@
                       -webkit-backdrop-filter: blur(40px);
                       border: 1px solid rgba(255, 255, 255, 0.12);
                       box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 10px 30px rgba(0, 0, 0, 0.45);">
-                <i class="bi bi-newspaper" aria-hidden="true" style="font-size: clamp(1.75rem, 2.6vw, 2.25rem); color: #FF6B50; line-height: 1;"></i>
+                <!--
+                    Logos resolve from js/partner-logos.js; all five are already
+                    live elsewhere on the site. Chosen by measured mean luminance of
+                    their opaque pixels, not by eye: Politika measures 0 and N1
+                    measures 63, so both were invisible against this background
+                    even though they looked like the obvious picks.
+                -->
+                <div class="fork-logos">
+                    <div data-partner="dan" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="insajder" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="rts" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="danas" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="vijesti" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                </div>
 
                 <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Media</h3>
 
@@ -871,11 +1069,14 @@
                       -webkit-backdrop-filter: blur(40px);
                       border: 1px solid rgba(255, 255, 255, 0.12);
                       box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 10px 30px rgba(0, 0, 0, 0.45);">
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: clamp(1.75rem, 2.6vw, 2.25rem); height: clamp(1.75rem, 2.6vw, 2.25rem); color: #FF6B50; flex-shrink: 0;">
-                    <circle cx="12" cy="12" r="9"/>
-                    <path d="M12 8.4 15.42 10.89 14.12 14.91 9.88 14.91 8.58 10.89Z"/>
-                    <path d="M12 8.4V3M15.42 10.89 20.56 9.22M14.12 14.91 17.29 19.28M9.88 14.91 6.71 19.28M8.58 10.89 3.44 9.22"/>
-                </svg>
+                <!-- logos resolve from js/partner-logos.js; all five are already live elsewhere on the site -->
+                <div class="fork-logos">
+                    <div data-partner="leeds" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="pao" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="qpr" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="peristeri" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                    <div data-partner="esake" data-css="object-contain" data-style="max-width: 100%; max-height: 100%;"></div>
+                </div>
 
                 <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Sport</h3>
 
@@ -916,7 +1117,7 @@
                 <!-- Left: Text Content -->
                 <div class="space-y-6">
                     <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
-                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Media &amp; Sport Apps</span>
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: #FF6B50;">Media &amp; Sport Apps</span>
                     </div>
                     <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Mobile apps</h3>
                     <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, 0.92);">Native iOS and Android apps for media and sport, built for engagement, loyalty and daily habit rather than just another channel.</p>
@@ -973,7 +1174,7 @@
                 <!-- Right: Text Content -->
                 <div class="space-y-6 order-1 lg:order-2">
                     <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
-                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">AI Transcription</span>
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: #FF6B50;">AI Transcription</span>
                     </div>
                     <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Litteraworks</h3>
                     <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, 0.92);">Automated transcription, subtitles, and translation - trusted by newsrooms, broadcasters, and enterprises across Europe.</p>
@@ -993,7 +1194,7 @@
                 <!-- Left: Text Content -->
                 <div class="space-y-6">
                     <div class="inline-block rounded-lg" style="padding: 0.375rem 0.75rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);">
-                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">Media Asset Management</span>
+                        <span class="font-black uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: #FF6B50;">Media Asset Management</span>
                     </div>
                     <h3 class="text-white font-black" style="font-size: clamp(1.625rem, 2.8vw, 2.5rem); letter-spacing: -0.03em;">Pchela</h3>
                     <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(255, 255, 255, 0.92);">AI-powered media asset management that makes your entire archive searchable and accessible in seconds.</p>
@@ -1211,32 +1412,56 @@
             <p class="text-gray-400 mx-auto" style="font-size: clamp(1rem, 1.3vw, 1.125rem); max-width: 52rem; margin-top: clamp(1.25rem, 3vh, 2rem);">We join European consortia as the technology partner: building the platforms, running the engineering, and carrying the reporting that comes with public funding. Institutions vet us before they fund us — which is a useful signal for commercial clients too.</p>
         </div>
 
-        <!-- The four programmes we work under -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style="gap: clamp(1rem, 2vw, 1.5rem); margin-bottom: clamp(2rem, 4vh, 3rem);">
+        <!--
+            The four programmes we work under. Icon, programme name and the actual
+            project names as chips, so the section carries some visual rhythm
+            instead of four identical grey paragraphs.
+        -->
+        <div class="eu-grid">
 
-            <div class="rounded-2xl flex flex-col" style="padding: clamp(1.25rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
-                <h3 class="text-white font-bold" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.02em;">Erasmus+</h3>
-                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.875rem, 1vw, 0.9375rem); margin-top: 0.5rem;">UpSpace — upcycling and urban regeneration for green skills, with seven partner organisations across Europe.</p>
+            <div class="eu-card">
+                <div class="eu-card__top">
+                    <span class="eu-card__icon"><i class="bi bi-mortarboard" aria-hidden="true"></i></span>
+                    <h3 class="eu-card__name">Erasmus+</h3>
+                </div>
+                <p class="eu-card__copy">Upcycling and urban regeneration for green skills, with seven partner organisations across Europe.</p>
+                <ul class="eu-card__projects">
+                    <li>UpSpace</li>
+                </ul>
             </div>
 
-            <div class="rounded-2xl flex flex-col" style="padding: clamp(1.25rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
-                <h3 class="text-white font-bold" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.02em;">Creative Europe</h3>
-                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.875rem, 1vw, 0.9375rem); margin-top: 0.5rem;">NEWLOCAL — technical partner to a consortium of ten local media organisations across Slovenia, Croatia, Serbia and Montenegro.</p>
+            <div class="eu-card">
+                <div class="eu-card__top">
+                    <span class="eu-card__icon"><i class="bi bi-film" aria-hidden="true"></i></span>
+                    <h3 class="eu-card__name">Creative Europe</h3>
+                </div>
+                <p class="eu-card__copy">Technical partner to a consortium of ten local media organisations across Slovenia, Croatia, Serbia and Montenegro.</p>
+                <ul class="eu-card__projects">
+                    <li>NEWLOCAL</li>
+                </ul>
             </div>
 
-            <div class="rounded-2xl flex flex-col" style="padding: clamp(1.25rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
-                <h3 class="text-white font-bold" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.02em;">CERV</h3>
-                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.875rem, 1vw, 0.9375rem); margin-top: 0.5rem;">Media Masters for media literacy and civic engagement, and Safeguard the Truth — AI tooling for whistleblower reporting.</p>
+            <div class="eu-card">
+                <div class="eu-card__top">
+                    <span class="eu-card__icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+                    <h3 class="eu-card__name">CERV</h3>
+                </div>
+                <p class="eu-card__copy">Media literacy and civic engagement, and AI tooling for whistleblower reporting.</p>
+                <ul class="eu-card__projects">
+                    <li>Media Masters</li>
+                    <li>Safeguard the Truth</li>
+                </ul>
             </div>
 
-            <!-- PLACEHOLDER: Horizon Europe appears in projects.html prose but no
-                 Horizon project is documented there. Confirm before shipping. -->
-            <div data-placeholder="horizon-europe" class="rounded-2xl flex flex-col" style="padding: clamp(1.25rem, 2vw, 1.75rem); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);">
-                <h3 class="text-white font-bold" style="font-size: clamp(1.0625rem, 1.5vw, 1.25rem); letter-spacing: -0.02em;">Horizon Europe</h3>
-                <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.875rem, 1vw, 0.9375rem); margin-top: 0.5rem;">Research and innovation partnerships in media technology and applied AI.</p>
+            <div class="eu-card" data-placeholder="horizon-europe">
+                <div class="eu-card__top">
+                    <span class="eu-card__icon"><i class="bi bi-stars" aria-hidden="true"></i></span>
+                    <h3 class="eu-card__name">Horizon Europe</h3>
+                </div>
+                <p class="eu-card__copy">Research and innovation partnerships in media technology and applied AI.</p>
+                <ul class="eu-card__projects"><li class="eu-card__pending">Project to be confirmed</li></ul>
             </div>
         </div>
-
 
         <div class="text-center">
             <a href="/projects.html" class="group inline-flex items-center justify-center gap-3 rounded-xl font-bold smooth-transition hover:-translate-y-1"
@@ -1598,25 +1823,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 const category = getCategoryName(article);
                 const date = formatDate(article.created_at);
                 const intro = article.intro || '';
-                const imageUrl = article.images?.['medium-full']?.url || 'https://app-works.app/images/placeholder.jpg';
+                const imageUrl = article.images?.['large-full']?.url
+                    || article.images?.['medium-full']?.url
+                    || 'https://app-works.app/images/placeholder.jpg';
 
                 if (index === 0) {
                     // Featured article - overlay design with content over image
                     const articleHtml = `
-                        <a href="article/${slug}" class="block rounded-2xl overflow-hidden smooth-transition group h-full relative" style="box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); min-height: 500px;">
-                            <img loading="lazy" src="${imageUrl}"
-                                 onerror="this.src='https://app-works.app/images/placeholder.jpg'"
-                                 alt="${article.title}"
-                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                        <a href="article/${slug}" class="ins-card ins-card--featured group" style="box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);">
+                            <div class="ins-thumb ins-thumb--featured" style="--ins-img: url('${imageUrl}')">
+                                <img loading="lazy" src="${imageUrl}"
+                                     onerror="this.src='https://app-works.app/images/placeholder.jpg'"
+                                     alt="${article.title}">
+                            </div>
+                            <div class="ins-card__body">
                                 <div class="flex items-center gap-3 mb-3">
                                     <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.85);">${category}</span>
                                     <span class="text-gray-300 text-sm">${date}</span>
                                 </div>
                                 <h3 class="text-white font-bold text-xl md:text-2xl lg:text-3xl leading-tight mb-3" style="letter-spacing: -0.01em;">${article.title}</h3>
                                 <p class="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2 md:line-clamp-3">${intro}</p>
-                                <div class="flex items-center gap-2 font-semibold text-sm transition-all duration-300 group-hover:gap-3" style="color: #FF6B50;">
+                                <div class="flex items-center gap-2 font-semibold text-sm transition-all duration-300 group-hover:gap-3 mt-auto" style="color: #FF6B50;">
                                     <span>Read More</span>
                                     <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
                                 </div>
@@ -1629,11 +1856,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     const smallArticleHtml = `
                         <a href="article/${slug}" class="block rounded-xl overflow-hidden smooth-transition group" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
                             <div class="flex flex-row h-full">
-                                <div class="relative w-2/5 overflow-hidden" style="min-height: 200px;">
+                                <div class="ins-thumb ins-thumb--small" style="--ins-img: url('${imageUrl}')">
                                     <img loading="lazy" src="${imageUrl}"
                                          onerror="this.src='https://app-works.app/images/placeholder.jpg'"
-                                         alt="${article.title}"
-                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                         alt="${article.title}">
                                 </div>
                                 <div class="w-3/5 p-5 flex flex-col justify-center">
                                     <div class="flex items-center gap-2 mb-2">
