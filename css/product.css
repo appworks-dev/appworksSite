@@ -18,15 +18,34 @@
     background: transparent;
 }
 
-/* the one translucent lift, for sections that need to read as a distinct zone */
-.aw-sec--lift {
-    background: rgba(255, 255, 255, 0.025);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+/*
+ * There is deliberately no --lift and no --ruled modifier. Both existed: --lift
+ * washed a section with rgba(255,255,255,0.025) and --ruled drew a 1px rule at its
+ * top edge. Both are gone, because the background is one continuous
+ * document-height gradient and any hard edge across it reads as a seam — which is
+ * exactly what it got reported as. A section that needs a beat gets .aw-accent
+ * below, which is light rather than a line. Do not reintroduce them.
+ */
+
+/*
+ * The beat between sections, without a seam: a wide, very low-alpha coral bloom
+ * anchored to the top edge, faded out well before it reaches an edge of its own.
+ * z-index -1 plus isolation keeps it behind the section's own content while
+ * staying above the body gradient it sits on.
+ */
+.aw-accent {
+    position: relative;
+    isolation: isolate;
 }
 
-.aw-sec--ruled {
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+.aw-accent::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: min(65%, 24rem);
+    background: radial-gradient(75% 100% at 50% 0%, rgba(255, 75, 54, 0.08), transparent 72%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .aw-wrap {
@@ -579,8 +598,9 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     filter: grayscale(1) brightness(1.35) contrast(0.95);
 }
 
-/* the four names with no approved logo file render as a text wordmark instead,
-   so the slide is never missing its identifier */
+/* Fallback for a partner with no usable logo file: the name renders as a text
+   wordmark so the slide is never missing its identifier. Nothing uses it now —
+   every slide has a logo — but the next unapproved partner will. */
 .aw-uc__wordmark {
     font-size: clamp(0.875rem, 1.2vw, 1rem);
     font-weight: 800;

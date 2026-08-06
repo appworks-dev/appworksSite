@@ -617,7 +617,7 @@
             twelve-year archive. Identical card treatment across all six so the
             section scans. Mirrors the Sport hub exactly.
         -->
-        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: rgba(255, 255, 255, 0.025); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
             <div class="aw-wrap">
                 <div class="text-center" style="margin-bottom: clamp(2rem, 5vh, 3.5rem);">
                     <h2 class="aw-h2">What we do for media</h2>
@@ -753,7 +753,7 @@
         </section>
 
         <!-- ===================================== HOW WE WORK === -->
-        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: rgba(255, 255, 255, 0.025); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+        <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
             <div class="aw-wrap aw-wrap--mid text-center">
                 <span class="aw-eyebrow">How we work</span>
                 <h2 class="aw-h2" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);">Thirteen years, four continents, one team in Belgrade</h2>
@@ -798,7 +798,10 @@
                         <div data-partner="ringier" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
-                        <div data-partner="star-gr" data-css="max-h-12 w-auto object-contain"></div>
+                        <!-- 'star', not 'star-gr': both are star.GR, but the star-gr
+                             file is pure black on transparent and rendered invisible
+                             on this tile. 'star' is the white wordmark. -->
+                        <div data-partner="star" data-css="max-h-12 w-auto object-contain"></div>
                     </div>
                     <div class="partner-logo-item flex items-center justify-center p-6 rounded-2xl glass-light smooth-transition hover:-translate-y-2">
                         <div data-partner="hrt" data-css="max-h-12 w-auto object-contain"></div>
@@ -939,7 +942,7 @@
             </div>
         </section>
 
-        <section class="aw-sec aw-sec--ruled">
+        <section class="aw-sec">
             <div class="aw-wrap">
                 <!--
                     Partner use cases. Copy is final and supplied; do not rewrite in place.
@@ -991,7 +994,7 @@
             link carries ?category=4 so /insights opens already filtered
             rather than on "All".
         -->
-        <section class="aw-sec aw-sec--ruled">
+        <section class="aw-sec">
             <div class="aw-wrap">
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
                     <div>
@@ -1093,7 +1096,9 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Define which partners to show in the carousel (media partners from "Our Media Partners" section)
         const carouselPartners = [
-            'rts', 'ringier', 'star-gr', 'hrt', 'danas', 'n1', 'media24', 'dan',
+            // 'star-gr' was here as well as 'star' — the same broadcaster twice, and
+            // the star-gr file is invisible against this background.
+            'rts', 'ringier', 'hrt', 'danas', 'n1', 'media24', 'dan',
             'insajder', 'hanza-media', 'euronews', 'krik', 'dnevnik', 'rtcg',
             'politika', 'nova-s', 'tanjug', 'italpress', 'star', 'rtv-budva',
             'varadzinske', 'riportal', 'infovranjske', 'radio-magnum', 'novi-tednik', 'novski'

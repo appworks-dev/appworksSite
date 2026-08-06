@@ -565,6 +565,33 @@
             opacity: 1;
         }
 
+        /* --------------------------------------- testimonial cards --- */
+
+        /*
+         * A coral opening quote behind the copy. The section carried coral only in
+         * the 80px bar under its heading, and losing the white wash that used to
+         * frame it left it flat — this puts the warmth inside the cards instead of
+         * back on the section edges. Decorative, so it is a pseudo-element and
+         * never reaches the accessibility tree.
+         */
+        .tm-card {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .tm-card::before {
+            content: '\201C';
+            position: absolute;
+            top: clamp(-0.75rem, -1vw, -0.25rem);
+            right: clamp(0.75rem, 2vw, 1.75rem);
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(4rem, 8vw, 7rem);
+            line-height: 1;
+            color: rgba(255, 75, 54, 0.16);
+            pointer-events: none;
+            z-index: -1;
+        }
+
         /* ------------------------------- audience fork partner logos --- */
 
         .fork-logos {
@@ -1316,7 +1343,6 @@
                                         <div data-partner="tanjug" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                         <div data-partner="fonet" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                         <div data-partner="fena" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        <div data-partner="srna" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                         <div data-partner="italpress" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">News agencies</h4>
@@ -1335,7 +1361,7 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <span class="aw-uc__wordmark">Star</span>
+                                        <div data-partner="star" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Star</h4>
                                     <p class="aw-uc__copy">Star wanted every article on the site available as audio, in Greek. Litteraworks text-to-speech provides natural-sounding Greek voices across the whole publication, so readers can listen instead of read. One text, two ways to consume it, and a real accessibility gain.</p>
@@ -1505,8 +1531,10 @@
     </div>
 </section>
 
-<!-- What Our Partners Say (Testimonials) -->
-<section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: rgba(255, 255, 255, 0.025); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+<!-- What Our Partners Say (Testimonials).
+     This section used to be marked by a 2.5% white wash between two hairlines.
+     Both are gone; aw-accent carries the beat as a coral bloom instead. -->
+<section class="relative aw-accent" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
     <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
         <!-- Section Header -->
         <div class="text-center mb-16">
@@ -1519,7 +1547,7 @@
         <!-- Testimonials Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2" style="gap: clamp(1.25rem, 2.5vw, 2rem);">
             <!-- Testimonial 1: Insajder -->
-            <div class="glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); border-top: 4px solid transparent;">
+            <div class="tm-card glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
                 <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"A reliable partner we can always count on. App Works offers the ideal combination of innovative products and dedicated support. Beyond their top-tier technical expertise, what we value most about App Works is their fantastic communication and speed of response. We feel like they're part of our team, not just external collaborators."</strong></p>
                 <div class="flex items-center gap-6 pt-6 border-t border-white/10 mt-auto">
                     <div data-partner="insajder" data-css="partner-logo partner-logo--testimonial"></div>
@@ -1531,7 +1559,7 @@
             </div>
 
             <!-- Testimonial 2: QPR -->
-            <div class="glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+            <div class="tm-card glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
                 <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"I started using Litteraworks in recent weeks and, I must confess, was skeptical to begin with. How beneficial would it actually be? How much time would be spent reviewing, editing, and correcting multiple grammatical errors? I was genuinely taken aback by the accuracy and speed of the transcription. It has had a significant impact on reducing the team's workload and I cannot recommend it higher."</strong></p>
                 <div class="flex items-center gap-6 pt-6 border-t border-white/10 mt-auto">
                     <div data-partner="qpr" data-css="partner-logo partner-logo--testimonial"></div>
@@ -1543,7 +1571,7 @@
             </div>
 
             <!-- Testimonial 3: FK Partizan -->
-            <div class="glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+            <div class="tm-card glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
                 <p class="text-base leading-relaxed mb-8 font-medium" style="color: #FFFFFF; opacity: 1;"><strong>"A great team of professionals, the collaboration is at a very high level. We specifically use the website, CMS, mobile app and LitteraWorks, and we are extremely satisfied with all the platforms. We look forward to continuing our cooperation."</strong></p>
                 <div class="flex items-center gap-6 pt-6 border-t border-white/10 mt-auto">
                     <div data-partner="fk-partizan" data-css="partner-logo partner-logo--testimonial"></div>
@@ -1555,7 +1583,7 @@
             </div>
 
             <!-- Testimonial 4: Politika -->
-            <div class="glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
+            <div class="tm-card glass-medium rounded-2xl smooth-transition hover-lift flex flex-col" style="padding: clamp(1.5rem, 2.5vw, 2.5rem); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);">
                 <p class="text-base leading-relaxed mb-8" style="color: #FFFFFF; opacity: 1;"><strong>"Working with the Appworks team has been straightforward and highly efficient from the very beginning. Our goal is to boost the number of our premium subscribers and the solutions they proposed were practical, reliable, and easy to adapt to our needs. When we ask for something, it is done without any problems, we especially value their availability and their willingness to always find the best possible solution."</strong></p>
                 <div class="flex items-center gap-6 pt-6 border-t border-white/10 mt-auto">
                     <div data-partner="politika" data-css="partner-logo partner-logo--testimonial"></div>
@@ -1596,7 +1624,7 @@
     (data-count="2000000" and data-count="20").
     The "6 projects" count is gone at the client's request, since it grows.
 -->
-<section class="relative" style="padding-top: clamp(4rem, 10vh, 8rem); padding-bottom: clamp(4rem, 10vh, 8rem); background: transparent; border-top: 1px solid rgba(255, 255, 255, 0.07); border-bottom: 1px solid rgba(255, 255, 255, 0.07);">
+<section class="relative aw-accent" style="padding-top: clamp(4rem, 10vh, 8rem); padding-bottom: clamp(4rem, 10vh, 8rem); background: transparent;">
     <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
 
         <!-- Header -->
