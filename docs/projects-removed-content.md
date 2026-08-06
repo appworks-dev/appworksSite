@@ -114,3 +114,781 @@ all confined to this one block.
             document.querySelectorAll('.stat-number').forEach(el => observer.observe(el));
         </script>
 ```
+
+## Tasks 2-8 — restructure
+
+Removed sections, verbatim below: **Technology Areas** (converted into per-project
+technology tags, so the same claims now sit next to the evidence for them), the
+**Our Track Record** timeline (its narrative detail was merged into the project
+cards, not dropped), and two of the four **Why We Participate** cards - *Social
+Impact*, which duplicated "We want to be socially useful" in the Approach section
+now sitting at the top of the page, and *Validation & Credibility*, which moved
+into the programme-logos band.
+
+Also recorded: the hero's generated illustration was removed. No replacement
+photograph had been supplied at the time of this pass, so the slot carries a
+marked placeholder rather than a stand-in image.
+
+```html
+<!-- Hero Section -->
+    <section class="relative pt-48 pb-24" style="background: #200A24;">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Content -->
+                <div>
+                    <div class="inline-block px-4 py-2 rounded-lg glass-light mb-6">
+                        <span class="text-white text-xs font-black tracking-wider uppercase">EU-Funded Innovation</span>
+                    </div>
+                    <h1 class="text-white font-black text-5xl lg:text-7xl mb-6 leading-tight">
+                        Grant-Funded Innovation Projects
+                    </h1>
+                    <p class="text-gray-300 text-xl lg:text-2xl leading-relaxed" style="opacity: 0.9;">
+                        Appworks has been developing digital platforms for media and sports organizations since 2013. Beyond our commercial work, we actively participate in European Union and nationally-funded research and innovation projects that push the boundaries of what's possible in digital engagement, AI technology, and interactive learning.
+                    </p>
+                </div>
+
+                <!-- Right: Image -->
+                <div class="relative">
+                    <img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/generated-image-january-15-2026-1-58pm-removebg-preview.png?crop=true" alt="Grant Projects" class="w-full" style="max-width: 600px; margin-left: auto;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why We Participate Section - Interactive Bento Grid -->
+    <section class="relative py-24" style="background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%);">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-5xl mb-6">Why We Participate in Grant-Funded Projects</h2>
+                <p class="text-gray-300 text-lg max-w-3xl mx-auto" style="opacity: 0.7;">Our involvement in EU and national funding programs serves multiple purposes</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Research & Development -->
+                <div class="bento-card group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 8px 20px rgba(255, 75, 54, 0.3);">
+                            <i class="bi bi-lightbulb text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-white font-black text-2xl">Research & Development</h3>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">
+                        Grant funding enables us to invest in long-term research and development of advanced technologies—particularly in AI, machine learning, and interactive platforms—that enhance our core commercial offerings.
+                    </p>
+                </div>
+
+                <!-- Cross-Border Collaboration -->
+                <div class="bento-card group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 8px 20px rgba(255, 75, 54, 0.3);">
+                            <i class="bi bi-globe2 text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-white font-black text-2xl">Cross-Border Collaboration</h3>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">
+                        Working with partners from Slovenia, Croatia, Serbia, Montenegro, and across Europe keeps us connected to the latest trends in digital transformation and exposes us to diverse challenges and innovative solutions.
+                    </p>
+                </div>
+
+                <!-- Social Impact -->
+                <div class="bento-card group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 8px 20px rgba(255, 75, 54, 0.3);">
+                            <i class="bi bi-heart text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-white font-black text-2xl">Social Impact</h3>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">
+                        Many of our grant projects address important societal needs—from strengthening local journalism and improving media literacy to advancing education and preserving cultural heritage. This work aligns with our values and contributes to communities across the Balkans and Europe.
+                    </p>
+                </div>
+
+                <!-- Validation & Credibility -->
+                <div class="bento-card group">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 8px 20px rgba(255, 75, 54, 0.3);">
+                            <i class="bi bi-award text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-white font-black text-2xl">Validation & Credibility</h3>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed" style="opacity: 0.85;">
+                        Success in competitive EU funding programs (Creative Europe, CERV, Erasmus+, Horizon Europe) and national innovation schemes demonstrates the quality and innovation of our technical approach, validated by independent expert reviewers.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .bento-card {
+                padding: 2rem;
+                border-radius: 1.5rem;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            }
+
+            .bento-card:hover {
+                transform: translateY(-8px) rotateX(2deg);
+                box-shadow:
+                    0 20px 40px rgba(0, 0, 0, 0.3),
+                    inset 0 0 0 1px rgba(255, 75, 54, 0.3),
+                    0 0 30px rgba(255, 75, 54, 0.1);
+                border-color: rgba(255, 75, 54, 0.2);
+                background: rgba(255, 255, 255, 0.05);
+            }
+        </style>
+    </section>
+
+    <!-- Our Track Record Section - Glass Dashboard -->
+    <section class="relative py-24" style="background: #200A24;">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-5xl mb-6">Our Track Record</h2>
+            </div>
+
+            <!-- Programs Timeline -->
+            <div class="programs-timeline">
+                <!-- Innovation Fund Serbia -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="bi bi-trophy text-orange-500 text-3xl"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="text-white font-black text-2xl mb-3">Innovation Fund Serbia (EU-supported)</h3>
+                        <p class="text-gray-300 text-base leading-relaxed mb-2">
+                            <strong class="text-orange-500">MapApp Interactive Posters</strong> - Recognized as one of 13 most innovative projects in the 2022 acceleration program, now deployed in 450+ Serbian schools
+                        </p>
+                        <p class="text-gray-300 text-base leading-relaxed">
+                            <strong class="text-orange-500">Precise Transcription of Speech to Text (2024)</strong> - Advancing our LitteraWorks AI platform with €150,000+ in research funding
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Creative Europe -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="bi bi-film text-orange-500 text-3xl"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="text-white font-black text-2xl mb-3">Creative Europe</h3>
+                        <p class="text-gray-300 text-base"><strong class="text-orange-500">NewLocal (2023-2025)</strong> - Technical partner in consortium of 10 local media organizations across Slovenia, Croatia, Serbia, and Montenegro</p>
+                    </div>
+                </div>
+
+                <!-- CERV Programme -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="bi bi-people text-orange-500 text-3xl"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="text-white font-black text-2xl mb-3">CERV Programme</h3>
+                        <p class="text-gray-300 text-base"><strong class="text-orange-500">MediaMasters (2024-2026)</strong> - Digital literacy and civic engagement platform</p>
+                    </div>
+                </div>
+
+                <!-- Erasmus+ -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="bi bi-mortarboard text-orange-500 text-3xl"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="text-white font-black text-2xl mb-3">Erasmus+</h3>
+                        <p class="text-gray-300 text-base"><strong class="text-orange-500">UpSpace (2024-2026)</strong> - Upcycling and urban regeneration for green skills, partnering with 7 organizations across Europe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .programs-timeline {
+                position: relative;
+                padding-left: 3rem;
+            }
+
+            .programs-timeline::before {
+                content: '';
+                position: absolute;
+                left: 2rem;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: linear-gradient(180deg, rgba(255, 75, 54, 0.5) 0%, rgba(255, 75, 54, 0.1) 100%);
+            }
+
+            .timeline-item {
+                display: flex;
+                gap: 2rem;
+                margin-bottom: 3rem;
+                position: relative;
+            }
+
+            .timeline-icon {
+                width: 4rem;
+                height: 4rem;
+                border-radius: 1rem;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 75, 54, 0.3);
+                backdrop-filter: blur(10px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                position: relative;
+                z-index: 1;
+            }
+
+            .timeline-content {
+                flex: 1;
+                padding: 1.5rem;
+                border-radius: 1rem;
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(10px);
+            }
+        </style>
+
+    </section>
+
+    <!-- Technology Areas Section -->
+    <section class="relative py-24" style="background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%);">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-5xl mb-6">Technology Areas</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- AI & Machine Learning -->
+                <div class="contact-card text-center">
+                    <div class="mb-6">
+                        <i class="bi bi-robot text-orange-500 text-5xl"></i>
+                    </div>
+                    <h4 class="text-white font-black text-xl mb-6">AI & Machine Learning</h4>
+                    <ul class="text-left space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Speech-to-text for 40+ languages</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">NLP for Slavic languages</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Semantic search</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Automated content generation</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Interactive Learning -->
+                <div class="contact-card text-center">
+                    <div class="mb-6">
+                        <i class="bi bi-controller text-orange-500 text-5xl"></i>
+                    </div>
+                    <h4 class="text-white font-black text-xl mb-6">Interactive Learning</h4>
+                    <ul class="text-left space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">QR-code micro-learning</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Gamification systems</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Mobile-first platforms</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">User-generated content</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Digital Media -->
+                <div class="contact-card text-center">
+                    <div class="mb-6">
+                        <i class="bi bi-broadcast text-orange-500 text-5xl"></i>
+                    </div>
+                    <h4 class="text-white font-black text-xl mb-6">Digital Media</h4>
+                    <ul class="text-left space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Multi-platform CMS</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Collaboration tools</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Audience analytics</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Monetization models</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Civic Technology -->
+                <div class="contact-card text-center">
+                    <div class="mb-6">
+                        <i class="bi bi-flag text-orange-500 text-5xl"></i>
+                    </div>
+                    <h4 class="text-white font-black text-xl mb-6">Civic Technology</h4>
+                    <ul class="text-left space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Democratic participation</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Media literacy tools</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Cultural heritage</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="bi bi-check-circle-fill text-orange-500 text-lg flex-shrink-0 mt-1"></i>
+                            <span class="text-gray-300">Community engagement</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Approach to Grant Projects Section -->
+    <section class="relative py-24 approach-section">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-5xl mb-6">Our Approach to Grant Projects</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- We want to be socially useful -->
+                <div class="approach-card">
+                    <h3 class="approach-title">We want to be socially useful.</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed" style="opacity: 0.9;">
+                        We've seen projects filled with reports, workshops, and the right words — but with little to show in the end. We join only when we believe something real can come out of it. A product, a tool, a change — something that can make an impact, even if it is a small personal change. If the work ends in a PDF no one reads, we'd rather not take part.
+                    </p>
+                </div>
+
+                <!-- We want to push our limits -->
+                <div class="approach-card">
+                    <h3 class="approach-title">We want to push our limits of technology.</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed" style="opacity: 0.9;">
+                        Each project helps us test what we know and learn what we don't. Sometimes we use things we've built before, but more often we try something new. We are builders, so we use each project to create and improve real things — AI, mobile apps, platforms, content tools...
+                    </p>
+                </div>
+
+                <!-- It has to matter -->
+                <div class="approach-card">
+                    <h3 class="approach-title">It has to matter - to us.</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed" style="opacity: 0.9;">
+                        A project has to connect to something we care about — education, critical thinking, fairness and solidarity, the idea of a better society. Sometimes this feels utopian, even naïve — like trying to return to Aristotle's ideas. If the project really speaks to us, it will be better prepared and better implemented.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .approach-section {
+                background: linear-gradient(180deg,
+                    rgba(45, 13, 52, 1) 0%,
+                    rgba(50, 15, 55, 1) 50%,
+                    rgba(45, 13, 52, 1) 100%);
+                animation: gradientShift 15s ease infinite;
+            }
+
+            @keyframes gradientShift {
+                0%, 100% {
+                    background: linear-gradient(180deg,
+                        rgba(45, 13, 52, 1) 0%,
+                        rgba(50, 15, 55, 1) 50%,
+                        rgba(45, 13, 52, 1) 100%);
+                }
+                50% {
+                    background: linear-gradient(180deg,
+                        rgba(50, 15, 55, 1) 0%,
+                        rgba(55, 18, 60, 1) 50%,
+                        rgba(50, 15, 55, 1) 100%);
+                }
+            }
+
+            .approach-card {
+                padding: 3rem;
+                border-radius: 1.5rem;
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+            }
+
+            .approach-card:hover {
+                background: rgba(255, 255, 255, 0.04);
+                border-color: rgba(255, 75, 54, 0.2);
+                transform: translateY(-4px);
+            }
+
+            .approach-title {
+                font-family: 'Playfair Display', 'Georgia', serif;
+                font-size: 2rem;
+                font-weight: 900;
+                line-height: 1.3;
+                color: white;
+                margin-bottom: 1.5rem;
+                letter-spacing: -0.02em;
+            }
+
+            @media (max-width: 1024px) {
+                .approach-title {
+                    font-size: 1.75rem;
+                }
+            }
+        </style>
+
+        <!-- Load Playfair Display font -->
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    </section>
+
+    <!-- Projects Grid Section - Project Ledgers -->
+    <section class="relative py-24" style="background: #200A24;">
+        <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
+            <div class="text-center mb-16">
+                <h2 class="text-white font-black text-4xl lg:text-5xl mb-6">Our Projects</h2>
+                <p class="text-gray-300 text-lg max-w-3xl mx-auto" style="opacity: 0.7;">Detailed overview of our grant-funded innovation projects</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- Project 1: Mapapp Interactive Posters -->
+                <div class="project-ledger">
+                    <h3 class="text-white font-black text-2xl mb-6">Mapapp Interactive Posters</h3>
+                    <div class="ledger-entries">
+                        <div class="ledger-row">
+                            <span class="ledger-label">Opportunity by</span>
+                            <span class="ledger-value">The Innovation Fund of the Republic of Serbia</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Call</span>
+                            <span class="ledger-value">Mini Grants Program</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Programme</span>
+                            <span class="ledger-value">Matching grants</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Started</span>
+                            <span class="ledger-value">2022</span>
+                        </div>
+                    </div>
+                    <div class="ledger-actions">
+                        <a href="https://www.inovacionifond.rs/en/news/mapapp-knowledge-in-your-pocket" target="_blank" class="shimmer-button">
+                            <span>View Call</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="https://www.mapapp.app/" target="_blank" class="shimmer-button">
+                            <span>Project Website</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: NEWLOCAL -->
+                <div class="project-ledger">
+                    <h3 class="text-white font-black text-2xl mb-6">NEWLOCAL - New approaches for local media</h3>
+                    <div class="ledger-entries">
+                        <div class="ledger-row">
+                            <span class="ledger-label">Opportunity by:</span>
+                            <span class="ledger-value">European Commission, EU</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Call:</span>
+                            <span class="ledger-value">NEWS - Journalism Partnerships</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Programme:</span>
+                            <span class="ledger-value">CREA</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Started:</span>
+                            <span class="ledger-value">2023</span>
+                        </div>
+                    </div>
+                    <div class="ledger-actions">
+                        <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43251814/101112491/CREA2027?order=DESC&pageNumber=1&pageSize=10&sortBy=es_SortDate&keywords=newlocal" target="_blank" class="shimmer-button">
+                            <span>View Call</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="https://newlocal.mpanel.app/" target="_blank" class="shimmer-button">
+                            <span>Project Website</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Media Masters -->
+                <div class="project-ledger">
+                    <h3 class="text-white font-black text-2xl mb-6">Media Masters: Enhancing Media Literacy</h3>
+                    <div class="ledger-entries">
+                        <div class="ledger-row">
+                            <span class="ledger-label">Opportunity by:</span>
+                            <span class="ledger-value">European Commission, EU</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Call:</span>
+                            <span class="ledger-value">Citizens' engagement and participation</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Programme:</span>
+                            <span class="ledger-value">CERV</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Started:</span>
+                            <span class="ledger-value">2024</span>
+                        </div>
+                    </div>
+                    <div class="ledger-actions">
+                        <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43251589/101148165/CERV?order=DESC&pageNumber=1&pageSize=10&sortBy=es_SortDate&keywords=Media%20Masters" target="_blank" class="shimmer-button">
+                            <span>View Call</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="https://mediamasters.mpanel.app/" target="_blank" class="shimmer-button">
+                            <span>Project Website</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Precise transcription -->
+                <div class="project-ledger">
+                    <h3 class="text-white font-black text-2xl mb-6">Precise transcription of media content in Serbian</h3>
+                    <div class="ledger-entries">
+                        <div class="ledger-row">
+                            <span class="ledger-label">Opportunity by:</span>
+                            <span class="ledger-value">The Innovation Fund of the Republic of Serbia</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Call:</span>
+                            <span class="ledger-value">GovTech</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Programme:</span>
+                            <span class="ledger-value">GovTech</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Started:</span>
+                            <span class="ledger-value">2024</span>
+                        </div>
+                    </div>
+                    <div class="ledger-actions">
+                        <a href="https://www.inovacionifond.rs/cir/program/govtech/finansirani/govtech-program#dropdown-menu" target="_blank" class="shimmer-button">
+                            <span>Project Website</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5: UpSpace -->
+                <div class="project-ledger">
+                    <h3 class="text-white font-black text-2xl mb-6">UpSpace: Upcycling and Regeneration of urban Space for green skills</h3>
+                    <div class="ledger-entries">
+                        <div class="ledger-row">
+                            <span class="ledger-label">Opportunity by:</span>
+                            <span class="ledger-value">European Commission, EU</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Call:</span>
+                            <span class="ledger-value">Cooperation partnerships in school education (KA220-SCH)</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Programme:</span>
+                            <span class="ledger-value">Erasmus+</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Started:</span>
+                            <span class="ledger-value">2024</span>
+                        </div>
+                    </div>
+                    <div class="ledger-actions">
+                        <a href="https://erasmus-plus.ec.europa.eu/projects/search/details/2024-1-IT02-KA220-SCH-000249480" target="_blank" class="shimmer-button">
+                            <span>View Call</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="https://upspace.mpanel.app/en" target="_blank" class="shimmer-button">
+                            <span>Project Website</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6: Safeguard the Truth -->
+                <div class="project-ledger">
+                    <h3 class="text-white font-black text-2xl mb-6">Safeguard the Truth - AI Solution for whistleblower Reporting Support</h3>
+                    <div class="ledger-entries">
+                        <div class="ledger-row">
+                            <span class="ledger-label">Opportunity by:</span>
+                            <span class="ledger-value">European Commission, EU</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Call:</span>
+                            <span class="ledger-value">CERV-2024-CHAR-LITI</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Programme:</span>
+                            <span class="ledger-value">CERV</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span class="ledger-label">Started:</span>
+                            <span class="ledger-value">2025</span>
+                        </div>
+                    </div>
+                    <div class="ledger-actions">
+                        <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43251589/101214785/CERV" target="_blank" class="shimmer-button">
+                            <span>View Call</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <style>
+            .project-ledger {
+                padding: 2.5rem;
+                border-radius: 1.5rem;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            }
+
+            .project-ledger:hover {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 75, 54, 0.2);
+                transform: translateY(-4px);
+                box-shadow:
+                    0 12px 40px rgba(0, 0, 0, 0.3),
+                    inset 0 0 0 1px rgba(255, 75, 54, 0.1);
+            }
+
+            .ledger-entries {
+                margin-bottom: 2rem;
+                padding-bottom: 2rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .ledger-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .ledger-row:last-child {
+                border-bottom: none;
+            }
+
+            .ledger-label {
+                font-size: 0.875rem;
+                font-weight: 700;
+                color: rgba(255, 75, 54, 0.9);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                min-width: 140px;
+            }
+
+            .ledger-value {
+                color: rgba(255, 255, 255, 0.85);
+                text-align: right;
+                flex: 1;
+            }
+
+            .ledger-actions {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .shimmer-button {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.75rem 1.5rem;
+                border-radius: 0.75rem;
+                background: rgba(255, 75, 54, 0.1);
+                border: 1px solid rgba(255, 75, 54, 0.3);
+                color: white;
+                font-weight: 600;
+                font-size: 0.875rem;
+                text-decoration: none;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .shimmer-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent
+                );
+                transition: left 0.5s ease;
+            }
+
+            .shimmer-button:hover::before {
+                left: 100%;
+            }
+
+            .shimmer-button:hover {
+                background: rgba(255, 75, 54, 0.2);
+                border-color: rgba(255, 75, 54, 0.5);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(255, 75, 54, 0.3);
+            }
+
+            .shimmer-button i {
+                transition: transform 0.3s ease;
+            }
+
+            .shimmer-button:hover i {
+                transform: translateX(4px);
+            }
+        </style>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="relative py-24" style="background: linear-gradient(180deg, rgba(45, 13, 52, 1) 0%, rgba(32, 10, 36, 1) 50%, rgba(32, 10, 36, 1) 100%);">
+        <div class="mx-auto px-6 lg:px-8 text-center" style="max-width: 1600px;">
+            <div class="inline-block px-4 py-2 rounded-lg glass-light mb-6">
+                <span class="text-orange-500 text-xs font-black tracking-wider uppercase">Got an idea?</span>
+            </div>
+            <h2 class="text-white font-black text-4xl lg:text-5xl mb-8 max-w-3xl mx-auto">
+                If you are looking for a reliable partner in AI and innovation, let's talk.
+            </h2>
+            <a href="/about.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-full font-black text-white transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);">
+                CONTACT US
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+```
