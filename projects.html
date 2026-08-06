@@ -998,9 +998,10 @@
                 <p class="aw-body" style="margin: 0; max-width: 32rem;">What we have learned building and reporting on publicly funded projects.</p>
             </div>
 
-            <div id="grantInsights" class="aw-artgrid">
-                <!-- filled by the script below -->
-            </div>
+            <div id="grantInsights" class="aw-artgrid"
+                 data-insights-category="10"
+                 data-insights-limit="5"
+                 data-insights-label="Grant Projects"></div>
 
             <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">
                 <a href="/insights?category=10" class="aw-btn-2"><span>View all grant project insights</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
@@ -1079,81 +1080,6 @@
         </div>
     </footer>
 <script src="/js/nav.js" defer></script>
-
-<script>
-/*
- * Latest Insights, Grant Projects category only.
- *
- * The hidden-slug filter is repeated here deliberately. Articles in the
- * litteraworks-com category live on another domain and must not surface on this
- * site; that rule is enforced at every fetch site rather than centrally, and
- * this is now one of those sites.
- */
-(function () {
-    const grid = document.getElementById('grantInsights');
-    if (!grid) return;
-
-    const GRANT_CATEGORY = 10;
-    const HIDDEN_SLUGS = ['litteraworks-com'];
-    const FALLBACK_IMG = 'https://app-works.app/images/placeholder.jpg';
-
-    const escapeHtml = (s) => String(s || '').replace(/[&<>"']/g, (c) =>
-        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-
-    const createSlug = (title) => String(title || '').toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-
-    const formatDate = (value) => {
-        const d = new Date(value);
-        if (isNaN(d)) return '';
-        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-    };
-
-    const categoryName = (article) => {
-        const cats = (article.categories || []).filter(c => !HIDDEN_SLUGS.includes(c.slug));
-        return cats.length ? cats[0].name : 'Grant Projects';
-    };
-
-    fetch('https://appworks.mpanel.app/api/webV2/getArticles?category[]=' + GRANT_CATEGORY + '&articleLimit=5', {
-        headers: { 'Authorization': 'kmNTuI8dRmRX' }
-    })
-        .then(r => r.json())
-        .then(data => {
-            const articles = (data && data.result && data.result.articles) || [];
-            const visible = articles.filter(a =>
-                !(a.categories || []).some(c => HIDDEN_SLUGS.includes(c.slug))).slice(0, 5);
-
-            if (!visible.length) {
-                // no invented content, and no empty grid left behind
-                grid.closest('section').style.display = 'none';
-                return;
-            }
-
-            grid.innerHTML = visible.map(a => {
-                const slug = a.slug || createSlug(a.title);
-                const img = (a.images && ((a.images['large-full'] || {}).url || (a.images['medium-full'] || {}).url)) || FALLBACK_IMG;
-                const title = escapeHtml(a.title);
-                return `
-                <a href="/article/${encodeURIComponent(slug)}" class="aw-artcard">
-                    <div class="aw-thumb aw-thumb--wide" style="--aw-thumb-img: url('${img}')">
-                        <img loading="lazy" src="${img}" alt="${title}" onerror="this.src='${FALLBACK_IMG}'">
-                    </div>
-                    <div class="aw-artcard__body">
-                        <div class="aw-artcard__meta">
-                            <span class="aw-artcard__cat">${escapeHtml(categoryName(a))}</span>
-                            <span>${formatDate(a.created_at)}</span>
-                        </div>
-                        <h3 class="aw-artcard__title">${title}</h3>
-                        <span class="aw-artcard__more">Read more <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
-                    </div>
-                </a>`;
-            }).join('');
-        })
-        .catch(err => {
-            console.error('Grant project insights failed to load:', err);
-            grid.closest('section').style.display = 'none';
-        });
-})();
-</script>
+<script src="/js/insights-teaser.js" defer></script>
 </body>
 </html>

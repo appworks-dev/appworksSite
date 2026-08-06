@@ -525,6 +525,9 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
+    /* a date must not break across lines inside its own span; when the row does
+       have to wrap it wraps between badge and date, not mid-date */
+    white-space: nowrap;
     font-size: 0.6875rem;
     color: rgba(255, 255, 255, 0.5);
 }

@@ -883,6 +883,34 @@
             </div>
         </section>
 
+        <!-- ================================ LATEST INSIGHTS === -->
+        <!--
+            Rendered by js/insights-teaser.js from the category id on the grid.
+            Ids match the Insights filter buttons in articles.php. The View all
+            link carries ?category=3 so /insights opens already filtered
+            rather than on "All".
+        -->
+        <section class="aw-sec aw-sec--ruled">
+            <div class="aw-wrap">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
+                    <div>
+                        <h2 class="aw-h2">Writing about sport and technology</h2>
+                        <div style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
+                    </div>
+                    <p class="aw-body" style="margin: 0; max-width: 32rem;">What we have learned building for clubs, leagues and federations.</p>
+                </div>
+
+                <div id="sportInsights" class="aw-artgrid"
+                     data-insights-category="3"
+                     data-insights-limit="5"
+                     data-insights-label="Sports"></div>
+
+                <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">
+                    <a href="/insights?category=3" class="aw-btn-2"><span>View all sport insights</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section -->
         <section class="relative" style="padding-top: clamp(3rem, 8vh, 7rem); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
             <div class="mx-auto text-center" style="max-width: 900px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
@@ -959,5 +987,6 @@
     <script src="/js/partner-logos.js"></script>
     <script src="/js/partner-loader.js"></script>
 <script src="/js/nav.js" defer></script>
+    <script src="/js/insights-teaser.js" defer></script>
 </body>
 </html>
