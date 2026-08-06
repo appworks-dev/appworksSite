@@ -446,6 +446,257 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     font-size: clamp(0.875rem, 1.1vw, 1rem);
 }
 
+/* ==================================================================
+   Partner use cases — "How our partners work"
+
+   One component, two modes. On the homepage it is a slider under each
+   flagship platform block; on product pages it is a static grid, because a
+   visitor who has already chosen the product is reading for depth and hiding
+   examples behind a control works against that.
+
+   Deliberately quieter than the block it sits under: smaller type, no card
+   shadow, restrained borders. The platform block stays the hero and this is
+   the evidence beneath it.
+
+   Every slide is in the HTML at load. Nothing is injected on advance, so all
+   of these stories are indexable rather than just the first.
+   ================================================================== */
+
+.aw-uc { margin-top: clamp(1.25rem, 3vh, 2rem); }
+
+.aw-uc__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: clamp(0.625rem, 1.5vh, 0.875rem);
+}
+
+.aw-uc__label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/*
+ * A scroll-snap viewport rather than a transform carousel. Native horizontal
+ * scrolling gives touch swipe and trackpad gestures for free, keeps every slide
+ * in normal flow, and makes "does everything already fit" a plain measurement of
+ * scrollWidth against clientWidth — which is how the controls decide to hide.
+ */
+.aw-uc__viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* width and contain together: without them the track's min-content width
+       propagates up and mobile Chrome widens the layout viewport */
+    width: 100%;
+    max-width: 100%;
+    contain: inline-size;
+}
+
+.aw-uc__viewport::-webkit-scrollbar { display: none; }
+
+.aw-uc__track {
+    display: flex;
+    gap: clamp(0.75rem, 1.5vw, 1.125rem);
+    padding-bottom: 0.25rem;
+}
+
+/*
+ * Wider slides on purpose. Three sentences in a 20rem card ran to nine lines,
+ * which made the slider 476px tall and the whole Mobile apps block 1152px — so
+ * the next block sat entirely off a 680px laptop screen. Wider cards mean fewer
+ * lines for the same copy, which is height saved without truncating anything.
+ */
+.aw-uc__slide {
+    flex: 0 0 min(24rem, 84%);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: clamp(0.75rem, 1.5vw, 1.125rem);
+    border-radius: 0.875rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* --- logos ------------------------------------------------------- */
+
+.aw-uc__logos {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(0.625rem, 1.5vw, 1.125rem);
+    /* one row, matched optical height, up to five logos on a grouped slide */
+    height: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+/*
+ * partner-loader.js replaces the contents of each <div data-partner> but leaves
+ * the div itself, and that wrapper had no height — so the img's max-height: 100%
+ * resolved against an auto-height box, the logos rendered at natural size and
+ * overflowed the row into the partner name below. The wrapper has to carry the
+ * height for the img to measure against.
+ */
+.aw-uc__logos > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    max-width: clamp(3rem, 6vw, 4.5rem);
+    flex-shrink: 0;
+}
+
+.aw-uc__logos img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/*
+ * The brief asked for monochrome logos "as in the partner grid". The partner grid
+ * is NOT monochrome — that treatment was tried and explicitly reversed, with
+ * "keep the original colours". So colour is kept here for consistency with what
+ * is actually live, and the greyscale option is left ready rather than applied.
+ * Add aw-uc--mono to a container to switch it on.
+ */
+.aw-uc--mono .aw-uc__logos img {
+    filter: grayscale(1) brightness(1.35) contrast(0.95);
+}
+
+/* the four names with no approved logo file render as a text wordmark instead,
+   so the slide is never missing its identifier */
+.aw-uc__wordmark {
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+}
+
+/* --- text -------------------------------------------------------- */
+
+.aw-uc__name {
+    margin: 0;
+    font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+/* smaller than the parent block's body copy on purpose */
+.aw-uc__copy {
+    margin: 0;
+    font-size: clamp(0.8125rem, 1vw, 0.9375rem);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.66);
+}
+
+.aw-uc__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: auto;
+    padding-top: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #FF6B50;
+    text-decoration: none;
+}
+
+.aw-uc__link:hover { text-decoration: underline; }
+
+/* --- controls ---------------------------------------------------- */
+
+.aw-uc__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: clamp(0.5rem, 1.2vh, 0.75rem);
+}
+
+/* set by js/use-cases.js when the track already fits, where arrows and dots
+   would be noise rather than help */
+.aw-uc__controls[hidden] { display: none; }
+
+.aw-uc__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: #FFFFFF;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.aw-uc__arrow:hover:not(:disabled) { background: rgba(255, 75, 54, 0.18); border-color: rgba(255, 107, 80, 0.5); }
+.aw-uc__arrow:disabled { opacity: 0.3; cursor: default; }
+.aw-uc__arrow:focus-visible { outline: 2px solid #FF6B50; outline-offset: 2px; }
+
+.aw-uc__dots {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-left: 0.25rem;
+}
+
+.aw-uc__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255, 255, 255, 0.22);
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.aw-uc__dot[aria-current="true"] { background: #FF6B50; transform: scale(1.25); }
+.aw-uc__dot:focus-visible { outline: 2px solid #FF6B50; outline-offset: 2px; }
+
+/* --- static mode, for product pages ------------------------------ */
+
+.aw-uc--static .aw-uc__viewport {
+    overflow: visible;
+    scroll-snap-type: none;
+    contain: none;
+}
+
+.aw-uc--static .aw-uc__track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.aw-uc--static .aw-uc__slide { flex: initial; }
+.aw-uc--static .aw-uc__controls { display: none; }
+
+/* one slide given more space than its neighbours, for a lead story */
+.aw-uc__slide--lead {
+    background: rgba(255, 75, 54, 0.06);
+    border-color: rgba(255, 107, 80, 0.32);
+}
+
+@media (min-width: 900px) {
+    .aw-uc--static .aw-uc__slide--lead { grid-column: span 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .aw-uc__viewport { scroll-behavior: auto; }
+    .aw-uc__dot, .aw-uc__arrow { transition: none; }
+}
+
 /* ------------------------------------------------ article thumbnails --- */
 /*
  * object-fit: contain with a blurred, over-scaled copy of the same image behind
