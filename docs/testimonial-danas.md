@@ -39,9 +39,13 @@ here to check it against.
 
 ## Attribution
 
-No individual name or role was supplied, so both cards are attributed to **Danas /
-Daily newspaper, Serbia**. Every other testimonial on the site names a person and a
-role. A name would match the pattern.
+**Kristina Bondžulić, Danas** — supplied by the client after the quote itself. Both
+cards carry it. No role or job title was given; every other testimonial on the site
+names a person and their organisation, which this now matches, so a title is
+optional rather than missing.
+
+Note the ž and ć: the pages are UTF-8 and the name is written with its diacritics,
+as Predrag Urošević, Mirko Panajotović and Miha Klančar already are.
 
 ## Not to be confused with
 
