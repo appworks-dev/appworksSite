@@ -242,40 +242,8 @@
         }
 
         /* every outstanding decision is marked with this, so they sweep in one grep */
-        /* ----------------------------------- trust bar logo grid --- */
-
-        .vv-logos {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            align-items: center;
-            justify-items: center;
-            gap: clamp(1.25rem, 3vw, 2.5rem);
-        }
-
-        @media (min-width: 640px) { .vv-logos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-        @media (min-width: 1024px) { .vv-logos { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-
-        /*
-         * partner-loader.js replaces the contents of each <div data-partner> and
-         * leaves the div itself, so the wrapper is what has to carry the height —
-         * otherwise the img's max-height: 100% resolves against an auto-height box
-         * and every logo renders at its natural size.
-         */
-        .vv-logos > div {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: clamp(2rem, 3.5vw, 2.75rem);
-        }
-
-        .vv-logos img {
-            max-height: 100%;
-            max-width: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-        }
+        /* The trust bar's static .vv-logos grid was here. It is a scrolling
+           .aw-marquee now, which lives in css/product.css. */
 
         .vv-todo {
             border: 2px dashed rgba(255, 75, 54, 0.45);
@@ -553,33 +521,15 @@
         <div class="mx-auto" style="max-width: 1500px; padding-left: clamp(1.5rem, 5vw, 6rem); padding-right: clamp(1.5rem, 5vw, 6rem);">
             <p class="text-center font-bold uppercase" style="font-size: 0.8125rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.55); margin-bottom: clamp(1rem, 2.5vh, 1.75rem);">Publishers running on the platform</p>
 
-            <div id="verbavista-trust-logos" class="vv-logos">
-                <div data-partner="dan"></div>
-                <div data-partner="insajder"></div>
-                <div data-partner="hanza-media"></div>
-                <div data-partner="krik"></div>
-                <div data-partner="dnevnik"></div>
-                <div data-partner="politika"></div>
-                <div data-partner="dpg"></div>
-                <div data-partner="fraktura"></div>
-                <div data-partner="fonet"></div>
-                <div data-partner="vecer"></div>
-                <div data-partner="financial-afrik"></div>
-                <div data-partner="sat"></div>
-                <div data-partner="geopoetika"></div>
-                <div data-partner="motus-media"></div>
-                <div data-partner="boom93"></div>
-                <div data-partner="pc-press"></div>
-                <div data-partner="tocka"></div>
-                <div data-partner="telesport"></div>
-                <div data-partner="rtv-budva"></div>
-                <div data-partner="varadzinske"></div>
-                <div data-partner="riportal"></div>
-                <div data-partner="infovranjske"></div>
-                <div data-partner="radio-magnum"></div>
-                <div data-partner="novi-tednik"></div>
-                <div data-partner="novski"></div>
-            </div>
+            <!--
+                An auto-scrolling band rather than a static grid, matching the one on
+                the Media and Sport hubs. js/partner-marquee.js builds it from these
+                keys and duplicates the list for the loop; css/product.css owns the
+                animation. Pauses on hover, and becomes a static wrapped band under
+                prefers-reduced-motion.
+            -->
+            <div id="verbavista-trust-logos" class="aw-marquee"
+                 data-marquee="dan, insajder, hanza-media, krik, dnevnik, politika, dpg, fraktura, fonet, vecer, financial-afrik, sat, geopoetika, motus-media, boom93, pc-press, tocka, telesport, rtv-budva, varadzinske, riportal, infovranjske, radio-magnum, novi-tednik, novski"></div>
         </div>
     </section>
 
@@ -948,5 +898,6 @@
 <script src="/js/nav.js" defer></script>
 <script src="/js/partner-logos.js"></script>
 <script src="/js/partner-loader.js"></script>
+<script src="/js/partner-marquee.js"></script>
 </body>
 </html>

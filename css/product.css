@@ -805,6 +805,73 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
 .aw-artcard:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, 0.22); }
 .aw-artcard:hover .aw-thumb img { transform: scale(1.04); }
 
+/* --- partner marquee ------------------------------------------- */
+
+/*
+ * The auto-scrolling logo band. media.html and sport.html each carry their own
+ * inline copy of this, with hard-coded pixel sizes and, on sport, hard-coded image
+ * URLs that bypass partner-logos.js entirely — which is why a logo removed from
+ * that file can still appear there. This is the shared version; those two should
+ * migrate onto it rather than a third copy being written.
+ *
+ * The loop works by duplicating the logo list and translating the track by exactly
+ * -50%, so the second half arrives where the first began. js/partner-marquee.js
+ * builds both halves and marks the copy aria-hidden.
+ */
+.aw-marquee {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(0.75rem, 2vh, 1.25rem) 0;
+}
+
+.aw-marquee__track {
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 4vw, 3.75rem);
+    width: max-content;
+    /* duration is set per instance from the logo count, so more logos scroll for
+       longer rather than faster */
+    animation: aw-marquee-scroll var(--aw-marquee-duration, 40s) linear infinite;
+}
+
+/* hovering anywhere over the band stops it, so a logo can actually be looked at */
+.aw-marquee:hover .aw-marquee__track { animation-play-state: paused; }
+
+/* the duplicated half is a wrapper so it can be hidden in one move, but it must not
+   introduce a box of its own into the flex row */
+.aw-marquee__dupe { display: contents; }
+
+.aw-marquee__track img {
+    height: clamp(2.25rem, 4vw, 3.5rem);
+    width: auto;
+    max-width: clamp(6rem, 12vw, 12.5rem);
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.aw-marquee__track img:hover { transform: scale(1.1); }
+
+@keyframes aw-marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/*
+ * Reduced motion gets a static wrapped band instead of a stopped scroller — a
+ * halted marquee would cut off every logo past the first screenful. The duplicate
+ * half has to go with it, or every logo appears twice.
+ */
+@media (prefers-reduced-motion: reduce) {
+    .aw-marquee__track {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        gap: clamp(1.25rem, 3vw, 2.5rem);
+    }
+    .aw-marquee__dupe { display: none; }
+}
+
 /* --- category tabs over a grid --------------------------------- */
 
 .aw-tabs {
