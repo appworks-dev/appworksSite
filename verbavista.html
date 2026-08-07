@@ -125,6 +125,8 @@
             width: 100%;
             height: 100%;
             border-radius: clamp(1.375rem, 3.2vw, 2rem);
+            /* the radius does nothing to a child image without this */
+            overflow: hidden;
             background:
                 radial-gradient(circle at 30% 15%, rgba(255, 75, 54, 0.16) 0%, transparent 55%),
                 radial-gradient(circle at 75% 85%, rgba(139, 92, 246, 0.14) 0%, transparent 55%),
@@ -132,6 +134,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .vv-device__screen img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
         }
 
         .vv-device__label {
@@ -502,7 +512,7 @@
                     <div class="vv-glow"></div>
                     <div class="vv-device vv-device--hero">
                         <div class="vv-device__screen">
-                            <span class="vv-device__label">Generic device frame<br>approved app screenshot pending</span>
+                            <img loading="eager" fetchpriority="high" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3339.png?crop=true" alt="The Insajder app, built on VerbaVista, showing its home feed of latest stories">
                         </div>
                         <div class="vv-device__notch"></div>
                     </div>
@@ -596,7 +606,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><span class="vv-device__label">Generic frame</span></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3337.png?crop=true" alt="The DAN app home screen, with the lead story and section tabs"></div><div class="vv-device__notch"></div></div>
                 </div>
             </div>
 
@@ -604,7 +614,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 6rem);">
                 <div class="relative flex justify-center order-2 lg:order-1">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><span class="vv-device__label">Generic frame</span></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3338.png?crop=true" alt="The KRIK app showing its investigations section"></div><div class="vv-device__notch"></div></div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <span class="vv-eyebrow">Personalisation</span>
@@ -632,7 +642,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><span class="vv-device__label">Generic frame</span></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3336.png?crop=true" alt="An article open in the Boom 93 app, with type size, bookmark and share controls"></div><div class="vv-device__notch"></div></div>
                 </div>
             </div>
 
@@ -640,7 +650,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 6rem);">
                 <div class="relative flex justify-center order-2 lg:order-1">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><span class="vv-device__label">Generic frame</span></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3340.png?crop=true" alt="A reader-submitted post in the SAT Hub app community feed"></div><div class="vv-device__notch"></div></div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <span class="vv-eyebrow">Community</span>
@@ -667,7 +677,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><span class="vv-device__label">Generic frame</span></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3342.png?crop=true" alt="The Vecer app e-paper kiosk, listing the latest print editions"></div><div class="vv-device__notch"></div></div>
                 </div>
             </div>
 
@@ -675,7 +685,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem);">
                 <div class="relative flex justify-center order-2 lg:order-1">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><span class="vv-device__label">Generic frame</span></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3343.png?crop=true" alt="A three-question quiz running in the SAT Hub app"></div><div class="vv-device__notch"></div></div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <span class="vv-eyebrow">Engagement</span>
