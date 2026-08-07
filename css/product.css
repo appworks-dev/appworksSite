@@ -279,8 +279,15 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     background: rgba(255, 255, 255, 0.22);
 }
 
+/*
+ * 22/10, not 16/10. The dashboard screenshots this frame exists to hold measure
+ * 1532x696 and similar, which is 2.20:1 — at 16:10 object-fit: cover would have
+ * taken about 27% off the width, and on a dashboard that means the sidebar or the
+ * right-hand panels. Every one of the six is between 2.18 and 2.22, so 2.2 fits
+ * them all to within a percent. Only monitoring.html uses .aw-frame.
+ */
 .aw-frame__screen {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 22 / 10;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,6 +295,14 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
         radial-gradient(circle at 25% 20%, rgba(255, 75, 54, 0.14) 0%, transparent 55%),
         radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 55%),
         #150518;
+}
+
+.aw-frame__screen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
 }
 
 .aw-frame__label {
@@ -451,6 +466,11 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     .aw-steps { grid-template-columns: repeat(4, 1fr); }
 }
 
+/*
+ * Coral numerals, same treatment as the connected-stack chips. A step sequence is
+ * the one place on a page where the numbers are the navigation, and in white they
+ * sat at the same weight as every other bordered circle on the site.
+ */
 .aw-step__n {
     display: inline-flex;
     align-items: center;
@@ -458,9 +478,9 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     width: clamp(2.25rem, 3vw, 2.75rem);
     height: clamp(2.25rem, 3vw, 2.75rem);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #FFFFFF;
+    background: rgba(255, 75, 54, 0.14);
+    border: 1px solid rgba(255, 107, 80, 0.4);
+    color: #FF6B50;
     font-weight: 900;
     font-size: clamp(0.875rem, 1.1vw, 1rem);
 }
