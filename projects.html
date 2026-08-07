@@ -373,13 +373,44 @@
                 gap: clamp(1.25rem, 4vw, 3.5rem);
             }
 
-            /* no box borders, matched optical height, one colour treatment */
+            /* matched optical height, one row */
             .pj-logo {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 height: clamp(2.5rem, 5vw, 3.5rem);
                 padding: 0 0.5rem;
+            }
+
+            .pj-logo img {
+                max-height: 100%;
+                max-width: clamp(7rem, 14vw, 11rem);
+                width: auto;
+                object-fit: contain;
+            }
+
+            /*
+             * A white plate for the two lockups that are dark artwork on white. The
+             * EU emblem has to be legible where it appears, and inverting or
+             * greyscaling an EU logo is not permitted.
+             */
+            .pj-logo--plate {
+                background: #FFFFFF;
+                border-radius: 0.5rem;
+                padding: 0.5rem 0.75rem;
+                height: clamp(2.75rem, 5.5vw, 3.75rem);
+            }
+
+            /*
+             * The CERV lockup is nearly square, 350x300, where every other logo here
+             * is wide. Capped at the same height as the rest it rendered at 75px
+             * against Horizon's 173px, and its text stopped being readable at all -
+             * which for an EU logo is a compliance problem, not just an aesthetic
+             * one. Matching by optical area rather than by height means letting the
+             * square one stand taller than the row.
+             */
+            .pj-logo--square {
+                height: clamp(3.75rem, 7.5vw, 5.25rem);
             }
 
             .pj-logo span {
@@ -396,18 +427,34 @@
             /* ------------------------------------------- hero photo slot --- */
 
             .pj-photo {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 0.75rem;
+                /*
+                 * The crop is deliberate, not a framing accident. An identifiable
+                 * pupil appears at the left of the photograph, and the instruction
+                 * for this page is that no identifiable child is published without
+                 * confirmed written consent for commercial use. A 16/9 photo in a
+                 * 4/3 frame loses a quarter of its width to object-fit: cover
+                 * anyway; pinning it right drops the quarter with her face in it
+                 * and keeps the hand, the phone and the poster.
+                 *
+                 * One value to change if consent is confirmed: 50% 50%.
+                 */
+                --pj-photo-pos: 100% 50%;
                 width: 100%;
                 max-width: 34rem;
                 aspect-ratio: 4 / 3;
                 border-radius: clamp(1rem, 2vw, 1.5rem);
-                border: 2px dashed rgba(255, 255, 255, 0.16);
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.12);
                 background: rgba(255, 255, 255, 0.02);
-                text-align: center;
+                box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            }
+
+            .pj-photo img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: var(--pj-photo-pos);
             }
 
             .pj-photo i { font-size: clamp(1.5rem, 3vw, 2.25rem); color: rgba(255, 255, 255, 0.3); }
@@ -651,17 +698,17 @@
                 </div>
 
                 <!--
-                    The generated illustration that was here has been removed: a
-                    generated image undercuts a page whose central claim is that we
-                    build real things. Waiting on a photograph of MapApp posters in
-                    a school. Framing should show the posters and the room, with no
-                    identifiable pupils, so no consent question arises.
+                    A real photograph, supplied by the client: a pupil scanning a
+                    MapApp history-of-music poster in a school. Cropped by
+                    object-position rather than re-cut, because an identifiable
+                    child is in the discarded quarter. See the note on .pj-photo.
                 -->
                 <div class="relative flex justify-center">
                     <div class="aw-glow"></div>
-                    <div class="pj-photo" role="img" aria-label="Placeholder for a photograph of MapApp interactive posters in a school">
-                        <i class="bi bi-camera" aria-hidden="true"></i>
-                        <span>Photograph pending<br>MapApp posters in a school</span>
+                    <div class="pj-photo">
+                        <img loading="eager" fetchpriority="high"
+                             src="https://appworks.mpanel.app/image/cache/original/files/images/mapapp-milicaslika.jpg?crop=true"
+                             alt="A pupil scanning a MapApp interactive poster on a classroom wall with a phone">
                     </div>
                 </div>
             </div>
@@ -684,15 +731,15 @@
             <div class="grid grid-cols-1 lg:grid-cols-3" style="gap: clamp(1.25rem, 3vw, 2rem);">
                 <div class="pj-approach">
                     <h3 class="pj-approach__title">We want to be socially useful.</h3>
-                    <p class="pj-approach__body">We've seen projects filled with reports, workshops, and the right words &mdash; but with little to show in the end. We join only when we believe something real can come out of it. A product, a tool, a change &mdash; something that can make an impact, even if it is a small personal change. If the work ends in a PDF no one reads, we'd rather not take part.</p>
+                    <p class="pj-approach__body">We've seen projects filled with reports, workshops, and the right words, but with little to show in the end. We join only when we believe something real can come out of it. A product, a tool, a change, something that can make an impact, even if it is a small personal change. If the work ends in a PDF no one reads, we'd rather not take part.</p>
                 </div>
                 <div class="pj-approach">
                     <h3 class="pj-approach__title">We want to push our limits of technology.</h3>
-                    <p class="pj-approach__body">Each project helps us test what we know and learn what we don't. Sometimes we use things we've built before, but more often we try something new. We are builders, so we use each project to create and improve real things &mdash; AI, mobile apps, platforms, content tools&hellip;</p>
+                    <p class="pj-approach__body">Each project helps us test what we know and learn what we don't. Sometimes we use things we've built before, but more often we try something new. We are builders, so we use each project to create and improve real things: AI, mobile apps, platforms, content tools&hellip;</p>
                 </div>
                 <div class="pj-approach">
-                    <h3 class="pj-approach__title">It has to matter &mdash; to us.</h3>
-                    <p class="pj-approach__body">A project has to connect to something we care about &mdash; education, critical thinking, fairness and solidarity, the idea of a better society. Sometimes that sounds idealistic, even na&iuml;ve. But if a project really speaks to us, it will be better prepared and better implemented.</p>
+                    <h3 class="pj-approach__title">It has to matter to us.</h3>
+                    <p class="pj-approach__body">A project has to connect to something we care about: education, critical thinking, fairness and solidarity, the idea of a better society. Sometimes that sounds idealistic, even na&iuml;ve. But if a project really speaks to us, it will be better prepared and better implemented.</p>
                 </div>
             </div>
         </div>
@@ -751,7 +798,7 @@
                 <article class="pj-card">
                     <header class="pj-card__head">
                         <h3 class="aw-h4" style="margin: 0;">NEWLOCAL</h3>
-                        <p class="aw-sub" style="margin: 0.25rem 0 0;">NEWLOCAL &mdash; New approaches for local media</p>
+                        <p class="aw-sub" style="margin: 0.25rem 0 0;">NEWLOCAL - New approaches for local media</p>
                     </header>
 
                     <p class="aw-body pj-card__lead">Technical partner in a consortium of 10 local media organisations across Slovenia, Croatia, Serbia and Montenegro.</p>
@@ -882,10 +929,10 @@
                 <article class="pj-card">
                     <header class="pj-card__head">
                         <h3 class="aw-h4" style="margin: 0;">Safeguard the Truth</h3>
-                        <p class="aw-sub" style="margin: 0.25rem 0 0;">Safeguard the Truth &mdash; AI Solution for whistleblower Reporting Support</p>
+                        <p class="aw-sub" style="margin: 0.25rem 0 0;">STAIRS - Safeguard the Truth: AI Solution for Whistleblower Reporting Support</p>
                     </header>
 
-                    <p class="aw-todo pj-card__lead" style="text-align: left;">Description needed &mdash; the old page carried no narrative detail for this project</p>
+                    <p class="aw-todo pj-card__lead" style="text-align: left;">Description needed: the old page carried no narrative detail for this project</p>
 
                     <!--
                         A definition list, so status, our consortium role and
@@ -906,6 +953,72 @@
 
                     <footer class="pj-card__links">
                         <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43251589/101214785/CERV" target="_blank" rel="noopener" class="aw-link">View Call <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+                        <a href="https://stairsproject.eu/" target="_blank" rel="noopener" class="aw-link">Project Website <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+                    </footer>
+                </article>
+
+                <!-- DIGI-FRAME -->
+                <article class="pj-card">
+                    <header class="pj-card__head">
+                        <h3 class="aw-h4" style="margin: 0;">DIGI-FRAME</h3>
+                        <p class="aw-sub" style="margin: 0.25rem 0 0;">DIGI-FRAME - AI-Powered Digital Skills Assessment Framework</p>
+                    </header>
+
+                    <p class="aw-body pj-card__lead">An AI-powered framework and platform for assessing digital skills in lower secondary schools, built with 13 partners across six countries.</p>
+
+                    <!--
+                        A definition list, so status, our consortium role and
+                        outcomes can each be added later as one more dt/dd pair
+                        without touching the layout.
+                    -->
+                    <dl class="pj-meta">
+                        <dt>Funding body</dt><dd>European Commission, EU</dd>
+                        <dt>Call</dt><dd>Digital education: Assessment of digital skills and competences (ERASMUS-EDU-2025-PI-FORWARD-DIGITAL-SC)</dd>
+                        <dt>Programme</dt><dd>Erasmus+</dd>
+                        <dt>Started</dt><dd>2026</dd>
+                    </dl>
+
+                    <ul class="pj-tags">
+                        <li>AI &amp; machine learning</li>
+                        <li>Interactive learning</li>
+                        <li>Assessment tools</li>
+                    </ul>
+
+                    <footer class="pj-card__links">
+                        <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43353764/101259579/ERASMUS2027" target="_blank" rel="noopener" class="aw-link">View Call <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+                        <a href="https://www.digiframe.eu/" target="_blank" rel="noopener" class="aw-link">Project Website <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+                    </footer>
+                </article>
+
+                <!--
+                    ROMATRIGHTS. Only the funding body, the programme and the call
+                    reference came with it; the title, the description, the tags and
+                    the start year did not, and are marked rather than guessed. The
+                    call reference and the start year were both flagged "confirm" by
+                    the client, so they say so on the card.
+                -->
+                <article class="pj-card">
+                    <header class="pj-card__head">
+                        <h3 class="aw-h4" style="margin: 0;">ROMATRIGHTS</h3>
+                        <p class="aw-sub" style="margin: 0.25rem 0 0;">Full project title needed</p>
+                    </header>
+
+                    <p class="aw-todo pj-card__lead" style="text-align: left;">Description needed, and the technology tags with it: what we are building on this one has not been settled</p>
+
+                    <!--
+                        A definition list, so status, our consortium role and
+                        outcomes can each be added later as one more dt/dd pair
+                        without touching the layout.
+                    -->
+                    <dl class="pj-meta">
+                        <dt>Funding body</dt><dd>European Commission, EU</dd>
+                        <dt>Call</dt><dd>Fighting against discrimination and racism, xenophobia and other forms of intolerance (CERV-2025-EQUAL-RACI-DISC)<span class="aw-pending">confirm</span></dd>
+                        <dt>Programme</dt><dd>CERV</dd>
+                        <dt>Started</dt><dd>2026<span class="aw-pending">confirm</span></dd>
+                    </dl>
+
+                    <footer class="pj-card__links">
+                        <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43251589/101305905" target="_blank" rel="noopener" class="aw-link">View Call <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
                     </footer>
                 </article>
 
@@ -926,8 +1039,8 @@
 
     <!-- ==================================== 4. PROGRAMME LOGOS === -->
     <!--
-        Logo files are not in the repo yet, so the slots are named placeholders
-        rather than stand-in images.
+        Four of the five logos are in. The Innovation Fund of Serbia is still a named
+        placeholder because the URL supplied for it was the Horizon Europe file again.
 
         IMPORTANT, see the report: displaying the EU emblem and a funding
         disclaimer is a legal obligation under the grant agreements, not a design
@@ -939,14 +1052,16 @@
     <section class="aw-sec">
         <div class="aw-wrap">
             <div class="pj-logos">
-                <div class="pj-logo" role="img" aria-label="Creative Europe logo placeholder"><span>Creative Europe</span></div>
-                <div class="pj-logo" role="img" aria-label="Erasmus+ logo placeholder"><span>Erasmus+</span></div>
-                <div class="pj-logo" role="img" aria-label="CERV logo placeholder"><span>CERV</span></div>
-                <div class="pj-logo" role="img" aria-label="Horizon Europe logo placeholder"><span>Horizon Europe</span></div>
+                <div class="pj-logo"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/eu-flag-crea-eu-media-neg-white-en.png?crop=true" alt="Co-funded by the European Union, Creative Europe MEDIA"></div>
+                <div class="pj-logo"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/erasmuslogo.png?crop=true" alt="Erasmus+"></div>
+                <div class="pj-logo pj-logo--plate pj-logo--square"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/donor-european-commission-cerv.jpg?crop=true" alt="Citizens, Equality, Rights and Values programme, funded by the European Union"></div>
+                <div class="pj-logo pj-logo--plate"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/horizon-europe-logo-new.jpg?crop=true" alt="European Commission, Horizon Europe 2021-2027"></div>
+                <!-- Still a named placeholder: the URL supplied for the Innovation
+                     Fund was the Horizon Europe file a second time. -->
                 <div class="pj-logo" role="img" aria-label="Innovation Fund of Serbia logo placeholder"><span>Innovation Fund of Serbia</span></div>
             </div>
             <p class="aw-body mx-auto text-center" style="max-width: 46rem; margin-top: clamp(1.5rem, 4vh, 2.25rem);">Competitive European funding programmes are assessed by independent expert reviewers before a single euro is committed. Institutions vet us before they fund us.</p>
-            <div class="aw-todo" style="margin-top: clamp(1.25rem, 3vh, 2rem);">Awaiting logo files, and the granting authority per project so the mandatory EU funding disclaimer can be worded correctly</div>
+            <div class="aw-todo" style="margin-top: clamp(1.25rem, 3vh, 2rem);">Awaiting the Innovation Fund of Serbia logo, and the granting authority per project so the mandatory EU funding disclaimer can be worded correctly</div>
         </div>
     </section>
 
@@ -961,7 +1076,7 @@
                 <div class="aw-card">
                     <i class="bi bi-lightbulb aw-icon" aria-hidden="true"></i>
                     <h3 class="aw-h4" style="margin: clamp(0.75rem, 2vh, 1rem) 0 0;">Research &amp; Development</h3>
-                    <p class="aw-body" style="margin: clamp(0.5rem, 1.5vh, 0.75rem) 0 0;">Grant funding enables us to invest in long-term research and development of advanced technologies&mdash;particularly in AI, machine learning, and interactive platforms&mdash;that enhance our core commercial offerings.</p>
+                    <p class="aw-body" style="margin: clamp(0.5rem, 1.5vh, 0.75rem) 0 0;">Grant funding enables us to invest in long-term research and development of advanced technologies, particularly in AI, machine learning, and interactive platforms that enhance our core commercial offerings.</p>
                 </div>
                 <div class="aw-card">
                     <i class="bi bi-globe2 aw-icon" aria-hidden="true"></i>
@@ -976,7 +1091,7 @@
                 <div class="aw-card">
                     <i class="bi bi-file-earmark-check aw-icon" aria-hidden="true"></i>
                     <h3 class="aw-h4" style="margin: clamp(0.75rem, 2vh, 1rem) 0 0;">We carry the reporting</h3>
-                    <p class="aw-body" style="margin: clamp(0.5rem, 1.5vh, 0.75rem) 0 0;">Publicly funded work comes with administration &mdash; documentation, reporting cycles, audit trails. We’ve done it across Creative Europe, CERV, Erasmus+ and national programmes, and we don’t need a coordinator to chase us for it. One less partner to manage.</p>
+                    <p class="aw-body" style="margin: clamp(0.5rem, 1.5vh, 0.75rem) 0 0;">Publicly funded work comes with administration: documentation, reporting cycles, audit trails. We’ve done it across Creative Europe, CERV, Erasmus+ and national programmes, and we don’t need a coordinator to chase us for it. One less partner to manage.</p>
                 </div>
             </div>
         </div>
