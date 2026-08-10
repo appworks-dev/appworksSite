@@ -464,7 +464,7 @@
                  */
                 --pj-photo-pos: 50% 50%;
                 width: 100%;
-                max-width: 34rem;
+                max-width: 42.5rem;   /* 34rem +25% */
                 aspect-ratio: 16 / 9;
                 border-radius: clamp(1rem, 2vw, 1.5rem);
                 overflow: hidden;
@@ -714,7 +714,10 @@
     <!-- ============================================== 1. HERO === -->
     <section class="relative" style="padding-top: calc(81px + clamp(2rem, 6vh, 4.5rem)); padding-bottom: clamp(3rem, 8vh, 7rem); background: transparent;">
         <div class="aw-wrap">
-            <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem);">
+            <!-- 2fr/3fr, not 1fr/1fr: the photo is width:100% inside its column, so
+                 raising its max-width alone would have hit the column edge long before
+                 it grew 25%. -->
+            <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] items-center" style="gap: clamp(2rem, 5vw, 4rem);">
                 <div>
                     <span class="aw-eyebrow">EU-Funded Innovation</span>
                     <h1 class="aw-h1" style="margin-top: clamp(1rem, 2.5svh, 1.75rem); margin-bottom: clamp(0.75rem, 2svh, 1.25rem);">Grant-Funded Innovation Projects</h1>
@@ -1016,14 +1019,14 @@
                 <!--
                     RomaRights, spelled as the client corrected it on 10 Aug 2026.
                     The description, the tags and the 2026 start date arrived with
-                    that correction. Two things are still outstanding and still
-                    marked: the full official project title, and confirmation of the
-                    call reference.
+                    that correction. Unlike every other card this one carries no
+                    official project title line; the placeholder asking for one was
+                    removed at the client's request rather than filled in. The call
+                    reference is still marked "confirm".
                 -->
                 <article class="pj-card">
                     <header class="pj-card__head">
                         <h3 class="aw-h4 pj-card__name" style="margin: 0;">RomaRights</h3>
-                        <p class="aw-sub" style="margin: 0.25rem 0 0;">Full project title needed</p>
                     </header>
 
                     <p class="aw-body pj-card__lead">A multilingual AI assistant that helps Roma individuals and organisations report discrimination, generate complaint forms adapted to national law, and reach the equality bodies that can act on them. Developed with partners in six countries and released as open source.</p>
@@ -1092,7 +1095,10 @@
                      opaque and would show as a white box against the band. -->
                 <div class="pj-logo pj-logo--plate"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/images-21.png?crop=true" alt="Fond za inovacionu delatnost, the Innovation Fund of the Republic of Serbia"></div>
             </div>
-            <div class="aw-todo" style="margin-top: clamp(1.25rem, 3vh, 2rem);">Awaiting the granting authority per project, so the mandatory EU funding disclaimer can be worded correctly</div>
+            <!-- The visible note asking for the granting authority per project was
+                 here. Removed at the client's request. The underlying gap is unchanged:
+                 there is still no EU funding disclaimer on this page, and a correctly
+                 worded one needs the granting authority for each project. -->
         </div>
     </section>
 

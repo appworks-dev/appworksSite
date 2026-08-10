@@ -198,6 +198,20 @@
             font-weight: 700;
             font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
         }
+
+        /*
+         * The person, between the case and the address. Coral, matching the accent
+         * projects.html uses for the same job. Two classes because this <style> block
+         * loads above css/product.css, so a single class would lose to any aw-* rule
+         * on source order.
+         */
+        .aw-card .ct-route__who {
+            margin: clamp(0.75rem, 2vh, 1rem) 0 0;
+            color: #FF6B50;
+            font-weight: 700;
+            font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+            line-height: 1.35;
+        }
     </style>
 </head>
 <body>
@@ -474,14 +488,11 @@
                             </div>
                         </div>
 
-                        <!--
-                            One line, and only if it is true. Left as a marked slot rather than
-                            written, because it is a promise about how the company operates and
-                            not mine to make.
-                        -->
-                        <div class="aw-todo" style="margin-top: clamp(1.25rem, 3vh, 1.75rem); text-align: left;">Response-time line pending: "We reply within one working day" goes here if you are willing to stand behind it</div>
-
-                        <p class="aw-body" style="margin-top: clamp(1.25rem, 3vh, 1.75rem);">Looking for a scoped discovery call rather than a general enquiry? <a href="/consultation.html" class="aw-link" style="display: inline;">Start with a consultation <i class="bi bi-arrow-right" aria-hidden="true"></i></a></p>
+                        <!-- The response-time slot and the "start with a consultation"
+                             line were both here. Removed at the client's request. The page
+                             now makes no promise about reply times, which is the safe
+                             default, and /consultation.html keeps its homepage CTA and its
+                             footer link on every page. -->
                     </div>
                 </div>
 
@@ -523,14 +534,15 @@
                     </form>
 
                     <!--
-                        The factual half of the privacy notice: this is what actually happens
-                        to a submission. The half that needs a lawyer or a writer - a privacy
-                        policy to link to - does not exist anywhere in the codebase, and the
-                        brief says flag it rather than invent one. So the sentence is here and
-                        the link is a marked gap.
+                        What actually happens to a submission, which is the factual half of a
+                        privacy notice and is true as written.
+
+                        The visible note asking for a privacy policy was removed at the
+                        client's request. Removing the note does not close the gap: this form
+                        collects a name, an email address and free text, and there is still no
+                        privacy policy anywhere on the site for it to link to.
                     -->
                     <p class="aw-sub" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);">We use what you send here only to reply to your enquiry. We do not add you to a mailing list and we do not pass it to anyone else.</p>
-                    <div class="aw-todo" style="margin-top: 0.75rem; text-align: left;">Privacy policy needed: there is none anywhere on the site, and this line should link to one. Not something to draft without you</div>
                 </div>
             </div>
         </div>
@@ -538,38 +550,46 @@
 
     <!-- ================================================== ROUTING === -->
     <!--
-        One address, three named cases. There is no evidence of separate mailboxes
-        anywhere in the codebase - info@app-works.app is the only address the site
-        has ever used - so inventing sales@ or support@ would produce three links
-        that bounce. Naming the cases still does the useful work: it tells a sender
-        what to put in the first message, which is most of what routing achieves.
+        Three cases, three people, three addresses, all supplied by the client on
+        10 Aug 2026. This replaces an earlier version that routed all three to
+        info@app-works.app, because no per-person mailbox was known to exist.
+
+        Note the domain: these are @weareappworks.app, where the rest of the site
+        uses info@app-works.app. Both are the client's; the difference is theirs and
+        is flagged in the report rather than normalised here.
+
+        "Support for existing partners" is no longer one of the three. It was not in
+        the supplied list, so it went.
     -->
     <section class="aw-sec" style="padding-top: 0;">
         <div class="aw-wrap">
             <div class="text-center" style="margin-bottom: clamp(1.5rem, 4vh, 2.25rem);">
                 <h2 class="aw-h2">Who to contact for what</h2>
                 <div class="flex justify-center" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
-                <p class="aw-body mx-auto" style="max-width: 44rem; margin-top: clamp(1rem, 2.5vh, 1.5rem);">Everything reaches the same inbox, and it is a small team, so it reaches the right person quickly. Saying which of these you are saves a round trip.</p>
+                <p class="aw-body mx-auto" style="max-width: 44rem; margin-top: clamp(1rem, 2.5vh, 1.5rem);">Three cases, three people. Writing to the right one saves a round trip.</p>
             </div>
 
             <div class="ct-routes">
                 <div class="aw-card">
                     <i class="bi bi-rocket-takeoff aw-icon" aria-hidden="true"></i>
-                    <span class="ct-route__what" style="margin-top: clamp(0.75rem, 2vh, 1rem);">New projects and partnerships</span>
-                    <p class="aw-sub" style="margin-top: 0.375rem;">A platform, an app, a migration, or something you have not seen us build yet.</p>
-                    <a href="mailto:info@app-works.app?subject=New%20project" class="aw-link" style="padding-top: 0.75rem;">info@app-works.app <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                    <span class="ct-route__what" style="margin-top: clamp(0.75rem, 2vh, 1rem);">Projects and partnerships</span>
+                    <p class="aw-sub" style="margin-top: 0.375rem;">Media and sports. A platform, an app, a migration, or something you have not seen us build yet.</p>
+                    <p class="ct-route__who">Aleksandar Jankovi&#263;<span class="aw-sub" style="display: block; font-weight: 400;">Head of Business Development</span></p>
+                    <a href="mailto:aleksandar@weareappworks.app?subject=Project%20or%20partnership%20enquiry" class="aw-link" style="padding-top: 0.75rem; word-break: break-word;">aleksandar@weareappworks.app <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="aw-card">
-                    <i class="bi bi-life-preserver aw-icon" aria-hidden="true"></i>
-                    <span class="ct-route__what" style="margin-top: clamp(0.75rem, 2vh, 1rem);">Support for existing partners</span>
-                    <p class="aw-sub" style="margin-top: 0.375rem;">Already running on one of our platforms and need something changed or fixed.</p>
-                    <a href="mailto:info@app-works.app?subject=Support" class="aw-link" style="padding-top: 0.75rem;">info@app-works.app <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                    <i class="bi bi-receipt aw-icon" aria-hidden="true"></i>
+                    <span class="ct-route__what" style="margin-top: clamp(0.75rem, 2vh, 1rem);">Invoices &amp; finance</span>
+                    <p class="aw-sub" style="margin-top: 0.375rem;">Billing, purchase orders and anything an accounts department needs.</p>
+                    <p class="ct-route__who">Sanja Jankovi&#263;<span class="aw-sub" style="display: block; font-weight: 400;">Finance &amp; Administration</span></p>
+                    <a href="mailto:sanja@weareappworks.app?subject=Invoices%20and%20finance" class="aw-link" style="padding-top: 0.75rem; word-break: break-word;">sanja@weareappworks.app <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="aw-card">
                     <i class="bi bi-people aw-icon" aria-hidden="true"></i>
                     <span class="ct-route__what" style="margin-top: clamp(0.75rem, 2vh, 1rem);">Grant consortia and EU proposals</span>
                     <p class="aw-sub" style="margin-top: 0.375rem;">Send the call and the deadline. <a href="/projects.html" class="aw-link" style="display: inline;">What we have worked on</a></p>
-                    <a href="mailto:info@app-works.app?subject=Consortium%20enquiry" class="aw-link" style="padding-top: 0.75rem;">info@app-works.app <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+                    <p class="ct-route__who">Strahinja Babin<span class="aw-sub" style="display: block; font-weight: 400;">EU Project Manager</span></p>
+                    <a href="mailto:strahinja@weareappworks.app?subject=Consortium%20enquiry" class="aw-link" style="padding-top: 0.75rem; word-break: break-word;">strahinja@weareappworks.app <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
