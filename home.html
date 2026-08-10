@@ -9,7 +9,7 @@
       gtag('js', new Date());
       gtag('config', 'G-LNLW0CSSLT');
     </script>
-    <title>Appworks — AI, Mobile Apps & CMS for Media Publishers and Sports Clubs</title>
+    <title>Appworks - AI, Mobile Apps & CMS for Media Publishers and Sports Clubs</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="Appworks">
@@ -72,7 +72,7 @@
     <meta name="keywords" content="Appworks, AI, Mobile Apps, Digital Platforms, Media Technology, Sports Technology, CMS, Litteraworks, Grant Projects, Creative Europe, Innovation">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Appworks — AI, Mobile Apps & CMS for Media Publishers and Sports Clubs">
+    <meta property="og:title" content="Appworks - AI, Mobile Apps & CMS for Media Publishers and Sports Clubs">
     <meta property="og:description" content="AI-powered mobile apps and CMS for media publishers and sports clubs. Native apps, fan engagement, and digital publishing tools.">
     <meta property="og:image" content="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
     <meta property="og:url" content="https://app-works.app/">
@@ -80,7 +80,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Appworks — AI, Mobile Apps & CMS for Media Publishers and Sports Clubs">
+    <meta name="twitter:title" content="Appworks - AI, Mobile Apps & CMS for Media Publishers and Sports Clubs">
     <meta name="twitter:description" content="AI-powered mobile apps and CMS for media publishers and sports clubs. Native apps, fan engagement, and digital publishing tools.">
     <meta name="twitter:image" content="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
 
@@ -586,7 +586,8 @@
             align-items: center;
             flex-wrap: wrap;
             gap: clamp(0.875rem, 2vw, 1.75rem);
-            height: clamp(1.75rem, 3vw, 2.5rem);
+            /* +10% on the client's request; the max-width below moved with it */
+            height: clamp(1.925rem, 3.3vw, 2.75rem);
             margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
         }
 
@@ -595,7 +596,7 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            max-width: clamp(3.25rem, 7vw, 5rem);
+            max-width: clamp(3.575rem, 7.7vw, 5.5rem);
         }
 
         /* --------------------------------- EU-funded projects section --- */
@@ -657,33 +658,9 @@
             margin: 0;
         }
 
-        /* the project names, so each programme shows what we actually did in it */
-        .eu-card__projects {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.375rem;
-            list-style: none;
-            margin: auto 0 0;
-            padding: 0.75rem 0 0;
-        }
-
-        .eu-card__projects li {
-            padding: 0.125rem 0.5rem;
-            border-radius: 0.375rem;
-            background: rgba(255, 75, 54, 0.14);
-            border: 1px solid rgba(255, 107, 80, 0.35);
-            color: #FF6B50;
-            font-size: 0.6875rem;
-            font-weight: 800;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-        }
-
-        .eu-card__projects .eu-card__pending {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px dashed rgba(255, 255, 255, 0.22);
-            color: rgba(255, 255, 255, 0.5);
-        }
+        /* The .eu-card__projects and .eu-card__pending rules were here, styling the
+           project-name chips under each programme. The chips are gone at the client's
+           request, so the rules go with them rather than sit unused. */
 
     </style>
     <link rel="stylesheet" href="/css/nav.css">
@@ -995,7 +972,7 @@
                 <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Media</h3>
 
                 <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1rem, 1.3vw, 1.125rem); opacity: 0.85; margin-top: 0.75rem; max-width: 46ch;">
-                    We work with online media, newspapers, publishers, broadcasters, TV and radio — bringing digital products, innovation and applied AI into newsrooms of every size.
+                    We work with online media, newspapers, publishers, broadcasters, TV and radio, bringing digital products, innovation and applied AI into newsrooms of every size.
                 </p>
 
                 <span class="inline-flex items-center gap-2 font-bold mt-auto" style="padding-top: clamp(1rem, 2vh, 1.75rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FF6B50;">
@@ -1026,7 +1003,7 @@
                 <h3 class="text-white font-black" style="font-size: clamp(1.75rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; margin-top: clamp(0.75rem, 1.5vh, 1.25rem);">For Sport</h3>
 
                 <p class="text-gray-300 leading-relaxed" style="font-size: clamp(1rem, 1.3vw, 1.125rem); opacity: 0.85; margin-top: 0.75rem; max-width: 46ch;">
-                    We work with clubs, leagues and federations on fan engagement, loyalty and innovation in sport — building alongside our partners rather than handing over and walking away.
+                    We work with clubs, leagues and federations on fan engagement, loyalty and innovation in sport, building alongside our partners rather than handing over and walking away.
                 </p>
 
                 <span class="inline-flex items-center gap-2 font-bold mt-auto" style="padding-top: clamp(1rem, 2vh, 1.75rem); font-size: clamp(0.9375rem, 1.1vw, 1rem); color: #FF6B50;">
@@ -1107,7 +1084,7 @@
                     <div class="aw-uc__track">
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="krik" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="krik" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">KRIK</h4>
                                     <p class="aw-uc__copy">KRIK breaks investigative stories that other outlets republish within minutes, taking the traffic with them. Their app puts each story on readers&rsquo; phones the moment it publishes, so the audience arrives at KRIK first rather than at whoever copied it fastest. Direct push replaced a dependency on platforms and aggregators.</p>
@@ -1115,7 +1092,7 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="dan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="dan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">DAN</h4>
                                     <p class="aw-uc__copy">DAN was one of Montenegro&rsquo;s strongest newspapers in print, with an audience that had moved to phones. Digital editions, subscriptions and a mobile app carried the transition without giving up the editorial identity that made the paper matter in the first place. Print heritage turned into a digital position rather than a liability.</p>
@@ -1123,31 +1100,31 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="esake" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="esake" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
-                                    <h4 class="aw-uc__name">ESAKE</h4>
-                                    <p class="aw-uc__copy">Leagues face the club problem multiplied: fixtures, results and standings across dozens of teams, and fans who want all of it live. The Greek Basket League app runs largely on autopilot &mdash; articles come from the league&rsquo;s own website, live scores and statistics sync straight from the data provider, and gamification keeps fans engaged between matchdays. Nobody on staff updates anything by hand.</p>
+                                    <h4 class="aw-uc__name">Greek Basketball League</h4>
+                                    <p class="aw-uc__copy">Leagues face the club problem multiplied: fixtures, results and standings across dozens of teams, and fans who want all of it live. The Greek Basket League app runs largely on autopilot: articles come from the league&rsquo;s own website, live scores and statistics sync straight from the data provider, and gamification keeps fans engaged between matchdays. Nobody on staff updates anything by hand.</p>
                                     <a class="aw-uc__link" href="https://app-works.app/article/greek-basket-league-how-to-run-a-mobile-app-on-autopilot">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="hks" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="hks" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
-                                    <h4 class="aw-uc__name">HKS</h4>
-                                    <p class="aw-uc__copy">The Croatian Basketball Association covers men&rsquo;s and women&rsquo;s leagues, junior competitions and the national teams, and each fan follows only part of that. Games, standings, box scores and play-by-play arrive from the data provider, news and video from the federation&rsquo;s own channels, and notifications are switchable per competition &mdash; so following one league doesn&rsquo;t mean hearing about all of them. Live match alerts update in place instead of firing again for every basket.</p>
+                                    <h4 class="aw-uc__name">Croatian Basketball Federation</h4>
+                                    <p class="aw-uc__copy">The Croatian Basketball Association covers men&rsquo;s and women&rsquo;s leagues, junior competitions and the national teams, and each fan follows only part of that. Games, standings, box scores and play-by-play arrive from the data provider, news and video from the federation&rsquo;s own channels, and notifications are switchable per competition, so following one league doesn&rsquo;t mean hearing about all of them. Live match alerts update in place instead of firing again for every basket.</p>
                                     <a class="aw-uc__link" href="https://app-works.app/article/croatian-basketball-association-app-for-croatian-basketball-fans">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="sat" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="sat" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
-                                    <h4 class="aw-uc__name">SAT</h4>
-                                    <p class="aw-uc__copy">SAT built a following of car and motoring enthusiasts who wanted more than articles to read. The app turns reading into participation &mdash; points for engagement, rewards for loyalty, and content shaped around what each follower actually cares about. It gives a committed niche audience a reason to keep coming back rather than passing through.</p>
+                                    <h4 class="aw-uc__name">SAT Media</h4>
+                                    <p class="aw-uc__copy">SAT built a following of car and motoring enthusiasts who wanted more than articles to read. The app turns reading into participation: points for engagement, rewards for loyalty, and content shaped around what each follower actually cares about. It gives a committed niche audience a reason to keep coming back rather than passing through.</p>
                                     <a class="aw-uc__link" href="https://app-works.app/article/sat-hub-mobile-app-for-auto-motoring-fans-and-enthusiasts">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="boom93" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="boom93" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Boom 93</h4>
                                     <p class="aw-uc__copy">Boom 93 is an institution in Po&zcaron;arevac, and its audience is local by definition. The app opens with content from the reader&rsquo;s own city, and quizzes built around rock music let a legendary radio station play to the identity it already has. Local relevance became a feature rather than a constraint.</p>
@@ -1155,15 +1132,15 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="hanza-media" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="hanza-media" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Hanza Media</h4>
-                                    <p class="aw-uc__copy">Hanza Media publishes a portfolio of newspapers and magazines, each with its own subscriber base. The e-kiosk brings all of it into one place &mdash; digital subscriptions, an e-paper reader, and an app where a subscriber finds every title they pay for. One system instead of one per publication.</p>
+                                    <p class="aw-uc__copy">Hanza Media publishes a portfolio of newspapers and magazines, each with its own subscriber base. The e-kiosk brings all of it into one place: digital subscriptions, an e-paper reader, and an app where a subscriber finds every title they pay for. One system instead of one per publication.</p>
                                     <a class="aw-uc__link" href="https://app-works.app/article/the-future-of-newspaper-and-magazine-reading-hanza-medias-e-kiosk-and-app">Read the story <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="politika" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="politika" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Politika</h4>
                                     <p class="aw-uc__copy">Politika is the oldest daily newspaper in Serbia, and both its daily edition and its subscription business needed to work on a phone. The webshop and e-kiosk handle subscriptions and delivery, and the app puts every issue in a reader&rsquo;s pocket. A title with more than a century of history, distributed the way people read now.</p>
@@ -1171,7 +1148,7 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="vecer" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="vecer" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Ve&ccaron;er</h4>
                                     <p class="aw-uc__copy">Ve&ccaron;er wanted an app built for readers who pay, not for casual traffic. Premium content, the daily e-paper and a web kiosk sit behind a single subscription, so the app serves subscribers instead of chasing clicks. A publisher that decided depth was worth more than reach.</p>
@@ -1230,7 +1207,7 @@
                     <div class="aw-uc__track">
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="insajder" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="insajder" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Insajder</h4>
                                     <p class="aw-uc__copy">Insajder&rsquo;s investigative programmes were yielding one or two social clips per episode, because cutting them by hand took time nobody had. Automatic clip generation with subtitles now produces two to three times that from the same episode, for Instagram, TikTok and YouTube Shorts. The reporting reaches audiences that would never sit through the full programme.</p>
@@ -1238,17 +1215,17 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="rts" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        <div data-partner="hrt" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        <div data-partner="rtcg" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="rts" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
+                                        <div data-partner="hrt" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
+                                        <div data-partner="rtcg" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">National broadcasters</h4>
-                                    <p class="aw-uc__copy">Three national public broadcasters run Litteraworks inside their daily editorial workflow. Every broadcast hour is speech that has to become text &mdash; transcripts, subtitles, an archive somebody can actually search. Work that used to be typed is now reviewed.</p>
+                                    <p class="aw-uc__copy">Three national public broadcasters run Litteraworks inside their daily editorial workflow. Every broadcast hour is speech that has to become text: transcripts, subtitles, an archive somebody can actually search. Work that used to be typed is now reviewed.</p>
 
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="ringier" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="ringier" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Ringier Serbia</h4>
                                     <p class="aw-uc__copy">Ringier Serbia&rsquo;s journalists were watching live television to find the quotes worth writing about. Litteraworks transcribes the broadcast as it airs, so an editor searches text instead of scrubbing video and drafts the article straight from the transcript. Hours of watching became minutes of reading.</p>
@@ -1256,20 +1233,20 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="tanjug" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        <div data-partner="fonet" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        <div data-partner="fena" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        <div data-partner="italpress" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="tanjug" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
+                                        <div data-partner="fonet" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
+                                        <div data-partner="fena" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
+                                        <div data-partner="italpress" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">News agencies</h4>
-                                    <p class="aw-uc__copy">For a news agency, minutes decide whether a story is theirs. These agencies use Litteraworks to turn recorded audio into publishable text fast enough to matter &mdash; press conferences, statements and interviews transcribed while the event is still live.</p>
+                                    <p class="aw-uc__copy">For a news agency, minutes decide whether a story is theirs. These agencies use Litteraworks to turn recorded audio into publishable text fast enough to matter: press conferences, statements and interviews transcribed while the event is still live.</p>
 
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="leeds" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        <div data-partner="qpr" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
-                                        <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="leeds" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
+                                        <div data-partner="qpr" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
+                                        <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Sports clubs</h4>
                                     <p class="aw-uc__copy">Press conferences, interviews and manager reactions arrive as audio and have to become content the same day. Both clubs use Litteraworks to transcribe, translate, draft articles and cut subtitled clips, so the media team spends its time editing rather than typing. Matchday content that keeps up with matchday.</p>
@@ -1277,7 +1254,7 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="star" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="star" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Star</h4>
                                     <p class="aw-uc__copy">Star wanted every article on the site available as audio, in Greek. Litteraworks text-to-speech provides natural-sounding Greek voices across the whole publication, so readers can listen instead of read. One text, two ways to consume it, and a real accessibility gain.</p>
@@ -1336,15 +1313,15 @@
                     <div class="aw-uc__track">
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="superliga" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="superliga" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
-                                    <h4 class="aw-uc__name">Superliga Srbije</h4>
+                                    <h4 class="aw-uc__name">Serbian Football League</h4>
                                     <p class="aw-uc__copy">Superliga Srbije produces photo and video from every matchday, media day and league event, and all of it has to reach the clubs. That used to mean WhatsApp groups and WeTransfer links that expired; now every club works from one searchable archive with permanent access. The league&rsquo;s archive and its daily distribution became the same system.</p>
 
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="fk-partizan" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">FK Partizan</h4>
                                     <p class="aw-uc__copy">FK Partizan&rsquo;s photographers shoot from the pitch and upload straight into Pchela, where an image is ready to publish and share with media within minutes. The same archive holds the club&rsquo;s historical photo and video collection, searchable by what&rsquo;s actually in the file rather than by folder name. Daily workflow and long-term archive in one place.</p>
@@ -1352,7 +1329,7 @@
                                 </article>
                                 <article class="aw-uc__slide">
                                     <div class="aw-uc__logos">
-                                        <div data-partner="media24" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3rem, 6vw, 4.5rem); width: auto;"></div>
+                                        <div data-partner="media24" data-css="object-contain" data-style="max-height: 100%; max-width: clamp(3.3rem, 6.6vw, 4.95rem); width: auto;"></div>
                                     </div>
                                     <h4 class="aw-uc__name">Media 24</h4>
                                     <p class="aw-uc__copy">Media 24&rsquo;s photographers shoot across the country, and every image has to reach the newsroom while it still matters. They upload from the field directly into Pchela, where AI tagging makes each photo findable the moment it lands, and journalists pull what they need without asking anyone. Nothing sits between the shoot and the story.</p>
@@ -1435,7 +1412,7 @@
                           -webkit-backdrop-filter: blur(24px);
                           border: 1px solid rgba(255, 255, 255, 0.1);">
                     <h4 class="text-white font-bold" style="font-size: clamp(1.125rem, 1.6vw, 1.375rem); letter-spacing: -0.02em;">Gamification</h4>
-                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Daily games and quizzes that turn occasional readers into a daily habit — the engagement model publishers now build subscriptions on.</p>
+                    <p class="text-gray-400 leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); margin-top: 0.5rem;">Daily games and quizzes that turn occasional readers into a daily habit, the engagement model publishers now build subscriptions on.</p>
                     <span class="inline-flex items-center gap-2 font-semibold mt-auto" style="padding-top: clamp(0.875rem, 1.5vh, 1.25rem); font-size: 0.875rem; color: #FF6B50;">
                         <span>Learn more</span>
                         <i class="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
@@ -1553,13 +1530,15 @@
             <div class="flex justify-center" style="margin-top: clamp(1rem, 2vh, 1.5rem);">
                 <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #FF4B36 0%, #FF6B50 100%); border-radius: 2px;"></div>
             </div>
-            <p class="text-gray-400 mx-auto" style="font-size: clamp(1rem, 1.3vw, 1.125rem); max-width: 52rem; margin-top: clamp(1.25rem, 3vh, 2rem);">We join European consortia as the technology partner: building the platforms, running the engineering, and carrying the reporting that comes with public funding. Institutions vet us before they fund us — which is a useful signal for commercial clients too.</p>
+            <p class="text-gray-400 mx-auto" style="font-size: clamp(1rem, 1.3vw, 1.125rem); max-width: 52rem; margin-top: clamp(1.25rem, 3vh, 2rem);">We join European consortia as the technology partner: building the platforms, running the engineering, and carrying the reporting that comes with public funding. Institutions vet us before they fund us, which is a useful signal for commercial clients too.</p>
         </div>
 
         <!--
-            The four programmes we work under. Icon, programme name and the actual
-            project names as chips, so the section carries some visual rhythm
-            instead of four identical grey paragraphs.
+            The four programmes we work under: what each one funds, and what we do
+            inside it. The project-name chips that used to sit under each card are
+            gone at the client's request - the projects are listed on projects.html,
+            and naming them twice made this section a duplicate index rather than an
+            explanation.
         -->
         <div class="eu-grid">
 
@@ -1568,10 +1547,7 @@
                     <span class="eu-card__icon"><i class="bi bi-mortarboard" aria-hidden="true"></i></span>
                     <h3 class="eu-card__name">Erasmus+</h3>
                 </div>
-                <p class="eu-card__copy">Upcycling and urban regeneration for green skills, with seven partner organisations across Europe.</p>
-                <ul class="eu-card__projects">
-                    <li>UpSpace</li>
-                </ul>
+                <p class="eu-card__copy">Education and training. We build the learning platforms, assessment tools and digital resources that school projects need, the kind that end up in classrooms rather than in a final report.</p>
             </div>
 
             <div class="eu-card">
@@ -1579,10 +1555,7 @@
                     <span class="eu-card__icon"><i class="bi bi-film" aria-hidden="true"></i></span>
                     <h3 class="eu-card__name">Creative Europe</h3>
                 </div>
-                <p class="eu-card__copy">Technical partner to a consortium of ten local media organisations across Slovenia, Croatia, Serbia and Montenegro.</p>
-                <ul class="eu-card__projects">
-                    <li>NEWLOCAL</li>
-                </ul>
+                <p class="eu-card__copy">Europe&rsquo;s culture and media sector. We work on the technology side of newsroom sustainability: publishing platforms, distribution and the shared tools that small, independent media can&rsquo;t build alone.</p>
             </div>
 
             <div class="eu-card">
@@ -1590,11 +1563,7 @@
                     <span class="eu-card__icon"><i class="bi bi-people" aria-hidden="true"></i></span>
                     <h3 class="eu-card__name">CERV</h3>
                 </div>
-                <p class="eu-card__copy">Media literacy and civic engagement, and AI tooling for whistleblower reporting.</p>
-                <ul class="eu-card__projects">
-                    <li>Media Masters</li>
-                    <li>Safeguard the Truth</li>
-                </ul>
+                <p class="eu-card__copy">Citizens&rsquo; rights, equality and democratic participation. We build the civic technology that puts this work in front of the public instead of in a policy paper: media literacy tools, secure reporting systems, participation platforms.</p>
             </div>
 
             <div class="eu-card" data-placeholder="horizon-europe">
@@ -1602,8 +1571,7 @@
                     <span class="eu-card__icon"><i class="bi bi-stars" aria-hidden="true"></i></span>
                     <h3 class="eu-card__name">Horizon Europe</h3>
                 </div>
-                <p class="eu-card__copy">Research and innovation partnerships in media technology and applied AI.</p>
-                <ul class="eu-card__projects"><li class="eu-card__pending">Project to be confirmed</li></ul>
+                <p class="eu-card__copy">Research and innovation. We bring applied engineering to research consortia, turning experimental work in AI and language technology into systems that actually run.</p>
             </div>
         </div>
 
@@ -1649,7 +1617,7 @@
 
         <div id="homeInsights" class="aw-artgrid"
              data-insights-category="*"
-             data-insights-limit="5"
+             data-insights-limit="4"
              data-insights-label="Insights"></div>
 
         <div class="text-center" style="margin-top: clamp(1.75rem, 4vh, 2.5rem);">

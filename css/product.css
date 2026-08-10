@@ -577,8 +577,9 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     align-items: center;
     flex-wrap: nowrap;
     gap: clamp(0.625rem, 1.5vw, 1.125rem);
-    /* one row, matched optical height, up to five logos on a grouped slide */
-    height: clamp(1.5rem, 2.4vw, 2rem);
+    /* one row, matched optical height, up to five logos on a grouped slide.
+       +10% on the client's request; the max-width below moved with it. */
+    height: clamp(1.65rem, 2.64vw, 2.2rem);
 }
 
 /*
@@ -593,7 +594,7 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-    max-width: clamp(3rem, 6vw, 4.5rem);
+    max-width: clamp(3.3rem, 6.6vw, 4.95rem);
     /* shrink below the cap rather than wrap out of the row */
     flex-shrink: 1;
     min-width: 0;
@@ -807,8 +808,11 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     display: grid;
     /* auto-fit rather than a fixed count: five cards do not divide evenly, so
        they reflow to 5 / 3 / 2 / 1 across without special cases per breakpoint */
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    gap: clamp(1rem, 2vw, 1.5rem);
+    /* 15rem -> 18.75rem: cards 25% bigger on the client's request. auto-fit
+       spends that on fewer, wider columns, so five cards become four across and
+       one below rather than five squeezed ones. */
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 1.875rem);
 }
 
 .aw-artcard {
@@ -935,7 +939,7 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     flex-direction: column;
     flex: 1;
     gap: 0.5rem;
-    padding: clamp(0.875rem, 1.6vw, 1.125rem);
+    padding: clamp(1.0625rem, 2vw, 1.375rem);
 }
 
 .aw-artcard__meta {
@@ -946,7 +950,7 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     /* a date must not break across lines inside its own span; when the row does
        have to wrap it wraps between badge and date, not mid-date */
     white-space: nowrap;
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -964,7 +968,9 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
 .aw-artcard__title {
     margin: 0;
     color: #FFFFFF;
-    font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+    /* scaled with the card: the same size in a 25% wider card reads as a stretched
+       card rather than a bigger one */
+    font-size: clamp(1.0625rem, 1.35vw, 1.3125rem);
     font-weight: 700;
     line-height: 1.35;
     letter-spacing: -0.01em;
