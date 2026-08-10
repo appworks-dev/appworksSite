@@ -784,12 +784,12 @@
         -->
         <section class="aw-sec">
             <div class="aw-wrap">
-                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between" style="gap: clamp(1rem, 3vw, 2rem); margin-bottom: clamp(2rem, 5vh, 3rem);">
-                    <div>
-                        <h2 class="aw-h2">Writing about sport and technology</h2>
-                        <div style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
-                    </div>
-                    <p class="aw-body" style="margin: 0; max-width: 32rem;">What we have learned building for clubs, leagues and federations.</p>
+                <!-- Full width and no standfirst, matching media.html: the heading was
+                     sharing a flex row with a line of sub-copy, which squeezed it onto
+                     two lines. Nothing constrains it now, so it sets on one. -->
+                <div style="margin-bottom: clamp(2rem, 5vh, 3rem);">
+                    <h2 class="aw-h2">Writing about sport and technology</h2>
+                    <div style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
                 </div>
 
                 <div id="sportInsights" class="aw-artgrid"
@@ -874,12 +874,24 @@
                     <a href="https://www.futsalklubpartizan.rs/" target="_blank" class="partner-item">
                         <div data-partner="futsal-partizan" data-css="partner-logo"></div>
                     </a>
+
+                    <!-- Superliga Srbije -->
+                    <a href="https://www.superliga.rs/" target="_blank" class="partner-item">
+                        <div data-partner="superliga" data-css="partner-logo"></div>
+                    </a>
                 </div>
 
                 <style>
+                    /*
+                     * Six, not five. Twelve logos over five columns left a 5+5+2
+                     * row with three empty cells; six gives two complete rows and
+                     * matches the trust bar on fanfuel.html. Nothing shrinks:
+                     * .partner-logo is capped at 130x80 and a six-wide cell is
+                     * still ~200px, so the cap is what sizes the logo either way.
+                     */
                     .partners-grid {
                         display: grid;
-                        grid-template-columns: repeat(5, 1fr);
+                        grid-template-columns: repeat(6, 1fr);
                         gap: 30px;
                         margin-top: 3rem;
                     }

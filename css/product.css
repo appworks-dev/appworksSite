@@ -160,7 +160,16 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
 }
 
 .aw-list { list-style: none; padding: 0; margin: 0; }
-.aw-list > li { display: flex; align-items: flex-start; gap: 0.75rem; }
+
+/*
+ * The colour matters as much as the layout here. A bare <span> inside a list
+ * item inherits, and nothing up the tree set a colour, so on fanfuel.html the
+ * text after each bold label rendered in the UA default black against a
+ * background that measures 22 - invisible. This is the same value .aw-body
+ * carries, so bullets with and without that class now read identically, and
+ * items that do carry it still win on specificity.
+ */
+.aw-list > li { display: flex; align-items: flex-start; gap: 0.75rem; color: rgba(255, 255, 255, 0.72); }
 .aw-list > li + li { margin-top: 1rem; }
 
 /* ------------------------------------------------------------ buttons --- */
@@ -1115,7 +1124,7 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
 .aw-device {
     position: relative;
     width: min(300px, 74vw);
-    aspect-ratio: 9 / 19.5;
+    /* the ratio lives on __screen, not here: see the note there */
     margin-inline: auto;
     border-radius: clamp(1.75rem, 4vw, 2.5rem);
     padding: 0.5rem;
@@ -1124,12 +1133,23 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* an uncapped frame is ~650px tall and gets clipped at a 680px viewport */
-.aw-device--hero { max-height: 72svh; }
+/*
+ * An uncapped frame is ~650px tall and gets clipped at a 680px viewport. Capping
+ * the HEIGHT was the first attempt and it was wrong: the width stayed at 300px,
+ * so the box squashed and object-fit: cover took the difference off the bottom of
+ * the screenshot. Capping the width keeps the ratio at every viewport height.
+ * The 1rem is the frame's own padding, top plus bottom.
+ */
+.aw-device--hero { width: min(300px, 74vw, calc((72svh - 1rem) * 9 / 19.5 + 1rem)); }
 
+/*
+ * The ratio belongs here rather than on the frame. The screenshots are 640x1387,
+ * exactly 9:19.5; with the ratio on the frame its 0.5rem of padding came off the
+ * screen and cover shaved about 3% off the bottom.
+ */
 .aw-device__screen {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 9 / 19.5;
     border-radius: clamp(1.375rem, 3.2vw, 2rem);
     overflow: hidden;
     background:
@@ -1141,6 +1161,14 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     justify-content: center;
 }
 
+.aw-device__screen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* kept for frames that hold no screenshot yet */
 .aw-device__label {
     font-size: 0.6875rem;
     font-weight: 700;
@@ -1152,14 +1180,8 @@ a.aw-card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255,
     line-height: 1.5;
 }
 
-.aw-device__notch {
-    position: absolute;
-    top: 0.9rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 32%;
-    height: 0.5rem;
-    border-radius: 999px;
-    background: rgba(0, 0, 0, 0.65);
-    z-index: 2;
-}
+/*
+ * .aw-device__notch was here. Removed with the same reasoning as
+ * .vv-device__notch: it was drawn for empty frames, and every frame now holds a
+ * screenshot carrying its own iOS status bar, so the pill sat on live content.
+ */

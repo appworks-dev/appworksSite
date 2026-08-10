@@ -336,55 +336,9 @@
             color: #FFFFFF;
         }
 
-        /* ------------------------------------------------------- jumbotron --- */
-
-        .ff-jumbo {
-            position: relative;
-            border-radius: clamp(1rem, 2vw, 1.5rem);
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-            padding: clamp(1.25rem, 3vw, 2.5rem);
-        }
-
-        /* the stadium screen itself */
-        .ff-jumbo__screen {
-            aspect-ratio: 16 / 7;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            background:
-                radial-gradient(circle at 50% 40%, rgba(255, 75, 54, 0.22) 0%, transparent 60%),
-                #0E0412;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-            padding: 0.75rem;
-        }
-
-        .ff-jumbo__cell {
-            border-radius: 0.5rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: clamp(0.9375rem, 2vw, 1.5rem);
-        }
-
-        /* the stand below the screen, so it reads as a stadium fixture */
-        .ff-jumbo__legs {
-            display: flex;
-            justify-content: center;
-            gap: clamp(3rem, 12vw, 7rem);
-            margin-top: -1px;
-        }
-
-        .ff-jumbo__legs span {
-            width: 0.5rem;
-            height: clamp(1.25rem, 3vw, 2rem);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02));
-        }
+        /* The .ff-jumbo rules were here. They styled nothing but the removed
+           stadium-screen section, so they went with it rather than sitting unused.
+           They are in docs/fanfuel-removed-content.md if it comes back. */
     </style>
 </head>
 <body>
@@ -615,12 +569,14 @@
                     </div>
                 </div>
 
+                <!-- large-full, not original: the source is 1179x2556 at up to 1.1MB,
+                     and the frame is ~282px wide. large-full is 640x1387, which is
+                     exactly the 9:19.5 the frame expects. -->
                 <div class="relative flex justify-center">
                     <div class="aw-glow"></div>
                     <div class="aw-device aw-device--hero">
-                        <div class="aw-device__notch"></div>
                         <div class="aw-device__screen">
-                            <span class="aw-device__label">Generic device frame<br>approved screenshot pending</span>
+                            <img loading="eager" fetchpriority="high" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3409.png?crop=true" alt="A FanFuel club app home screen on a phone">
                         </div>
                     </div>
                 </div>
@@ -648,6 +604,7 @@
                 <div class="flex items-center justify-center"><div data-partner="cedevita" data-css="w-auto object-contain" data-style="max-width: 100%; max-height: clamp(2.5rem, 5vw, 3.75rem);"></div></div>
                 <div class="flex items-center justify-center"><div data-partner="ksbih" data-css="w-auto object-contain" data-style="max-width: 100%; max-height: clamp(2.5rem, 5vw, 3.75rem);"></div></div>
                 <div class="flex items-center justify-center"><div data-partner="futsal-partizan" data-css="w-auto object-contain" data-style="max-width: 100%; max-height: clamp(2.5rem, 5vw, 3.75rem);"></div></div>
+                <div class="flex items-center justify-center"><div data-partner="superliga" data-css="w-auto object-contain" data-style="max-width: 100%; max-height: clamp(2.5rem, 5vw, 3.75rem);"></div></div>
             </div>
         </div>
     </section>
@@ -717,15 +674,15 @@
                 </ul>
             </div>
             <div class="ff-block__visual">
-                <div class="ff-panel" role="img" aria-label="Content sources syncing into the app feed">
-                    <div class="ff-panel__bar"><span class="ff-panel__dot"></span><span class="ff-panel__dot"></span><span class="ff-panel__dot"></span></div>
-                    <div class="ff-panel__body">
-                        <div class="ff-row"><span>Club website</span><span class="ff-chip">Synced</span></div>
-                        <div class="ff-row"><span>YouTube</span><span class="ff-chip">Synced</span></div>
-                        <div class="ff-row"><span>Social</span><span class="ff-chip">Synced</span></div>
-                        <div class="ff-arrow" style="display: block; margin: 0.25rem 0;"><i class="bi bi-arrow-down" aria-hidden="true"></i></div>
-                        <div class="ff-row" style="border-color: rgba(255, 107, 80, 0.35);"><span><strong>App feed</strong></span><span class="ff-chip">Push sent</span></div></div>
-                </div></div>
+                <div class="relative flex justify-center">
+                    <div class="aw-glow"></div>
+                    <div class="aw-device">
+                        <div class="aw-device__screen">
+                            <img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3410.png?crop=true" alt="The content feed in a FanFuel app, with club news and video in one list">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="ff-block ff-block--flip">
@@ -740,15 +697,15 @@
                 </ul>
             </div>
             <div class="ff-block__visual">
-                <div class="ff-panel" role="img" aria-label="Live match screen with play-by-play alerts">
-                    <div class="ff-panel__bar"><span class="ff-panel__dot"></span><span class="ff-panel__dot"></span><span class="ff-panel__dot"></span></div>
-                    <div class="ff-panel__body">
-                        <div class="ff-row"><span><strong>Live</strong></span><span class="ff-chip">In progress</span></div>
-                        <div class="ff-row"><span>Goal</span><span class="ff-chip ff-chip--quiet">Alert sent</span></div>
-                        <div class="ff-row"><span>Substitution</span><span class="ff-chip ff-chip--quiet">Alert sent</span></div>
-                        <div class="ff-row"><span>Yellow card</span><span class="ff-chip ff-chip--quiet">Alert sent</span></div>
-                        <div class="ff-row"><span>Fixtures &middot; Results &middot; Standings</span><span class="ff-chip">Current</span></div></div>
-                </div></div>
+                <div class="relative flex justify-center">
+                    <div class="aw-glow"></div>
+                    <div class="aw-device">
+                        <div class="aw-device__screen">
+                            <img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3411.png?crop=true" alt="A live match screen in a FanFuel app, showing the score and match events">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="ff-block">
@@ -863,15 +820,15 @@
                 </ul>
             </div>
             <div class="ff-block__visual">
-                <div class="ff-panel" role="img" aria-label="Forum categories and a live player Q&A">
-                    <div class="ff-panel__bar"><span class="ff-panel__dot"></span><span class="ff-panel__dot"></span><span class="ff-panel__dot"></span></div>
-                    <div class="ff-panel__body">
-                        <div class="ff-row"><span>Match analysis</span><span class="ff-chip ff-chip--quiet">Open</span></div>
-                        <div class="ff-row"><span>Transfer talk</span><span class="ff-chip ff-chip--quiet">Open</span></div>
-                        <div class="ff-row" style="border-color: rgba(255, 107, 80, 0.35);"><span><strong>Player Q&amp;A</strong></span><span class="ff-chip">Live now</span></div>
-                        <div class="ff-row"><span>Premium section</span><span class="ff-chip">Points</span></div>
-                        <div class="ff-row"><span>AI moderation</span><span class="ff-chip">On</span></div></div>
-                </div></div>
+                <div class="relative flex justify-center">
+                    <div class="aw-glow"></div>
+                    <div class="aw-device">
+                        <div class="aw-device__screen">
+                            <img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3412.png?crop=true" alt="The fan forum in a FanFuel app, with discussion threads">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="ff-block ff-block--flip">
@@ -886,43 +843,23 @@
                 </ul>
             </div>
             <div class="ff-block__visual">
-                <div class="ff-panel" role="img" aria-label="Curated feed mixing club and fan uploads">
-                    <div class="ff-panel__bar"><span class="ff-panel__dot"></span><span class="ff-panel__dot"></span><span class="ff-panel__dot"></span></div>
-                    <div class="ff-panel__body">
-                        <div class="ff-row"><span>Club highlight</span><span class="ff-chip ff-chip--quiet">Official</span></div>
-                        <div class="ff-row"><span>View from the stand</span><span class="ff-chip">Fan upload</span></div>
-                        <div class="ff-row"><span>Pre-match walk-in</span><span class="ff-chip">Fan upload</span></div>
-                        <div class="ff-row"><span>Moderation queue</span><span class="ff-chip ff-chip--quiet">2 pending</span></div></div>
-                </div></div>
+                <div class="relative flex justify-center">
+                    <div class="aw-glow"></div>
+                    <div class="aw-device">
+                        <div class="aw-device__screen">
+                            <img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3414.png?crop=true" alt="A vertical reel playing in a FanFuel app, with fan and club uploads">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         </div>
     </section>
 
-    <!-- ============================================ 7. JUMBOTRON === -->
-    <!--
-        Pulled out of the fan-content bullet list and given its own visual: it is
-        the capability that connects the app to the physical stadium, and the one
-        a commercial team can immediately picture selling to a sponsor.
-    -->
-    <section class="aw-sec">
-        <div class="aw-wrap aw-wrap--mid">
-            <div class="text-center" style="margin-bottom: clamp(1.75rem, 4vh, 2.75rem);">
-                <span class="aw-eyebrow">Jumbotron integration</span>
-                <h2 class="aw-h2" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);">Fan content on the stadium screen</h2>
-                <p class="aw-lede mx-auto" style="max-width: 42rem; margin-top: clamp(0.75rem, 2vh, 1.25rem);">The best fan uploads are displayed live on the big screen. The app stops being a second screen and becomes part of the matchday itself, and it creates a placement your commercial team can sell.</p>
-            </div>
-            <div class="ff-jumbo">
-                <div class="ff-jumbo__screen" role="img" aria-label="Stadium screen displaying selected fan uploads">
-                    <div class="ff-jumbo__cell"><i class="bi bi-image" aria-hidden="true"></i></div>
-                    <div class="ff-jumbo__cell"><i class="bi bi-play-btn" aria-hidden="true"></i></div>
-                    <div class="ff-jumbo__cell"><i class="bi bi-image" aria-hidden="true"></i></div>
-                </div>
-                <div class="ff-jumbo__legs"><span></span><span></span></div>
-                <p class="text-center aw-sub" style="margin-top: clamp(0.75rem, 2vh, 1.25rem);">Fan uploads &rarr; moderation in mPanel &rarr; live on the screen</p>
-            </div>
-            <div class="aw-todo" style="margin-top: clamp(1.25rem, 3vh, 2rem);">Deployment status unconfirmed: is Jumbotron live at a venue, or built and not yet deployed?</div>
-        </div>
-    </section>
+    <!-- The "Fan content on the stadium screen" section (Jumbotron integration)
+         was here. Removed at the client's request; copy and the drawn stadium
+         screen are preserved in docs/fanfuel-removed-content.md, along with the
+         unanswered question about whether it is deployed at a venue. -->
 
     <!-- ===================================== 8. IN-STADIUM & REVENUE === -->
     <section class="aw-sec">
@@ -1007,116 +944,16 @@
         </div>
     </section>
 
-    <!-- ========================================== 10. HOW IT RUNS === -->
-    <section class="aw-sec">
-        <div class="aw-wrap aw-wrap--mid text-center">
-            <span class="aw-eyebrow">How it runs</span>
-            <h2 class="aw-h2" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);">Managed from mPanel CMS</h2>
-            <p class="aw-lede mx-auto" style="max-width: 44rem; margin-top: clamp(1rem, 2.5vh, 1.5rem);">Your team runs the app from mPanel: publish content, send notifications, import match data and watch how fans respond. Day to day it needs no technical expertise, and nothing about the app requires a developer to change.</p>
-            <div style="margin-top: clamp(1.5rem, 4vh, 2.25rem);">
-                <a href="/cms.html" class="aw-btn-2"><span>See what mPanel does</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-            </div>
-        </div>
-    </section>
+    <!-- "Managed from mPanel CMS" was here. Removed at the client's request;
+         copy in docs/fanfuel-removed-content.md. It carried the only in-body link
+         to /cms.html on this page; mPanel is still reachable from the nav, the
+         footer and the related-products section at the bottom. -->
 
-    <!-- ======================================== 11. WHAT'S INCLUDED === -->
-    <section class="aw-sec">
-        <div class="aw-wrap">
-            <div class="text-center" style="margin-bottom: clamp(2rem, 5vh, 3.5rem);">
-                <h2 class="aw-h2">What's included</h2>
-                <div class="flex justify-center" style="margin-top: clamp(1rem, 2.5vh, 1.5rem);"><div class="aw-rule"></div></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="gap: clamp(1rem, 2.5vw, 1.75rem);">
-                <div class="aw-card">
-                    <i class="bi bi-pencil-square aw-icon" aria-hidden="true"></i>
-                    <h3 class="aw-h4" style="margin: clamp(0.75rem, 2vh, 1rem) 0 clamp(0.625rem, 1.5vh, 0.875rem);">Development and design</h3>
-                    <ul class="aw-list">
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">App structure and functionality planning</span></li>
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Proposal with mockups</span></li>
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Mobile app design</span></li>
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">iOS, Android and Huawei builds</span></li>
-                    </ul>
-                </div>
-                <div class="aw-card">
-                    <i class="bi bi-rocket-takeoff aw-icon" aria-hidden="true"></i>
-                    <h3 class="aw-h4" style="margin: clamp(0.75rem, 2vh, 1rem) 0 clamp(0.625rem, 1.5vh, 0.875rem);">Onboarding and branding</h3>
-                    <ul class="aw-list">
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Initial onboarding</span></li>
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Apps published under your brand</span></li>
-                    </ul>
-                </div>
-                <div class="aw-card">
-                    <i class="bi bi-arrow-repeat aw-icon" aria-hidden="true"></i>
-                    <h3 class="aw-h4" style="margin: clamp(0.75rem, 2vh, 1rem) 0 clamp(0.625rem, 1.5vh, 0.875rem);">Platform and updates</h3>
-                    <ul class="aw-list">
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Every platform upgrade we build</span></li>
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Admin access to mPanel</span></li>
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">User management and insights module</span></li>
-                    </ul>
-                </div>
-                <div class="aw-card">
-                    <i class="bi bi-hdd-network aw-icon" aria-hidden="true"></i>
-                    <h3 class="aw-h4" style="margin: clamp(0.75rem, 2vh, 1rem) 0 clamp(0.625rem, 1.5vh, 0.875rem);">Infrastructure and support</h3>
-                    <ul class="aw-list">
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">All hosting</span></li>
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">24h urgent infrastructure support</span></li>
-                        <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Tech support in working hours</span></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- kept visually distinct from the included list so it cannot be misread as included -->
-            <div style="margin-top: clamp(2rem, 5vh, 3rem);">
-                <h3 class="aw-h4" style="margin: 0 0 clamp(0.75rem, 2vh, 1.125rem);">Priced separately</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3" style="gap: clamp(0.75rem, 2vw, 1.25rem);">
-                    <div class="aw-card" style="border-style: dashed; border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.02);">
-                        <i class="bi bi-plug" aria-hidden="true" style="color: rgba(255, 255, 255, 0.55); font-size: 1.375rem;"></i>
-                        <p class="aw-body" style="margin: 0.625rem 0 0;">Custom API integrations</p>
-                    </div>
-                    <div class="aw-card" style="border-style: dashed; border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.02);">
-                        <i class="bi bi-cpu" aria-hidden="true" style="color: rgba(255, 255, 255, 0.55); font-size: 1.375rem;"></i>
-                        <p class="aw-body" style="margin: 0.625rem 0 0;">Custom AI training</p>
-                    </div>
-                    <div class="aw-card" style="border-style: dashed; border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.02);">
-                        <i class="bi bi-shield-check" aria-hidden="true" style="color: rgba(255, 255, 255, 0.55); font-size: 1.375rem;"></i>
-                        <p class="aw-body" style="margin: 0.625rem 0 0;">AI administration for fan-generated content and forum</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================================== 12. COMMERCIAL MODEL === -->
-    <section class="aw-sec">
-        <div class="aw-wrap aw-wrap--mid">
-            <div class="text-center" style="margin-bottom: clamp(2rem, 5vh, 3rem);">
-                <h2 class="aw-h2">How it's priced</h2>
-                <p class="aw-lede mx-auto" style="max-width: 42rem; margin-top: clamp(1rem, 2.5vh, 1.5rem);">One upfront fee, then a monthly platform fee on a fixed term. No per-feature pricing and no charge for platform upgrades.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2" style="gap: clamp(1rem, 2.5vw, 1.75rem);">
-                <div class="aw-card">
-                    <p class="aw-sub" style="margin: 0;">Upfront</p>
-                    <p class="aw-h3" style="margin: 0.375rem 0 0;">-</p>
-                    <p class="aw-body" style="margin: 0.625rem 0 0;">Covers the build. The first three months are paid upfront, and those invoices are included in this fee.</p>
-                </div>
-                <div class="aw-card aw-card--accent">
-                    <p class="aw-sub" style="margin: 0;">Monthly platform fee</p>
-                    <p class="aw-h3" style="margin: 0.375rem 0 0;">-</p>
-                    <p class="aw-body" style="margin: 0.625rem 0 0;">Hosting, support, the insights module and every platform upgrade we build.</p>
-                </div>
-            </div>
-
-            <ul class="aw-list" style="margin-top: clamp(1.5rem, 4vh, 2.25rem);">
-                <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Twenty-four month term</span></li>
-                <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">First invoice falls due when the app is ready, not when the contract is signed</span></li>
-                <li><i class="bi bi-check2 aw-tick" aria-hidden="true"></i><span class="aw-body">Platform upgrades are never charged as new projects</span></li>
-            </ul>
-
-            <div class="aw-todo" style="margin-top: clamp(1.25rem, 3vh, 2rem);">Figures withheld pending your decision, see the note on the VerbaVista comparison</div>
-        </div>
-    </section>
+    <!-- "What's included", "Priced separately" and "How it's priced" were here,
+         three blocks across two sections. Removed at the client's request; all of
+         it is preserved in docs/fanfuel-removed-content.md, including the two
+         withheld figures. See the report for the FAQ answers that still refer to
+         the monthly fee and the 24-month term. -->
 
     <section class="aw-sec">
         <div class="aw-wrap">
@@ -1198,7 +1035,7 @@
             </div>
             <div class="aw-acc">
                 <button type="button" class="aw-acc__top" data-acc aria-expanded="false">Who moderates the forum and the fan uploads? <i class="bi bi-chevron-down aw-nav__caret" aria-hidden="true"></i></button>
-                <div class="aw-acc__inner"><div class="aw-acc__body"><p>You keep full control from mPanel, and AI moderation filters inappropriate content before it reaches anyone. Nothing goes on the stadium screen without being approved first. If you would rather not staff the review queue at all, we can run the AI administration for fan content and the forum. That is priced separately.</p></div></div>
+                <div class="aw-acc__inner"><div class="aw-acc__body"><p>You keep full control from mPanel, and AI moderation filters inappropriate content before it reaches anyone. If you would rather not staff the review queue at all, we can run the AI administration for fan content and the forum. That is priced separately.</p></div></div>
             </div>
             <div class="aw-acc">
                 <button type="button" class="aw-acc__top" data-acc aria-expanded="false">Who tests it before launch? <i class="bi bi-chevron-down aw-nav__caret" aria-hidden="true"></i></button>
