@@ -314,6 +314,16 @@
                 .pj-meta dd { margin-bottom: 0; }
             }
 
+            /*
+             * The project name, in the same accent as the approach titles.
+             *
+             * Two classes, not one. This <style> block is in <head> ABOVE the
+             * <link> to css/product.css, so a single-class selector here loses to
+             * .aw-h4 { color: #FFFFFF } on source order at equal specificity.
+             * Measured white before the descendant selector was added.
+             */
+            .pj-card .pj-card__name { color: #FF6B50; }
+
             /* supporting evidence, so deliberately quieter than the project name */
             .pj-tags {
                 display: flex;
@@ -324,12 +334,14 @@
                 padding: 0;
             }
 
+            /* the same chip media.html's connected stack uses, so a tag looks like
+               a tag on both pages */
             .pj-tags li {
                 padding: 0.125rem 0.5rem;
                 border-radius: 0.375rem;
-                background: rgba(255, 255, 255, 0.06);
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                color: rgba(255, 255, 255, 0.62);
+                background: rgba(255, 75, 54, 0.13);
+                border: 1px solid rgba(255, 107, 80, 0.38);
+                color: rgba(255, 255, 255, 0.82);
                 font-size: 0.75rem;
                 font-weight: 600;
             }
@@ -352,7 +364,10 @@
                 font-weight: 900;
                 line-height: 1.25;
                 letter-spacing: -0.02em;
-                color: #FFFFFF;
+                /* the page's own accent rather than a fourth colour; the bodies
+                   below stay grey, because a coral paragraph this long reads worse
+                   than a white one */
+                color: #FF6B50;
                 margin: 0 0 clamp(0.75rem, 2vh, 1.25rem);
             }
 
@@ -373,18 +388,28 @@
                 gap: clamp(1.25rem, 4vw, 3.5rem);
             }
 
-            /* matched optical height, one row */
+            /*
+             * Matched optical height. Every height and cap in this block is 25% up
+             * on the original, measured rather than assumed.
+             *
+             * That increase costs the single row below 1280px: the five lockups
+             * need about 1135px of the 1152px available at 1280, and more than the
+             * width available at 1024. The band wraps centred, which is why
+             * flex-wrap and justify-content: center are on .pj-logos. Anything
+             * above about +12% would have cost it, so one row at every width and
+             * "bigger" were not both available.
+             */
             .pj-logo {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                height: clamp(2.5rem, 5vw, 3.5rem);
+                height: clamp(3.125rem, 6.25vw, 4.375rem);
                 padding: 0 0.5rem;
             }
 
             .pj-logo img {
                 max-height: 100%;
-                max-width: clamp(7rem, 14vw, 11rem);
+                max-width: clamp(8.75rem, 17.5vw, 13.75rem);
                 width: auto;
                 object-fit: contain;
             }
@@ -398,7 +423,7 @@
                 background: #FFFFFF;
                 border-radius: 0.5rem;
                 padding: 0.5rem 0.75rem;
-                height: clamp(2.75rem, 5.5vw, 3.75rem);
+                height: clamp(3.4375rem, 6.875vw, 4.6875rem);
             }
 
             /*
@@ -410,7 +435,7 @@
              * square one stand taller than the row.
              */
             .pj-logo--square {
-                height: clamp(3.75rem, 7.5vw, 5.25rem);
+                height: clamp(4.6875rem, 9.375vw, 6.5625rem);
             }
 
             .pj-logo span {
@@ -428,20 +453,19 @@
 
             .pj-photo {
                 /*
-                 * The crop is deliberate, not a framing accident. An identifiable
-                 * pupil appears at the left of the photograph, and the instruction
-                 * for this page is that no identifiable child is published without
-                 * confirmed written consent for commercial use. A 16/9 photo in a
-                 * 4/3 frame loses a quarter of its width to object-fit: cover
-                 * anyway; pinning it right drops the quarter with her face in it
-                 * and keeps the hand, the phone and the poster.
+                 * Uncropped on the client's instruction of 10 Aug 2026 ("show the
+                 * full image"), which reverses the earlier crop. The photograph is
+                 * 1280x720, so the frame carries 16/9 and object-fit: cover has
+                 * nothing to remove - not a re-centred crop but the whole frame.
                  *
-                 * One value to change if consent is confirmed: 50% 50%.
+                 * What this publishes: an identifiable pupil is at the left of the
+                 * photograph and is now visible. That was the reason for the
+                 * original crop. It is the client's call and it is recorded here.
                  */
-                --pj-photo-pos: 100% 50%;
+                --pj-photo-pos: 50% 50%;
                 width: 100%;
                 max-width: 34rem;
-                aspect-ratio: 4 / 3;
+                aspect-ratio: 16 / 9;
                 border-radius: clamp(1rem, 2vw, 1.5rem);
                 overflow: hidden;
                 border: 1px solid rgba(255, 255, 255, 0.12);
@@ -699,9 +723,8 @@
 
                 <!--
                     A real photograph, supplied by the client: a pupil scanning a
-                    MapApp history-of-music poster in a school. Cropped by
-                    object-position rather than re-cut, because an identifiable
-                    child is in the discarded quarter. See the note on .pj-photo.
+                    MapApp history-of-music poster in a school. Shown in full at the
+                    client's instruction. See the note on .pj-photo.
                 -->
                 <div class="relative flex justify-center">
                     <div class="aw-glow"></div>
@@ -764,7 +787,7 @@
                 <!-- MapApp -->
                 <article class="pj-card">
                     <header class="pj-card__head">
-                        <h3 class="aw-h4" style="margin: 0;">MapApp</h3>
+                        <h3 class="aw-h4 pj-card__name" style="margin: 0;">MapApp</h3>
                         <p class="aw-sub" style="margin: 0.25rem 0 0;">MapApp Interactive Posters</p>
                     </header>
 
@@ -797,7 +820,7 @@
                 <!-- NEWLOCAL -->
                 <article class="pj-card">
                     <header class="pj-card__head">
-                        <h3 class="aw-h4" style="margin: 0;">NEWLOCAL</h3>
+                        <h3 class="aw-h4 pj-card__name" style="margin: 0;">NEWLOCAL</h3>
                         <p class="aw-sub" style="margin: 0.25rem 0 0;">NEWLOCAL - New approaches for local media</p>
                     </header>
 
@@ -830,7 +853,7 @@
                 <!-- Media Masters -->
                 <article class="pj-card">
                     <header class="pj-card__head">
-                        <h3 class="aw-h4" style="margin: 0;">Media Masters</h3>
+                        <h3 class="aw-h4 pj-card__name" style="margin: 0;">Media Masters</h3>
                         <p class="aw-sub" style="margin: 0.25rem 0 0;">Media Masters: Enhancing Media Literacy</p>
                     </header>
 
@@ -863,7 +886,7 @@
                 <!-- Precise Transcription of Media Content in Serbian -->
                 <article class="pj-card">
                     <header class="pj-card__head">
-                        <h3 class="aw-h4" style="margin: 0;">Precise Transcription of Media Content in Serbian</h3>
+                        <h3 class="aw-h4 pj-card__name" style="margin: 0;">Precise Transcription of Media Content in Serbian</h3>
 
                     </header>
 
@@ -895,7 +918,7 @@
                 <!-- UpSpace -->
                 <article class="pj-card">
                     <header class="pj-card__head">
-                        <h3 class="aw-h4" style="margin: 0;">UpSpace</h3>
+                        <h3 class="aw-h4 pj-card__name" style="margin: 0;">UpSpace</h3>
                         <p class="aw-sub" style="margin: 0.25rem 0 0;">UpSpace: Upcycling and Regeneration of urban Space for green skills</p>
                     </header>
 
@@ -928,11 +951,11 @@
                 <!-- Safeguard the Truth -->
                 <article class="pj-card">
                     <header class="pj-card__head">
-                        <h3 class="aw-h4" style="margin: 0;">Safeguard the Truth</h3>
+                        <h3 class="aw-h4 pj-card__name" style="margin: 0;">Safeguard the Truth</h3>
                         <p class="aw-sub" style="margin: 0.25rem 0 0;">STAIRS - Safeguard the Truth: AI Solution for Whistleblower Reporting Support</p>
                     </header>
 
-                    <p class="aw-todo pj-card__lead" style="text-align: left;">Description needed: the old page carried no narrative detail for this project</p>
+                    <p class="aw-body pj-card__lead">An AI-assisted reporting system that helps whistleblowers report wrongdoing safely and understand the protections available to them.</p>
 
                     <!--
                         A definition list, so status, our consortium role and
@@ -960,7 +983,7 @@
                 <!-- DIGI-FRAME -->
                 <article class="pj-card">
                     <header class="pj-card__head">
-                        <h3 class="aw-h4" style="margin: 0;">DIGI-FRAME</h3>
+                        <h3 class="aw-h4 pj-card__name" style="margin: 0;">DIGI-FRAME</h3>
                         <p class="aw-sub" style="margin: 0.25rem 0 0;">DIGI-FRAME - AI-Powered Digital Skills Assessment Framework</p>
                     </header>
 
@@ -991,19 +1014,19 @@
                 </article>
 
                 <!--
-                    ROMATRIGHTS. Only the funding body, the programme and the call
-                    reference came with it; the title, the description, the tags and
-                    the start year did not, and are marked rather than guessed. The
-                    call reference and the start year were both flagged "confirm" by
-                    the client, so they say so on the card.
+                    RomaRights, spelled as the client corrected it on 10 Aug 2026.
+                    The description, the tags and the 2026 start date arrived with
+                    that correction. Two things are still outstanding and still
+                    marked: the full official project title, and confirmation of the
+                    call reference.
                 -->
                 <article class="pj-card">
                     <header class="pj-card__head">
-                        <h3 class="aw-h4" style="margin: 0;">ROMATRIGHTS</h3>
+                        <h3 class="aw-h4 pj-card__name" style="margin: 0;">RomaRights</h3>
                         <p class="aw-sub" style="margin: 0.25rem 0 0;">Full project title needed</p>
                     </header>
 
-                    <p class="aw-todo pj-card__lead" style="text-align: left;">Description needed, and the technology tags with it: what we are building on this one has not been settled</p>
+                    <p class="aw-body pj-card__lead">A multilingual AI assistant that helps Roma individuals and organisations report discrimination, generate complaint forms adapted to national law, and reach the equality bodies that can act on them. Developed with partners in six countries and released as open source.</p>
 
                     <!--
                         A definition list, so status, our consortium role and
@@ -1014,8 +1037,14 @@
                         <dt>Funding body</dt><dd>European Commission, EU</dd>
                         <dt>Call</dt><dd>Fighting against discrimination and racism, xenophobia and other forms of intolerance (CERV-2025-EQUAL-RACI-DISC)<span class="aw-pending">confirm</span></dd>
                         <dt>Programme</dt><dd>CERV</dd>
-                        <dt>Started</dt><dd>2026<span class="aw-pending">confirm</span></dd>
+                        <dt>Started</dt><dd>2026</dd>
                     </dl>
+
+                    <ul class="pj-tags">
+                        <li>AI &amp; machine learning</li>
+                        <li>Incident reporting</li>
+                        <li>Open-source</li>
+                    </ul>
 
                     <footer class="pj-card__links">
                         <a href="https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43251589/101305905" target="_blank" rel="noopener" class="aw-link">View Call <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
@@ -1058,10 +1087,12 @@
                 <div class="pj-logo pj-logo--plate"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/horizon-europe-logo-new.jpg?crop=true" alt="European Commission, Horizon Europe 2021-2027"></div>
                 <!-- Still a named placeholder: the URL supplied for the Innovation
                      Fund was the Horizon Europe file a second time. -->
-                <div class="pj-logo" role="img" aria-label="Innovation Fund of Serbia logo placeholder"><span>Innovation Fund of Serbia</span></div>
+                <!-- plated for the same reason as CERV and Horizon: the file is a
+                     palette PNG with no tRNS chunk, so its white background is
+                     opaque and would show as a white box against the band. -->
+                <div class="pj-logo pj-logo--plate"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/images-21.png?crop=true" alt="Fond za inovacionu delatnost, the Innovation Fund of the Republic of Serbia"></div>
             </div>
-            <p class="aw-body mx-auto text-center" style="max-width: 46rem; margin-top: clamp(1.5rem, 4vh, 2.25rem);">Competitive European funding programmes are assessed by independent expert reviewers before a single euro is committed. Institutions vet us before they fund us.</p>
-            <div class="aw-todo" style="margin-top: clamp(1.25rem, 3vh, 2rem);">Awaiting the Innovation Fund of Serbia logo, and the granting authority per project so the mandatory EU funding disclaimer can be worded correctly</div>
+            <div class="aw-todo" style="margin-top: clamp(1.25rem, 3vh, 2rem);">Awaiting the granting authority per project, so the mandatory EU funding disclaimer can be worded correctly</div>
         </div>
     </section>
 
