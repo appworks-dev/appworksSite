@@ -32,7 +32,7 @@
         destination every "Contact us" link on the site is being repointed to.
 
         LocalBusiness rather than Organization, because this is the address page.
-        telephone is deliberately absent until the number is approved for publication
+        telephone is deliberately absent: there is no office number to publish
         - a wrong or unapproved phone number in structured data is worse than none,
         since Google surfaces it directly in the knowledge panel.
     -->
@@ -472,20 +472,10 @@
                                 </div>
                             </div>
 
-                            <!--
-                                The office number is built but not published. +381 11 3294 130
-                                was supplied with "confirm with me before publishing it", and it
-                                is nowhere else on the site. One word switches it on: replace this
-                                block with the same markup as the two above, and add "telephone"
-                                to the LocalBusiness JSON-LD in the head.
-                            -->
-                            <div class="info-item" style="opacity: 0.75;">
-                                <div class="info-icon"><i class="bi bi-telephone-fill" aria-hidden="true"></i></div>
-                                <div>
-                                    <div class="aw-sub" style="margin: 0 0 0.125rem;">Phone</div>
-                                    <div class="text-white font-bold">Awaiting approval to publish<span class="aw-pending">pending</span></div>
-                                </div>
-                            </div>
+                            <!-- No phone row. The client's answer of 10 Aug 2026 was that there
+                                 is no office number, so the slot is gone rather than left
+                                 pending, and "telephone" stays out of the LocalBusiness
+                                 JSON-LD in the head. -->
                         </div>
 
                         <!-- The response-time slot and the "start with a consultation"
@@ -626,7 +616,7 @@
                         <li><a href="/about.html" class="text-gray-400 hover:text-orange-500 transition-colors">About us</a></li>
                         <li><a href="/insights" class="text-gray-400 hover:text-orange-500 transition-colors">Insights</a></li>
                         <li><a href="/partners.html" class="text-gray-400 hover:text-orange-500 transition-colors">Partners</a></li>
-                        <li><a href="/about.html" class="text-gray-400 hover:text-orange-500 transition-colors">Contact us</a></li>
+                        <li><a href="/contact.html" class="text-gray-400 hover:text-orange-500 transition-colors">Contact us</a></li>
                     </ul>
                 </div>
 

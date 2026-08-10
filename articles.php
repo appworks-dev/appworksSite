@@ -668,7 +668,7 @@
                     <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">About us</a></li>
                     <li><a href="/insights" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Insights</a></li>
                     <li><a href="/partners.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Partners</a></li>
-                    <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
+                    <li><a href="/contact.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
                 </ul>
             </div>
 

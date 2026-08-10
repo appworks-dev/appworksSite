@@ -908,7 +908,9 @@
 
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start" style="gap: clamp(0.75rem, 1.5vw, 1rem);">
-                    <a href="/about.html" class="magnetic-button inline-flex items-center justify-center gap-3 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1" style="padding: clamp(0.75rem, 1.6svh, 1rem) clamp(1.5rem, 2.5vw, 2rem); background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
+                    <!-- "Let's Talk" goes to the contact page, not About. It pointed at
+                         about.html back when the form lived there. -->
+                    <a href="/contact.html" class="magnetic-button inline-flex items-center justify-center gap-3 rounded-xl font-bold text-white transition-all duration-300 hover:-translate-y-1" style="padding: clamp(0.75rem, 1.6svh, 1rem) clamp(1.5rem, 2.5vw, 2rem); background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%); box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);">
                         <span>Let's Talk</span>
                         <i class="bi bi-arrow-right text-xl"></i>
                     </a>
@@ -1756,21 +1758,24 @@
                     <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">About us</a></li>
                     <li><a href="/insights" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Insights</a></li>
                     <li><a href="/partners.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Partners</a></li>
-                    <li><a href="/about.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
+                    <li><a href="/contact.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Contact us</a></li>
                 </ul>
             </div>
 
             <!-- Column 3: Solutions -->
             <div>
+                <!-- .html, not extensionless. /cms, /media, /sport and /projects have no
+                     rewrite in .htaccess - only /insights and /article/{slug} do - so all
+                     four of these 404d in production. -->
                 <h4 class="text-white font-bold text-base mb-6" style="letter-spacing: -0.01em;">Solutions</h4>
                 <ul class="space-y-3">
-                    <li><a href="/cms" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">CMS</a></li>
-                    <li><a href="/media" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Media</a></li>
-                    <li><a href="/sport" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Sports</a></li>
+                    <li><a href="/cms.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">CMS</a></li>
+                    <li><a href="/media.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Media</a></li>
+                    <li><a href="/sport.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Sports</a></li>
                     <li><a href="https://litteraworks.com" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Litteraworks</a></li>
                     <li><a href="https://pchela.app/" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Pchela</a></li>
                     <li><a href="/consultation.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Consultation</a></li>
-                    <li><a href="/projects" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Grant Projects</a></li>
+                    <li><a href="/projects.html" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm">Grant Projects</a></li>
                 </ul>
             </div>
 

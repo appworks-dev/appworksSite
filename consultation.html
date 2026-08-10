@@ -817,9 +817,15 @@
 
     <!-- AI Solutions Section - The Spotlight Polish (with Backglow) -->
     <section class="relative py-24 px-6 lg:px-8">
-        <!-- Spotlight Backglow -->
+        <!-- Spotlight Backglow.
+             Fluid, not a fixed 1200px. Centred with left-1/2 and a -50% translate, a
+             1200px box hangs 216px past the right edge of a 768px viewport, which
+             made this the only page on the site that scrolled sideways on a tablet
+             (scrollWidth 984 against 768). min() keeps the glow at full size on a
+             wide monitor and lets it shrink to fit below that. Same bug and same fix
+             as the fixed-width glows already removed from home.html. -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-             style="width: 1200px; height: 1200px;
+             style="width: min(1200px, 100vw); height: min(1200px, 100vw);
                     background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(255, 75, 54, 0.15) 40%, transparent 70%);
                     filter: blur(100px);"></div>
 
@@ -910,7 +916,8 @@
         <div class="mx-auto text-center" style="max-width: 1600px;">
             <h2 class="text-white font-black text-4xl lg:text-6xl mb-6">Ready to Transform Your Organization?</h2>
             <p class="text-white text-xl mb-10" style="opacity: 0.85;">Let's discuss how we can help you modernize and compete more effectively.</p>
-            <a href="/about.html" class="cta-button">
+            <!-- same reason as the homepage CTA: this said GET IN TOUCH and landed on About -->
+            <a href="/contact.html" class="cta-button">
                 GET IN TOUCH
                 <i class="bi bi-arrow-right text-xl"></i>
             </a>
@@ -945,7 +952,7 @@
                         <li><a href="/about.html" class="text-gray-400 hover:text-orange-500 transition-colors">About us</a></li>
                         <li><a href="/insights" class="text-gray-400 hover:text-orange-500 transition-colors">Insights</a></li>
                         <li><a href="/partners.html" class="text-gray-400 hover:text-orange-500 transition-colors">Partners</a></li>
-                        <li><a href="/about.html" class="text-gray-400 hover:text-orange-500 transition-colors">Contact us</a></li>
+                        <li><a href="/contact.html" class="text-gray-400 hover:text-orange-500 transition-colors">Contact us</a></li>
                     </ul>
                 </div>
 

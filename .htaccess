@@ -71,8 +71,9 @@ RewriteRule ^article/da-li-mikro-uenje-moe-da-motivie-decu-da-ue$ /article/da-li
 # Redirect old /oneArticle/ID/slug pattern to clean /article/slug
 RewriteRule ^oneArticle/[0-9]+/(.+)$ /article/$1 [R=301,L]
 
-# Redirect old /page/contact to /about.html
-RewriteRule ^page/contact$ /about.html [R=301,L]
+# Redirect old /page/contact to the contact page. It pointed at /about.html back
+# when the enquiry form lived there; the form is on /contact.html now.
+RewriteRule ^page/contact$ /contact.html [R=301,L]
 
 # Redirect /appworksSite/article/slug to /article/slug (bad external link)
 RewriteRule ^appworksSite/article/(.+)$ /article/$1 [R=301,L]
