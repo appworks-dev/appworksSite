@@ -207,6 +207,20 @@
     color: var(--aw-text-dim);
 }
 
+/*
+ * Fronisa has no destination yet: the site is under construction and will be
+ * external. Rendered as a dimmed non-link rather than href="#" so nothing
+ * announces a link that goes nowhere. Deliberately not .aw-dd__link, which
+ * js/nav.js collects for arrow-key focus.
+ */
+.aw-dd__soon {
+    display: block;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.625rem;
+    opacity: 0.45;
+    cursor: default;
+}
+
 /* --------------------------------------------------------------- burger --- */
 
 .aw-nav__burger {
@@ -339,6 +353,20 @@
 }
 
 .aw-acc__list li:last-child a { padding-bottom: clamp(0.875rem, 2vh, 1.125rem); }
+
+/* mobile twin of .aw-dd__soon */
+.aw-acc__soon {
+    display: block;
+    padding: 0.6875rem 0 0.6875rem 1rem;
+    color: var(--aw-text-dim);
+    font-size: clamp(0.9375rem, 3.6vw, 1rem);
+    font-weight: 600;
+    border-left: 2px solid var(--aw-line);
+    opacity: 0.45;
+    cursor: default;
+}
+
+.aw-acc__list li:last-child .aw-acc__soon { padding-bottom: clamp(0.875rem, 2vh, 1.125rem); }
 
 /*
  * The accordion is a shared component, not nav-only: the FAQ on product pages

@@ -34,7 +34,9 @@ export const NAV = [
             { label: 'Litteraworks', href: 'https://litteraworks.com/', note: 'Transcription & subtitles', ...EXT },
             { label: 'Pchela', href: 'https://pchela.app/', note: 'AI asset management', ...EXT },
             { label: 'Media Puls', href: '/monitoring.html#media-puls', note: 'Media monitoring' },
-            { label: 'Fronisa', href: '/fronisa.html', note: 'AI chatbot & SEO' },
+            // No destination yet: the site is being built and will be external.
+            // Swap `soon` for `href` + EXT when the URL arrives.
+            { label: 'Fronisa', note: 'AI chatbot & SEO', soon: true },
         ],
     },
 
@@ -46,7 +48,7 @@ export const NAV = [
             { label: 'Litteraworks', href: 'https://litteraworks.com/', note: 'Transcription & subtitles', ...EXT },
             { label: 'Pchela', href: 'https://pchela.app/', note: 'AI asset management', ...EXT },
             { label: 'Sport Puls', href: '/monitoring.html#sport-puls', note: 'Sport monitoring' },
-            { label: 'Fronisa', href: '/fronisa.html', note: 'AI chatbot & SEO' },
+            { label: 'Fronisa', note: 'AI chatbot & SEO', soon: true },
         ],
     },
 
@@ -59,7 +61,7 @@ export const NAV = [
             { label: 'Litteraworks', href: 'https://litteraworks.com/', note: 'Transcription & subtitles', ...EXT },
             { label: 'Pchela', href: 'https://pchela.app/', note: 'AI asset management', ...EXT },
             { label: 'Media monitoring', href: '/monitoring.html', note: 'Media Puls / Sport Puls' },
-            { label: 'Fronisa', href: '/fronisa.html', note: 'AI chatbot & SEO' },
+            { label: 'Fronisa', note: 'AI chatbot & SEO', soon: true },
         ],
     },
 
@@ -116,10 +118,19 @@ function desktop(current) {
         const trigger = n.href
             ? `<a class="aw-nav__link" href="${n.href}" aria-expanded="false" aria-controls="${id}"${isCurrent ? ' aria-current="page"' : ''}>${esc(n.label)} <i class="bi bi-chevron-down aw-nav__caret" aria-hidden="true"></i></a>`
             : `<button type="button" class="aw-nav__trigger" aria-expanded="false" aria-controls="${id}">${esc(n.label)} <i class="bi bi-chevron-down aw-nav__caret" aria-hidden="true"></i></button>`;
-        const links = n.items.map((i) => `                        <a class="aw-dd__link" href="${i.href}"${extAttr(i)}>
-                            <span class="aw-dd__label">${esc(i.label)}${extMark(i)}</span>${i.note ? `
-                            <span class="aw-dd__note">${esc(i.note)}</span>` : ''}
-                        </a>`).join('\n');
+        const links = n.items.map((i) => {
+            const inner = `<span class="aw-dd__label">${esc(i.label)}${extMark(i)}</span>${i.note ? `
+                            <span class="aw-dd__note">${esc(i.note)}</span>` : ''}`;
+            // no href yet: a dimmed non-link, not a dead link
+            if (i.soon) {
+                return `                        <span class="aw-dd__soon" aria-disabled="true">
+                            ${inner}
+                        </span>`;
+            }
+            return `                        <a class="aw-dd__link" href="${i.href}"${extAttr(i)}>
+                            ${inner}
+                        </a>`;
+        }).join('\n');
         return `                <li class="aw-nav__item${n.end ? ' aw-nav__item--end' : ''}">
                     ${trigger}
                     <div class="aw-dd${n.cols === 2 ? ' aw-dd--two-col' : ''}" id="${id}" role="group" aria-label="${esc(n.label)}">
@@ -150,7 +161,9 @@ function mobile() {
                     <a class="aw-acc__top" href="${n.href}">${esc(n.label)}</a>
                 </div>`;
         }
-        const list = n.items.map((i) => `                            <li><a href="${i.href}"${extAttr(i)}>${esc(i.label)}${extMark(i)}</a></li>`).join('\n');
+        const list = n.items.map((i) => (i.soon
+            ? `                            <li><span class="aw-acc__soon" aria-disabled="true">${esc(i.label)}</span></li>`
+            : `                            <li><a href="${i.href}"${extAttr(i)}>${esc(i.label)}${extMark(i)}</a></li>`)).join('\n');
         // hub-backed sections get their own overview link first
         const hub = n.href ? `                            <li><a href="${n.href}">${esc(n.label)} overview</a></li>\n` : '';
         return `                <div class="aw-acc">

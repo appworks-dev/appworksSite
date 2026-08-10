@@ -206,3 +206,28 @@ The other two were finished:
         </div>
     </section>
 ```
+
+---
+
+## 5. Broadcast is included, not an upsell or an omission
+
+Removed 10 Aug 2026, at the client's request. It sat at the end of "One engine,
+two applications" as an accent card spanning the full width.
+
+The claim itself has not left the page: the hero lede still says both
+applications run on the same engine "including broadcast, because we transcribe
+TV and radio rather than skipping it", and the Puls coverage row still lists
+press and broadcast. What is gone is the competitive framing.
+
+```html
+            <div class="aw-card aw-card--accent" style="margin-top: clamp(1.5rem, 4vh, 2.5rem);">
+                <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center" style="gap: clamp(1rem, 3vw, 2rem);">
+                    <i class="bi bi-broadcast aw-icon" aria-hidden="true" style="font-size: clamp(2rem, 3vw, 2.75rem);"></i>
+                    <div>
+                        <h3 class="aw-h4">Broadcast is included, not an upsell or an omission</h3>
+                        <p class="aw-body" style="margin-top: 0.5rem;">Monitoring tools in this bracket typically cover online and social and stop there, because broadcast is expensive to process. We transcribe TV and radio using the same engine that runs our transcription product, which means a mention on the evening news is searchable text in the same dashboard as a mention in a blog post.</p>
+                    </div>
+                    <a href="https://litteraworks.com/" target="_blank" rel="noopener" class="aw-link" style="white-space: nowrap;">The engine behind it <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+```

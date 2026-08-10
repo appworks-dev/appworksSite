@@ -13,21 +13,21 @@
         gtag('config', 'G-LNLW0CSSLT');
     </script>
 
-    <title>VerbaVista — Mobile App Platform for News Publishers | Appworks</title>
+    <title>VerbaVista - Mobile App Platform for News Publishers | Appworks</title>
     <meta name="description" content="VerbaVista is the Appworks mobile app platform for newspapers, broadcasters and news agencies. Native iOS and Android apps run on our own CMS, with AI transcription, translation and subtitles built in.">
     <meta name="keywords" content="publisher mobile app, news app platform, newspaper app, broadcaster app, headless CMS, paywall app, push notifications, e-paper">
     <link rel="canonical" href="https://app-works.app/verbavista.html">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="VerbaVista — Mobile App Platform for News Publishers | Appworks">
-    <meta property="og:description" content="Native iOS and Android apps for newspapers, broadcasters and news agencies — built on our own CMS, with AI tools for transcription, translation and subtitles included.">
+    <meta property="og:title" content="VerbaVista - Mobile App Platform for News Publishers | Appworks">
+    <meta property="og:description" content="Native iOS and Android apps for newspapers, broadcasters and news agencies, built on our own CMS, with AI tools for transcription, translation and subtitles included.">
     <meta property="og:url" content="https://app-works.app/verbavista.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VerbaVista — Mobile App Platform for News Publishers | Appworks">
+    <meta name="twitter:title" content="VerbaVista - Mobile App Platform for News Publishers | Appworks">
     <meta name="twitter:description" content="Native iOS and Android apps for newspapers, broadcasters and news agencies, built on our own CMS with AI language tools included.">
     <meta name="twitter:image" content="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
 
@@ -106,7 +106,7 @@
         .vv-device {
             position: relative;
             width: min(300px, 74vw);
-            aspect-ratio: 9 / 19.5;
+            /* the ratio lives on __screen, not here: see the note there */
             margin-inline: auto;
             border-radius: clamp(1.75rem, 4vw, 2.5rem);
             padding: 0.5rem;
@@ -115,15 +115,26 @@
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
         }
 
-        /* the hero frame would be 650px tall and get cut at a 680px viewport;
-           capping it keeps the bleed looking deliberate rather than clipped */
+        /*
+         * Capping the height squashed the box while the width stayed at 300px, so
+         * object-fit: cover cropped the bottom off the screenshot in any window
+         * shorter than about 900px. Capping the width keeps the ratio intact, so
+         * the whole screen fits at every viewport height. The 1rem is the frame's
+         * own padding, top plus bottom.
+         */
         .vv-device--hero {
-            max-height: 72svh;
+            width: min(300px, 74vw, calc((72svh - 1rem) * 9 / 19.5 + 1rem));
         }
 
+        /*
+         * The ratio belongs here rather than on the frame. All seven screenshots
+         * are 640x1387, which is exactly 9:19.5; when the frame carried the ratio
+         * its padding came off the screen and cover shaved the bottom. Sizing the
+         * screen and letting the frame grow around it makes the fit exact.
+         */
         .vv-device__screen {
             width: 100%;
-            height: 100%;
+            aspect-ratio: 9 / 19.5;
             border-radius: clamp(1.375rem, 3.2vw, 2rem);
             /* the radius does nothing to a child image without this */
             overflow: hidden;
@@ -155,16 +166,11 @@
             line-height: 1.5;
         }
 
-        .vv-device__notch {
-            position: absolute;
-            top: 0.9rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 32%;
-            height: 0.5rem;
-            border-radius: 999px;
-            background: rgba(0, 0, 0, 0.65);
-        }
+        /*
+         * .vv-device__notch was here. It was drawn for empty frames; now that
+         * every frame holds a real screenshot, each of which carries its own iOS
+         * status bar, the pill sat on top of live content and read as a bug.
+         */
 
         /* fluid, so it cannot expand the mobile layout viewport the way the
            fixed 600px glows on home.html did */
@@ -303,10 +309,10 @@
                             <span class="aw-dd__label">Media Puls</span>
                             <span class="aw-dd__note">Media monitoring</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -332,10 +338,10 @@
                             <span class="aw-dd__label">Sport Puls</span>
                             <span class="aw-dd__note">Sport monitoring</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -365,10 +371,10 @@
                             <span class="aw-dd__label">Media monitoring</span>
                             <span class="aw-dd__note">Media Puls / Sport Puls</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -421,7 +427,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html#media-puls">Media Puls</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -437,7 +443,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html#sport-puls">Sport Puls</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -453,7 +459,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html">Media monitoring</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -494,7 +500,7 @@
 
                     <h1 class="text-white font-black" style="font-size: clamp(2.5rem, 5.2vw, 5rem); letter-spacing: -0.03em; line-height: 1.06; margin-top: clamp(1rem, 2.5svh, 2rem); margin-bottom: clamp(0.75rem, 2svh, 1.5rem);">VerbaVista</h1>
 
-                    <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.6vw, 1.375rem); color: rgba(255, 255, 255, 0.88); max-width: 40rem;">Native iOS and Android apps for newspapers, broadcasters and news agencies — built on our own CMS, with AI tools for transcription, translation and subtitles included.</p>
+                    <p class="leading-relaxed" style="font-size: clamp(1.0625rem, 1.6vw, 1.375rem); color: rgba(255, 255, 255, 0.88); max-width: 40rem;">Native iOS and Android apps for newspapers, broadcasters and news agencies, built on our own CMS, with AI tools for transcription, translation and subtitles included.</p>
 
                     <div class="flex flex-wrap" style="gap: clamp(0.75rem, 1.5vw, 1rem); margin-top: clamp(1.5rem, 4svh, 2.5rem);">
                         <a href="/contact.html" class="vv-btn-primary">
@@ -514,7 +520,6 @@
                         <div class="vv-device__screen">
                             <img loading="eager" fetchpriority="high" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3339.png?crop=true" alt="The Insajder app, built on VerbaVista, showing its home feed of latest stories">
                         </div>
-                        <div class="vv-device__notch"></div>
                     </div>
                 </div>
             </div>
@@ -550,7 +555,7 @@
             <div class="text-center" style="margin-bottom: clamp(2rem, 5vh, 3.5rem);">
                 <h2 class="text-white font-black mb-6" style="font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.02em;">One platform, not three tools</h2>
                 <div class="flex justify-center" style="margin-bottom: clamp(1rem, 2.5vh, 1.5rem);"><div class="vv-rule"></div></div>
-                <p class="mx-auto leading-relaxed" style="font-size: clamp(1rem, 1.3vw, 1.125rem); color: rgba(255, 255, 255, 0.68); max-width: 46rem;">VerbaVista is three things delivered together by one vendor. You are not integrating an app builder with a CMS with a transcription service, then maintaining the joins.</p>
+                <p class="mx-auto leading-relaxed" style="font-size: clamp(1rem, 1.3vw, 1.125rem); color: rgba(255, 255, 255, 0.68); max-width: 46rem;">VerbaVista is three things delivered together by one vendor. You are not integrating an app builder with a CMS with a chatbot, then maintaining the joins.</p>
             </div>
 
             <!-- the app in the middle, the two systems that run it either side -->
@@ -571,13 +576,13 @@
                     <p class="leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); color: rgba(255, 255, 255, 0.75); margin-top: 0.5rem;">Native iOS and Android, your branding, published under your name in the stores.</p>
                 </div>
 
+                <!-- Fronisa, not Litteraworks: the chatbot is integrated into the
+                     app itself. The language tools keep their own card in "What the
+                     app does". No link yet, the site is still being built. -->
                 <div class="vv-card flex flex-col">
-                    <i class="bi bi-soundwave" aria-hidden="true" style="font-size: clamp(1.75rem, 2.4vw, 2.25rem); color: #FF6B50;"></i>
-                    <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 1.9vw, 1.625rem); letter-spacing: -0.02em; margin-top: 0.75rem;">Litteraworks</h3>
-                    <p class="leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); color: rgba(255, 255, 255, 0.62); margin-top: 0.5rem;">AI transcription, translation, subtitles and text-to-speech, inside the editorial workflow rather than beside it.</p>
-                    <a href="https://litteraworks.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold mt-auto" style="font-size: 0.875rem; color: #FF6B50; padding-top: 1rem; text-decoration: none;">
-                        <span>About Litteraworks</span><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-                    </a>
+                    <i class="bi bi-chat-dots" aria-hidden="true" style="font-size: clamp(1.75rem, 2.4vw, 2.25rem); color: #FF6B50;"></i>
+                    <h3 class="text-white font-bold" style="font-size: clamp(1.25rem, 1.9vw, 1.625rem); letter-spacing: -0.02em; margin-top: 0.75rem;">Fronisa</h3>
+                    <p class="leading-relaxed" style="font-size: clamp(0.9375rem, 1.1vw, 1rem); color: rgba(255, 255, 255, 0.62); margin-top: 0.5rem;">An AI chatbot built into the app, answering reader questions from your own published archive and always linking back to the article it came from.</p>
                 </div>
             </div>
         </div>
@@ -606,7 +611,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3337.png?crop=true" alt="The DAN app home screen, with the lead story and section tabs"></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3337.png?crop=true" alt="The DAN app home screen, with the lead story and section tabs"></div></div>
                 </div>
             </div>
 
@@ -614,7 +619,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 6rem);">
                 <div class="relative flex justify-center order-2 lg:order-1">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3338.png?crop=true" alt="The KRIK app showing its investigations section"></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3338.png?crop=true" alt="The KRIK app showing its investigations section"></div></div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <span class="vv-eyebrow">Personalisation</span>
@@ -642,7 +647,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3336.png?crop=true" alt="An article open in the Boom 93 app, with type size, bookmark and share controls"></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3336.png?crop=true" alt="An article open in the Boom 93 app, with type size, bookmark and share controls"></div></div>
                 </div>
             </div>
 
@@ -650,7 +655,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 6rem);">
                 <div class="relative flex justify-center order-2 lg:order-1">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3340.png?crop=true" alt="A reader-submitted post in the SAT Hub app community feed"></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3340.png?crop=true" alt="A reader-submitted post in the SAT Hub app community feed"></div></div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <span class="vv-eyebrow">Community</span>
@@ -677,7 +682,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3342.png?crop=true" alt="The Vecer app e-paper kiosk, listing the latest print editions"></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3342.png?crop=true" alt="The Vecer app e-paper kiosk, listing the latest print editions"></div></div>
                 </div>
             </div>
 
@@ -685,7 +690,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem);">
                 <div class="relative flex justify-center order-2 lg:order-1">
                     <div class="vv-glow"></div>
-                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3343.png?crop=true" alt="A three-question quiz running in the SAT Hub app"></div><div class="vv-device__notch"></div></div>
+                    <div class="vv-device"><div class="vv-device__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/large-full/files/images/img-3343.png?crop=true" alt="A three-question quiz running in the SAT Hub app"></div></div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <span class="vv-eyebrow">Engagement</span>

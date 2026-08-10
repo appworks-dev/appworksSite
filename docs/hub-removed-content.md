@@ -882,3 +882,17 @@ for a story of its own and still needs sign-off.
 sport.html has no equivalent of the Media hub's "AI in the editorial workflow"
 capability group — six product cards, no capability card — so there was nothing to
 take out.
+
+---
+
+## The insights standfirst on media.html
+
+Removed 10 Aug 2026. "Writing about media and technology" was sharing a flex row
+with this line, which squeezed the heading onto two lines; the client wanted it
+on one. Nothing constrains the heading now.
+
+> What we have learned building for newsrooms, publishers and broadcasters.
+
+sport.html still has the same two-part header ("Writing about sport and
+technology" plus a standfirst). It was not touched, because the instruction named
+the media page only.

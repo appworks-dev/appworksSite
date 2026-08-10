@@ -131,10 +131,10 @@
                             <span class="aw-dd__label">Media Puls</span>
                             <span class="aw-dd__note">Media monitoring</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -160,10 +160,10 @@
                             <span class="aw-dd__label">Sport Puls</span>
                             <span class="aw-dd__note">Sport monitoring</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -193,10 +193,10 @@
                             <span class="aw-dd__label">Media monitoring</span>
                             <span class="aw-dd__note">Media Puls / Sport Puls</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -249,7 +249,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html#media-puls">Media Puls</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -265,7 +265,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html#sport-puls">Sport Puls</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -281,7 +281,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html">Media monitoring</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -408,17 +408,10 @@
                 </div>
             </div>
 
-            <!-- broadcast deserves its own emphasis: it is the capability difference -->
-            <div class="aw-card aw-card--accent" style="margin-top: clamp(1.5rem, 4vh, 2.5rem);">
-                <div class="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center" style="gap: clamp(1rem, 3vw, 2rem);">
-                    <i class="bi bi-broadcast aw-icon" aria-hidden="true" style="font-size: clamp(2rem, 3vw, 2.75rem);"></i>
-                    <div>
-                        <h3 class="aw-h4">Broadcast is included, not an upsell or an omission</h3>
-                        <p class="aw-body" style="margin-top: 0.5rem;">Monitoring tools in this bracket typically cover online and social and stop there, because broadcast is expensive to process. We transcribe TV and radio using the same engine that runs our transcription product, which means a mention on the evening news is searchable text in the same dashboard as a mention in a blog post.</p>
-                    </div>
-                    <a href="https://litteraworks.com/" target="_blank" rel="noopener" class="aw-link" style="white-space: nowrap;">The engine behind it <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
-                </div>
-            </div>
+            <!-- The "Broadcast is included, not an upsell or an omission" card was
+                 here. Removed at the client's request; copy preserved in
+                 docs/monitoring-removed-content.md. The hero lede still says
+                 broadcast is in, so the claim has not disappeared from the page. -->
         </div>
     </section>
 
@@ -433,7 +426,7 @@
             </div>
 
             <!-- coverage -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 5rem);">
+            <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 5rem);">
                 <div>
                     <h3 class="aw-h3">Your own coverage, and everyone else's</h3>
                     <ul class="aw-list" style="margin-top: clamp(1.25rem, 3vh, 1.75rem);">
@@ -444,7 +437,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="aw-glow"></div>
-                    <div class="aw-frame" style="max-width: 540px;">
+                    <div class="aw-frame" style="max-width: 648px;">
                         <div class="aw-frame__bar"><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span></div>
                         <div class="aw-frame__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/image-100.png?crop=true" alt="Media Puls showing coverage across the outlets a newsroom has chosen"></div>
                     </div>
@@ -452,10 +445,10 @@
             </div>
 
             <!-- filtering -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 5rem);">
+            <div class="grid grid-cols-1 lg:grid-cols-[3fr_2fr] items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 5rem);">
                 <div class="relative flex justify-center order-2 lg:order-1">
                     <div class="aw-glow"></div>
-                    <div class="aw-frame" style="max-width: 540px;">
+                    <div class="aw-frame" style="max-width: 648px;">
                         <div class="aw-frame__bar"><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span></div>
                         <div class="aw-frame__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/image-104.png?crop=true" alt="Media Puls filtering, by outlet, topic and time"></div>
                     </div>
@@ -498,7 +491,7 @@
             </div>
 
             <!-- per-entity -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 5rem);">
+            <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 5rem);">
                 <div>
                     <h3 class="aw-h3">Per-entity tracking</h3>
                     <ul class="aw-list" style="margin-top: clamp(1.25rem, 3vh, 1.75rem);">
@@ -509,7 +502,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="aw-glow"></div>
-                    <div class="aw-frame" style="max-width: 540px;">
+                    <div class="aw-frame" style="max-width: 648px;">
                         <div class="aw-frame__bar"><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span></div>
                         <div class="aw-frame__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/image-101.png?crop=true" alt="Sport Puls tracking coverage per entity"></div>
                     </div>
@@ -517,10 +510,10 @@
             </div>
 
             <!-- fan conversation -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 5rem);">
+            <div class="grid grid-cols-1 lg:grid-cols-[3fr_2fr] items-center" style="gap: clamp(2rem, 5vw, 4rem); margin-bottom: clamp(3rem, 7vh, 5rem);">
                 <div class="relative flex justify-center order-2 lg:order-1">
                     <div class="aw-glow"></div>
-                    <div class="aw-frame" style="max-width: 540px;">
+                    <div class="aw-frame" style="max-width: 648px;">
                         <div class="aw-frame__bar"><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span></div>
                         <div class="aw-frame__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/image-102.png?crop=true" alt="Sport Puls showing the fan conversation around a club"></div>
                     </div>
@@ -535,7 +528,7 @@
             </div>
 
             <!-- broadcast and press -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 items-center" style="gap: clamp(2rem, 5vw, 4rem);">
+            <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] items-center" style="gap: clamp(2rem, 5vw, 4rem);">
                 <div>
                     <h3 class="aw-h3">Broadcast and press</h3>
                     <ul class="aw-list" style="margin-top: clamp(1.25rem, 3vh, 1.75rem);">
@@ -545,7 +538,7 @@
                 </div>
                 <div class="relative flex justify-center">
                     <div class="aw-glow"></div>
-                    <div class="aw-frame" style="max-width: 540px;">
+                    <div class="aw-frame" style="max-width: 648px;">
                         <div class="aw-frame__bar"><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span><span class="aw-frame__dot"></span></div>
                         <div class="aw-frame__screen"><img loading="lazy" src="https://appworks.mpanel.app/image/cache/original/files/images/image-103.png?crop=true" alt="Broadcast and press coverage in Puls, transcribed and searchable"></div>
                     </div>

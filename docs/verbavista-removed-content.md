@@ -133,3 +133,27 @@ states a price.
         </div>
     </section>
 ```
+
+---
+
+## 4. The Litteraworks pillar in "One platform, not three tools"
+
+Replaced by Fronisa on 10 Aug 2026. The client's reasoning: the chatbot is
+integrated into the app, Litteraworks is not a pillar of the app in the same
+sense. The language tools keep their own card in "What the app does"
+("Subtitles and translation - handled by Litteraworks inside the editorial
+workflow"), and the hero still says transcription, translation and subtitles are
+included, so nothing about the AI tooling has disappeared from the page.
+
+The standfirst above the trio changed one noun with it: "an app builder with a
+CMS with a transcription service" became "...with a chatbot", so the sentence
+still names the three cards underneath it.
+
+```html
+                <div class="vv-card flex flex-col">
+                    <i class="bi bi-soundwave" aria-hidden="true" style="font-size: clamp(1.75rem, 2.4vw, 2.25rem); color: #FF6B50;"></i>
+                    <h3 class="text-white font-bold" style="...">Litteraworks</h3>
+                    <p class="leading-relaxed" style="...">AI transcription, translation, subtitles and text-to-speech, inside the editorial workflow rather than beside it.</p>
+                    <a href="https://litteraworks.com/" target="_blank" rel="noopener" class="..."><span>About Litteraworks</span><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+                </div>
+```

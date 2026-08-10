@@ -9,7 +9,7 @@ $debug = false;
 $seoOverrides = [
     'ai-in-the-newsroom-2026-whats-actually-changed' => [
         'title' => "AI in the Newsroom 2026: What's Actually Working",
-        'description' => "AI in newsrooms in 2026: what's actually working. Small editorial teams are saving hours on transcription, tagging, and formatting — not writing.",
+        'description' => "AI in newsrooms in 2026: what's actually working. Small editorial teams are saving hours on transcription, tagging, and formatting, not writing.",
     ],
     'digital-asset-management-for-media-companies-in-2026-the-retrieval-crisis-no-one-is-talking-about' => [
         'title' => "DAM Software for Media Companies 2026: The Retrieval Crisis",
@@ -21,7 +21,7 @@ $seoOverrides = [
     ],
     'turn-matchday-spikes-into-year-round-fan-engagement' => [
         'title' => "Turn Matchday Spikes Into Year-Round Fan Engagement",
-        'description' => "80% of fan engagement happens on matchday. Here's how clubs use mobile apps to keep fans engaged all week — specific tactics and examples.",
+        'description' => "80% of fan engagement happens on matchday. Here's how clubs use mobile apps to keep fans engaged all week: specific tactics and examples.",
     ],
     'fix-post-match-engagement-gamification-strategy-for-sports-apps' => [
         'title' => "Fix Post-Match Engagement: Gamification for Sports Apps",
@@ -54,11 +54,11 @@ $seoOverrides = [
     ],
     'the-hidden-cost-of-untagged-media-archives-infographic' => [
         'title' => "The Hidden Cost of Untagged Media Archives [Infographic]",
-        'description' => "Media companies waste 6+ hours weekly searching untagged archives. This infographic shows the true cost — and how AI tagging fixes it in 2026.",
+        'description' => "Media companies waste 6+ hours weekly searching untagged archives. This infographic shows the true cost, and how AI tagging fixes it in 2026.",
     ],
     'your-media-archive-is-costing-you-more-than-you-think' => [
         'title' => "Your Media Archive Is Costing More Than You Think",
-        'description' => "Most media archives lose 30%+ of their value to bad metadata and untagged files. Why IMG_2023.jpg is costing you money — and how to fix it.",
+        'description' => "Most media archives lose 30%+ of their value to bad metadata and untagged files. Why IMG_2023.jpg is costing you money, and how to fix it.",
     ],
 ];
 
@@ -739,10 +739,10 @@ if ($articleData) {
                             <span class="aw-dd__label">Media Puls</span>
                             <span class="aw-dd__note">Media monitoring</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -768,10 +768,10 @@ if ($articleData) {
                             <span class="aw-dd__label">Sport Puls</span>
                             <span class="aw-dd__note">Sport monitoring</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -801,10 +801,10 @@ if ($articleData) {
                             <span class="aw-dd__label">Media monitoring</span>
                             <span class="aw-dd__note">Media Puls / Sport Puls</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -857,7 +857,7 @@ if ($articleData) {
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html#media-puls">Media Puls</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -873,7 +873,7 @@ if ($articleData) {
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html#sport-puls">Sport Puls</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -889,7 +889,7 @@ if ($articleData) {
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html">Media monitoring</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>

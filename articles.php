@@ -403,10 +403,10 @@
                             <span class="aw-dd__label">Media Puls</span>
                             <span class="aw-dd__note">Media monitoring</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -432,10 +432,10 @@
                             <span class="aw-dd__label">Sport Puls</span>
                             <span class="aw-dd__note">Sport monitoring</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -465,10 +465,10 @@
                             <span class="aw-dd__label">Media monitoring</span>
                             <span class="aw-dd__note">Media Puls / Sport Puls</span>
                         </a>
-                        <a class="aw-dd__link" href="/fronisa.html">
+                        <span class="aw-dd__soon" aria-disabled="true">
                             <span class="aw-dd__label">Fronisa</span>
                             <span class="aw-dd__note">AI chatbot &amp; SEO</span>
-                        </a>
+                        </span>
                     </div>
                 </li>
                 <li class="aw-nav__item">
@@ -521,7 +521,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html#media-puls">Media Puls</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -537,7 +537,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html#sport-puls">Sport Puls</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -553,7 +553,7 @@
                             <li><a href="https://litteraworks.com/" target="_blank" rel="noopener">Litteraworks <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="https://pchela.app/" target="_blank" rel="noopener">Pchela <i class="bi bi-box-arrow-up-right aw-dd__ext" aria-hidden="true"></i></a></li>
                             <li><a href="/monitoring.html">Media monitoring</a></li>
-                            <li><a href="/fronisa.html">Fronisa</a></li>
+                            <li><span class="aw-acc__soon" aria-disabled="true">Fronisa</span></li>
                         </ul>
                     </div>
                 </div>
@@ -722,9 +722,9 @@ const categoryDescriptions = {
     '*': '',
     '4': 'How digital publishing, mobile apps, and content automation are reshaping modern newsrooms.',
     '3': 'Fan engagement platforms, loyalty programs, and mobile strategies for sports clubs and leagues.',
-    '9': 'Practical applications of AI in media workflows — transcription, tagging, content generation, and more.',
+    '9': 'Practical applications of AI in media workflows: transcription, tagging, content generation, and more.',
     '10': 'EU-funded innovation projects in media technology, Creative Europe, and Horizon Europe programs.',
-    '12': 'AI-powered digital asset management — face recognition, auto-tagging, and media archive search.'
+    '12': 'AI-powered digital asset management: face recognition, auto-tagging, and media archive search.'
 };
 
 // Hidden category slugs (articles live on other domains)
