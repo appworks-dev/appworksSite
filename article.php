@@ -446,23 +446,10 @@ if ($articleData) {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Fixed Header */
-        .header-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(32, 10, 36, 0.85);
-            backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .header-nav.scrolled {
-            background: rgba(32, 10, 36, 0.95);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
-        }
+        /* The .header-nav rules were here. Nothing on this page has that class —
+           the nav is .aw-nav from css/nav.css — so they styled nothing, and the
+           scroll handler that added .scrolled to them threw on every scroll event.
+           Both removed. */
 
         /* Mega Dropdown */
         .mega-dropdown {
@@ -1110,16 +1097,6 @@ if ($articleData) {
 </button>
 
 <script>
-// Header scroll effect
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.header-nav');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
-
 // Scroll to top button
 const scrollBtn = document.getElementById('scroll-to-top');
 window.addEventListener('scroll', function() {
