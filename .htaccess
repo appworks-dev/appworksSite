@@ -1,6 +1,32 @@
 # Disable directory listing
 Options -Indexes
 
+# --- Keep internal files out of the public web root ---
+#
+# Options -Indexes stops anyone BROWSING a folder, but it does nothing about a
+# guessed filename. Verified against production on 11 Aug 2026:
+#
+#   /CLAUDE.md                       200 text/markdown  <- documents the CMS API auth header
+#   /docs/redirects.md               200 text/markdown
+#   /docs/blog-integration-guide.md  200 text/markdown
+#
+# Dotfiles (.htaccess, .gitignore) were already refused by the server config, so
+# only .md and .mjs need covering. .mjs catches tools/build-nav.mjs; no .mjs file
+# is ever requested by a browser here, and site scripts are all .js.
+#
+# Written for either Apache generation on purpose. An unrecognised directive in
+# .htaccess returns 500 for the whole directory, so each form is guarded by the
+# module that provides it: mod_authz_core is 2.4, its absence means 2.2.
+<FilesMatch "\.(md|mjs)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
 # Custom 404 page
 ErrorDocument 404 /404.html
 
