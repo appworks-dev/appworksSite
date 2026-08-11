@@ -28,9 +28,14 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
 }
 
 // ---------------------------------------------------------------- the token ---
-// Kept outside DocumentRoot. The env var exists so the file can be exercised
-// from a scratch directory without a copy of the real token.
-$tokenFile = getenv('APPWORKS_CMS_TOKEN_FILE') ?: '/var/www/private/appworksapp/cms-token';
+// One directory above DocumentRoot (which is .../appworksapp/public_html), so it
+// is not web-reachable, but still inside the pool's open_basedir. The obvious
+// spot, /var/www/private/appworksapp, is NOT: open_basedir for this pool is
+// "/var/www/public/appworksapp:...", so reading from there fails at runtime even
+// though the file permissions are fine.
+// The env var exists so the file can be exercised from a scratch directory
+// without a copy of the real token.
+$tokenFile = getenv('APPWORKS_CMS_TOKEN_FILE') ?: '/var/www/public/appworksapp/cms-token';
 $token = is_readable($tokenFile) ? trim((string) file_get_contents($tokenFile)) : '';
 
 if ($token === '') {
