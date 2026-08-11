@@ -33,8 +33,10 @@
 (function () {
     'use strict';
 
-    var API = 'https://appworks.mpanel.app/api/webV2/getArticles';
-    var AUTH = 'kmNTuI8dRmRX';
+    /* Goes through /api/articles.php, which attaches the CMS token server side.
+       This script runs on the homepage and both hubs, so calling the CMS directly
+       put that token in the page source of the most-visited pages on the site. */
+    var API = '/api/articles.php';
     var FALLBACK_IMG = 'https://app-works.app/images/placeholder.jpg';
 
     /*
@@ -143,9 +145,9 @@
         var all = category === '*';
         var query = all
             ? '?articleLimit=' + (limit + 4)
-            : '?category[]=' + encodeURIComponent(category) + '&articleLimit=' + (limit + 4);
+            : '?category=' + encodeURIComponent(category) + '&articleLimit=' + (limit + 4);
 
-        fetch(API + query, { headers: { 'Authorization': AUTH } })
+        fetch(API + query)
             .then(function (r) { return r.json(); })
             .then(function (data) {
                 var articles = (data && data.result && data.result.articles) || [];

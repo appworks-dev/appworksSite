@@ -766,20 +766,18 @@ async function fetchArticles(page = 1, filter = '*', append = false) {
     loadingSpinner.classList.remove('hidden');
     loadMoreBtn.disabled = true;
 
-    let apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles';
+    // Goes through /api/articles.php, which attaches the CMS token server side.
+    // Calling the CMS directly meant shipping that token in the page source.
+    let apiUrl = '/api/articles.php';
 
     if (filter === '*') {
         apiUrl += `?articleLimit=12&page=${page}`;
     } else {
-        apiUrl += `?category[]=${encodeURIComponent(filter)}&articleLimit=12&page=${page}`;
+        apiUrl += `?category=${encodeURIComponent(filter)}&articleLimit=12&page=${page}`;
     }
 
     try {
-        const response = await fetch(apiUrl, {
-            headers: {
-                'Authorization': 'kmNTuI8dRmRX'
-            }
-        });
+        const response = await fetch(apiUrl);
 
         const data = await response.json();
 
