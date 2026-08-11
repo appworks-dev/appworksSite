@@ -342,32 +342,54 @@ if ($articleData) {
 
     <!-- Structured data for SEO -->
     <?php if ($articleData): ?>
+    <?php
+    /*
+     * Built as an array and handed to json_encode rather than interpolated into
+     * a JSON-shaped template.
+     *
+     * The template escaped with addslashes(), which turns an apostrophe into \'
+     * — not a valid JSON escape. Google rejected the entire Article block for
+     * any title containing one. Eight of the fifty newest articles did,
+     * "AI in the Newsroom 2026: What's Actually Changed" among them.
+     *
+     * json_encode also covers the fields the template never escaped at all:
+     * $pageUrl is assembled from HTTP_HOST and REQUEST_URI, so a request could
+     * otherwise have put a raw quote straight into the document.
+     */
+    $articleSchema = [
+        '@context'    => 'https://schema.org',
+        '@type'       => 'Article',
+        'headline'    => $articleData['title'],
+        'description' => $override['description'] ?? $articleData['intro'] ?? $articleData['title'],
+        'image'       => $pageImage,
+        'datePublished' => $articleData['created_at'],
+        'dateModified'  => $articleData['updated_at'] ?? $articleData['created_at'],
+        'author' => [
+            '@type' => 'Organization',
+            'name'  => 'Appworks',
+        ],
+        'publisher' => [
+            '@type' => 'Organization',
+            'name'  => 'Appworks',
+            'logo'  => [
+                '@type' => 'ImageObject',
+                'url'   => 'https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png',
+            ],
+        ],
+        'mainEntityOfPage' => [
+            '@type' => 'WebPage',
+            '@id'   => $pageUrl,
+        ],
+    ];
+
+    /*
+     * JSON_HEX_TAG and the default slash escaping both matter here: this sits
+     * inside a <script> block, so a "</script>" arriving in a title would
+     * otherwise close it early. Neither affects how the schema parses.
+     */
+    ?>
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "<?php echo addslashes($articleData['title']); ?>",
-        "description": "<?php echo addslashes($override['description'] ?? $articleData['intro'] ?? $articleData['title']); ?>",
-        "image": "<?php echo $pageImage; ?>",
-        "datePublished": "<?php echo $articleData['created_at']; ?>",
-        "dateModified": "<?php echo $articleData['updated_at'] ?? $articleData['created_at']; ?>",
-        "author": {
-            "@type": "Organization",
-            "name": "Appworks"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Appworks",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png"
-            }
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "<?php echo $pageUrl; ?>"
-        }
-    }
+<?php echo json_encode($articleSchema, JSON_HEX_TAG | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); ?>
     </script>
     <?php endif; ?>
 
