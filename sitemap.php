@@ -10,11 +10,17 @@ $staticPages = [
     ['loc' => '/cms.html',           'changefreq' => 'monthly', 'priority' => '0.9'],
     ['loc' => '/media.html',         'changefreq' => 'monthly', 'priority' => '0.9'],
     ['loc' => '/sport.html',         'changefreq' => 'monthly', 'priority' => '0.9'],
+    ['loc' => '/verbavista.html',    'changefreq' => 'monthly', 'priority' => '0.9'],
+    ['loc' => '/fanfuel.html',       'changefreq' => 'monthly', 'priority' => '0.9'],
+    ['loc' => '/monitoring.html',    'changefreq' => 'monthly', 'priority' => '0.8'],
     ['loc' => '/consultation.html',  'changefreq' => 'monthly', 'priority' => '0.8'],
     ['loc' => '/insights',            'changefreq' => 'weekly',  'priority' => '0.8'],
     ['loc' => '/partners.html',      'changefreq' => 'monthly', 'priority' => '0.7'],
     ['loc' => '/projects.html',      'changefreq' => 'monthly', 'priority' => '0.7'],
     ['loc' => '/about.html',         'changefreq' => 'monthly', 'priority' => '0.7'],
+    ['loc' => '/contact.html',       'changefreq' => 'monthly', 'priority' => '0.6'],
+    // fronisa.html is deliberately absent: it carries noindex and is not linked
+    // from the nav while its copy is still being written.
 ];
 
 // Fetch articles from CMS API
