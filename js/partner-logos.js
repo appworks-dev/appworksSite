@@ -66,14 +66,14 @@ const PARTNERS = {
     },
     'ringier': {
         name: 'Ringier',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/ringier-logo-1.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-22.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
     },
     'n1': {
         name: 'N1',
-        logo: 'https://app-works.app/images/appworksPartners/Featured/N1.png',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/unnamed-8-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -86,7 +86,7 @@ const PARTNERS = {
         featured: true
     },
     'euronews': {
-        name: 'Euronews',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/euronews-serbia.png?crop=true',
+        name: 'Euronews',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-23-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -99,7 +99,7 @@ const PARTNERS = {
         featured: true
     },
     'hanza-media': {
-        name: 'Hanza Media',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/hanza-media-logo.png?crop=true',
+        name: 'Hanza Media',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/1707230054179-removebg-preview-1.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -494,7 +494,7 @@ const PARTNERS = {
         featured: true
     },
     'crta': {
-        name: 'CRTA',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/copy-of-crta-logo-e1770214876215.png?crop=true',
+        name: 'CRTA',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/channels4-banner-removebg-preview.png?crop=true',
         url: 'https://crta.rs/',
         category: 'media',
         featured: true
