@@ -66,7 +66,7 @@ const PARTNERS = {
     },
     'ringier': {
         name: 'Ringier',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-22.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/images-24-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: true
@@ -165,7 +165,7 @@ const PARTNERS = {
         featured: false
     },
     'hrvatski-telekom': {
-        name: 'Hrvatski Telekom',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/tportal-logo-desk-primary.png?crop=true',        url: 'https://www.tportal.hr/',
+        name: 'tportal',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/2592668-removebg-preview.png?crop=true',        url: 'https://www.tportal.hr/',
         category: 'media',
         featured: false
     },
@@ -261,7 +261,7 @@ const PARTNERS = {
         featured: false
     },
     'telegraf': {
-        name: 'Telegraf',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/telegrafrs-logo-1-removebg-preview.png?crop=true',
+        name: 'Telegraf',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/maxresdefault-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -415,7 +415,7 @@ const PARTNERS = {
     },
     'riportal': {
         name: 'Riportal',
-        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/unnamed-7-removebg-preview-1.png?crop=true',
+        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/riportal-logo-removebg-preview.png?crop=true',
         url: '#',
         category: 'media',
         featured: false
@@ -506,7 +506,7 @@ const PARTNERS = {
         featured: true
     },
     'srna': {
-        name: 'SRNA',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/share-image-removebg-preview.png?crop=true',
+        name: 'SRNA',        logo: 'https://appworks.mpanel.app/image/cache/original/files/images/share-image-removebg-preview-1.png?crop=true',
         url: 'https://www.srna.rs/',
         category: 'media',
         featured: true
