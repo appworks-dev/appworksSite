@@ -46,6 +46,31 @@ RewriteRule (.+)\.(png|jpg|jpeg)$ $1.webp [T=image/webp,L]
   </FilesMatch>
 </IfModule>
 
+# --- How long browsers may keep the stylesheets and scripts ---
+#
+# These were served with no Cache-Control at all, only Last-Modified and ETag.
+# When a response carries no Cache-Control, browsers invent a freshness lifetime
+# of roughly 10% of the file's age at the moment it was cached - so a file that
+# was already months old got cached for weeks, and the browser would not even ask
+# the server whether it had changed.
+#
+# That is exactly how a returning visitor ended up with a partner-logos.js from
+# before CRTA and Superliga were added: the loader found no entry for those keys
+# and injected nothing, so two tiles rendered empty while the server was serving
+# the correct file to everyone else. Verified 13 Aug 2026 against both backends.
+#
+# 300s, not a year, because nothing here is fingerprinted: the script tags are
+# plain /js/foo.js with no version string, so a long max-age would make every
+# future deploy invisible to returning visitors. must-revalidate means that after
+# five minutes the browser revalidates against the ETag and gets a cheap 304 when
+# nothing has changed, so this costs almost no bandwidth and a deploy reaches
+# everyone within five minutes.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
 # Set default homepage
 DirectoryIndex home.html index.html index.php
 
