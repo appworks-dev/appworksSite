@@ -933,9 +933,9 @@ if ($articleData) {
 <section class="pt-32 pb-8" style="background: #200A24;">
     <div class="mx-auto px-6 lg:px-8" style="max-width: 900px;">
         <!-- Back Button -->
-        <a href="/articles.html" class="back-button mb-8 inline-flex">
+        <a href="/insights" class="back-button mb-8 inline-flex">
             <i class="bi bi-arrow-left"></i>
-            <span>Back to Articles</span>
+            <span>Back to Insights</span>
         </a>
 
         <?php if ($articleData): ?>
@@ -1015,9 +1015,9 @@ if ($articleData) {
                 }
             } else {
                 echo '<p class="text-gray-400">Sorry, the article you are looking for does not exist or has been removed.</p>';
-                echo '<a href="/articles.html" class="inline-flex items-center gap-2 mt-6 text-vibrant-orange-500 hover:text-vibrant-orange-600 font-semibold smooth-transition">';
+                echo '<a href="/insights" class="inline-flex items-center gap-2 mt-6 text-vibrant-orange-500 hover:text-vibrant-orange-600 font-semibold smooth-transition">';
                 echo '<i class="bi bi-arrow-left"></i>';
-                echo '<span>Browse all articles</span>';
+                echo '<span>Browse all insights</span>';
                 echo '</a>';
             }
             ?>

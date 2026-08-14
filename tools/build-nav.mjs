@@ -96,6 +96,9 @@ const CURRENT = {
     'partners.html': 'company',
     'contact.html': 'company',
     'consultation.html': null,
+    // Served by ErrorDocument from any depth, so it depends on the generator's
+    // absolute asset paths (/css/nav.css, /js/nav.js) - do not make them relative.
+    '404.html': null,
 };
 
 const PAGES = Object.keys(CURRENT);
