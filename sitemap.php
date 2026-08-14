@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/lib/cms.php';
+
 header('Content-Type: application/xml; charset=utf-8');
 header('Cache-Control: public, max-age=3600');
 
@@ -28,19 +30,7 @@ $staticPages = [
 // Fetch articles from CMS API
 $articles = [];
 $apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=100';
-$context = stream_context_create([
-    'http' => [
-        'header' => "Authorization: kmNTuI8dRmRX\r\n",
-        'method' => 'GET',
-        'timeout' => 10
-    ],
-    'ssl' => [
-        'verify_peer' => false,
-        'verify_peer_name' => false
-    ]
-]);
-
-$response = @file_get_contents($apiUrl, false, $context);
+$response = @file_get_contents($apiUrl, false, appworks_cms_context(10));
 if ($response) {
     $data = json_decode($response, true);
     if ($data && $data['success']) {

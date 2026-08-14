@@ -9,6 +9,7 @@ $debug = false;
 // date() both use this same zone, so a naive string round-trips unchanged.
 date_default_timezone_set('Europe/Belgrade');
 
+require_once __DIR__ . '/lib/cms.php';
 
 // SEO overrides keyed by slug.
 // Use these when the CMS intro field doesn't make a good search snippet
@@ -117,11 +118,7 @@ if (($articleId || $articleSlug) && !isset($_GET['_internal'])) {
     if ($articleId) {
         // Fetch article by ID to get its slug
         $lookupUrl = 'https://appworks.mpanel.app/api/webV2/getOneArticle/' . urlencode($articleId);
-        $lookupCtx = stream_context_create([
-            'http' => ['header' => "Authorization: kmNTuI8dRmRX\r\n", 'method' => 'GET', 'timeout' => 10],
-            'ssl' => ['verify_peer' => false, 'verify_peer_name' => false]
-        ]);
-        $lookupResp = @file_get_contents($lookupUrl, false, $lookupCtx);
+        $lookupResp = @file_get_contents($lookupUrl, false, appworks_cms_context(10));
         if ($lookupResp) {
             $lookupData = json_decode($lookupResp, true);
             if ($lookupData && $lookupData['success']) {
@@ -157,19 +154,7 @@ if ($articleId || $articleSlug) {
         echo "<!-- DEBUG: API URL: " . $apiUrl . " -->\n";
     }
 
-    $context = stream_context_create([
-        'http' => [
-            'header' => "Authorization: kmNTuI8dRmRX\r\n",
-            'method' => 'GET',
-            'timeout' => 30
-        ],
-        'ssl' => [
-            'verify_peer' => false,
-            'verify_peer_name' => false
-        ]
-    ]);
-
-    $response = @file_get_contents($apiUrl, false, $context);
+    $response = @file_get_contents($apiUrl, false, appworks_cms_context(30));
 
     if ($debug) {
         echo "<!-- DEBUG: Response received: " . ($response ? 'YES' : 'NO') . " -->\n";

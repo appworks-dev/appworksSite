@@ -946,11 +946,8 @@ scrollBtn.addEventListener('click', function() {
 <nav aria-label="All articles">
 <ul>
 <?php
-$ctx = stream_context_create([
-    'http' => ['header' => "Authorization: kmNTuI8dRmRX\r\n", 'timeout' => 10],
-    'ssl' => ['verify_peer' => false, 'verify_peer_name' => false]
-]);
-$r = @file_get_contents('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=100', false, $ctx);
+require_once __DIR__ . '/lib/cms.php';
+$r = @file_get_contents('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=100', false, appworks_cms_context(10));
 if ($r) {
     $d = json_decode($r, true);
     $articles = $d['result']['articles'] ?? [];
