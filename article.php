@@ -75,7 +75,10 @@ if ($debug) {
 $pageTitle = "Article - Appworks";
 $pageDescription = "Appworks article view";
 $pageImage = "https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png";
-$pageUrl = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+// Hardcoded rather than built from HTTP_HOST: the fallback canonical is what the
+// not-found page emits, and HTTP_HOST is attacker-controlled. Real articles set
+// this to the clean /article/{slug} URL further down.
+$pageUrl = "https://app-works.app";
 $articleData = null;
 
 // Function to create slug from title
@@ -195,6 +198,13 @@ if ($articleData) {
             break;
         }
     }
+}
+
+// An unknown slug used to render the "Article Not Found" body with a 200, so
+// Google indexed every typo and dead link as a real page. Anything that is not a
+// live article and not the 410 case above is a genuine 404.
+if (!$articleData && !$isHiddenCategory) {
+    http_response_code(404);
 }
 
 // Update meta values if article found
