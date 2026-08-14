@@ -71,6 +71,30 @@ RewriteRule (.+)\.(png|jpg|jpeg)$ $1.webp [T=image/webp,L]
   </FilesMatch>
 </IfModule>
 
+# --- How long browsers may keep fonts and images ---
+#
+# Separate from the rule above because the risk profile is different. Scripts and
+# stylesheets are edited in place under a stable filename, so they get 300s. A
+# font or an image at a given path is effectively immutable: a new logo arrives
+# as a new file, it does not overwrite an existing one.
+#
+# Fonts get a year and `immutable`, which also stops the browser revalidating
+# them on a reload. Images get a week rather than a year, because a partner logo
+# does occasionally get re-exported under the same name and a week is short
+# enough that such a swap is not invisible for a month.
+#
+# /favicon.ico and the rest were being served with an ETag and no Cache-Control
+# at all - the same "browser invents a freshness lifetime" problem the js/css
+# rule above was added to fix.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(woff2?|ttf|otf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(png|jpe?g|gif|svg|ico|webp)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
 # Set default homepage
 DirectoryIndex home.html index.html index.php
 
