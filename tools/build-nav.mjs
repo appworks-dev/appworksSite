@@ -18,6 +18,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const CHECK = process.argv.includes('--check');
 
+const LOGO_W = 749, LOGO_H = 673;   // intrinsic size of the file below
 const LOGO = 'https://appworks.mpanel.app/image/cache/original/files/images/appworks-beli-logo.png?crop=true';
 const EXT = { external: true };
 
@@ -145,7 +146,7 @@ ${links}
     return `        <nav class="aw-nav" aria-label="Main">
             <div class="aw-nav__inner">
                 <a class="aw-nav__logo" href="/" aria-label="Appworks home">
-                    <img src="${LOGO}" alt="Appworks">
+                    <img src="${LOGO}" alt="Appworks" width="${LOGO_W}" height="${LOGO_H}">
                 </a>
                 <ul class="aw-nav__list">
 ${top}
@@ -184,7 +185,7 @@ ${hub}${list}
     return `        <div class="aw-scrim" hidden-until-open></div>
         <div class="aw-panel" id="aw-panel" role="dialog" aria-modal="true" aria-label="Site menu">
             <div class="aw-panel__head">
-                <a href="/" aria-label="Appworks home"><img src="${LOGO}" alt="Appworks"></a>
+                <a href="/" aria-label="Appworks home"><img src="${LOGO}" alt="Appworks" width="${LOGO_W}" height="${LOGO_H}"></a>
                 <button type="button" class="aw-panel__close" aria-label="Close menu">
                     <i class="bi bi-x-lg" aria-hidden="true"></i>
                 </button>
