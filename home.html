@@ -925,7 +925,12 @@
 
             <!-- Right Column: Hero Image -->
             <div class="relative flex items-center justify-center">
-                <img src="https://appworks.mpanel.app/image/cache/original/files/images/iphone-16-pro.png?crop=true" alt="Mobile App Mockups" class="transform hover:scale-105 transition-transform duration-700" style="width: 100%; max-width: 560px; max-height: min(760px, 80svh); object-fit: contain; filter: drop-shadow(0 20px 60px rgba(255, 75, 54, 0.3));" width="1200" height="1420">
+                <!-- This is the LCP element; the hint gets it off the queue ahead of the
+                     partner logos. Serving a smaller rendition here was tried and backed
+                     out: mPanel's next size down is 640px against a 560px box, and the
+                     phone-screen detail visibly softens. See docs/IMAGE-FINDINGS.md. -->
+                <img src="https://appworks.mpanel.app/image/cache/original/files/images/iphone-16-pro.png?crop=true"
+                     fetchpriority="high" alt="Mobile App Mockups" class="transform hover:scale-105 transition-transform duration-700" style="width: 100%; max-width: 560px; max-height: min(760px, 80svh); object-fit: contain; filter: drop-shadow(0 20px 60px rgba(255, 75, 54, 0.3));" width="1200" height="1420">
             </div>
         </div>
     </div>
