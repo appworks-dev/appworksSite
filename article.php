@@ -2,6 +2,14 @@
 // Debug mode - set to false in production
 $debug = false;
 
+// date.timezone is unset in the FPM pool, so PHP defaults to UTC while the CMS
+// hands back naive "Y-m-d H:i:s" timestamps that are CET wall-clock. Setting it
+// here is what makes date('c') emit the correct +01:00/+02:00 offset in the
+// Article schema. Formatted output elsewhere is unaffected: strtotime() and
+// date() both use this same zone, so a naive string round-trips unchanged.
+date_default_timezone_set('Europe/Belgrade');
+
+
 // SEO overrides keyed by slug.
 // Use these when the CMS intro field doesn't make a good search snippet
 // (too long, narrative, cliffhanger). Titles should be 50-60 chars,
@@ -252,21 +260,6 @@ if ($articleData) {
     $pageUrl = "https://app-works.app/article/" . $cleanSlug;
 }
 
-// Keywords
-$keywords = "";
-if ($articleData) {
-    $categoryId = '';
-    $categoryName = '';
-    if (isset($articleData['categories'][0])) {
-        $categoryId = $articleData['categories'][0]['id'] ?? '';
-        $categoryName = $articleData['categories'][0]['name'] ?? '';
-    } elseif (isset($articleData['category_id'])) {
-        $categoryId = $articleData['category_id'];
-    }
-
-    $category = $categoryName ?: getCategoryName($categoryId);
-    $keywords = htmlspecialchars($articleData['title']) . ", Appworks, " . $category;
-}
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -285,7 +278,6 @@ if ($articleData) {
     <meta name="author" content="Appworks">
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="description" content="<?php echo $pageDescription; ?>">
-    <meta name="keywords" content="<?php echo $keywords; ?>">
 <?php if ($isHiddenCategory || !$articleData): ?>
     <meta name="robots" content="noindex, nofollow">
 <?php endif; ?>
@@ -297,7 +289,6 @@ if ($articleData) {
     <meta property="og:url" content="<?php echo $pageUrl; ?>">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Appworks">
-    <meta property="og:logo" content="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -372,8 +363,9 @@ if ($articleData) {
         'headline'    => $articleData['title'],
         'description' => $override['description'] ?? $articleData['intro'] ?? $articleData['title'],
         'image'       => $pageImage,
-        'datePublished' => $articleData['created_at'],
-        'dateModified'  => $articleData['updated_at'] ?? $articleData['created_at'],
+        // schema.org wants ISO 8601; the CMS gives "2026-03-25 09:30:05".
+        'datePublished' => date('c', strtotime($articleData['created_at'])),
+        'dateModified'  => date('c', strtotime($articleData['updated_at'] ?? $articleData['created_at'])),
         'author' => [
             '@type' => 'Organization',
             'name'  => 'Appworks',
