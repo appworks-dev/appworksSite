@@ -403,8 +403,10 @@ function relatedCardImage(array $article): ?array
     <link rel="canonical" href="<?php echo $pageUrl; ?>">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
-    <link rel="apple-touch-icon" href="https://appworks.mpanel.app/image/cache/original/files/images/appworks-logo.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- Google Fonts: Inter Variable -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
