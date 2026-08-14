@@ -245,6 +245,124 @@ if ($articleData) {
     $pageUrl = "https://app-works.app/article/" . $cleanSlug;
 }
 
+/*
+ * ----------------------------------------------------------- what comes next ---
+ * Two blocks rendered under every article, both server-side so crawlers see
+ * them: three related articles, and one product CTA chosen from the article's
+ * categories.
+ *
+ * Before this, every 2026 article ended on /about.html, and only 14 of 63
+ * articles carried an internal link of any kind.
+ */
+
+// Which product a category argues for. Order is priority, not preference: an
+// article tagged both `pchela` and `media` is a Pchela article that happens to
+// be about media, so the narrow tags are tested first and `sport` / `media` act
+// as the audience-level fallback.
+$ctaByCategory = [
+    'pchela' => [
+        'title' => 'Drowning in untagged assets?',
+        'body'  => 'Pchela tags, indexes and actually finds things in your media archive.',
+        'label' => 'See Pchela',
+        'href'  => 'https://pchela.app/',
+    ],
+    'grant-projects' => [
+        'title' => 'Building a consortium?',
+        'body'  => "Send us the call and the deadline. We'll tell you quickly whether we're the right technical partner.",
+        'label' => 'See our grant projects',
+        'href'  => '/projects.html',
+    ],
+    'litteraworks' => [
+        'title' => 'Need transcription and subtitles?',
+        'body'  => 'LitteraWorks transcribes and subtitles audio and video in 40+ languages.',
+        'label' => 'See LitteraWorks',
+        'href'  => 'https://litteraworks.com/',
+    ],
+    'sport' => [
+        'title' => 'Running a club or league app?',
+        'body'  => 'FanFuel is our fan engagement platform for clubs, leagues and federations.',
+        'label' => 'See FanFuel',
+        'href'  => '/fanfuel.html',
+    ],
+    'media' => [
+        'title' => 'Publishing at scale?',
+        'body'  => 'mPanel is the CMS behind newsrooms and publishers across the region.',
+        'label' => 'See mPanel CMS',
+        'href'  => '/cms.html',
+    ],
+];
+
+$articleCta = [
+    'title' => 'Have a project in mind?',
+    'body'  => "Tell us what you're building. We'll tell you quickly whether we're the right fit.",
+    'label' => 'Get in touch',
+    'href'  => '/contact.html',
+];
+
+$relatedArticles = [];
+
+if ($articleData) {
+    $articleCatSlugs = array_column($articleData['categories'] ?? [], 'slug');
+    foreach ($ctaByCategory as $slug => $cta) {
+        if (in_array($slug, $articleCatSlugs, true)) {
+            $articleCta = $cta;
+            break;
+        }
+    }
+
+    // Same category as the badge the reader just saw, so "related" means what it
+    // looks like. Falls back to the latest articles when a category is too thin
+    // to fill three slots.
+    $primaryCategoryId = (int) ($articleData['categories'][0]['id'] ?? 0);
+    $currentSlug       = $articleData['slug'] ?? '';
+
+    $pickRelated = function (array $candidates) use (&$relatedArticles, $currentSlug, $hiddenSlugs) {
+        foreach ($candidates as $candidate) {
+            if (count($relatedArticles) >= 3) {
+                return;
+            }
+            $slug = $candidate['slug'] ?? '';
+            if ($slug === '' || $slug === $currentSlug) {
+                continue;
+            }
+            if (array_column($relatedArticles, 'slug') && in_array($slug, array_column($relatedArticles, 'slug'), true)) {
+                continue;
+            }
+            // The litteraworks-com articles live on the other domain; linking
+            // them here would send readers to a URL this site answers with 410.
+            foreach ($candidate['categories'] ?? [] as $cat) {
+                if (in_array($cat['slug'] ?? '', $hiddenSlugs, true)) {
+                    continue 2;
+                }
+            }
+            $relatedArticles[] = $candidate;
+        }
+    };
+
+    if ($primaryCategoryId > 0) {
+        $pickRelated(appworks_cms_articles($primaryCategoryId, 8));
+    }
+    if (count($relatedArticles) < 3) {
+        $pickRelated(appworks_cms_articles(0, 12));
+    }
+}
+
+/** Smallest rendition that still looks right in a card, with its real size. */
+function relatedCardImage(array $article): ?array
+{
+    foreach (['medium-full', 'large-full', 'small-full'] as $size) {
+        if (!empty($article['images'][$size]['url'])) {
+            $meta = $article['images'][$size]['metadata'] ?? [];
+            return [
+                'url'    => $article['images'][$size]['url'],
+                'width'  => (int) ($meta['width'] ?? 0),
+                'height' => (int) ($meta['height'] ?? 0),
+            ];
+        }
+    }
+    return null;
+}
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -629,6 +747,75 @@ if ($articleData) {
             height: auto;
             max-height: 600px;
             object-fit: contain;
+        }
+
+        /* --------------------------------------- related articles + CTA --- */
+
+        .related-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 1rem;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 107, 80, 0.35);
+        }
+
+        /* width/height are on the tag for the aspect ratio; the box is fixed so
+           three cards of different renditions still line up. */
+        .related-card img {
+            display: block;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .related-card__body {
+            padding: 1.125rem 1.25rem 1.375rem;
+        }
+
+        .related-card__cat {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #FF6B50;
+        }
+
+        .related-card h3 {
+            margin: 0;
+            color: #FFFFFF;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .article-cta {
+            border-radius: 1.5rem;
+            padding: clamp(1.75rem, 4vw, 3rem);
+        }
+
+        .article-cta__btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-decoration: none;
+            background: linear-gradient(135deg, #FF4B36 0%, #FF6B50 100%);
+            box-shadow: 0 4px 12px rgba(255, 75, 54, 0.3);
+        }
+
+        .article-cta__btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 75, 54, 0.4);
         }
 
         /* Mobile Responsive Styles */
@@ -1037,6 +1224,52 @@ if ($articleData) {
         <?php endif; ?>
     </div>
 </section>
+
+<?php if ($articleData): ?>
+<!-- What to read next / what to do next -->
+<section class="pb-20" style="background: #200A24;">
+    <div class="mx-auto px-6 lg:px-8" style="max-width: 900px;">
+
+        <?php if ($relatedArticles): ?>
+        <div class="mb-16">
+            <h2 class="text-white font-black text-2xl lg:text-3xl mb-8" style="letter-spacing: -0.02em;">Keep reading</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <?php foreach ($relatedArticles as $related): ?>
+                <?php $thumb = relatedCardImage($related); ?>
+                <a href="/article/<?php echo htmlspecialchars($related['slug']); ?>" class="related-card glass-light smooth-transition">
+                    <?php if ($thumb): ?>
+                    <img src="<?php echo htmlspecialchars($thumb['url']); ?>"
+                         alt=""
+                         loading="lazy"
+                         <?php if ($thumb['width'] && $thumb['height']): ?>width="<?php echo $thumb['width']; ?>" height="<?php echo $thumb['height']; ?>"<?php endif; ?>
+                         onerror="this.style.display='none'">
+                    <?php endif; ?>
+                    <div class="related-card__body">
+                        <?php if (!empty($related['categories'][0]['name'])): ?>
+                        <span class="related-card__cat"><?php echo htmlspecialchars($related['categories'][0]['name']); ?></span>
+                        <?php endif; ?>
+                        <h3><?php echo htmlspecialchars($related['title']); ?></h3>
+                    </div>
+                </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="article-cta glass-light">
+            <h2 class="text-white font-black text-2xl lg:text-3xl mb-3" style="letter-spacing: -0.02em;"><?php echo htmlspecialchars($articleCta['title']); ?></h2>
+            <p class="text-gray-300 leading-relaxed mb-8" style="opacity: 0.85; max-width: 34rem;"><?php echo htmlspecialchars($articleCta['body']); ?></p>
+            <a href="<?php echo htmlspecialchars($articleCta['href']); ?>"
+               class="article-cta__btn smooth-transition"
+               <?php if (strpos($articleCta['href'], 'http') === 0): ?>target="_blank" rel="noopener"<?php endif; ?>>
+                <span><?php echo htmlspecialchars($articleCta['label']); ?></span>
+                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
+<?php endif; ?>
 
 <!-- Footer -->
 <footer class="relative py-20" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.1);">

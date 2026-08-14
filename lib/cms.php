@@ -69,3 +69,55 @@ function appworks_cms_context(int $timeout = 10)
         ],
     ]);
 }
+
+/**
+ * The article listing, optionally filtered to one category, with a short shared
+ * cache. Returns [] on any failure — callers render nothing rather than an error.
+ *
+ * This talks to the CMS directly rather than looping back through
+ * api/articles.php. The proxy exists to keep the token out of the browser, which
+ * is not a problem we have server-side, and a PHP-FPM worker making an HTTP
+ * request into its own pool can stall the pool: under load every worker ends up
+ * waiting on a request that needs a worker. The cache below is the proxy's, so
+ * the traffic-shaping reason to route through it is covered too.
+ */
+function appworks_cms_articles(int $categoryId = 0, int $limit = 12): array
+{
+    $limit = max(1, min(50, $limit));
+    $query = ($categoryId > 0 ? 'category[]=' . $categoryId . '&' : '') . 'articleLimit=' . $limit;
+
+    $ttl       = 300;
+    $cacheFile = sys_get_temp_dir() . '/appworks-cms-srv-' . sha1($query) . '.json';
+
+    if (is_readable($cacheFile) && (time() - (int) @filemtime($cacheFile)) < $ttl) {
+        $cached = json_decode((string) @file_get_contents($cacheFile), true);
+        if (is_array($cached)) {
+            return $cached;
+        }
+    }
+
+    $response = @file_get_contents(
+        'https://appworks.mpanel.app/api/webV2/getArticles?' . $query,
+        false,
+        appworks_cms_context(10)
+    );
+
+    $decoded = $response ? json_decode($response, true) : null;
+    if (!is_array($decoded) || empty($decoded['success'])) {
+        // Stale beats empty: a rendered module with slightly old titles is
+        // better than the section silently disappearing when the CMS blips.
+        $stale = is_readable($cacheFile) ? json_decode((string) @file_get_contents($cacheFile), true) : null;
+        return is_array($stale) ? $stale : [];
+    }
+
+    $articles = $decoded['result']['articles'] ?? [];
+
+    $tmp = $cacheFile . '.' . getmypid() . '.tmp';
+    if (@file_put_contents($tmp, json_encode($articles)) !== false) {
+        @rename($tmp, $cacheFile);
+    } else {
+        @unlink($tmp);
+    }
+
+    return $articles;
+}
