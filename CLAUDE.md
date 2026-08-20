@@ -13,7 +13,9 @@ Company marketing website for Appworks (https://app-works.app). Static HTML/CSS/
 ssh web2 "cd /var/www/public/appworksapp/public_html && GIT_SSH_COMMAND='ssh -i /var/www/public/appworksapp/.ssh/id_rsa -o StrictHostKeyChecking=no' git pull origin main"
 ```
 
-No build step. Files are served directly by Apache + PHP-FPM (PHP 8.2). After deploying PHP changes, you may need to restart PHP-FPM to clear opcache: `ssh web2 "systemctl restart php8.2-fpm"`.
+No build step on the server — Apache + PHP-FPM (PHP 8.2) serve the files as they are, and `git pull` is the whole deploy. There *is* a build step locally: see **CSS/JS Stack** below. Compiled output (`css/tailwind.min.css`) is committed, which is what keeps the server side buildless.
+
+After deploying PHP changes, you may need to restart PHP-FPM to clear opcache: `ssh web2 "systemctl restart php8.2-fpm"`.
 
 ## Architecture
 
@@ -42,7 +44,7 @@ All article content comes from the mPanel CMS API at `https://appworks.mpanel.ap
 
 ### Hidden Category Filtering
 
-Articles with category slug `litteraworks-com` (or any slug in the `hiddenSlugs` array) are hidden from this site because they live on litteraworks.com. Filtering is implemented in 5 places — all must stay in sync:
+Articles with category slug `litteraworks-com` (or any slug in the `hiddenSlugs` array) are hidden from this site because they live on litteraworks.com. Filtering is implemented in 6 places — all must stay in sync:
 
 1. **articles.php** JS (client-side filter before rendering)
 2. **articles.html** JS (same filter)
@@ -53,7 +55,29 @@ Articles with category slug `litteraworks-com` (or any slug in the `hiddenSlugs`
 
 ### CSS/JS Stack
 
-No bundler or build tool. Older pages use compiled SASS (style.min.css, responsive.min.css). Newer/redesigned pages (home.html, articles.php, article.php) use **Tailwind CSS CDN** with inline config defining custom colors (`royal-purple`, `vibrant-orange`, `accent-purple`). Design uses glassmorphism, animated gradient backgrounds, and noise texture overlays.
+**Tailwind is compiled ahead of time, not loaded from a CDN.** All 17 pages link `/css/tailwind.min.css`, which is committed to the repo. The Play CDN (`cdn.tailwindcss.com`) is gone, and no page links the old SASS bundles (`style.min.css`, `responsive.min.css`) any more.
+
+```bash
+npm run css        # build once  -> css/tailwind.min.css
+npm run css:watch  # rebuild on change
+```
+
+**This changes how you add markup.** The CDN compiled classes in the browser at runtime, so any Tailwind class worked the moment you typed it. A compiled stylesheet only contains the classes that existed when it was built, so:
+
+> A Tailwind class that is not already in `css/tailwind.min.css` **silently does nothing** — no error, no warning, the style just fails to apply.
+
+After adding markup with a class the site has not used before, run `npm run css` and commit the result. To check whether a class is already there, grep the compiled file for it — remember to escape the Tailwind delimiters, since they are escaped in CSS output:
+
+```bash
+grep -F 'hover\:-translate-y-1' css/tailwind.min.css
+grep -F 'lg\:text-7xl' css/tailwind.min.css
+```
+
+`tailwind.config.js` holds the theme (`royal-purple`, `vibrant-orange`, `accent-purple`), the `content` globs that get scanned, and a `safelist` for classes that appear only in CMS article bodies — which no build-time scan can see. Its header comment explains both. `src/tailwind.css` is just the three `@tailwind` directives.
+
+`css/product.css` is the hand-written design system for the redesigned pages (the `aw-*` components). Note the load-order trap: each page's inline `<style>` block sits **above** the `<link>` to product.css, so a single-class override of an `aw-*` rule loses on source order — match the original selector's specificity or use two classes.
+
+Design uses glassmorphism, animated gradient backgrounds, and noise texture overlays.
 
 ## SEO
 
