@@ -13,7 +13,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <meta name="description" content="Digital platforms for clubs, leagues and federations: fan apps, club websites, searchable media archives, media monitoring and AI content tools. One partner, one connected stack, thirteen years of it.">
+        <meta name="description" content="Fan engagement apps, club websites, media archives and AI content tools for sports clubs, leagues and federations. One platform, one login.">
 
         <!-- Open Graph -->
         <meta property="og:title" content="Sport Technology for Clubs, Leagues &amp; Federations | Appworks">
@@ -38,7 +38,7 @@
             "name": "Sport Technology for Clubs, Leagues and Federations",
             "description": "Digital platforms for sports clubs, leagues and federations: fan apps, websites, searchable media archives, media monitoring and AI content tools.",
             "url": "https://app-works.app/sport.html",
-            "publisher": {"@type": "Organization", "name": "Appworks", "url": "https://app-works.app"}
+            "publisher": {"@type": "Organization", "@id": "https://app-works.app/#organization", "name": "Appworks", "url": "https://app-works.app"}
         }
         </script>
 
@@ -223,6 +223,33 @@
         <link rel="stylesheet" href="/css/nav.css">
         <link rel="stylesheet" href="/css/product.css">
     <link rel="stylesheet" href="/css/tailwind.min.css">
+    <!--
+        Breadcrumbs. Google renders these in place of the raw URL in a result, and
+        they tell it where the page sits: /verbavista.html is a Media page and
+        /fanfuel.html is a Sport one, which no other signal on those pages states.
+        cms.html and monitoring.html hang off both hubs in the nav, so they get a
+        two-level trail rather than an invented parent.
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://app-works.app/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Sport",
+                "item": "https://app-works.app/sport.html"
+            }
+        ]
+    }
+    </script>
 </head>
 
     <body class="relative">

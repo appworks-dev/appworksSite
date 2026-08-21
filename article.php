@@ -442,12 +442,17 @@ function relatedCardImage(array $article): ?array
         // schema.org wants ISO 8601; the CMS gives "2026-03-25 09:30:05".
         'datePublished' => date('c', strtotime($articleData['created_at'])),
         'dateModified'  => date('c', strtotime($articleData['updated_at'] ?? $articleData['created_at'])),
+        // Same @id the rest of the site uses for the company, so Google reads
+        // every article as published by one entity rather than by a fresh
+        // "Appworks" per URL. See the Organization block on home.html.
         'author' => [
             '@type' => 'Organization',
+            '@id'   => 'https://app-works.app/#organization',
             'name'  => 'Appworks',
         ],
         'publisher' => [
             '@type' => 'Organization',
+            '@id'   => 'https://app-works.app/#organization',
             'name'  => 'Appworks',
             'logo'  => [
                 '@type' => 'ImageObject',
@@ -461,6 +466,23 @@ function relatedCardImage(array $article): ?array
     ];
 
     /*
+     * Breadcrumbs. Articles are the bulk of the site's indexed URLs and they all
+     * sat at the top level as far as Google could tell, because nothing stated
+     * that /article/{slug} belongs under /insights. The trail also replaces the
+     * bare URL in the search result. The article's own title is the last item
+     * and carries no url, which is what schema.org expects of the current page.
+     */
+    $breadcrumbSchema = [
+        '@context'        => 'https://schema.org',
+        '@type'           => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home',     'item' => 'https://app-works.app/'],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'Insights', 'item' => 'https://app-works.app/insights'],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $articleData['title']],
+        ],
+    ];
+
+    /*
      * JSON_HEX_TAG and the default slash escaping both matter here: this sits
      * inside a <script> block, so a "</script>" arriving in a title would
      * otherwise close it early. Neither affects how the schema parses.
@@ -468,6 +490,9 @@ function relatedCardImage(array $article): ?array
     ?>
     <script type="application/ld+json">
 <?php echo json_encode($articleSchema, JSON_HEX_TAG | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); ?>
+    </script>
+    <script type="application/ld+json">
+<?php echo json_encode($breadcrumbSchema, JSON_HEX_TAG | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); ?>
     </script>
     <?php endif; ?>
 

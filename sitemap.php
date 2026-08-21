@@ -12,19 +12,25 @@ $staticPages = [
     ['loc' => '/cms.html',           'changefreq' => 'monthly', 'priority' => '0.9'],
     ['loc' => '/media.html',         'changefreq' => 'monthly', 'priority' => '0.9'],
     ['loc' => '/sport.html',         'changefreq' => 'monthly', 'priority' => '0.9'],
+    // The three product pages. Each carried a noindex while its copy was still
+    // provisional; all of those blockers are gone, so they are indexable now and
+    // belong here. They are the pages meant to rank for the product-level
+    // queries - a fan engagement app, a publisher app platform, media monitoring
+    // - which no hub page can win on their behalf.
+    ['loc' => '/verbavista.html',    'changefreq' => 'monthly', 'priority' => '0.9'],
+    ['loc' => '/fanfuel.html',       'changefreq' => 'monthly', 'priority' => '0.9'],
+    ['loc' => '/monitoring.html',    'changefreq' => 'monthly', 'priority' => '0.8'],
     ['loc' => '/consultation.html',  'changefreq' => 'monthly', 'priority' => '0.8'],
     ['loc' => '/insights',            'changefreq' => 'weekly',  'priority' => '0.8'],
     ['loc' => '/partners.html',      'changefreq' => 'monthly', 'priority' => '0.7'],
     ['loc' => '/projects.html',      'changefreq' => 'monthly', 'priority' => '0.7'],
     ['loc' => '/about.html',         'changefreq' => 'monthly', 'priority' => '0.7'],
     ['loc' => '/contact.html',       'changefreq' => 'monthly', 'priority' => '0.6'],
-    // Deliberately absent, all for the same reason: the live page carries a
-    // noindex robots meta, so listing it here asks Google to crawl a URL we then
-    // tell it to drop. Re-add each one the moment its noindex is lifted.
-    //   fronisa.html      - copy still being written, not linked from the nav
-    //   verbavista.html   - noindex
-    //   fanfuel.html      - noindex
-    //   monitoring.html   - noindex
+    // Deliberately absent: the live page carries a noindex robots meta, so
+    // listing it here asks Google to crawl a URL we then tell it to drop.
+    // Re-add it the moment that noindex is lifted.
+    //   fronisa.html      - 87 words, a genuine stub; the nav marks it "soon"
+    //                       and its links deliberately go nowhere
 ];
 
 // Fetch articles from CMS API

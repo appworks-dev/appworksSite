@@ -57,7 +57,7 @@
         "name": "Appworks Insights",
         "description": "Research, analysis, and practical guides on media asset management, AI transcription, fan engagement, digital publishing, and EU-funded innovation projects.",
         "url": "https://app-works.app/insights",
-        "publisher": {"@type": "Organization", "name": "Appworks", "url": "https://app-works.app"}
+        "publisher": {"@type": "Organization", "@id": "https://app-works.app/#organization", "name": "Appworks", "url": "https://app-works.app"}
     }
     </script>
 
@@ -328,6 +328,26 @@
     </style>
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/tailwind.min.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://app-works.app/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Insights",
+                "item": "https://app-works.app/insights"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
 
