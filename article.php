@@ -730,6 +730,76 @@ function relatedCardImage(array $article): ?array
             color: rgba(255, 255, 255, 0.9);
         }
 
+        /*
+         * Tables pasted into a CMS article.
+         *
+         * Nothing here is cosmetic - without the border-width the borders do not
+         * render at all, however carefully the editor set them. Tailwind's
+         * Preflight opens the compiled stylesheet with
+         *
+         *     *,:after,:before { box-sizing: border-box; border: 0 solid #e5e7eb }
+         *
+         * so every element starts at zero width. TinyMCE writes border="1" on the
+         * table, but that is a presentational attribute and it loses to any author
+         * stylesheet rule, Preflight included. The inline style it writes alongside
+         * sets border-style and border-color and never border-width - so the border
+         * ends up fully specified, correctly coloured, and nought pixels wide.
+         * Confirmed on /article/black-panther-on-the-polling-station: computed
+         * border-top-width was 0px on the table and on all 21 cells.
+         *
+         * Restoring the width on the cells is what makes a collapsed table visible.
+         * The colour stays a soft white rather than the editor's #ffffff, which is
+         * harsh against #200A24; an article that sets its own colour inline still
+         * wins on the table element. !important matches the other .article-content
+         * rules, which all have to outrank editor markup.
+         */
+        .article-content table {
+            width: 100% !important;
+            margin: 2rem 0 !important;
+            border-collapse: collapse !important;
+            /* the editor also emits a fixed pixel height, which stops rows from
+               growing to fit their text once the padding below applies */
+            height: auto !important;
+            font-size: 0.9375rem;
+        }
+
+        .article-content table th,
+        .article-content table td {
+            border-width: 1px !important;
+            border-style: solid !important;
+            border-color: rgba(255, 255, 255, 0.22) !important;
+            padding: 0.625rem 0.875rem !important;
+            height: auto !important;
+            vertical-align: top;
+        }
+
+        .article-content table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* The editor wraps some cell text in <p>, which then collects the 1.5rem
+           margin-bottom from .article-content p and leaves a gap under whichever
+           cell is tallest in the row - six of them in the CRTA chatbot table
+           alone. Cell padding above does that spacing job instead. */
+        .article-content table p {
+            margin: 0 !important;
+        }
+
+        /* A three-column table does not fit a phone. Squeezing it is worse than
+           letting it scroll, so the wrapper scrolls and the table keeps a floor. */
+        .article-content .aw-table-scroll {
+            overflow-x: auto;
+            margin: 2rem 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .article-content .aw-table-scroll table {
+            margin: 0 !important;
+            min-width: 34rem;
+        }
+
         /* Featured Image */
         .featured-image {
             position: relative;
@@ -1338,6 +1408,28 @@ function relatedCardImage(array $article): ?array
 </button>
 
 <script>
+/*
+ * Give every CMS table a scrollable wrapper.
+ *
+ * The stylesheet has rules for .aw-table-scroll but the CMS emits a bare
+ * <table>, so without this they would never apply. A three-column table cannot
+ * fit a phone, and squeezing it until each cell is two words wide is worse than
+ * letting it scroll sideways inside its own box.
+ *
+ * Guarded on parentElement so a re-run cannot double-wrap.
+ */
+document.querySelectorAll('.article-content table').forEach(function (table) {
+    if (table.parentElement && table.parentElement.classList.contains('aw-table-scroll')) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'aw-table-scroll';
+    // tabindex makes the scroll box reachable by keyboard, since it scrolls
+    wrap.tabIndex = 0;
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', 'Table, scrollable');
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
+});
+
 // Scroll to top button
 const scrollBtn = document.getElementById('scroll-to-top');
 window.addEventListener('scroll', function() {
