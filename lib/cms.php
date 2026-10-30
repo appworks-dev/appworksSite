@@ -83,7 +83,7 @@ function appworks_cms_context(int $timeout = 10)
  */
 function appworks_cms_articles(int $categoryId = 0, int $limit = 12): array
 {
-    $limit = max(1, min(50, $limit));
+    $limit = max(1, min(100, $limit));
     $query = ($categoryId > 0 ? 'category[]=' . $categoryId . '&' : '') . 'articleLimit=' . $limit;
 
     $ttl       = 300;
@@ -136,4 +136,81 @@ function appworks_cms_word_count(array $article): int
 {
     $text = strip_tags(($article['contents'] ?? '') . ' ' . ($article['intro'] ?? ''));
     return count(preg_split('/\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY));
+}
+
+/**
+ * When each article was really last edited, keyed by slug.
+ *
+ * The listing cannot answer this. It has no updated_at at all, and its update_date
+ * just repeats the creation time, so sitemap.php was reporting every article as
+ * last changed on the day it was published. Only the single-article endpoint knows,
+ * which means one request per article: they run in parallel here and the result is
+ * kept for six hours.
+ *
+ * An article whose request fails keeps its last known date. One that has never
+ * been fetched successfully is simply absent, because no lastmod is better than a
+ * wrong one.
+ */
+function appworks_cms_modified_dates(array $slugs): array
+{
+    $ttl       = 21600;
+    $cacheFile = sys_get_temp_dir() . '/appworks-cms-modified.json';
+
+    $dates = is_readable($cacheFile) ? json_decode((string) @file_get_contents($cacheFile), true) : null;
+    $dates = is_array($dates) ? $dates : [];
+
+    $isFresh = is_readable($cacheFile) && (time() - (int) @filemtime($cacheFile)) < $ttl;
+    $toFetch = $isFresh ? array_diff($slugs, array_keys($dates)) : $slugs;
+    if (!$toFetch) {
+        return $dates;
+    }
+
+    // Claim the refresh, so requests arriving during the next few seconds use the
+    // dates we already have instead of each starting the same batch of fetches.
+    if ($dates) {
+        @touch($cacheFile);
+    }
+
+    $multi = curl_multi_init();
+    curl_multi_setopt($multi, CURLMOPT_MAX_TOTAL_CONNECTIONS, 8);
+
+    $handles = [];
+    foreach ($toFetch as $slug) {
+        $handle = curl_init('https://appworks.mpanel.app/api/webV2/getArticlesBySlug/' . rawurlencode($slug));
+        curl_setopt_array($handle, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT        => 25,
+            CURLOPT_HTTPHEADER     => ['Authorization: ' . appworks_cms_token(), 'Accept: application/json'],
+        ]);
+        curl_multi_add_handle($multi, $handle);
+        $handles[$slug] = $handle;
+    }
+
+    do {
+        $status = curl_multi_exec($multi, $running);
+        if ($running) {
+            curl_multi_select($multi, 1.0);
+        }
+    } while ($running && $status === CURLM_OK);
+
+    foreach ($handles as $slug => $handle) {
+        $decoded = json_decode((string) curl_multi_getcontent($handle), true);
+        $updated = $decoded['article']['updated_at'] ?? null;
+        if (is_string($updated) && strtotime($updated) !== false) {
+            $dates[$slug] = $updated;
+        }
+        curl_multi_remove_handle($multi, $handle);
+        curl_close($handle);
+    }
+    curl_multi_close($multi);
+
+    $tmp = $cacheFile . '.' . getmypid() . '.tmp';
+    if (@file_put_contents($tmp, json_encode($dates)) !== false) {
+        @rename($tmp, $cacheFile);
+    } else {
+        @unlink($tmp);
+    }
+
+    return $dates;
 }

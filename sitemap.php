@@ -34,15 +34,20 @@ $staticPages = [
 ];
 
 // Fetch articles from CMS API
-$articles = [];
-$apiUrl = 'https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=100';
-$response = @file_get_contents($apiUrl, false, appworks_cms_context(10));
-if ($response) {
-    $data = json_decode($response, true);
-    if ($data && $data['success']) {
-        $articles = $data['result']['articles'] ?? [];
+$hiddenSlugs = ['litteraworks-com'];
+$articles = array_filter(appworks_cms_articles(0, 100), function ($article) use ($hiddenSlugs) {
+    if (empty($article['slug'])) {
+        return false;
     }
-}
+    foreach ($article['categories'] ?? [] as $cat) {
+        if (in_array($cat['slug'] ?? '', $hiddenSlugs)) {
+            return false;
+        }
+    }
+    return true;
+});
+
+$modified = appworks_cms_modified_dates(array_column($articles, 'slug'));
 
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 ?>
@@ -55,22 +60,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
   </url>
 <?php endforeach; ?>
 <?php
-$hiddenSlugs = ['litteraworks-com'];
 foreach ($articles as $article):
-    $slug = $article['slug'] ?? '';
-    if (!$slug) continue;
-    $cats = $article['categories'] ?? [];
-    $hidden = false;
-    foreach ($cats as $cat) {
-        if (in_array($cat['slug'] ?? '', $hiddenSlugs)) { $hidden = true; break; }
-    }
-    if ($hidden) continue;
-    $lastmod = '';
-    if (!empty($article['updated_at'])) {
-        $lastmod = date('Y-m-d', strtotime($article['updated_at']));
-    } elseif (!empty($article['created_at'])) {
-        $lastmod = date('Y-m-d', strtotime($article['created_at']));
-    }
+    $slug = $article['slug'];
+    $lastmod = isset($modified[$slug]) ? date('Y-m-d', strtotime($modified[$slug])) : '';
 ?>
   <url>
     <loc><?php echo $baseUrl . '/article/' . htmlspecialchars($slug); ?></loc>
