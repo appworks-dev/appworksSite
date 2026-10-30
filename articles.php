@@ -753,9 +753,7 @@ function formatDate(dateString) {
 
 // Estimate reading time from article content
 function getReadingTime(article) {
-    const text = (article.contents || '') + ' ' + (article.intro || '');
-    const words = text.replace(/<[^>]*>/g, '').split(/\s+/).filter(w => w.length > 0).length;
-    const minutes = Math.max(1, Math.ceil(words / 220));
+    const minutes = Math.max(1, Math.ceil((article.word_count || 0) / 220));
     return `${minutes} min read`;
 }
 

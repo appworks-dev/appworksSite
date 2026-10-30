@@ -9,16 +9,24 @@
  * is attached here, server side, so it never reaches a browser.
  *
  * This is a deliberately thin pass-through: it forwards a validated subset of
- * parameters and returns the upstream JSON unchanged, so the callers keep the
- * response shape they already parse - including their own hidden-category
- * filtering, which still runs client side exactly as before.
+ * parameters and keeps the upstream JSON shape, so the callers parse the response
+ * they always did - including their own hidden-category filtering, which still
+ * runs client side exactly as before. The one change is that article bodies are
+ * replaced by a word_count: every listing carried them, cards never show them, and
+ * they made the 12 cards on /insights a 194 KB download.
  *
  *   GET /api/articles.php?articleLimit=12&page=2
  *   GET /api/articles.php?category=9&articleLimit=8
  */
 
+require_once __DIR__ . '/../lib/cms.php';
+
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
+
+// Apache's compression does not cover JSON here. This handler checks
+// Accept-Encoding itself, and applies to every exit path below.
+ob_start('ob_gzhandler');
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
     http_response_code(405);
@@ -119,6 +127,12 @@ if ($response === false || $status >= 400) {
 // Only cache something that actually parsed as the shape callers expect.
 $decoded = json_decode($response, true);
 if (is_array($decoded) && !empty($decoded['success'])) {
+    foreach ($decoded['result']['articles'] ?? [] as $i => $article) {
+        $decoded['result']['articles'][$i]['word_count'] = appworks_cms_word_count($article);
+        unset($decoded['result']['articles'][$i]['contents']);
+    }
+    $response = json_encode($decoded);
+
     // Write via a temp file so a concurrent reader never sees a half-written cache.
     $tmp = $cacheFile . '.' . getmypid() . '.tmp';
     if (@file_put_contents($tmp, $response) !== false) {

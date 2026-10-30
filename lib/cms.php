@@ -112,6 +112,15 @@ function appworks_cms_articles(int $categoryId = 0, int $limit = 12): array
 
     $articles = $decoded['result']['articles'] ?? [];
 
+    // Every listing carries each article's full body, which no caller of this
+    // function renders. Dropping it here keeps the cache small enough to decode on
+    // every page view.
+    foreach ($articles as &$article) {
+        $article['word_count'] = appworks_cms_word_count($article);
+        unset($article['contents']);
+    }
+    unset($article);
+
     $tmp = $cacheFile . '.' . getmypid() . '.tmp';
     if (@file_put_contents($tmp, json_encode($articles)) !== false) {
         @rename($tmp, $cacheFile);
@@ -120,4 +129,11 @@ function appworks_cms_articles(int $categoryId = 0, int $limit = 12): array
     }
 
     return $articles;
+}
+
+/** Words in an article's body and intro, for the "N min read" label on cards. */
+function appworks_cms_word_count(array $article): int
+{
+    $text = strip_tags(($article['contents'] ?? '') . ' ' . ($article['intro'] ?? ''));
+    return count(preg_split('/\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY));
 }
