@@ -592,11 +592,69 @@
     </div>
 </section>
 
+<?php
+/*
+ * The first page of cards and the full article list are rendered here rather than
+ * fetched by the script below. Waiting for JavaScript put the largest image on this
+ * page at about 10s on a throttled mobile load, and it left crawlers with only a
+ * <noscript> list for most of the archive: "Load More" is a button, so nothing past
+ * the first 12 articles had an ordinary link.
+ *
+ * A deep link like /insights?category=10 still renders in the browser, because the
+ * filter buttons and their validation live in the script.
+ */
+require_once __DIR__ . '/lib/cms.php';
+
+$hiddenSlugs = ['litteraworks-com'];
+$isListed = function (array $article) use ($hiddenSlugs) {
+    if (empty($article['slug']) || empty($article['title'])) {
+        return false;
+    }
+    foreach ($article['categories'] ?? [] as $cat) {
+        if (in_array($cat['slug'] ?? '', $hiddenSlugs)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+$listing = appworks_cms_articles(0, 100);
+$allArticles = array_values(array_filter($listing, $isListed));
+// The first 12 rows, hidden ones included, so "Load More" asking the CMS for page 2
+// carries on exactly where these cards stop.
+$firstCards = isset($_GET['category']) ? [] : array_values(array_filter(array_slice($listing, 0, 12), $isListed));
+?>
 <!-- Articles Grid -->
 <section class="relative py-16" style="background: #200A24;">
     <div class="mx-auto px-6 lg:px-8" style="max-width: 1600px;">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articlesContainer">
-            <!-- Articles will be loaded here dynamically -->
+            <?php foreach ($firstCards as $i => $article):
+                $image = $article['images']['medium-full'] ?? [];
+                $minutes = max(1, (int) ceil(($article['word_count'] ?? 0) / 220));
+            ?>
+            <a href="/article/<?php echo htmlspecialchars($article['slug']); ?>" class="article-card block group">
+                <div class="article-image">
+                    <?php if (!empty($image['url'])): ?>
+                    <img src="<?php echo htmlspecialchars($image['url']); ?>"
+                         <?php echo $i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
+                         alt="<?php echo htmlspecialchars($article['title']); ?>">
+                    <?php endif; ?>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="category-badge"><?php echo htmlspecialchars($article['categories'][0]['name'] ?? 'General'); ?></span>
+                        <span class="text-gray-500 text-sm"><?php echo date('F j, Y', strtotime($article['created_at'])); ?></span>
+                        <span class="text-gray-500 text-sm flex items-center gap-1"><i class="bi bi-clock text-xs"></i> <?php echo $minutes; ?> min read</span>
+                    </div>
+                    <h3 class="text-white font-bold text-xl mb-3 leading-tight" style="letter-spacing: -0.01em;"><?php echo htmlspecialchars($article['title']); ?></h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2"><?php echo htmlspecialchars($article['intro'] ?? ''); ?></p>
+                    <div class="flex items-center gap-2 text-vibrant-orange-500 font-semibold text-sm">
+                        <span>Read More</span>
+                        <i class="bi bi-arrow-right arrow-icon smooth-transition"></i>
+                    </div>
+                </div>
+            </a>
+            <?php endforeach; ?>
         </div>
 
         <!-- Loading Spinner -->
@@ -617,6 +675,18 @@
             <i class="bi bi-journal-x text-6xl text-gray-500 mb-4"></i>
             <p class="text-gray-400 text-xl">No articles found in this category.</p>
         </div>
+
+        <?php if ($allArticles): ?>
+        <!-- One ordinary link to every article, so none of them depends on "Load More" -->
+        <nav aria-label="All articles" class="mt-12 pt-8 border-t border-white/10">
+            <h2 class="text-white font-bold text-2xl mb-6" style="letter-spacing: -0.01em;">All articles</h2>
+            <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap: 0.75rem 2rem; list-style: none; padding: 0;">
+                <?php foreach ($allArticles as $article): ?>
+                <li><a href="/article/<?php echo htmlspecialchars($article['slug']); ?>" class="text-gray-400 hover:text-vibrant-orange-600 smooth-transition text-sm"><?php echo htmlspecialchars($article['title']); ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -879,8 +949,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // must run before the first fetch so we don't load "All" and then replace it
     applyCategoryFromUrl();
 
-    // Load initial articles
-    fetchArticles(currentPage, currentFilter);
+    // The server already rendered page 1, unless this is a filtered deep link or
+    // the CMS was unreachable when the page was built.
+    if (articlesContainer.children.length === 0) {
+        fetchArticles(currentPage, currentFilter);
+    }
 
     // Filter button click handlers
     filterButtons.forEach(button => {
@@ -931,36 +1004,6 @@ scrollBtn.addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 </script>
-
-<!-- Crawlable article links for search engines -->
-<noscript>
-<nav aria-label="All articles">
-<ul>
-<?php
-require_once __DIR__ . '/lib/cms.php';
-$r = @file_get_contents('https://appworks.mpanel.app/api/webV2/getArticles?articleLimit=100', false, appworks_cms_context(10));
-if ($r) {
-    $d = json_decode($r, true);
-    $articles = $d['result']['articles'] ?? [];
-    $hiddenSlugs = ['litteraworks-com'];
-    foreach ($articles as $a) {
-        $cats = $a['categories'] ?? [];
-        $hidden = false;
-        foreach ($cats as $cat) {
-            if (in_array($cat['slug'] ?? '', $hiddenSlugs)) { $hidden = true; break; }
-        }
-        if ($hidden) continue;
-        $slug = htmlspecialchars($a['slug'] ?? '');
-        $title = htmlspecialchars($a['title'] ?? '');
-        if ($slug && $title) {
-            echo "<li><a href=\"/article/{$slug}\">{$title}</a></li>\n";
-        }
-    }
-}
-?>
-</ul>
-</nav>
-</noscript>
 
 <script src="/js/nav.js" defer></script>
 </body>

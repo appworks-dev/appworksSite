@@ -49,7 +49,7 @@ Articles with category slug `litteraworks-com` (or any slug in the `hiddenSlugs`
 1. **articles.php** JS (client-side filter before rendering)
 2. **articles.html** JS (same filter)
 3. **home.html** JS (same filter)
-4. **articles.php** PHP noscript section (server-side skip)
+4. **articles.php** PHP cards and "All articles" list (server-side skip)
 5. **sitemap.php** (server-side skip)
 6. **article.php** (returns HTTP 410 Gone + `noindex` meta for direct URL access)
 

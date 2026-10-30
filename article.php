@@ -369,6 +369,12 @@ if ($articleData) {
     // Same category as the badge the reader just saw, so "related" means what it
     // looks like. Falls back to the latest articles when a category is too thin
     // to fill three slots.
+    //
+    // The pool starts just after this article and wraps around, rather than always
+    // starting at the newest. Picking the newest meant every article linked to the
+    // same few recent ones, and 32 of 62 had no link from any other article. This
+    // way each one is linked from the articles just before it in its category, and
+    // the links stay put between crawls.
     $primaryCategoryId = (int) ($articleData['categories'][0]['id'] ?? 0);
     $currentSlug       = $articleData['slug'] ?? '';
 
@@ -396,7 +402,12 @@ if ($articleData) {
     };
 
     if ($primaryCategoryId > 0) {
-        $pickRelated(appworks_cms_articles($primaryCategoryId, 8));
+        $pool = appworks_cms_articles($primaryCategoryId, 100);
+        $here = array_search($currentSlug, array_column($pool, 'slug'), true);
+        if ($here !== false) {
+            $pool = array_merge(array_slice($pool, $here + 1), array_slice($pool, 0, $here));
+        }
+        $pickRelated($pool);
     }
     if (count($relatedArticles) < 3) {
         $pickRelated(appworks_cms_articles(0, 12));
