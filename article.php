@@ -296,6 +296,13 @@ if ($articleData) {
     // Strip ?crop=true to prevent server-side cropping
     $pageImage = str_replace('?crop=true', '', $pageImage);
 
+    // Phones get the 640px rendition, because the original is usually over 1 MB
+    // and it is the largest thing on the page. Only the original's dimensions are
+    // trustworthy: large-full reports 640x720 for a file that is really 640x316.
+    $heroSmall  = str_replace('?crop=true', '', $articleData['images']['large-full']['url'] ?? '');
+    $heroWidth  = (int) ($articleData['images']['original']['metadata']['width'] ?? 0);
+    $heroHeight = (int) ($articleData['images']['original']['metadata']['height'] ?? 0);
+
     // Create clean slug URL — prefer CMS slug over generated slug
     $cleanSlug = $articleData['slug'] ?? createSlug($articleData['title']);
     $pageUrl = "https://app-works.app/article/" . $cleanSlug;
@@ -1293,9 +1300,16 @@ function relatedCardImage(array $article): ?array
 <section class="py-8" style="background: #200A24;">
     <div class="mx-auto px-6 lg:px-8" style="max-width: 1100px;">
         <div class="featured-image">
-            <img src="<?php echo $pageImage; ?>"
-                 alt="<?php echo htmlspecialchars($articleData['title']); ?>"
-                 onerror="this.style.display='none'">
+            <picture>
+                <?php if ($heroSmall !== ''): ?>
+                <source media="(max-width: 640px)" srcset="<?php echo htmlspecialchars($heroSmall); ?>">
+                <?php endif; ?>
+                <img src="<?php echo $pageImage; ?>"
+                     fetchpriority="high"
+                     <?php if ($heroWidth && $heroHeight): ?>width="<?php echo $heroWidth; ?>" height="<?php echo $heroHeight; ?>"<?php endif; ?>
+                     alt="<?php echo htmlspecialchars($articleData['title']); ?>"
+                     onerror="this.style.display='none'">
+            </picture>
         </div>
     </div>
 </section>
