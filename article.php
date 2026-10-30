@@ -69,6 +69,12 @@ $seoOverrides = [
         'title' => "Your Media Archive Is Costing More Than You Think",
         'description' => "Most media archives lose 30%+ of their value to bad metadata and untagged files. Why IMG_2023.jpg is costing you money, and how to fix it.",
     ],
+    // The CMS seo_title for this one is cut off mid-phrase ("...Evidence for
+    // Civic."), and it wins over the article title now that it is read. Remove this
+    // entry once the field is corrected in mPanel.
+    'unstructured-evidence-how-ai-makes-civic-accountability-readable' => [
+        'title' => "How AI Processes Unstructured Evidence for Civic Accountability",
+    ],
 ];
 
 // Get article ID or slug from URL
@@ -109,6 +115,57 @@ function getCategoryName($categoryId) {
         '10' => 'Grant Projects'
     ];
     return isset($categories[$categoryId]) ? $categories[$categoryId] : 'General';
+}
+
+/**
+ * The meta description for an article with no entry in $seoOverrides.
+ *
+ * The CMS intro is written for readers, not for a search snippet: 29 of 62 ran past
+ * 160 characters (one reached 700) and articles without one repeated their title.
+ * So: the CMS SEO field if someone filled it in, then a usable intro, then the first
+ * real paragraph of the body, all cut to what a results page will actually show.
+ */
+function articleMetaDescription(array $article): string
+{
+    $clean = function ($html) {
+        $text = html_entity_decode(strip_tags((string) $html), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        return trim(preg_replace('/[\s\x{00A0}]+/u', ' ', $text));
+    };
+    $minLength = 70; // shorter than this is a label, not a description
+
+    $title = $clean($article['title'] ?? '');
+    $intro = $clean($article['intro'] ?? '');
+    $text  = $clean($article['seo_description'] ?? '');
+
+    if ($text === '' && mb_strlen($intro) >= $minLength && mb_strtolower($intro) !== mb_strtolower($title)) {
+        $text = $intro;
+    }
+    if ($text === '') {
+        preg_match_all('#<p\b[^>]*>(.*?)</p>#is', (string) ($article['contents'] ?? ''), $paragraphs);
+        foreach ($paragraphs[1] as $paragraph) {
+            if (mb_strlen($clean($paragraph)) >= $minLength) {
+                $text = $clean($paragraph);
+                break;
+            }
+        }
+    }
+    if ($text === '') {
+        $text = $intro !== '' ? $intro : $title;
+    }
+
+    $limit = 155;
+    if (mb_strlen($text) <= $limit) {
+        return $text;
+    }
+    $cut = mb_substr($text, 0, $limit);
+
+    // A whole sentence reads better than a trailing ellipsis, if one fits.
+    $sentenceEnd = mb_strrpos($cut, '. ');
+    if ($sentenceEnd !== false && $sentenceEnd >= 100) {
+        return mb_substr($cut, 0, $sentenceEnd + 1);
+    }
+    $wordEnd = mb_strrpos($cut, ' ');
+    return rtrim(mb_substr($cut, 0, $wordEnd !== false ? $wordEnd : $limit), " ,;:-\u{2013}\u{2014}") . "\u{2026}";
 }
 
 // 301 redirect old ?id= and ?slug= query string URLs to clean /article/slug URLs
@@ -205,17 +262,16 @@ if ($articleData) {
     $slugForOverride = $articleData['slug'] ?? '';
     $override = $seoOverrides[$slugForOverride] ?? null;
 
-    if ($override && !empty($override['title'])) {
-        $pageTitle = htmlspecialchars($override['title']) . " | Appworks";
+    // Hand-written overrides first, then the fields editors fill in inside mPanel.
+    $seoTitle = !empty($override['title']) ? $override['title'] : trim((string) ($articleData['seo_title'] ?? ''));
+    if ($seoTitle !== '') {
+        $pageTitle = htmlspecialchars($seoTitle) . " | Appworks";
     } else {
         $pageTitle = htmlspecialchars($articleData['title']) . " - Appworks";
     }
 
-    if ($override && !empty($override['description'])) {
-        $pageDescription = htmlspecialchars($override['description']);
-    } else {
-        $pageDescription = htmlspecialchars($articleData['intro'] ?? $articleData['title']);
-    }
+    $metaDescription = !empty($override['description']) ? $override['description'] : articleMetaDescription($articleData);
+    $pageDescription = htmlspecialchars($metaDescription);
 
     // Handle image URL - prefer original for best quality
     if (isset($articleData['images']['original']['url'])) {
@@ -436,7 +492,7 @@ function relatedCardImage(array $article): ?array
         '@context'    => 'https://schema.org',
         '@type'       => 'Article',
         'headline'    => $articleData['title'],
-        'description' => $override['description'] ?? $articleData['intro'] ?? $articleData['title'],
+        'description' => $metaDescription,
         'image'       => $pageImage,
         // schema.org wants ISO 8601; the CMS gives "2026-03-25 09:30:05".
         'datePublished' => date('c', strtotime($articleData['created_at'])),
