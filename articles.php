@@ -23,13 +23,12 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- Google Fonts: Inter Variable -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/fonts.css">
 
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/bootstrap-icons.min.css">
 
     <!-- SEO Meta Tags -->
     <meta name="keywords" content="Appworks, Insights, Media Technology, Sports Technology, AI, Digital Publishing, Fan Engagement, Media Asset Management, Transcription">
